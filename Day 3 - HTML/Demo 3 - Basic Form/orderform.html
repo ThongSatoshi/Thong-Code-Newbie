@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thực hành 3 tạo form cơ bản</title>
+    <style>
+        body {
+            background-image:url("images/grocery1.png");
+            background-position:center;
+            background-size:cover;
+        }
+        .orderform {
+            background-color:rgb(255, 255, 255);
+            padding:15px;
+            margin-right:55%;
+            border:5px solid rgb(0,0,0);
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size:18px;
+        }
+        .question {
+            font-size:24px;
+        }
+        #asterisk {
+            font-size:24px;
+            font-weight:bold;
+            font-style:normal;
+            color:rgb(255, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <form class="orderform" action="order.php" method="get">
+        <h1>Order Form</h1>
+        <p class="question">Welcome to ABC Grocery!<br><br>What would you like to order?</p>
+        <select>
+            <option>Vegetable</option>
+            <option>Dairy products</option>
+            <option>Animal products</option>
+            <option>Confectionaries and Pastries</option>
+            <option>Soft drinks and Alcoholic drinks</option>
+        </select>
+        <p class="question">How many would you like to order?</p>
+        <input type="radio" name="amount" value="1">1 - $10
+        <br>
+        <br>
+        <input type="radio" name="amount" value="2">2 - $20
+        <br>
+        <br>
+        <input type="radio" name="amount" value="3">3 - $25
+        <p class="question">Your Name <i id="asterisk">*</i></p>
+        <input type="text" name="firstname" placeholder="First Name" size="22" required>
+        <input type="text" name="lastname" placeholder="Last Name" size="22" requird>
+        <p class="question">Email address</p>
+        <input type="email" name="email" size="50">
+        <p class="question">Phone number</p>
+        <input type="tel" name="1stdigits" maxlength="3"> -
+        <input type="tel" name="2nddigits" maxlength="3"> -
+        <input type="tel" name="lastdigits" maxlength="4">
+        <br>
+        <br>
+        <input type="submit" value="Order">
+        <input type="reset" value="Cancel">
+    </form>
+</body>
+</html>
