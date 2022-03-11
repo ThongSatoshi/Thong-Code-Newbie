@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giao diện form đăng kí</title>
+    <style>
+        body {
+            font-size:22px;
+        }
+        .label {
+            font-family:'Times New Roman', Times, serif;
+            font-size:25px;
+        }
+        input[type=radio] {
+            border:0px;
+            width:5%;
+            height:18px;
+        }
+        input[type=submit] {
+            font-size:22px;
+            width:10%;
+            height:33px;
+        }
+    </style>
+</head>
+<body>
+    <form action="signupsuccess.html" method="get">
+        <p class="label">Họ và Tên:</p>
+        <input type="text" name="fullname" maxlength="60" size="25" style="height:30px;font-size:18pt;">
+        <br>
+        <p class="label">Email:</p>
+        <input type="email" name="email" size="25" style="height:30px;font-size:18pt;">
+        <br>
+        <p class="label">Số điện thoại</p>
+        <input type="tel" name="phonenumber" maxlength="11" size="25" style="height:30px;font-size:18pt;">
+        <br>
+        <p class="label">Giới tính:</p>
+        <input type="radio" name="gender" value="male">Nam
+        <input type="radio" name="gender" value="female">Nữ
+        <input type="radio" name="gender" value="other">Khác
+        <br>
+        <br>
+        <input type="submit" value="Đăng kí">
+    </form>
+</body>
+</html>
