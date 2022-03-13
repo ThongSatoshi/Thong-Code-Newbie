@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo form đơn giản (Phần 2)</title>
+    <style>
+        body {
+            background-color:rgb(255, 252, 173);
+        }
+        h1 {
+            background-color:rgb(167, 224, 227);
+            font-size:30px;
+            color:rgb(0, 0, 255);
+            padding:5px;
+            height:40px;
+            width:500px;
+        }
+        .formbody {
+            padding:5px;
+            height:100px;
+            width:500px
+        }
+        td:nth-child(1) {
+            font-size:20px;
+            color:rgb(44, 44, 172);
+        }
+        input [type=submit] {
+            font-size:18px;
+            width:120px;
+            height:30px;
+            border:2px solid rgb(128, 128, 128);
+        }
+        input [type=reset] {
+            font-size:18px;
+            width:120px;
+            height:30px;
+            border:2px solid rgb(128, 128, 128);
+        }
+    </style>
+</head>
+<body>
+    <form action="studentformresult.html" method="get">
+        <h1>ĐĂNG KÍ HỌC VIÊN</h1>
+        <table class="formbody">
+            <tr>
+                <td>Họ và tên&nbsp;</td>
+                <td><input type="text" name="fullname" maxlength="60" size="40"></td>
+            </tr>
+            <tr>
+                <td>Ngày sinh&nbsp;</td>
+                <td><input type="date" name="birthday" maxlength="8" size="20"></td>
+            </tr>
+            <tr>
+                <td>Giới tính</td>
+                <td><input type="radio" name="gender" value="male">Nam&nbsp;<input type="radio" name="gender" value="female">Nữ</td>
+            </tr>
+            <tr>
+                <td>Địa chỉ</td>
+                <td><textarea rows="5" cols="30" name="address" placeholder="Hãy nhập địa chỉ vào ô sau"></textarea></td>
+            </tr>
+            <tr>
+                <td>Lớp</td>
+                <td>
+                    <select>
+                        <option>Lớp Tiếng Nhật sơ cấp 1 (初級１)</option>
+                        <option>Lớp Tiếng Nhật sơ cấp 2 (初級２)</option>
+                        <option>Lớp Tiếng Nhật sơ cấp 3 (初級３)</option>
+                        <option>Lớp Tiếng Nhật sơ cấp 4 (初級４)</option>
+                        <option>Lớp Tiếng Nhật sơ trung cấp 1 (初中級１)</option>
+                        <option>Lớp Tiếng Nhật sơ trung cấp 2 (初中級２)</option>
+                        <option>Lớp Tiếng Nhật trung cấp 1 (中級１)</option>
+                        <option>Lớp Tiếng Nhật trung cấp 2 (中級２)</option>
+                        <option>Lớp Tiếng Nhật thương mại</option>
+                        <option>Lớp Tiếng Nhật đàm thoại cấp tốc</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email" size="30"></td>
+            </tr>
+            <tr>
+                <td>Điện thoại</td>
+                <td><input type="tel" name="phonenumber" maxlength="11" size="30"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Đăng kí">&nbsp;<input type="reset" value="Nhập lại"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

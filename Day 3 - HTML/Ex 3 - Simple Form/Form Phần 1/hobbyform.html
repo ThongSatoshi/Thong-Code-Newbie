@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo form đơn giản (Phần 1)</title>
+    <style>
+        body {
+            background-color: rgb(127, 253, 211);
+        }
+        .form1 {
+            background-color: rgb(255, 255, 255);
+            font-size:25px;
+            text-align:center;
+            padding:5px;
+            height:450px;
+            width:650px;
+        }
+        th {
+            background-color: rgb(255, 115, 0);
+            color:rgb(255, 255, 255);
+            font-size:30px;
+            font-weight:bold;
+            text-align:center;
+            padding:5px;
+        }
+        .hobbyCheckbox {
+            text-align:left;
+            height:150px;
+            width:500px;
+            color:rgb(255, 115, 0);
+            font-size:22px;
+        }
+        input[type=submit] {
+            font-size:18px;
+            width:120px;
+            height:30px;
+            border:2px solid rgb(128, 128, 128);
+        }
+        input[type=reset] {
+            font-size:18px;
+            width:80px;
+            height:30px;
+            border:2px solid rgb(128, 128, 128);
+        }
+    </style>
+</head>
+<body>
+    <form action="hobbyformresult.html" method="get">
+        <table class="form1">
+            <tr>
+                <th colspan="4">SỞ THÍCH CỦA BẠN</th>
+            </tr>
+            <tr>
+                <td style="color:rgb(0, 0, 255)"><p>Họ và tên &nbsp;</p></td>
+                <td colspan="3" style="text-align:left"><input type="text" name="yourname" size="60" maxlength="60"></td>
+            </tr>
+            <tr>
+                <td style="color:rgb(0, 0, 255)"><p>Email &nbsp;</p></td>
+                <td colspan="3" style="text-align:left"><input type="email" name="email" size="40"></td>
+            </tr>
+            <tr>
+                <td style="color:rgb(0, 0, 255)"><p>Sở thích &nbsp;</p></td>
+                <td>
+                    <table class="hobbyCheckbox">
+                        <tr>
+                            <td><input type="checkbox" name="hobby" value="sport">&nbsp;Thể thao</td>
+                            <td><input type="checkbox" name="hobby" value="music">&nbsp;Âm nhạc</td>
+                            <td><input type="checkbox" name="hobby" value="reading">&nbsp;Đọc sách</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="hobby" value="websurfing">&nbsp;Lướt web</td>
+                            <td><input type="checkbox" name="hobby" value="gaming">&nbsp;Chơi game</td>
+                            <td><input type="checkbox" name="hobby" value="movie">&nbsp;Điện ảnh</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><input type="checkbox" name="hobby" value="traveling">&nbsp;Du lịch</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="3">
+                    <table>
+                        <tr>
+                            <td><input type="submit" value="Gửi thông tin"></td>
+                            <td><input type="reset" value="Nhập lại"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
