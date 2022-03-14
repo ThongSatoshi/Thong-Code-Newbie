@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngày - tháng - năm</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let inputDate = prompt("Hãy nhập ngày vào đây (lưu ý số ngày chỉ được từ 1 đến 31)");
+        let date = parseInt(inputDate);
+        while (date > 31 && date != null) {
+            alert ("Số ngày chỉ được tối đa là 31");
+            date = null;
+            let inputDate = prompt("Hãy nhập ngày vào đây (lưu ý số ngày chỉ được từ 1 đến 31)");
+            date = parseInt(inputDate);
+        }
+        let d = date;
+
+        let inputMonth = prompt("Hãy nhập tháng vào đây (lưu ý số tháng chỉ được từ 1 đến 12)");
+        let month = parseInt(inputMonth);
+        while (month > 12 && month != null) {
+            alert ("Số tháng chỉ được tối đa là 12");
+            month = null;
+            let inputMonth = prompt("Hãy nhập tháng vào đây (lưu ý số tháng chỉ được từ 1 đến 12)");
+            month = parseInt(inputMonth);
+        }
+        let m = month;
+        
+        let inputYear = prompt("Hãy nhập năm vào đây (lưu ý số năm phải lớn hơn 1000)");
+        let year = parseInt(inputYear);
+        while (year < 1000 && year != null) {
+            alert ("Số năm phải lớn hơn 1000");
+            year = null;
+            let inputYear = prompt("Hãy nhập năm vào đây (lưu ý số năm phải lớn hơn 1000)");
+            year = parseInt(inputYear); 
+        }
+        let y = year;
+
+        document.write ("số ngày đã nhập: " + dd + " số tháng đã nhập: " + mm + " số năm đã nhập: " + y);
+        document.write (" " + dd + " - " + mm + " - " + y); 
+    </script>
+</body>
+</html>
