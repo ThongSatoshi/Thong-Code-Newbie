@@ -10,7 +10,7 @@
     <script type="text/javascript">
         let inputDate = prompt("Hãy nhập ngày vào đây (lưu ý số ngày chỉ được từ 1 đến 31)");
         let date = parseInt(inputDate);
-        while (date > 31 || date == null) {
+        while (isNaN(date) || date < 0 || date > 31 || date == null) {
             alert ("Số ngày chỉ được tối đa là 31");
             date == null;
             let inputDate = prompt("Hãy nhập ngày vào đây (lưu ý số ngày chỉ được từ 1 đến 31)");
@@ -20,7 +20,7 @@
 
         let inputMonth = prompt("Hãy nhập tháng vào đây (lưu ý số tháng chỉ được từ 1 đến 12)");
         let month = parseInt(inputMonth);
-        while (month > 12 || month == null) {
+        while (isNaN(month) || month < 0 || month > 12 || month == null) {
             alert ("Số tháng chỉ được tối đa là 12");
             month == null;
             let inputMonth = prompt("Hãy nhập tháng vào đây (lưu ý số tháng chỉ được từ 1 đến 12)");
@@ -30,7 +30,7 @@
         
         let inputYear = prompt("Hãy nhập năm vào đây (lưu ý số năm phải lớn hơn 1000)");
         let year = parseInt(inputYear);
-        while (year < 1000 || year == null) {
+        while (isNaN(year) || year < 0 || year < 1000 || year == null) {
             alert ("Số năm phải lớn hơn 1000");
             year == null;
             let inputYear = prompt("Hãy nhập năm vào đây (lưu ý số năm phải lớn hơn 1000)");
