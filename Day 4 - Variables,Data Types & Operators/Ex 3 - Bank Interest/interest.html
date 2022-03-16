@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính lãi suất</title>
+</head>
+<body>
+    <script>
+        let amountMoney = parseInt(prompt("Hãy nhập số tiền vào đây (đơn vị triệu VND)"));
+        while (isNaN(amountMoney) || amountMoney <= 0 || amountMoney == null) {
+            alert("Chú ý! Số tiền phải là một số lớn hơn 0");
+            amountMoney == null;
+            amountMoney = parseInt(prompt("Hãy nhập số tiền vào đây (đơn vị triệu VND)"));
+        } 
+        var m = amountMoney;
+
+        let interestRate = parseFloat(prompt("Hãy nhập lãi suất ngân hàng vào đây (đơn vị %)"));
+        while (isNaN(interestRate) || interestRate <= 0 || interestRate == null) {
+            alert("Chú ý! Lãi suất phải là một số lớn hơn 0");
+            interestRate == null;
+            interestRate = parseFloat(prompt("Hãy nhập lãi suất ngân hàng vào đây (đơn vị %)"));
+        }
+        var i = interestRate;
+
+        let numberYear = parseInt (prompt("Hãy nhập số năm vào đây"));
+        while (isNaN(numberYear) || numberYear <= 0 || numberYear == null) {
+            alert("Chú ý! Số năm phải là một số lớn hơn 0");
+            numberYear == null;
+            numberYear = parseFloat(prompt("Hãy nhập số năm vào đây"));
+        }
+        var Y = numberYear;
+
+        let I = m * i;
+        let M = m + Y * I;
+        
+        document.write("Số tiền gốc bạn đã nhập là: " + m + " triệu VND" + "<br/>");
+        document.write("Lãi suất ngân hàng bạn đã nhập là: " + i + " %" + "<br/>");
+        document.write("Số năm bạn đã nhập là: " + Y + " năm" + "<br/>");
+        document.write("Số tiền lãi hằng năm là: " + I + " triệu VND" + "<br/>");
+        document.write("Số tiền gốc + lãi sau " + Y + " năm là: " + M + " triệu VND");
+    </script>
+</body>
+</html>
