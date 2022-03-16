@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chu vi và diện tích hình tròn</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let radius = parseFloat(prompt("Hãy nhập bán kính r đường tròn vào đây"));
+        while (radius < 0 || radius == null) {
+            alert("Chú ý! Bán kính đường tròn phải là số nguyên dương");
+            radius == null;
+            radius = parseFloat(prompt("Hãy nhập bán kính r đường tròn vào đây"));
+        }
+        var r = radius;
+        
+        let P = (r * 2 * Math.PI);
+        let S = (Math.pow(r , 2 ) * Math.PI);
+
+        document.write("Bán kính hình tròn đã nhập là: " + r + "<br/>");
+        document.write("Chu vi hình tròn là: " + P.toFixed(3) + "<br/>");
+        document.write("Diện tích hình tròn là: " + S.toFixed(3));
+    </script>
+</body>
+</html>
