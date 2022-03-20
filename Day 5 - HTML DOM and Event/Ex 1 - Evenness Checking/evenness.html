@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra số chẵn</title>
+    <style>
+        h1 {
+            font-size:30px;
+            font-family:Arial;
+        }
+
+        p {
+            font-size:20px;
+            font-family:Arial;
+        }
+
+        #inputBox {
+            font-size:20px;
+            height:40px;
+            width:400px;
+        }
+
+        .button {
+            font-size:18px;
+            font-family:arial;
+            font-weight:bold;
+            height:30px;
+            width:105px;
+        }
+    </style>
+</head>
+<body>
+    <table cellpadding="5px">
+        <tr>
+            <td colspan="2"><h1>Công cụ kiểm tra tính chẵn-lẻ</h1></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p>Hãy nhập số bạn cần kiểm tra vào đây</p>
+                <input id="inputBox" type="number">
+            </td>
+        </tr>
+        <tr>
+            <td><button class="button" id="checkBtn" type="button">Kiểm tra</button></td>
+            <td><input class="button" type="reset" value="Nhập lại"></td>
+        </tr>
+    </table>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let numb = document.getElementById("inputBox");
+        let checkBtn = document.getElementById("checkBtn");
+        let result = document.getElementById("result");
+
+        
+
+        inputBox.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("checkBtn").click();
+            };
+        })
+
+        checkBtn.addEventListener("click", function() {
+            let n = numb.value;
+            if (n %2 == 0) {
+                result.innerHTML = "Số " + n + " là số chẵn";
+            } else {
+                result.innerHTML = "Số " + n + " là số lẻ";
+            };
+        })
+    </script>
+</body>
+</html>
