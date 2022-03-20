@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra năm nhuận</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let year = parseInt(prompt("Hãy nhập số năm vào đây"));
+        while (isNaN(year) || year < 1582 || year == null) {
+            alert ("Lưu ý số năm nhỏ nhất cho phép là 1582 (*)" + "\n" + "\n" +
+            "(*giải thích : tháng 10 năm 1582, hệ thống lịch Gregorian," + "\n" + 
+            "cùng với quy tắc năm nhuận được áp dụng cho đến ngày nay," + "\n" + 
+            "được công bố lần đầu bởi Giáo Hoàng Gregory XIII )");
+            year == null;
+            year = parseInt(prompt("Hãy nhập số năm vào đây"));
+        };
+
+        if (year %4 == 0) {
+            if (year %100 != 0) {
+                alert ("Năm " + year + " là năm nhuận (Leap Year)");
+            } else {
+                if (year %400 == 0) {
+                    alert ("Năm " + year + " là năm nhuận (Leap Year)");
+                } else {
+                    alert ("Năm " + year + " là năm thường (Common Year)");
+                }; 
+            };
+        } else {
+            alert ("Năm " + year + " là năm thường (Common Year)");
+        };
+    </script>
+</body>
+</html>
