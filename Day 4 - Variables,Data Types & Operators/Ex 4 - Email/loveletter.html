@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư tình</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let receiver = prompt("Hãy nhập tên người nhận vào đây");
+        var re = reciever;
+
+        let address = prompt("Hãy nhập địa chỉ người gửi vào đây");
+        var ad = address; 
+
+        let signedDate = parseInt(prompt("Hãy nhập ngày vào đây"));
+        while (isNaN(signedDate) || signedDate < 0 || signedDate > 31 || signedDate == null) {
+            alert ("Ngày phải là một con số nằm trong khoảng từ 1 - 31");
+            signedDate == null;
+            signedDate = parseInt(prompt("Hãy nhập ngày vào đây"));
+        }
+        var Date = signedDate;
+
+        let signedMonth = parseInt(prompt("Hãy nhập tháng vào đây"));
+        while (isNaN(signedMonth) || signedMonth < 0 || signedMonth > 12 || signedMonth == null) {
+            alert ("Tháng phải là một con số nằm trong khoảng từ 1 - 12");
+            signedMonth == null;
+            signedMonth = parseInt(prompt("Hãy nhập tháng vào đây"));
+        }
+        var Month = signedMonth;
+
+        let signedYear = parseInt(prompt("Hãy nhập năm vào đây"));
+        while (isNaN(signedYear) || signedYear < 1000 || signedYear == null) {
+            alert ("Năm phải là một con số lớn hơn 1000");
+            signedYear == null;
+            signedYear = parseInt(prompt("Hãy nhập năm vào đây"));
+        }
+        var Year = signedYear;
+        
+
+    </script>
+</body>
+</html>
