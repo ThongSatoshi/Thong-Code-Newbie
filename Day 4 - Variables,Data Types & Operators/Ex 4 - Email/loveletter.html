@@ -9,10 +9,8 @@
 <body>
     <script type="text/javascript">
         let receiver = prompt("Hãy nhập tên người nhận vào đây");
-        var re = reciever;
 
         let address = prompt("Hãy nhập địa chỉ người gửi vào đây");
-        var ad = address; 
 
         let signedDate = parseInt(prompt("Hãy nhập ngày vào đây"));
         while (isNaN(signedDate) || signedDate < 0 || signedDate > 31 || signedDate == null) {
@@ -20,7 +18,7 @@
             signedDate == null;
             signedDate = parseInt(prompt("Hãy nhập ngày vào đây"));
         }
-        var Date = signedDate;
+        var date = signedDate;
 
         let signedMonth = parseInt(prompt("Hãy nhập tháng vào đây"));
         while (isNaN(signedMonth) || signedMonth < 0 || signedMonth > 12 || signedMonth == null) {
@@ -28,7 +26,7 @@
             signedMonth == null;
             signedMonth = parseInt(prompt("Hãy nhập tháng vào đây"));
         }
-        var Month = signedMonth;
+        var month = signedMonth;
 
         let signedYear = parseInt(prompt("Hãy nhập năm vào đây"));
         while (isNaN(signedYear) || signedYear < 1000 || signedYear == null) {
@@ -36,9 +34,36 @@
             signedYear == null;
             signedYear = parseInt(prompt("Hãy nhập năm vào đây"));
         }
-        var Year = signedYear;
-        
+        var year = signedYear;
 
+        var zd;
+        if (date < 10) {
+            zd = "0";
+        } else {
+            zd = "";
+        }
+        
+        var zm;
+        if (month < 10) {
+            zm = "0";
+        } else {
+            zm = "";
+        }
+
+        document.write(receiver + " thương nhớ," + "<br/>");
+        document.write(
+            "Em không biết phải nói sao để anh hiểu rằng, em nhớ anh thật nhiều." + "<br/>" + 
+            "Em yêu anh đến khi trái tim này tan thành nghìn mảnh." + "<br/>" +
+            "Tất cả những gì em yêu thương, em khát khao và cần đến, chính là anh, mãi mãi về sau." + "<br/>" + 
+            "Em chỉ muốn ở bên anh, và anh yêu hỡi, em sẽ trở thành người phụ nữ như anh mong muốn." + "<br/>" +
+            "Có phải em thật tệ hại, khi cứ nghĩ đến anh thật nhiều, thật lâu và nhất là mỗi khi đêm xuống?" + "<br/>" +
+            "Em hứa sẽ sẽ cố gắng triệu triệu lần hơn thế. Nhưng hơn tất cả, em chỉ mong một ngày nào đó," + "<br/>" + 
+            "anh sẽ tự hào về em, như tự hào về vợ của anh, và mẹ của các con anh (ít nhất là 2 nhé, em vừa mới quyết định đấy!)." + "<br/>" + 
+            "Em nhớ thật nhiều cảm giác mỗi đêm anh ôm em và ru em ngủ trong vòng tay." + "<br/>" + 
+            "Đêm nay, em chỉ muốn được gần bên anh… và anh biết không, trái tim em đang đau đớn đến nhường nào." + "<br/>" +
+            "Anh yêu thương, đừng bao giờ rời xa em nữa nhé. Yêu anh rất nhiều." + "<br/>"
+            );
+        document.write(address + ", ngày " + zd + date + " tháng " + zm + month + " năm " + year);
     </script>
 </body>
 </html>
