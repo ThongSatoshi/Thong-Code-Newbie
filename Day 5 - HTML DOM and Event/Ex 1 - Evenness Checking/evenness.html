@@ -65,10 +65,14 @@
 
         checkBtn.addEventListener("click", function() {
             let n = numb.value;
-            if (n %2 == 0) {
-                result.innerHTML = "Số " + n + " là số chẵn";
+            if (n %1 == 0 ) {
+                if (n %2 == 0) {
+                    result.innerHTML = "Số " + n + " là số chẵn";
+                } else {
+                    result.innerHTML = "Số " + n + " là số lẻ";
+                };
             } else {
-                result.innerHTML = "Số " + n + " là số lẻ";
+                result.innerHTML = "Không thể kiểm tra số " + n + ", vì " + n + " không là phải một số nguyên";
             };
         })
     </script>
