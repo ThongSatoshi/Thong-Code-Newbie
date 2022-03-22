@@ -48,7 +48,7 @@ window.onload = function() {
         let b = parseFloat(secondNum.value);
         let re;
         re = a / b;
-        if (isNaN(re) || re == null) {
+        if (isNaN(re) || re == null || b == 0) {
             result.innerHTML = "[Error] Không thể thực hiện tính phép tính";
         } else {
             result.innerHTML = "Kết quả phép tính là: " + re;
