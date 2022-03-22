@@ -1,11 +1,11 @@
-windows.onload = function() {
+window.onload = function() {
+
     let firstNum = document.getElementById("firstNum");
     let secondNum = document.getElementById("secondNum");
     let add = document.getElementById("addBtn");
     let sub = document.getElementById("subBtn");
     let mul = document.getElementById("mulBtn");
     let div = document.getElementById("divBtn");
-    let clear = document.getElementById("resetBtn");
     
     add.addEventListener("click", function() {
         let a = parseFloat(firstNum.value);
@@ -54,6 +54,4 @@ windows.onload = function() {
             result.innerHTML = "Kết quả phép tính là: " + re;
         };
     });
-
-clear.addEventListener("click", (firstNum && secondNum).reset());
 };
