@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Số nào?</title>
+</head>
+
+<body>
+    <h1>Nhập số trúng quà to!! Nhanh tay nào, mọi người ơi!</h1>
+    <br>
+    <script>
+        let numb = prompt("Hãy nhập con số của bạn (lưu ý chỉ được 0-3)");
+        while (isNaN(numb) || numb < 0 || numb > 3 || numb == null) {
+            alert("Lưu ý! Hệ thống chỉ ghi nhận các số trong phạm vi 0-3");
+            numb == null;
+            numb = prompt("Hãy nhập con số của bạn (lưu ý chỉ được 0-3)");
+        };
+        var x = parseInt(numb);
+        switch (x) {
+            case 0:
+                alert("Số 0 là lựa chọn của bạn." + "\r\n" + "Chúc mừng bạn đã nhận được 3,000,000 VND");
+                break;
+            case 1:
+                alert("Số 1 là lựa chọn của bạn." + "\r\n" + "Chúc mừng bạn đã đoạt lấy chuyến du lịch Nhật Bản 6 ngày 7 đêm");
+                break;
+            case 2:
+            case 3:
+                alert("Số " + numb + " là lựa chọn của bạn." + "\r\n" + "Chúc mừng bạn đã nhận được " + numb + " chiếc xe Wave");
+                break;
+        };
+    </script>
+</body>
+
+</html>

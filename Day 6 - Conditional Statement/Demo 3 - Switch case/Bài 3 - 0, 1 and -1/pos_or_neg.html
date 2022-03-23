@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Số nguyên dương hay số nguyên âm?</title>
+</head>
+
+<body>
+    <h1>Kiểm tra tính dương âm của một số</h1>
+    <br>
+    <script type="text/javascript">
+        let numb = prompt("Hãy nhập con số của bạn");
+        while (isNaN(numb) || numb %1 != 0 || numb == null) {
+            alert("Lưu ý! Hệ thống chỉ ghi nhận các số nguyên");
+            numb == null;
+            numb = prompt("Hãy nhập con số của bạn");
+        };
+        var n = parseInt(numb);
+        switch (n) {
+            case 0:
+                alert("0: Số bạn đã nhập là số 0");
+                break;
+            default:
+                if (n > 0) {
+                    alert("+1: Số bạn đã nhập (" + n + ") là một số nguyên dương");
+                } else {
+                    alert("-1: Số bạn đã nhập (" + n + ") là một số nguyên âm");
+                };
+                break;
+        };
+    </script>
+</body>
+
+</html>

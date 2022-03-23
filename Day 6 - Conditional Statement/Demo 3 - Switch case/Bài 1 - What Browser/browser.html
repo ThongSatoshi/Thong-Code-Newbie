@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser nào?</title>
+</head>
+<body>
+    <h1>Khảo sát browser của người dùng</h1>
+    <br>
+    <script type="text/javascript">
+        let browser = prompt("Hãy nhập tên browser bạn đang dùng");
+        switch (browser) {
+            case "Edge" || "Microsoft Edge":
+                alert ("Wow! Chúng tôi rất vui mừng vì bạn sử dụng Edge!");
+                break;
+            case "Chrome":
+            case "Firefox":
+            case "Safari":
+            case "Opera":
+                alert ("Trang chủ chúng tôi có hỗ trợ browser này!");
+                break;
+            default:
+                alert ("Rất tiếc trang chủ chúng tôi không có hỗ trợ browser của bạn");
+            };
+    </script>
+</body>
+</html>
