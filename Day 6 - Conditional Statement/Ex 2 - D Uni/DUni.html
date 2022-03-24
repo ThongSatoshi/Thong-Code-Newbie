@@ -20,7 +20,9 @@
             color: rgb(255, 0, 0);
         }
 
-        .inputBox {
+        #mathScore,
+        #literatureScore,
+        #englishScore {
             font-size: 18px;
             height: 30px;
             width: 300px;
@@ -41,60 +43,102 @@
 </head>
 
 <body>
-    <form action="javascript:handleClick()" method="get">
-        <table cellpadding="5px">
-            <tr>
-                <td colspan="2" text-align="center">
-                    <h1>Tính điểm Đại học khối D</h1>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Môn Toán</p>
-                </td>
-                <td><input class="inputBox" id="mathScore" type="number" name="score"
-                        placeholder="Hãy nhập điểm Toán vào đây"></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Môn Văn</p>
-                </td>
-                <td><input class="inputBox" id="literatureScore" type="number" name="score"
-                        placeholder="Hãy nhập điểm Văn vào đây"></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Môn Anh</p>
-                </td>
-                <td><input class="inputBox" id="englishScore" type="number" name="score"
-                        placeholder="Hãy nhập điểm Anh vào đây"></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Khu vực ưu tiên</p>
-                </td>
-                <td>
-                    <select class="selectBox" id="areaScore">
-                        <option>KV1</option>
-                        <option>KV2</option>
-                        <option>KV2-NT</option>
-                        <option>KV3</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td><input class="button" id="checkBtn" type="submit" value="Tính ngay"></td>
-                <td><button class="button" id="resetBtn" type="button">Nhập lại</td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div id="result"></div>
-                </td>
-            </tr>
-        </table>
-    </form>
+    <table cellpadding="5px">
+        <tr>
+            <td colspan="2" text-align="center">
+                <h1>Tính điểm Đại học khối D</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Môn Toán</p>
+            </td>
+            <td><input id="mathScore" type="number" name="score" placeholder="Hãy nhập điểm Toán vào đây" min="0"
+                    max="10" required></td>
+        </tr>
+        <tr>
+            <td>
+                <p>Môn Văn</p>
+            </td>
+            <td><input id="literatureScore" type="number" name="score" placeholder="Hãy nhập điểm Văn vào đây" min="0"
+                    max="10" required></td>
+        </tr>
+        <tr>
+            <td>
+                <p>Môn Anh</p>
+            </td>
+            <td><input id="englishScore" type="number" name="score" placeholder="Hãy nhập điểm Anh vào đây" min="0"
+                    max="10" required></td>
+        </tr>
+        <tr>
+            <td>
+                <p>Khu vực ưu tiên</p>
+            </td>
+            <td>
+                <select class="selectBox" id="areaScore" required>
+                    <option>KV1</option>
+                    <option>KV2</option>
+                    <option>KV2-NT</option>
+                    <option>KV3</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><button class="button" id="checkBtn" type="button" onclick="totalCal()">Tính ngay</button></td>
+            <td><button class="button" id="resetBtn" type="button" onclick="clear()">Nhập lại</button></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div id="result"></div>
+            </td>
+        </tr>
+    </table>
 
-    
+    <script type="text/javascript">
+        let math = parseFloat(document.getElementById("mathScore").value);
+        let literature = parseFloat(document.getElementById("literatureScore").value);
+        let english = parseFloat(document.getElementById("englishScore").value);
+        let areaScore = document.getElementById("areaScore");
+        let checkBtn = document.getElementById("checkBtn");
+        let resetBtn = document.getElementById("resetBtn");
+        let result = document.getElementById("result");
+        var area, total;
+
+        areaScore.addEventListener("change", chooseArea());
+
+        function chooseArea() {
+            switch (areaScore.value) {
+                case "KV1":
+                    area = 0.75;
+                    break;
+                case "KV2":
+                    area = 0.5;
+                    break;
+                case "KV2-NT":
+                    area = 0.25;
+                    break;
+                case "KV3":
+                    area = 0;
+                    break;
+            };
+        };
+
+        function totalCal() {
+            total = math + literature + english + area;
+            if (isNaN(math, literature, english, area) || (math, literature, english, area) == null) {
+                result.innerHTML = "[Error] Không thể thực hiện phép tính";
+            } else {
+                result.innerHTML = "Tổng điểm Đại Học khối D của bạn là " + total;
+            };
+        };
+
+        function clear() {
+            math = "";
+            literature = "";
+            english = "";
+            result.lastChild.remove();
+        };
+    </script>
 </body>
 
 </html>
