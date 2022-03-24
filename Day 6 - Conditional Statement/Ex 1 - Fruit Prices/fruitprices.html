@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tra cứu giá hoa quả</title>
+    <style>
+        h1 {
+            font-size: 35px;
+        }
+
+        #fruitName {
+            font-size: 18px;
+            height: 30px;
+            width: 300px;
+        }
+
+        #checkBtn {
+            font-size: 18px;
+            height: 30px;
+            width: 100px;
+        }
+
+        div {
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="javascript:handleClick()" method="get">
+        <h1>Giá hoa quả</h1>
+        <input id="fruitName" type="text" name="fruit" placeholder="Hãy nhập tên sản phẩm cần tìm"> &nbsp;
+        <input id="checkBtn" type="submit" value="Tìm ngay">
+        <br>
+        <br>
+        <div id="result"></div>
+    </form>
+    <script>
+        function clear() {
+            let fruitName = document.getElementById("fruitName");
+            let result = document.getElementById("result");
+            fruitName.value = "";
+            result.lastChild.remove();
+        };
+
+        let fruitName = document.getElementById("fruitName");
+        let result = document.getElementById("result");
+        let price;
+        let checkBtn = document.getElementById("checkBtn");
+        checkBtn.addEventListener("click", function () {
+            switch (fruitName.value) {
+                case "Ổi":
+                case "Dưa hấu":
+                    price = "20,000 VND/kg";
+                    result.innerHTML = "Giá thành của " + fruitName.value + " là: " + price;
+                    break;
+                case "Táo":
+                case "Xoài":
+                    price = "30,000 VND/kg";
+                    result.innerHTML = "Giá thành của " + fruitName.value + " là: " + price;
+                    break;
+                case "Cam":
+                case "Chôm chôm":
+                    price = "40,000 VND/kg";
+                    result.innerHTML = "Giá thành của " + fruitName.value + " là: " + price;
+                    break;
+                case "Măng cụt":
+                    price = "50,000 VND/kg";
+                    result.innerHTML = "Giá thành của " + fruitName.value + " là: " + price;
+                    break;
+                default:
+                    alert("[Error] Không có sản phẩm này" + "\r\n" + "Xin vui lòng nhập lại tên sản phẩm!");
+                    clear();
+                };
+            });
+    </script>
+</body>
+
+</html>
