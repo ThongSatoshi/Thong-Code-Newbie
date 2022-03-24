@@ -46,29 +46,29 @@
     <table cellpadding="5px">
         <tr>
             <td colspan="2" text-align="center">
-                <h1>Tính điểm Đại học khối D</h1>
+                <h1>Tính điểm Đại Học khối D</h1>
             </td>
         </tr>
         <tr>
             <td>
                 <p>Môn Toán</p>
             </td>
-            <td><input id="mathScore" type="number" name="score" placeholder="Hãy nhập điểm Toán vào đây" min="0"
-                    max="10" required></td>
+            <td><input id="mathScore" type="number" placeholder="Hãy nhập điểm Toán vào đây" min="0" max="10"
+                    onkeyup="updateScore('Math', this)" required></td>
         </tr>
         <tr>
             <td>
                 <p>Môn Văn</p>
             </td>
-            <td><input id="literatureScore" type="number" name="score" placeholder="Hãy nhập điểm Văn vào đây" min="0"
-                    max="10" required></td>
+            <td><input id="literatureScore" type="number" placeholder="Hãy nhập điểm Văn vào đây" min="0" max="10"
+                    onkeyup="updateScore('Literature', this)" required></td>
         </tr>
         <tr>
             <td>
                 <p>Môn Anh</p>
             </td>
-            <td><input id="englishScore" type="number" name="score" placeholder="Hãy nhập điểm Anh vào đây" min="0"
-                    max="10" required></td>
+            <td><input id="englishScore" type="number" placeholder="Hãy nhập điểm Anh vào đây" min="0" max="10"
+                    onkeyup="updateScore('English', this)" required></td>
         </tr>
         <tr>
             <td>
@@ -84,7 +84,7 @@
             </td>
         </tr>
         <tr>
-            <td><button class="button" id="checkBtn" type="button" onclick="totalCal()">Tính ngay</button></td>
+            <td><button class="button" id="checkBtn" type="button">Tính ngay</button></td>
             <td><button class="button" id="resetBtn" type="button" onclick="clear()">Nhập lại</button></td>
         </tr>
         <tr>
@@ -95,47 +95,55 @@
     </table>
 
     <script type="text/javascript">
-        let math = parseFloat(document.getElementById("mathScore").value);
-        let literature = parseFloat(document.getElementById("literatureScore").value);
-        let english = parseFloat(document.getElementById("englishScore").value);
-        let areaScore = document.getElementById("areaScore");
+        let math, literature, english;
         let checkBtn = document.getElementById("checkBtn");
-        let resetBtn = document.getElementById("resetBtn");
         let result = document.getElementById("result");
-        var area, total;
 
-        areaScore.addEventListener("change", chooseArea());
-
-        function chooseArea() {
-            switch (areaScore.value) {
-                case "KV1":
-                    area = 0.75;
-                    break;
-                case "KV2":
-                    area = 0.5;
-                    break;
-                case "KV2-NT":
-                    area = 0.25;
-                    break;
-                case "KV3":
-                    area = 0;
-                    break;
-            };
-        };
-
-        function totalCal() {
-            total = math + literature + english + area;
-            if (isNaN(math, literature, english, area) || (math, literature, english, area) == null) {
+        checkBtn.addEventListener("click", function () {
+            let isNan = isNaN(math) || isNaN(literature) || isNaN(english);
+            let isNull = (math == null) || (literature == null) || (english == null);
+            if (isNan || isNull) {
                 result.innerHTML = "[Error] Không thể thực hiện phép tính";
             } else {
+                let areaScore = document.getElementById("areaScore");
+                let area;
+                switch (areaScore.value) {
+                    case "KV1":
+                        area = 0.75;
+                        break;
+                    case "KV2":
+                        area = 0.5;
+                        break;
+                    case "KV2-NT":
+                        area = 0.25;
+                        break;
+                    case "KV3":
+                        area = 0;
+                        break;
+                };
+                let total = math + literature + english + area;
                 result.innerHTML = "Tổng điểm Đại Học khối D của bạn là " + total;
+            };
+        });
+
+        function updateScore(name, obj) {
+            switch (name) {
+                case 'Math':
+                    math = parseFloat(obj.value);
+                    break;
+                case 'Literature':
+                    literature = parseFloat(obj.value);
+                    break;
+                case 'English':
+                    english = parseFloat(obj.value);
+                    break;
             };
         };
 
         function clear() {
-            math = "";
-            literature = "";
-            english = "";
+            math = 0;
+            literature = 0;
+            english = 0;
             result.lastChild.remove();
         };
     </script>
