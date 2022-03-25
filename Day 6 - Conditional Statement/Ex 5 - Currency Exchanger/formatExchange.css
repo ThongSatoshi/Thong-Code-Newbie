@@ -1,0 +1,21 @@
+.label {
+    font-size: 22px;
+}
+#moneyAmount, #fromCurrency, #toCurrency {
+    font-size: 18px;
+    height: 30px;
+    width: 200px;
+}
+#exchangeBtn {
+    font-size: 18px;
+    font-weight: bold;
+    height: 40px;
+    width: 150px;
+    border-style: solid 2px rgb(0, 0, 0);
+    background-color: rgb(210, 160, 255);
+    color: rgb(255, 255, 255);
+}
+#result {
+    font-size: 22px;
+    color: rgb(0, 0, 255);
+}

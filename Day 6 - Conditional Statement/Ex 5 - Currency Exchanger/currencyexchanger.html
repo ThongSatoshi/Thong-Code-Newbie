@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyển đổi tiền tệ</title>
+    <link rel="stylesheet" href="formatExchange.css">
+    <script type="text/javascript" src="doExchange.js"></script>
+</head>
+
+<body>
+    <form>
+        <table cellpadding="5px">
+            <tr>
+                <td colspan="4">
+                    <h1>Máy chuyển đổi tiền tệ</h1>
+                </td>
+            </tr>
+            <tr text-align="center">
+                <td class="label">Số tiền</td>
+                <td class="label">Từ</td>
+                <td class="label">Chuyển thành</td>
+                <td class="label"></td>
+            </tr>
+            <tr>
+                <td><input id="moneyAmount" type="number" value="1" min="1" required></td>
+                <td>
+                    <select id="fromCurrency">
+                        <option value="USD">Dollar Mĩ (USD)</option>
+                        <option value="EUR">Euro (EUR)</option>
+                        <option value="JPY">Yen Nhật (JPY)</option>
+                        <option value="GBP">Pound Anh (GBP)</option>
+                        <option value="VND">Đồng Việt Nam (VND)</option>
+                    </select>
+                </td>
+                <td>
+                    <select id="toCurrency">
+                        <option value="USD">Dollar Mĩ (USD)</option>
+                        <option value="EUR">Euro (EUR)</option>
+                        <option value="JPY">Yen Nhật (JPY)</option>
+                        <option value="GBP">Pound Anh (GBP)</option>
+                        <option value="VND">Đồng Việt Nam (VND)</option>
+                    </select>
+                </td>
+                <td>
+                    <button id="exchangeBtn" type="button">Chuyển đổi</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div id="result"></div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
