@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính chỉ số BMI</title>
+    <style>
+        div {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let height, weight, BMI;
+        let result = document.getElementById("result");
+        height = parseFloat(prompt("Hãy nhập chiều cao của bạn (đơn vị meter)"));
+        while (isNaN(height) || height < 0 || height == null) {
+            alert("Chiều cao phải là một số lớn hơn 0");
+            height == null;
+            height = parseFloat(prompt("Hãy nhập chiều cao của bạn (đơn vị meter)"));
+        };
+        weight = parseFloat(prompt("Hãy nhập cân nặng của bạn (đơn vị kg)"));
+        while (isNaN(weight) || weight < 0 || weight == null) {
+            alert("Cân nặng phải là một số lớn hơn 0");
+            weight == null;
+            weight = parseFloat(prompt("Hãy nhập cân nặng của bạn (đơn vị kg)"));
+        };
+
+        BMI = weight / (Math.pow(height, 2));
+
+        if (BMI > 40) { 
+            result.innerHTML = "BMI của bạn là: " + BMI.toFixed(3) + "<br>" + "Bạn thuộc nhóm Béo Phì Cấp độ III"; 
+        } else if (BMI >= 35 && BMI < 40) {
+            result.innerHTML = "BMI của bạn là: " + BMI.toFixed(3) + "<br>" + "Bạn thuộc nhóm Béo Phì Cấp độ II"; 
+        } else if (BMI >= 30 && BMI < 35) {
+            result.innerHTML = "BMI của bạn là: " + BMI.toFixed(3) + "<br>" + "Bạn thuộc nhóm Béo Phì Cấp độ I"; 
+        } else if (BMI >= 25 && BMI < 30) {
+            result.innerHTML = "BMI của bạn là: " + BMI.toFixed(3) + "<br>" + "Bạn thuộc nhóm Thừa Cân"; 
+        } else if (BMI >= 18.5 && BMI < 25) {
+            result.innerHTML = "BMI của bạn là: " + BMI.toFixed(3) + "<br>" + "Bạn thuộc nhóm Bình Thường"; 
+        } else if (BMI >= 17 && BMI < 18.5) {
+            result.innerHTML = "BMI của bạn là: " + BMI.toFixed(3) + "<br>" + "Bạn thuộc nhóm Gầy Cấp độ I"; 
+        } else if (BMI >= 16 && BMI < 17) {
+            result.innerHTML = "BMI của bạn là: " + BMI.toFixed(3) + "<br>" + "Bạn thuộc nhóm Gầy Cấp độ II"; 
+        } else {
+            result.innerHTML = "BMI của bạn là: " + BMI.toFixed(3) + "<br>" + "Bạn thuộc nhóm Gầy Cấp độ III"; 
+        };
+    </script>
+</body>
+</html>
