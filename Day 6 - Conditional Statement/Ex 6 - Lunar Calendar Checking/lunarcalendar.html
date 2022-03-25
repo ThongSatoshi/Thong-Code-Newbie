@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm lịch âm</title>
+    <style>
+        div {
+            font-size: 24px;
+            font-weight: bold;
+            color: rgb(0, 0, 255);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="yearOutput"></div>
+    <script type="text/javascript">
+        let yearInput, yearOutput, yearCan, yearChi;
+        yearInput = parseInt(prompt("Hãy nhập số năm vào đây"));
+        while (isNaN(yearInput) || yearInput < 1000 || yearInput == null) {
+            alert("Số năm phải là một con số lớn hơn 1000");
+            yearInput == null;
+            yearInput = parseInt(prompt("Hãy nhập số năm vào đây"));
+        };
+
+        var canLevel = yearInput % 10;
+        switch (canLevel) {
+            case 0:
+                yearCan = "Canh";
+                break;
+            case 1:
+                yearCan = "Tân";
+                break;
+            case 2:
+                yearCan = "Nhâm";
+                break;
+            case 3:
+                yearCan = "Quý";
+                break;
+            case 4:
+                yearCan = "Giáp";
+                break;
+            case 5:
+                yearCan = "Ất";
+                break;
+            case 6:
+                yearCan = "Bính";
+                break;
+            case 7:
+                yearCan = "Đinh";
+                break;
+            case 8:
+                yearCan = "Mậu";
+                break;
+            case 9:
+                yearCan = "Kỷ";
+                break;
+            default:
+                yearCan == "[Error] Không xác định";
+                break;
+        };
+
+        var chiLevel = yearInput % 12;
+        switch (chiLevel) {
+            case 0:
+                yearChi = "Thân";
+                break;
+            case 1:
+                yearChi = "Dậu";
+                break;
+            case 2:
+                yearChi = "Tuất";
+                break;
+            case 3:
+                yearChi = "Hợi";
+                break;
+            case 4:
+                yearChi = "Tý";
+                break;
+            case 5:
+                yearChi = "Sửu";
+                break;
+            case 6:
+                yearChi = "Dần";
+                break;
+            case 7:
+                yearChi = "Mão";
+                break;
+            case 8:
+                yearChi = "Thìn";
+                break;
+            case 9:
+                yearChi = "Tỵ";
+                break;
+            case 10:
+                yearChi = "Ngọ";
+                break;
+            case 11:
+                yearChi = "Mùi";
+                break;
+            default:
+                yearChi == "[Error] Không xác định";
+                break;
+        };
+
+        yearOutput = document.getElementById("yearOutput")
+        yearOutput.innerHTML = "Năm " + yearInput + " mà bạn đã nhập là năm " + yearCan + "&nbsp;" + yearChi;
+
+    </script>
+</body>
+
+</html>
