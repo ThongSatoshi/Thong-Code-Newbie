@@ -33,27 +33,27 @@
         let result = document.getElementById("result");
 
         function inputMonth() {
-            month = parseInt(prompt("Hãy nhập số tháng vào đây").value);
+            month = parseInt(prompt("Hãy nhập số tháng vào đây"));
             while (isNaN(month) || month < 1 || month > 12 || month == null) {
                 alert("Tháng phải là một số nguyên từ 1-12");
                 month == null;
-                month = parseInt(prompt("Hãy nhập số tháng vào đây").value);
+                month = parseInt(prompt("Hãy nhập số tháng vào đây"));
             };
         };
 
         function checkDatenumb() {
-            switch (month.value) {
+            switch (month) {
                 case 4:
                 case 6:
                 case 9:
                 case 11:
-                    result.innerHTML = "Tháng " + month.value + " có 30 ngày";
+                    result.innerHTML = "Tháng " + month + " có 30 ngày";
                     break;
                 case 2:
-                    result.innerHTML = "Tháng " + month.value + " có 28 hoặc 29 ngày";
+                    result.innerHTML = "Tháng " + month + " có 28 hoặc 29 ngày";
                     break;
                 default:
-                    result.innerHTML = "Tháng " + month.value + " có 31 ngày";
+                    result.innerHTML = "Tháng " + month + " có 31 ngày";
                     break;
             };
         };
