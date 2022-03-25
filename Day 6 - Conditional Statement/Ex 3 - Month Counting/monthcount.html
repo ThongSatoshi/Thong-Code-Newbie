@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tháng n có bao nhiêu ngày?</title>
+    <style>
+        #inputPrompt,
+        #checkBtn {
+            font-size: 18px;
+            height: 30px;
+            width: 150px;
+        }
+
+        #result {
+            font-size: 20px;
+            color: rgb(255, 0, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tháng n có bao nhiêu ngày?</h1>
+    <button id="inputPrompt" type="button" onclick="inputMonth()">Nhập dữ liệu</button>
+    <button id="checkBtn" type="button" onclick="checkDatenumb()">Kiểm tra ngay</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <script>
+        let month;
+        let result = document.getElementById("result");
+        
+        function inputMonth() {
+            month = prompt("Hãy nhập số tháng vào đây");
+            parseInt(month.value);
+            while (isNaN(month) || month < 1 || month > 12 || month == null) {
+                alert("Tháng phải là một số nguyên từ 1-12");
+                month == null;
+                month = prompt("Hãy nhập số tháng vào đây");
+                parseInt(month.value);
+            };
+        };
+
+        function checkDatenumb() {
+            switch (month.value) {
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    result.innerHTML = "Tháng " + month.value + " có 30 ngày";
+                    break;
+                case 2:
+                    result.innerHTML = "Tháng " + month.value + " có 28 hoặc 29 ngày";
+                    break;
+                default:
+                    result.innerHTML = "Tháng " + month.value + " có 31 ngày";
+                    break;
+            };
+        };
+    </script>
+</body>
+
+</html>

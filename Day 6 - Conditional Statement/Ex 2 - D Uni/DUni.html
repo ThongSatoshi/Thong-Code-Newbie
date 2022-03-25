@@ -85,7 +85,7 @@
         </tr>
         <tr>
             <td><button class="button" id="checkBtn" type="button">Tính ngay</button></td>
-            <td><button class="button" id="resetBtn" type="button" onclick="clear()">Nhập lại</button></td>
+            <td><button class="button" type="button" onclick="clear()">Nhập lại</td>
         </tr>
         <tr>
             <td colspan="2">
@@ -141,10 +141,10 @@
         };
 
         function clear() {
-            math = 0;
-            literature = 0;
-            english = 0;
-            result.lastChild.remove();
+            document.getElementById("mathScore").reset();
+            document.getElementById("literatureScore").reset();
+            document.getElementById("englishScore").reset();
+            document.getElementById("areaScore").reset();
         };
     </script>
 </body>
