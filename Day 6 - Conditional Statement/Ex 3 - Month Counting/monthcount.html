@@ -31,15 +31,13 @@
     <script>
         let month;
         let result = document.getElementById("result");
-        
+
         function inputMonth() {
-            month = prompt("Hãy nhập số tháng vào đây");
-            parseInt(month.value);
+            month = parseInt(prompt("Hãy nhập số tháng vào đây").value);
             while (isNaN(month) || month < 1 || month > 12 || month == null) {
                 alert("Tháng phải là một số nguyên từ 1-12");
                 month == null;
-                month = prompt("Hãy nhập số tháng vào đây");
-                parseInt(month.value);
+                month = parseInt(prompt("Hãy nhập số tháng vào đây").value);
             };
         };
 
