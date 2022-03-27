@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vòng lặp do-while</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        var num = null;
+        do {
+            num = parseInt(prompt("Hãy nhập các con số từ 1 -> 10 vào ô sau"));
+            while (isNaN(num) || num == null || num <= 0) {
+                alert("Lưu ý! Hệ thống chỉ nhận các con số từ 1 -> 10");
+                num = parseInt(prompt("Hãy nhập các con số từ 1 -> 10 vào ô sau"));
+            };
+            alert(num);
+            document.write("Số bạn vừa nhập là: " + num + "<br>");
+        } while (num >= 1 && num < 10);
+    </script>
+</body>
+
+</html>
