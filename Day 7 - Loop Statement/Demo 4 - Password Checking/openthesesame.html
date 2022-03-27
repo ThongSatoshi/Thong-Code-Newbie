@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"Vừng ơi, mở ra!"</title>
+</head>
+<body>
+    <script type="text/javascript">
+        const passcode = "vừng ơi mở ra";
+        let inputcode = prompt("Xin vui lòng nhập ám hiệu để mở cửa");
+        while (inputcode !== passcode) {
+            alert("Mật khẩu sai! Không thể mở cửa cho kẻ xấu!!");
+            inputcode = prompt("Xin vui lòng nhập ám hiệu để mở cửa");
+        };
+        alert("Mật khẩu đúng! Mở cửa thành công!!");
+    </script>
+</body>
+</html>
