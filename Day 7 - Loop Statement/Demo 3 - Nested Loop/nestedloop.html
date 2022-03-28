@@ -11,6 +11,7 @@
 <body>
     <script type="text/javascript">
         let grid, row, col;
+        let i = 1;
         let num = parseInt(prompt("Hãy nhập số ô (cell) bạn muốn khởi tạo" + "\n" + "(kết quả số ô cuối cùng luôn là số ô bình phương)"));
         while (isNaN(num) || num == null || num <= 0) {
             alert("Lưu ý! Số cell chỉ nhận các giá trị là số nguyên lớn hơn 0");
@@ -26,10 +27,10 @@
             row = col = parseInt(prompt("Hãy nhấn phím 1 để bắt đầu chương trình"));
         };
 
-        while (row <= num) {
+        while (row <= num || i <= num) {
             grid = grid + "<tr>";
-            while (col <= num) {
-                grid = grid + "<td>" + (row * col) + "</td>";
+            while (col <= num || i <= num) {
+                grid = grid + "<td>" + (i++) + "</td>";
                 col++;
             };
             grid = grid + "</tr>";
