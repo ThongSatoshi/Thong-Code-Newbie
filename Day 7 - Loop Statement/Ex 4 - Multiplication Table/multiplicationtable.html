@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Cửu Chương</title>
+</head>
+
+<body>
+    <h1>Bảng Cửu Chương</h1>
+    <br>
+    <script type="text/javascript">
+        let grid, row, col;
+        let i = 1, j = 1;
+        grid = "<table border='1px' height='500px' width='1200px' cellspacing='0' cellpadding='10px' stye='font-size:30px' style='text-align:center'>";
+        row = col = parseInt(prompt("Hãy nhấn phím 1 để bắt đầu chương trình"));
+        while (isNaN(row) || row == null || row != 1) {
+            alert("Xin vui lòng hãy nhấn phím 1 để bắt đầu chương trình!");
+            row = col = null;
+            row = col = parseInt(prompt("Hãy nhấn phím 1 để bắt đầu chương trình"));
+        };
+        while (row <= 10 || j <= 10) {
+            grid = grid + "<tr>";
+            while (col < 10 || i < 10) {
+                grid = grid + "<td>" + i + " x " + j + " = " + (i++ * j) + "</td>";
+                col++;
+            };
+            grid = grid + "</tr>";
+            col = 1;
+            i = 1;
+            j++;
+            row++;
+        };
+        grid = grid + "</table>";
+        document.write(grid);
+    </script>
+</body>
+
+</html>
