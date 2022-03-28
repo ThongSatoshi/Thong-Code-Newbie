@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đảo ngược số</title>
+</head>
+
+<body>
+    <h1>Đảo ngược số</h1>
+    <p id="result"></p>
+    <script>
+        let result = document.getElementById("result");
+        let inputNum = parseInt(prompt("Hãy nhập số của bạn"));
+        while (isNaN(inputNum) || inputNum == null) {
+            alert("Lưu ý! Hệ thống chỉ ghi nhận các số nguyên");
+            inputNum == null;
+            inputNum = parseInt(prompt("Hãy nhập số của bạn"));
+        };
+
+        let num = inputNum;
+        let finalDigit, reverse = 0;
+        while (num != 0) {
+            finalDigit = num %10;
+            reverse = (reverse * 10) + finalDigit;
+            num = (num - finalDigit) / 10;
+        };
+
+        result.innerHTML = "Số " + inputNum + " có phiên bản đảo ngược là " + reverse;
+
+    </script>
+</body>
+
+</html>
