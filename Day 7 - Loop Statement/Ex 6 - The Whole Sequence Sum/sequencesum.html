@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tổng các số trong dãy</title>
+</head>
+
+<body>
+    <h1>Tổng các số trong dãy từ x đến y</h1>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let sum = 0;
+        let result = document.getElementById("result");
+        let inputMin = parseInt(prompt("Hãy nhập số x nhỏ nhất trong dãy"));
+        while (isNaN(inputMin) || inputMin == null) {
+            alert("Lưu ý! Hệ thống chỉ ghi nhận các số nguyên");
+            inputMin == null;
+            inputMin = parseInt(prompt("Hãy nhập số x nhỏ nhất trong dãy"));
+        };
+        let inputMax = parseInt(prompt("Hãy nhập số y lớn nhất trong dãy"));
+        while (isNaN(inputMax) || inputMax == null) {
+            alert("Lưu ý! Hệ thống chỉ ghi nhận các số nguyên");
+            inputMax == null;
+            inputMax = parseInt(prompt("Hãy nhập số y lớn nhất trong dãy"));
+        };
+
+        var x = inputMin, y = inputMax;
+        for (x; x <= y; y--) {
+            sum = sum + y;
+        };
+        result.innerHTML = "Tổng các số trong dãy từ " + inputMin + " đến " + inputMax + " là: " + sum;
+    </script>
+</body>
+
+</html>
