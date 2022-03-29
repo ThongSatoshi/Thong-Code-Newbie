@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiện dãy số nguyên tố (Prime Number)</title>
+</head>
+
+<body>
+    <h1>Dãy số nguyên tố (Prime Number)</h1>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let result = document.getElementById("result");
+        let num = parseInt(prompt("Bạn muốn hiển thị ra bao nhiêu số nguyên tố?"));
+        while (isNaN(num) || num == null || num <= 0) {
+            alert("Lưu ý! Hệ thống chỉ nhận các số lớn hơn 0");
+            num == null;
+            num = parseInt(prompt("Bạn muốn hiển thị ra bao nhiêu só nguyên tố"));
+        };
+
+        let n = 2, m = 2;
+        let text = "";
+        for (n; n <= num; n++) {
+            for (m; m < n; m++) {
+                if (n % m === 0) {
+                    isPrime = 0;
+                    break;
+                } else {
+                    isPrime = 1;
+                    break;
+                };
+            };
+
+            if (isPrime === 1) text = text + n;
+            result.innerHTML = "Dãy " + num + " số nguyên tố: " + text;
+        };
+    </script>
+</body>
+
+</html>
