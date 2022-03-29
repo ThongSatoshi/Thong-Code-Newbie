@@ -1,12 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vẽ hình tam giác (phần 2)</title>
+    <style>
+        .button {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 18px;
+            font-weight: bold;
+            height: 30px;
+            width: 200px;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <h1>Vẽ tam giác vuông</h1>
+    <button class="button" type="button" onclick="drawTriangle()">Vẽ tam giác</button>
+    <button class="button" type="button" onclick="printTriangle()">In tam giác</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <br>
+    <br>
+    <canvas id="canvas" width="1000" height="1000"></canvas>
+    <script type="text/javascript">
+        function drawTriangle() {
+            let height = parseFloat(prompt("Hãy nhập độ dài chiều cao tam giác"));
+            while (isNaN(height) || height == null || height <= 0 || height > 1000) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các số lớn hơn 0");
+                height == null;
+                height = parseFloat(prompt("Hãy nhập độ dài chiều cao tam giác"));
+            };
+            let base = parseFloat(prompt("Hãy nhập độ dài cạnh đáy tam giác"));
+            while (isNaN(base) || base == null || base <= 0 || height > 1000) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các số lớn hơn 0");
+                base == null;
+                base = parseFloat(prompt("Hãy nhập độ dài cạnh đáy tam giác"));
+            };
+            let fill = prompt("Bạn có muốn tô màu tam giác? (Y/N)");
+            while (fill !== "Y" && fill !== "N" || fill == null) {
+                alert("Vui lòng chọn Y (Yes) hay N (No)");
+                fill == null;
+                fill = prompt("Bạn có muốn tô màu tam giác? (Y/N)");
+            };
+
+            let canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                let context = canvas.getContext('2d');
+
+                context.beginPath();
+                context.moveTo(base, base);
+                context.lineTo(100, base);
+                context.lineTo(100, height);
+                if (fill === "Y") {
+                    context.fill();
+                } else {
+                    context.closePath();
+                    context.stroke();
+                };
+            };
+        };
+
+        function printTriangle() {
+            let height = parseFloat(prompt("Hãy nhập độ dài chiều cao tam giác"));
+            while (isNaN(height) || height == null || height <= 0) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các số lớn hơn 0");
+                height == null;
+                height = parseFloat(prompt("Hãy nhập độ dài chiều cao tam giác"));
+            };
+            let base = parseFloat(prompt("Hãy nhập độ dài cạnh đáy tam giác"));
+            while (isNaN(base) || base == null || base <= 0) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các số lớn hơn 0");
+                base == null;
+                base = parseFloat(prompt("Hãy nhập độ dài cạnh đáy tam giác"));
+            };
+            let reverse = prompt("Bạn có muốn đảo ngược tam giác? (Y/N)");
+            while (reverse !== "Y" && reverse !== "N" || reverse == null) {
+                alert("Vui lòng chọn Y (Yes) hay N (No)");
+                reverse == null;
+                reverse = prompt("Bạn có muốn đảo ngược tam giác? (Y/N)");
+            };
+
+            let result = document.getElementById("result");
+            let text = "";
+            switch (reverse) {
+                case "Y":
+                    for (let i = height; i > 0; i--) {
+                        for (let j = base; j <= base * i - 1; j++) {
+                            text = text + "*";
+                        };
+                        text = text + "<br/>";
+                        result.innerHTML = text;
+                    };
+                    break;
+                case "N":
+                    for (let i = 1; i <= height; i++) {
+                        for (let j = base; j <= base * i; j++) {
+                            text = text + "*";
+                        };
+                        text = text + "<br/>";
+                        result.innerHTML = text;
+                    };
+                    break;
+            };
+        };
+    </script>
 </body>
+
 </html>
