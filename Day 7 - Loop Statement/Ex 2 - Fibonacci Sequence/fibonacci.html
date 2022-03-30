@@ -37,17 +37,17 @@
         function theSequence() {
             while (i < digit) {
                 if (x == 0) {
-                    text = text + (x + "<br/>");
-                    text = text + (y + "<br/>");
+                    text = text + x + "<br>";
+                    text = text + y + "<br>";
                 } else {
-                    text = text + (z + "<br/>");
+                    text = text + z + "<br>";
                 };
 
                 i++;
                 z = x + y;
                 x = y;
                 y = z;
-                result.innerHTML = "Dãy Fibonacci " + digit + " số: " + "<br/>" + text;
+                result.innerHTML = "Dãy Fibonacci " + digit + " số: " + "<br>" + text;
             };
         };
     </script>
