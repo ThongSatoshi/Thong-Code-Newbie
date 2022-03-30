@@ -20,22 +20,24 @@
             num = parseInt(prompt("Bạn muốn hiển thị ra bao nhiêu só nguyên tố"));
         };
 
-        let n = 2, m = 2;
+        let a, b, count;
         let text = "";
-        for (n; n <= num; n++) {
-            for (m; m < n; m++) {
-                if (n % m === 0) {
-                    isPrime = 0;
-                    break;
-                } else {
-                    isPrime = 1;
-                    break;
+        var factor;
+        for (a = 1, count = 1; count <= num; a++) {
+            factor = 0;
+            for (b = 1; b <= a; b++) {
+                if (a % b == 0) {
+                    factor++;
+                    continue;
                 };
             };
-
-            if (isPrime === 1) text = text + n;
-            result.innerHTML = "Dãy " + num + " số nguyên tố: " + text;
+            if (factor == 2) {
+                text = text + a + "<br>";
+                count++;
+            };
         };
+        result.innerHTML = "Dãy " + num + " số nguyên tố của bạn là: " + "<br>" + text;
+
     </script>
 </body>
 
