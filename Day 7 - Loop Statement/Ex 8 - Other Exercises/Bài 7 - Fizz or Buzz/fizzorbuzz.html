@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fizz or Buzz?</title>
+    <style>
+        #result, #note {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Fizz hay là Buzz?</h1>
+    <p id="note"></p>
+    <p id="result"></p>
+    <script type="text/javascript">
+        let num = 1, text = "";
+        let n = parseInt(prompt("Hãy nhập giới hạn dãy số"));
+        while (isNaN(n) || n == null || n <= 0) {
+            alert("Lưu ý! Hệ thống chỉ ghi nhận các số lớn hơn 0");
+            n == null;
+            n = parseInt(prompt("Bạn muốn tính tổng bao nhiêu số trong dãy?"));
+        };
+        let fizz = parseInt(prompt("Bạn muốn 'Fizz' là những số chia hết cho...? "));
+        while (isNaN(fizz) || fizz == null || fizz <= 0) {
+            alert("Lưu ý! Hệ thống chỉ ghi nhận các số lớn hơn 0");
+            fizz == null;
+            fizz = parseInt(prompt("Bạn muốn 'Fizz' là những số chia hết cho...?"));
+        };
+        let buzz = parseInt(prompt("Bạn muốn 'Buzz' là những số chia hết cho...? "));
+        while (isNaN(buzz) || buzz == null || buzz <= 0) {
+            alert("Lưu ý! Hệ thống chỉ ghi nhận các số lớn hơn 0");
+            buzz == null;
+            buzz = parseInt(prompt("Bạn muốn 'Buzz' là những số chia hết cho...?"));
+        };
+        let note = document.getElementById("note");
+        let result = document.getElementById("result");
+        while (num <= n) {
+            if (num % fizz == 0) {
+                text = text + "Fizz" + "<br>";
+            } else if (num % buzz == 0) {
+                text = text + "Buzz" + "<br>";
+            } else {
+                text = text + num + "<br>";
+            };
+            num++;
+        };
+        note.innerHTML = "Ta có dãy số tự nhiên từ 1 đến " + n + "<br>" + "Với 'Fizz' là những số chia hết cho " + fizz + "<br>" + "'Buzz' là những số chia hết cho " + buzz;
+        result.innerHTML = text;
+    </script>
+</body>
+
+</html>
