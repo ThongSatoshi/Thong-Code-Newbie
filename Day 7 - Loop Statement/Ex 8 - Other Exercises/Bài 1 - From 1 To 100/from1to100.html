@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đếm từ 1 đến 100</title>
+    <style>
+        .button {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 18px;
+            font-weight: bold;
+            height: 30px;
+            width: 200px;
+        }
+        #sheep {
+            font-size: 20px;
+        };
+    </style>
+</head>
+
+<body>
+    <h1>Đếm 100 con cừu rồi đi ngủ</h1>
+    <button class="button" type="button" onclick="countSheep()">Đếm ngay</button>
+    <br>
+    <p id="sheep"></p>
+    <script type="text/javascript">
+        let n = 1, text = "";
+        let sheep = document.getElementById("sheep");
+        function countSheep() {
+            while (n <= 100) {
+                if (n == 99) {
+                    alert("Hoàn thành đếm cừu");
+                    text = text + n + " chú cừu..." + "<br>";
+                    sheep.innerHTML = text;
+                    n++;
+                } else if (n == 100) {
+                    text = text + n + " chú cừu! Zzz hệ thống đang ngủ Zzz";
+                    sheep.innerHTML = text;
+                    n++;
+                } else {
+                    text = text + n + " chú cừu..." + "<br>";
+                    sheep.innerHTML = text;
+                    n++;
+                };
+            };
+        };
+    </script>
+</body>
+
+</html>

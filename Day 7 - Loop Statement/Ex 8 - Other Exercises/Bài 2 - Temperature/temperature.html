@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tăng hay giảm nhiệt độ?</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        const MAX = 100, MIN = 20;
+        let temperature = parseFloat(prompt("Nhiệt độ hiện tại là? (thang độ Celcius)"));
+        while (isNaN(temperature) || temperature == null || temperature > MAX || temperature < MIN) {
+            if (temperature > MAX) {
+                alert("Quá nóng!");
+                temperature == null;
+                temperature = parseFloat(prompt("Vui lòng giảm lại nhiệt độ (thang độ Celcius)"));
+            } else if (temperature < MIN) {
+                alert("Quá lạnh!");
+                temperature == null;
+                temperature = parseFloat(prompt("Vui lòng tăng lại nhiệt độ (thang độ Celcius)"));
+            } else {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các con số.");
+                temperature == null;
+                temperature = parseFloat(prompt("Vui lòng nhập lại nhiệt độ (thang độ Celcius)"));
+            };
+        };
+        document.write("Nhiệt độ hiện tại mà bạn đã khai báo là: " + temperature + "°C");
+    </script>
+</body>
+
+</html>
