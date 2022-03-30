@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In ra 20 số trong dãy Fibonacci + Tổng</title>
+    <style>
+        .button {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 18px;
+            font-weight: bold;
+            height: 30px;
+            width: 200px;
+        }
+
+        #result {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Dãy 20 số Fibonacci và tổng của nó</h1>
+    <button class="button" type="button" onclick="the20Fibonacci()">In ngay</button>
+    <br>
+    <p id="result"></p>
+    <script type="text/javascript">
+        var x = 0, y = 1, z, sum;
+        var i = 1;
+        let text = "";
+        let result = document.getElementById("result");
+        function the20Fibonacci() {
+            while (i < 20) {
+                if (x == 0) {
+                    text = text + x + "<br>";
+                    text = text + y + "<br>";
+                } else {
+                    text = text + z + "<br>";
+                };
+
+                i++;
+                z = x + y;
+                x = y;
+                y = z;
+                sum = x + y - 1;
+                result.innerHTML = "Dãy 20 số Fibonacci: " + "<br>" + text + "<br>" + "Tổng của nó là: " + sum;
+            };
+        };
+    </script>
+</body>
+
+</html>
