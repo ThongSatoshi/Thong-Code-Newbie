@@ -44,6 +44,8 @@
                 text = text + "Fizz" + "<br>";
             } else if (num % buzz == 0) {
                 text = text + "Buzz" + "<br>";
+            } else if (num % (fizz + buzz) == 0) {
+                text = text + "Fizz & Buzz" + "<br>";
             } else {
                 text = text + num + "<br>";
             };
