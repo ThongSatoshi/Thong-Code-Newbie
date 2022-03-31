@@ -22,12 +22,13 @@
     <button class="button" type="button" onclick="drawTriangle()">Vẽ tam giác</button>
     <button class="button" type="button" onclick="printTriangle()">In tam giác</button>
     <br>
-    <br>
     <div id="result"></div>
     <br>
-    <br>
     <canvas id="canvas" width="1000" height="1000"></canvas>
+
     <script type="text/javascript">
+        let text = "";
+        //Vẽ tam giác bằng canvas
         function drawTriangle() {
             let height = parseFloat(prompt("Hãy nhập độ dài chiều cao tam giác"));
             while (isNaN(height) || height == null || height <= 0 || height > 1000) {
@@ -54,9 +55,13 @@
 
                 context.beginPath();
                 context.moveTo(base, base);
-                context.lineTo(100, base);
-                context.lineTo(100, height);
+                context.lineTo(50, base);
+                context.lineTo(50, height);
+                context.lineWidth = 4;
                 if (fill === "Y") {
+                    context.closePath();
+                    context.stroke();
+                    context.fillStyle = "grey";
                     context.fill();
                 } else {
                     context.closePath();
@@ -65,6 +70,7 @@
             };
         };
 
+        //In tam giác *
         function printTriangle() {
             let height = parseFloat(prompt("Hãy nhập độ dài chiều cao tam giác"));
             while (isNaN(height) || height == null || height <= 0) {
@@ -72,39 +78,87 @@
                 height == null;
                 height = parseFloat(prompt("Hãy nhập độ dài chiều cao tam giác"));
             };
-            let base = parseFloat(prompt("Hãy nhập độ dài cạnh đáy tam giác"));
-            while (isNaN(base) || base == null || base <= 0) {
-                alert("Lưu ý! Hệ thống chỉ ghi nhận các số lớn hơn 0");
-                base == null;
-                base = parseFloat(prompt("Hãy nhập độ dài cạnh đáy tam giác"));
+            let updown = prompt("Bạn có muốn đảo ngược tam giác? (Y/N/B)");
+            while (updown !== "Y" && updown !== "N" && updown !== "B" || updown == null) {
+                alert("Vui lòng chọn Y (Yes) hay N (No) hay B (Both)");
+                updown == null;
+                updown = prompt("Bạn có muốn đảo ngược tam giác? (Y/N/B)");
             };
-            let reverse = prompt("Bạn có muốn đảo ngược tam giác? (Y/N)");
-            while (reverse !== "Y" && reverse !== "N" || reverse == null) {
-                alert("Vui lòng chọn Y (Yes) hay N (No)");
-                reverse == null;
-                reverse = prompt("Bạn có muốn đảo ngược tam giác? (Y/N)");
+            let leftright = prompt("Bạn có muốn lật trái phải tam giác? (Y/N/B)");
+            while (leftright !== "Y" && leftright !== "N" && leftright !== "B" || leftright == null) {
+                alert("Vui lòng chọn Y (Yes) hay N (No) hay B (Both)");
+                leftright == null;
+                leftright = prompt("Bạn có muốn lật trái phải tam giác? (Y/N/B)");
             };
 
             let result = document.getElementById("result");
             let text = "";
-            switch (reverse) {
-                case "Y":
-                    for (let i = height; i > 0; i--) {
-                        for (let j = base; j <= base * i - 1; j++) {
-                            text = text + "*";
-                        };
-                        text = text + "<br/>";
-                        result.innerHTML = text;
+            function defaultTriangle() {
+                for (let i = 1; i <= height; i++) {
+                    for (let j = 1; j <= i; j++) {
+                        text = text + "*";
                     };
+                    text = text + "<br>";
+                };
+            };
+            function upsidedown() {
+                for (let i = height; i > 0; i--) {
+                    for (let j = 1; j <= i - 1; j++) {
+                        text = text + "*";
+                    };
+                    text = text + "<br>";
+                };
+            };
+            function rightside() {
+                for (let i = 1; i <= height; i++) {
+                    for (let j = 0; j <= height - i; j++) {
+                        text = text + "&nbsp;" + "&nbsp;";
+                    };
+                    for (let k = 1; k <= i; k++) {
+                        text = text + "*";
+                    };
+                    text = text + "<br>";
+                };
+            };
+            function flippedrightside() {
+                for (let i = height; i > 0; i--) {
+                    for (let j = 0; j <= height - i; j++) {
+                        text = text + "&nbsp;" + "&nbsp;";
+                    };
+                    for (let k = 1; k <= i; k++) {
+                        text = text + "*";
+                    };
+                    text = text + "<br>";
+                };
+            };
+            switch (updown) {
+                case "Y":
+                    upsidedown();
+                    result.innerHTML = text;
                     break;
                 case "N":
-                    for (let i = 1; i <= height; i++) {
-                        for (let j = base; j <= base * i; j++) {
-                            text = text + "*";
-                        };
-                        text = text + "<br/>";
-                        result.innerHTML = text;
-                    };
+                    defaultTriangle();
+                    result.innerHTML = text;
+                    break;
+                case "B":
+                    defaultTriangle();
+                    upsidedown();
+                    result.innerHTML = text;
+                    break;
+            };
+            switch (leftright) {
+                case "Y":
+                    rightside();
+                    result.innerHTML = text;
+                    break;
+                case "N":
+                    defaultTriangle();
+                    result.innerHTML = text;
+                    break;
+                case "B":
+                    rightside();
+                    flippedrightside();
+                    result.innerHTML = text;
                     break;
             };
         };
