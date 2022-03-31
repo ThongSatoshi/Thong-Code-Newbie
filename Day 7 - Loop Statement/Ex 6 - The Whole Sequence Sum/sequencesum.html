@@ -22,13 +22,20 @@
             inputMin = parseInt(prompt("Hãy nhập số x nhỏ nhất trong dãy"));
         };
         let inputMax = parseInt(prompt("Hãy nhập số y lớn nhất trong dãy"));
-        while (isNaN(inputMax) || inputMax == null) {
+        while (isNaN(inputMax) || inputMax == null || inputMax == inputMin) {
             alert("Lưu ý! Hệ thống chỉ ghi nhận các số nguyên");
             inputMax == null;
             inputMax = parseInt(prompt("Hãy nhập số y lớn nhất trong dãy"));
         };
 
-        var x = inputMin, y = inputMax;
+        var x, y;
+        if (inputMin < inputMax) {
+            x = inputMin;
+            y = inputMax;
+        } else {
+            x = inputMax;
+            y = inputMin;
+        };
         for (x; x <= y; y--) {
             sum = sum + y;
         };
