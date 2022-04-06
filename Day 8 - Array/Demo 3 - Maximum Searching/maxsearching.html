@@ -5,30 +5,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tìm kiếm mảng</title>
-    <style>
-        h1 {
-            font-style: italic;
-        }
-    </style>
+    <title>Tìm giá trị lớn nhất trong mảng</title>
 </head>
 
 <body>
-    <h1>Tìm kiếm mảng</h1>
+    <h1>Tìm giá trị lớn nhất trong mảng</h1>
     <script type="text/javascript">
         let numArr = [19, 8, 22, 5, 25, 7, 10, 100, 3, 6, 0, 2, 23, 6, 12, 28, 15, 9];
-        let isFound = false, i;
-        let input = parseInt(prompt("Vui lòng nhập số bạn cần tìm trong mảng"));
-        while (isNaN(input) || input == null) {
+        let comparator, i;
+        let max = parseInt(prompt("Vui lòng nhập số bạn cần tìm trong mảng"));
+        while (isNaN(max) || max == null) {
             alert("Lưu ý! Hệ thống chỉ ghi nhận các con số");
-            input = parseInt(prompt("Vui lòng nhập số bạn cần tìm trong mảng"));
+            max = parseInt(prompt("Vui lòng nhập số bạn cần tìm trong mảng"));
         };
         for (i = 0; i < numArr.length; i++) {
-            if (input == numArr[i]) {
-                isFound = true;
-                break;
-            } else {
+            comparator = numArr[i];
+            if (max < comparator) {
                 continue;
+            } else {
+                break;
             };
         };
         if (isFound == true) {
