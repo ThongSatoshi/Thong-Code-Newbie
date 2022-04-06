@@ -15,14 +15,27 @@
 
 <body>
     <h1>Tìm kiếm mảng</h1>
-    <div id="result"></div>
     <script type="text/javascript">
-         let numArr = [0, 19, 8, 22, 5, 25, 7, 10, 3, 6, 2, 23, 6, 12, 28, 15, 9];
-         let input = parseInt(prompt("Vui lòng nhập số bạn cần tìm trong mảng"));
-         while (isNaN(input) || input == null) {
-             alert ("Lưu ý! Hệ thống chỉ ghi nhận các con số");
-             input = parseInt(prompt("Vui lòng nhập số bạn cần tìm trong mảng"));
-         };
+        let numArr = [0, 19, 8, 22, 5, 25, 7, 10, 3, 6, 2, 23, 6, 12, 28, 15, 9, 100];
+        let isFound = false, i;
+        let input = parseInt(prompt("Vui lòng nhập số bạn cần tìm trong mảng"));
+        while (isNaN(input) || input == null) {
+            alert("Lưu ý! Hệ thống chỉ ghi nhận các con số");
+            input = parseInt(prompt("Vui lòng nhập số bạn cần tìm trong mảng"));
+        };
+        for (i = 0; i < numArr.length; i++) {
+            if (input == numArr[i]) {
+                isFound = true;
+                break;
+            } else {
+                continue;
+            };
+        };
+        if (isFound == true) {
+            document.write("Số " + input + " mà bạn đã nhập có tồn tại, nằm ở vị trí thứ " + (i + 1) + " trong mảng");
+        } else {
+            document.write("Số " + input + " mà bạn đã nhập không tồn tại trong mảng");
+        };
     </script>
 </body>
 
