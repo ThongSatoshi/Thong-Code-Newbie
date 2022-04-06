@@ -5,8 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Máy tính nâng cao</title>
+    <link rel="stylesheet" href="advanced_formatCal.css">
+    <script type="text/javascript" src="advanced_doCal.js"></script>
 </head>
 <body>
-    
+    <table class="calculator" cell-padding="5px">
+        <tr>
+            <td colspan = "4"><h1>Advanced Calculator - Máy tính nâng cao</h1></td>
+        </tr>
+        <tr>
+            <td colspan = "4" id="screen"></td>
+        </tr>
+        <tr>
+            <td><button class="button" id="addBtn" type="button">Cộng +</button></td>
+            <td><button class="button" id="subBtn" type="button">Trừ -</button></td>
+            <td><button class="button" id="mulBtn" type="button">Nhân x</button></td>
+            <td><button class="button" id="divBtn" type="button">Chia :</button></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <div id="result"></div>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
