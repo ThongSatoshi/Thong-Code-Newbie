@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bàn cờ Caro đơn giản</title>
+    <style>
+        h1 {
+            font-style: italic;
+        }
+
+        .button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;
+        }
+
+        div {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body onload="displayBoard()">
+    <h1>Bàn cờ Caro đơn giản</h1>
+    <hr style="width:40%; text-align:left; margin-left:0">
+    <br>
+    <div id="board"></div>
+    <br>
+    <button class="button" type="button" onclick="changeValue()">Đánh dấu 〇/✕</button>
+
+    <script type="text/javascript">
+        let board = document.getElementById("board");
+        let boardArr = [];
+        for (let i = 0; i < 25; i++) {
+            boardArr.unshift(" ");
+        };
+
+        function displayBoard() {
+            let cell = 0;
+            let row = col = 1;
+            let grid = "<table border='1px' height='400px' width='400px' cellspacing='0' cellpadding='0' stye='font-size:50px' style='text-align:center'>";
+            while (row <= 5) {
+                grid = grid + "<tr>";
+                while (col <= 5) {
+                    grid = grid + "<td>" + boardArr[cell] + "</td>";
+                    col++;
+                    cell++;
+                };
+                grid = grid + "</tr>";
+                col = 1;
+                row++;
+            };
+            grid = grid + "</table>";
+            board.innerHTML = grid;
+            console.log(boardArr);
+        };
+
+        function changeValue() {
+            let input = prompt("Bạn thuộc đội 〇 hay đội ✕ ? (Nhập O/X)");
+            while (input !== "O" && input !== "X" || input == null) {
+                alert("Vui lòng chọn đội mà bạn đang chơi, O hay X");
+                input = prompt("Bạn thuộc đội 〇 hay đội ✕ ? (Nhập O/X)");
+            };
+            let coord = parseInt(prompt("Vui lòng nhập tọa độ ô bạn muốn đánh dấu"));
+            while (isNaN(coord) || coord < 1 || coord > 25 || coord == null) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các tọa độ từ 1 đến 25");
+                coord = parseInt(prompt("Vui lòng nhập tọa độ bạn muốn đánh dấu"));
+            };
+
+            switch (input) {
+                case "O":
+                    boardArr.splice(coord - 1, 1, "〇");
+                    displayBoard();
+                    break;
+                case "X":
+                    boardArr.splice(coord - 1, 1, "✕");
+                    displayBoard();
+                    break;
+            };
+        };
+
+    </script>
+</body>
+
+</html>
