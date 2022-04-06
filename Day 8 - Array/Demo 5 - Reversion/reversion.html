@@ -1,12 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đảo ngược mảng</title>
+    <style>
+        h1 {
+            font-style: italic;
+        }
+
+        input {
+            font-size: 18px;
+            height: 30px;
+            width: 200px;
+        }
+
+        .button {
+            font-size: 18px;
+            height: 30px;
+            width: 100px;
+        }
+
+        div {
+            font-size: 18px;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <h1>Đảo ngược mảng</h1>
+    <input id="inputNum" type="number" place="Nhập số vào đây" required>
+    <button class="button" type="button" onclick="push()">Thêm vào</button>
+    <button class="button" type="button" onclick="reverse()">Đảo ngược</button>
+    <hr style="width:40%; text-align:left; margin-left:0">
+    <br>
+    <div id="result"></div>
+
+    <script type="text/javascript">
+        let numArr = [];
+        let result = document.getElementById("result");
+        function push() {
+            inputNum = parseFloat((document.getElementById("inputNum")).value);
+            if (isNaN(inputNum) || inputNum == null) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các con số");
+                inputNum = "[Error]";
+            };
+            numArr.push(inputNum);
+        };
+        function reverse() {
+            let str = "";
+            str = str + "Mảng gốc mà bạn đã nhập: " + numArr + "<br>";
+            
+            //Cách 1: while()
+            let start = 0, end = numArr.length - 1;
+            while (start < end) {
+                let x = numArr[start];
+                numArr[start] = numArr[end];
+                numArr[end] = x;
+                start++;
+                end--;
+            };
+
+            // Cách 2: reverse()
+            //numArr.reverse();
+
+            str = str + "Mảng sau khi đảo ngược: " + numArr + "<br>";
+            result.innerHTML = str;
+        };
+    </script>
 </body>
+
 </html>
