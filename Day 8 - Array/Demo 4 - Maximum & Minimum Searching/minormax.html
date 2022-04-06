@@ -25,32 +25,64 @@
 
 <body>
     <h1>Tìm giá trị lớn nhất hoặc nhỏ nhất trong mảng</h1>
+    <button class="button" onclick="displayArr()">Hiển thị mảng</button>
     <button class="button" onclick="findMax()">Giá trị lớn nhất</button>
     <button class="button" onclick="findMin()">Giá trị nhỏ nhất</button>
     <br>
     <br>
+    <div id="display"></div>
+    <br>
     <div id="result"></div>
     <script type="text/javascript">
-        let numArr = [19, 8, 22, 5, 25, 7, 10, 100, 3, 6, 0, 2, 23, 6, 12, 28, 15, 9];
-        let max = numArr[0], min = numArr[0], i = 0, p = 0;
+        let numArr = [];
+        let i, p;
+        for (i = 0; i < 100; i++) {
+            numArr[i] = Math.floor(Math.random() * 100);
+        };
+        let display = document.getElementById("display");
         let result = document.getElementById("result");
+
+        function displayArr() {
+            i = 0;
+            let row = col = 1;
+            let grid = "<table border='1px' height='200px' width='200px' cellspacing='0' cellpadding='10px' stye='font-size:30px' style='text-align:center'>";
+            while (row <= 10) {
+                grid = grid + "<tr>";
+                while (col <= 10) {
+                    grid = grid + "<td>" + numArr[i] + "</td>";
+                    col++;
+                    i++;
+                };
+                grid = grid + "</tr>";
+                col = 1;
+                row++;
+            };
+            grid = grid + "</table>";
+            display.innerHTML = grid;
+        };
+
         function findMax() {
+            i = 1;
+            let max = numArr[i];
             for (i; i < numArr.length; i++) {
                 if (max < numArr[i]) {
                     max = numArr[i]
                     p = i + 1;
                 };
             };
-            result.innerHTML = "Số lớn nhất tồn tại trong mảng là: " + max + ", nằm tại vị trí thứ " + p;
+            result.innerHTML = "Số lớn nhất trong mảng là: " + max + ", nằm tại vị trí ô thứ " + p;
         };
+
         function findMin() {
+            i = 1;
+            let min = numArr[i];
             for (i; i < numArr.length; i++) {
                 if (min > numArr[i]) {
                     min = numArr[i]
                     p = i + 1;
                 };
             };
-            result.innerHTML = "Số lớn nhất tồn tại trong mảng là: " + min + ", nằm tại vị trí thứ " + p;
+            result.innerHTML = "Số nhỏ nhất trong mảng là: " + min + ", nằm tại vị trí ô thứ " + p;
         };
     </script>
 </body>

@@ -17,14 +17,14 @@
     <h1>Tìm giá trị lớn nhất trong mảng</h1>
     <script type="text/javascript">
         let numArr = [19, 8, 22, 5, 25, 7, 10, 100, 3, 6, 0, 2, 23, 6, 12, 28, 15, 9];
-        let max = numArr[0], i = 0, p = 0;
+        let max = numArr[0], i = 1, p = 0;
         for (i; i < numArr.length; i++) {
             if (max < numArr[i]) {
                 max = numArr[i]
                 p = i + 1;
             };
         };
-        document.write("Số lớn nhất tồn tại trong mảng là: " + max + ", nằm tại vị trí thứ " + p);
+        document.write("Số lớn nhất trong mảng là: " + max + ", nằm tại vị trí thứ " + p);
     </script>
 </body>
 
