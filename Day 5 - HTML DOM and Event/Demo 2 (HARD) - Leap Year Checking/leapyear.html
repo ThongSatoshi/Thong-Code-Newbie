@@ -14,22 +14,21 @@
             "(*giải thích : tháng 10 năm 1582, hệ thống lịch Gregorian," + "\n" + 
             "cùng với quy tắc năm nhuận được áp dụng cho đến ngày nay," + "\n" + 
             "được công bố lần đầu bởi Giáo Hoàng Gregory XIII )");
-            year == null;
             year = parseInt(prompt("Hãy nhập số năm vào đây"));
         };
 
         if (year %4 == 0) {
             if (year %100 != 0) {
-                alert ("Năm " + year + " là năm nhuận (Leap Year)");
+                document.write ("Năm " + year + " là năm nhuận (Leap Year)");
             } else {
                 if (year %400 == 0) {
-                    alert ("Năm " + year + " là năm nhuận (Leap Year)");
+                    document.write ("Năm " + year + " là năm nhuận (Leap Year)");
                 } else {
-                    alert ("Năm " + year + " là năm thường (Common Year)");
+                    document.write ("Năm " + year + " là năm thường (Common Year)");
                 }; 
             };
         } else {
-            alert ("Năm " + year + " là năm thường (Common Year)");
+            document.write ("Năm " + year + " là năm thường (Common Year)");
         };
     </script>
 </body>

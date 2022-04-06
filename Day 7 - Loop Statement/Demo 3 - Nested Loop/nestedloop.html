@@ -15,7 +15,6 @@
         let num = parseInt(prompt("Hãy nhập số ô (cell) bạn muốn khởi tạo" + "\n" + "(kết quả số ô cuối cùng luôn là số ô bình phương)"));
         while (isNaN(num) || num == null || num <= 0) {
             alert("Lưu ý! Số cell chỉ nhận các giá trị là số nguyên lớn hơn 0");
-            num = null;
             num = parseInt(prompt("Hãy nhập số ô (cell) bạn muốn khởi tạo"));
         };
 
@@ -23,7 +22,6 @@
         row = col = parseInt(prompt("Hãy nhấn phím 1 để bắt đầu chương trình"));
         while (isNaN(row) || row == null || row != 1) {
             alert("Xin vui lòng hãy nhấn phím 1 để bắt đầu chương trình!");
-            row = col = null;
             row = col = parseInt(prompt("Hãy nhấn phím 1 để bắt đầu chương trình"));
         };
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm kiếm mảng</title>
+    <style>
+        h1 {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tìm kiếm mảng</h1>
+    <div id="result"></div>
+    <script type="text/javascript">
+         let numArr = [0, 19, 8, 22, 5, 25, 7, 10, 3, 6, 2, 23, 6, 12, 28, 15, 9];
+         let input = parseInt(prompt("Vui lòng nhập số bạn cần tìm trong mảng"));
+         while (isNaN(input) || input == null) {
+             alert ("Lưu ý! Hệ thống chỉ ghi nhận các con số");
+             input = parseInt(prompt("Vui lòng nhập số bạn cần tìm trong mảng"));
+         };
+    </script>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,19 +22,21 @@
             text-align: center;
             height: 30px;
             width: 100px;
-        };
+        }
+
         #result {
             font-size: 18px;
         }
     </style>
 </head>
+
 <body>
     <h1>Mảng tự động</h1>
     <input id="inputNum" type="number" placeholder="Nhập số vào đây">
     <button class="button" type="button" onclick="push()">Thêm vào</button>
     <button class="button" type="button" onclick="display()">Hiển thị</button>
     <br>
-    <hr style="width:40%; text-align:left; margin-left:0"> 
+    <hr style="width:40%; text-align:left; margin-left:0">
     <br>
     <div id="result"></div>
 
@@ -44,18 +47,19 @@
         function push() {
             inputNum = parseFloat((document.getElementById("inputNum")).value);
             if (isNaN(inputNum) || inputNum == null) {
-                alert ("Lưu ý! Hệ thống chỉ ghi nhận các con số");
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các con số");
                 inputNum = "";
-            }; 
+            };
             numArr.push(inputNum);
         };
         function display() {
             let str = "";
             for (let i = 0; i < numArr.length; i++) {
                 str = str + "Giá trị thứ " + (i + 1) + " (với index trong mảng là " + i + ") = " + numArr[i] + "<br>";
-            }; 
+            };
             result.innerHTML = str;
         };
     </script>
 </body>
+
 </html>
