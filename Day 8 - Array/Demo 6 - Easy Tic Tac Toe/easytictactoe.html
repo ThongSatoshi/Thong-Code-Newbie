@@ -31,6 +31,7 @@
     <div id="board"></div>
     <br>
     <button class="button" type="button" onclick="changeValue()">Đánh dấu 〇/✕</button>
+    <button class="button" type="button" onclick="deleteValue()">Xóa dấu 〇/✕</button>
 
     <script type="text/javascript">
         let board = document.getElementById("board");
@@ -83,6 +84,29 @@
             };
         };
 
+        function deleteValue() {
+            let input = prompt("Bạn thuộc đội 〇 hay đội ✕ ? (Nhập O/X)");
+            while (input !== "O" && input !== "X" || input == null) {
+                alert("Vui lòng chọn đội mà bạn đang chơi, O hay X");
+                input = prompt("Bạn thuộc đội 〇 hay đội ✕ ? (Nhập O/X)");
+            };
+            let coord = parseInt(prompt("Vui lòng nhập tọa độ ô bạn muốn xóa"));
+            while (isNaN(coord) || coord < 1 || coord > 25 || coord == null) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các tọa độ từ 1 đến 25");
+                coord = parseInt(prompt("Vui lòng nhập tọa độ bạn muốn xóa"));
+            };
+
+            switch (input) {
+                case "O":
+                    boardArr.splice(coord - 1, 1, " ");
+                    displayBoard();
+                    break;
+                case "X":
+                    boardArr.splice(coord - 1, 1, " ");
+                    displayBoard();
+                    break;
+            };
+        };
     </script>
 </body>
 
