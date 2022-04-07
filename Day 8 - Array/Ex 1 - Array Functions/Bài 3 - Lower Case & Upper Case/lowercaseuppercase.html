@@ -23,6 +23,10 @@
     <script type="text/javascript">
         let result = document.getElementById("result");
         let originalText = prompt("Vui lòng nhập dòng chữ vào đây"), modifiedText = "";
+        while (!isNaN(originalText) || originalText == null) {
+            alert ("Lưu ý! Hệ thống chỉ ghi nhận các kí tự");
+            originalText = prompt("Vui lòng nhập dòng chữ vào đây");
+        };
         let strArr = originalText.split("");
         for (let i = 0; i < strArr.length; i++) {
             if (strArr[i] == strArr[i].toLowerCase()) {
