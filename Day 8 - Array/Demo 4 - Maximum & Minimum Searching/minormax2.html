@@ -47,13 +47,18 @@
         console.log(numArr);
 
         var min = max = numArr[0][0];
+        let posMin = posMax = 0;
         for (i = 0; i < limit; i++) {
             for (j = 1; j < limit; j++) {
-                if (min > numArr[i][j]) {
-                    min = numArr[i][j];
-                };
                 if (max < numArr[i][j]) {
                     max = numArr[i][j];
+                    posMax = (i * 10 + (j + 1));
+                    break;
+                };
+                if (min > numArr[i][j]) {
+                    min = numArr[i][j];
+                    posMin = (i * 10 + (j + 1));
+                    break;
                 };
             };
         };
@@ -81,13 +86,13 @@
             grid = grid + "</table>";
             display.innerHTML = grid;
         };
-        
+
         function findMax() {
-            result.innerHTML = "Số lớn nhất trong mảng là: " + max;
+            result.innerHTML = "Số lớn nhất trong mảng là: " + max + ", nằm ở vị trí ô thứ " + posMax;
         };
 
         function findMin() {
-            result.innerHTML = "Số nhỏ nhất trong mảng là: " + min;
+            result.innerHTML = "Số nhỏ nhất trong mảng là: " + min + ", nằm ở vị trí ô thứ " + posMin;
         };
     </script>
 </body>
