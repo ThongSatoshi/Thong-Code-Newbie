@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyển viết thường viết hoa</title>
+    <style>
+        h1 {
+            font-style: italic;
+        }
+
+        #result {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Chuyển đổi viết thường viết hoa</h1>
+    <p id="result"></p>
+    <script type="text/javascript">
+        let result = document.getElementById("result");
+        let originalText = prompt("Vui lòng nhập dòng chữ vào đây"), modifiedText = "";
+        let strArr = originalText.split("");
+        for (let i = 0; i < strArr.length; i++) {
+            if (strArr[i] == strArr[i].toLowerCase()) {
+                strArr[i] = strArr[i].toUpperCase();
+            } else {
+                strArr[i] = strArr[i].toLowerCase();
+            };
+        };
+        modifiedText = strArr.join("");
+        result.innerHTML = "Dòng kí tự nguyên bản mà bạn đã nhập là: " + originalText + "<br>" + "Dòng kí tự phiên bản sau chuyển đổi là: " + modifiedText;
+    </script>
+</body>
+
+</html>
