@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bàn cờ Caro đơn giản</title>
+    <title>Bàn cờ Caro nâng cao</title>
     <style>
         h1 {
             font-style: italic;
@@ -18,6 +18,10 @@
             width: 200px;
         }
 
+        p {
+            font-size: 20px;
+        }
+
         td {
             font-size: 30px;
             font-weight: bold;
@@ -27,8 +31,10 @@
     </style>
 </head>
 
-<body onload="displayBoard(), turnCount()">
-    <h1>Bàn cờ Caro đơn giản (Simple Tic Tac Toe)</h1>
+<body onload="displayBoard(), askUsername()">
+    <h1>Bàn cờ Caro nâng cao (Advanced Tic Tac Toe)</h1>
+    <p id="turnCounter">Số lượt hiện tại: 0 (chưa bắt đầu)</p>
+    <p id="winnerName">〇 đi trước, ✕ đi sau. Người chiến thắng là: ???</p>
     <hr style="width:40%; text-align:left; margin-left:0">
     <br>
     <div id="board"></div>
@@ -37,9 +43,18 @@
     <button class="button" type="button" onclick="deleteValue()">Xóa dấu 〇/✕</button>
 
     <script type="text/javascript">
+        let turnCounter = document.getElementById("turnCounter");
+        let winnerName = document.getElementById("winnerName");
         let board = document.getElementById("board");
         let boardArr = [];
-        let i, j, limit = 5, turn = 0, team, coord;
+        let i, j, turn = 0, team, coord;
+        let player1 = player2 = "";
+        let isChangeValue = isWinning = false;
+        let limit = parseInt(prompt("Bạn muốn bàn cờ caro to cỡ bao nhiêu? (3-4-5)"));
+        while (isNaN(limit) || limit < 3 || limit > 5) {
+            alert("Kích cỡ bàn cờ Caro không được nhỏ hơn 3 và lớn hơn 5");
+            limit = parseInt(prompt("Bạn muốn bàn cờ caro to cỡ bao nhiêu? (N²)"));
+        };
         for (i = 0; i < limit; i++) {
             boardArr.push([]);
             for (j = 0; j < limit; j++) {
@@ -68,18 +83,46 @@
             board.innerHTML = grid;
         };
 
+        function askUsername() {
+            let length;
+            player1 = prompt("Hãy nhập tên người chơi thứ nhất");
+            while (player1.length == 0 || player1.length > 30) {
+                alert("Tên người dùng không hợp lệ! Vui lòng nhập lại sau");
+                player1 = prompt("Hãy nhập tên người chơi thứ nhất");
+            };
+            player2 = prompt("Hãy nhập tên người chơi thứ hai");
+            while (player2.length == 0 || player2.length > 30) {
+                alert("Tên người dùng không hợp lệ! Vui lòng nhập lại sau");
+                player2 = prompt("Hãy nhập tên người chơi thứ nhất");
+            };
+        };
+
         function turnCount() {
             if (turn % 2 == 0) {
-                team = "X";
-            } else {
                 team = "O";
+            } else {
+                team = "X";
             };
-            turn++;
+
+            if (isChangeValue == true) {
+                turn++;
+                turnCounter.innerHTML = "Số lượt hiện tại: " + turn;
+            };
         };
 
         function coordCal() {
             i = parseInt((coord - 1) / limit);
             j = (coord - 1) % limit;
+        };
+
+        function congratWinner() {
+            let winner = "";
+            if (turn % 2 == 0) {
+                winner = player2;
+            } else {
+                winner = player1;
+            };
+            winnerName.innerHTML = "〇 đi trước, ✕ đi sau. Người chiến thắng là: " + winner;
         };
 
         function changeValue() {
@@ -88,6 +131,7 @@
                 alert("Lưu ý! Hệ thống chỉ ghi nhận các tọa độ từ 1 đến 25");
                 coord = parseInt(prompt("Vui lòng nhập tọa độ bạn muốn đánh dấu"));
             };
+            isChangeValue = true;
             turnCount();
             coordCal();
 
@@ -122,6 +166,10 @@
                     displayBoard();
                     break;
             };
+        };
+
+        function winnerCheck() {
+            
         };
     </script>
 </body>
