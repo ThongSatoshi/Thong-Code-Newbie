@@ -25,8 +25,8 @@
         td {
             font-size: 30px;
             font-weight: bold;
-            height: 40px;
-            width: 40px;
+            height: 50px;
+            width: 50px;
         }
     </style>
 </head>
@@ -43,7 +43,7 @@
     <script type="text/javascript">
         let board = document.getElementById("board");
         let boardArr = [];
-        let i, j, limit = 5, turn = 1, team, coord;
+        let i, j, limit = 5, turn = 0, team, coord;
         for (i = 0; i < limit; i++) {
             boardArr.push([]);
             for (j = 0; j < limit; j++) {
@@ -75,15 +75,14 @@
         function turnCount() {
             if (turn % 2 == 0) {
                 team = "X";
-                turn++;
             } else {
                 team = "O";
-                turn++;
             };
+            turn++;
         };
 
         function coordCal() {
-            i = (coord - 1) / 5;
+            i = parseInt((coord - 1) / 5);
             j = (coord - 1) % 5;
         };
 
