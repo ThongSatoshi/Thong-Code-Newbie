@@ -67,9 +67,11 @@
 
         function turnCount() {
             if (turn % 2 == 0) {
-                team = "X"
+                team = "X";
+                turn++;
             } else {
                 team = "O";
+                turn++;
             };
         };
 
