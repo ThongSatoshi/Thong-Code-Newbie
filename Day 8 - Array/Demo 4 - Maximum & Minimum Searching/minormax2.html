@@ -68,9 +68,9 @@
             i = 0, j = 0;
             let row = col = 1;
             let grid = "<table border='1px' height='200px' width='200px' cellspacing='0' cellpadding='10px' stye='font-size:30px' style='text-align:center'>";
-            while (row <= 10 || i < numArr.length) {
+            while (row <= limit || i < numArr.length) {
                 grid = grid + "<tr>";
-                while (col <= 10 || j < numArr[i].length) {
+                while (col <= limit || j < numArr[i].length) {
                     grid = grid + "<td>" + numArr[i][j] + "</td>";
                     col++;
                     j++;
