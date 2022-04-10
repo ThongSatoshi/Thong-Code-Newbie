@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghép nối các phần tử trong mảng</title>
+    <style>
+        h1 {
+            font-style: italic;
+        }
+
+        .button {
+            font-size: 18px;
+            height: 30px;
+            width: 100px;
+        }
+
+        #result {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body onload="addColor()">
+    <h1>Ghép nối các phần tử màu có trong mảng</h1>
+    <button class="button" type="button" onclick="addColor()">Thêm vào</button>
+    <button class="button" type="button" onclick="display()">Hiển thị</button>
+    <br>
+    <br>
+    <p id="result"></p>
+    <script type="text/javascript">
+        let colorArr = [], color;
+        let result = document.getElementById("result");
+        function addColor() {
+            color = parseInt(prompt("Hãy nhập mã số màu của bạn!" + "\n" + "Trong đó:" + "\n" + "1 là đỏ, 2 là cam, 3 là vàng, 4 là xanh lục, 5 là xanh lam"
+                + "\n" + "6 là chàm, 7 là tím, 8 là hồng, 9 là trắng, 10 là đen."));
+            while (isNaN(color) || color < 1 || color > 10 || color == null) {
+                alert("Xin vui lòng nhập theo mã số có sẵn");
+                color = parseInt(prompt("Hãy nhập mã số màu của bạn!" + "\n" + "Trong đó:" + "\n" + "1 là đỏ, 2 là cam, 3 là vàng, 4 là xanh lục, 5 là xanh lam"
+                    + "\n" + "6 là chàm, 7 là tím, 8 là hồng, 9 là trắng, 10 là đen."));
+            };
+            switch (color) {
+                case 1:
+                    colorArr.push("Red");
+                    break;
+                case 2:
+                    colorArr.push("Orange");
+                    break;
+                case 3:
+                    colorArr.push("Yellow");
+                    break;
+                case 4:
+                    colorArr.push("Green");
+                    break;
+                case 5:
+                    colorArr.push("Blue");
+                    break;
+                case 6:
+                    colorArr.push("Cyan");
+                    break;
+                case 7:
+                    colorArr.push("Purple");
+                    break;
+                case 8:
+                    colorArr.push("Pink");
+                    break;
+                case 9:
+                    colorArr.push("White");
+                    break;
+                case 10:
+                    colorArr.push("Black");
+                    break;
+            };
+        };
+        function display() {
+            let str = colorArr.join(", ");
+            result.innerHTML = "Mảng màu của bạn là: " + str;
+        };
+    </script>
+</body>
+
+</html>

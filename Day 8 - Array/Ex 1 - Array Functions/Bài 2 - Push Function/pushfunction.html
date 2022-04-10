@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chèn thêm phần tử vào mảng</title>
+    <style>
+        h1 {
+            font-style: italic;
+        }
+
+        .button {
+            font-size: 18px;
+            height: 30px;
+            width: 100px;
+        }
+
+        #result {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body onload="addNum()">
+    <h1>Chèn thêm phần tử vào mảng</h1>
+    <button class="button" type="button" onclick="addNum()">Thêm vào</button>
+    <button class="button" type="button" onclick="display()">Hiển thị</button>
+    <br>
+    <br>
+    <p id="result"></p>
+    <script type="text/javascript">
+        let numArr = [], num, inputNum = "";
+        let result = document.getElementById("result");
+        function addNum() {
+            num = parseInt(prompt("Hãy nhập số của bạn"));
+            while (isNaN(num) || num < 0 || num == null) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các số lớn hơn hoặc bằng 0");
+                num = parseInt(prompt("Hãy nhập số của bạn"));
+            };
+            if (num % 2 == 0) {
+                numArr.push("-" + num);
+                inputNum += num + " ";
+            } else {
+                numArr.push(num);
+                inputNum += num + " ";
+            };
+        };
+        function display() {
+            let str = "";
+            for (let i = 0; i < numArr.length; i++) {
+                str = str + numArr[i];
+            };
+            result.innerHTML = "Số mà bạn đã nhập là: " + inputNum + "<br>" + "Mảng số của bạn là: " + str;
+        };
+    </script>
+</body>
+
+</html>
