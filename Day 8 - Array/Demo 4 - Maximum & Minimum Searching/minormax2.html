@@ -36,7 +36,7 @@
 
     <script type="text/javascript">
         let numArr = [];
-        let i, j, k, limit = 10;
+        let i, j, limit = 10;
         for (i = 0; i < limit; i++) {
             numArr.push([]);
             for (j = 0; j < limit; j++) {
@@ -51,13 +51,12 @@
             for (j = 0; j < limit; j++) {
                 if (max < numArr[i][j]) {
                     max = numArr[i][j];
-                    posMax = (i * 10 + (j + 1));
-                    break;
-                };
-                if (min > numArr[i][j]) {
+                    posMax = (i * 10) + (j + 1);
+                } else if (min > numArr[i][j]) {
                     min = numArr[i][j];
-                    posMin = (i * 10 + (j + 1));
-                    break;
+                    posMin = (i * 10) + (j + 1);
+                } else {
+                    continue;
                 };
             };
         };

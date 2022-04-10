@@ -36,28 +36,33 @@
     <script type="text/javascript">
         let board = document.getElementById("board");
         let boardArr = [];
-        for (let i = 0; i < 25; i++) {
-            boardArr.unshift(" ");
+        let i, j, limit = 5;
+        for (i = 0; i < limit; i++) {
+            boardArr.push(" ");
+            for (j = 0; j < limit; j++) {
+                boardArr[i].push(" ");
+            };
         };
 
         function displayBoard() {
-            let cell = 0;
+            i = 0, j = 0;
             let row = col = 1;
-            let grid = "<table border='1px' height='400px' width='400px' cellspacing='0' cellpadding='0' stye='font-size:50px' style='text-align:center'>";
-            while (row <= 5) {
+            let grid = "<table border='1px' height='200px' width='200px' cellspacing='0' cellpadding='10px' stye='font-size:30px' style='text-align:center'>";
+            while (row <= 10 || i < boardArr.length) {
                 grid = grid + "<tr>";
-                while (col <= 5) {
-                    grid = grid + "<td>" + boardArr[cell] + "</td>";
+                while (col <= 10 || j < boardArr[i].length) {
+                    grid = grid + "<td>" + boardArr[i][j] + "</td>";
                     col++;
-                    cell++;
+                    j++;
                 };
                 grid = grid + "</tr>";
                 col = 1;
                 row++;
+                j = 0;
+                i++;
             };
             grid = grid + "</table>";
             board.innerHTML = grid;
-            console.log(boardArr);
         };
 
         function changeValue() {
