@@ -49,7 +49,7 @@
         var min = max = numArr[0][0];
         let posMin = posMax = 0;
         for (i = 0; i < limit; i++) {
-            for (j = 1; j < limit; j++) {
+            for (j = 0; j < limit; j++) {
                 if (max < numArr[i][j]) {
                     max = numArr[i][j];
                     posMax = (i * 10 + (j + 1));
