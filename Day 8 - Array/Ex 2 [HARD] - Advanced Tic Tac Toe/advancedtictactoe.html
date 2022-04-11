@@ -29,12 +29,19 @@
         <source src="audio\congrat.mp3" type="audio/mpeg">
         [Error] Trình duyệt của bạn không hỗ trợ định dạng âm thanh này
     </audio>
-    <hr style="width:40%; text-align:left; margin-left:0">
-    <br>
-    <div id="board"></div>
-    <br>
+    <hr style="width:70%; text-align:left">
+    <table id="tableStyle" cell-padding="0" cell-spacing="0">
+        <tr>
+            <td><img id="left_image" src="image\8bit_sunrise.gif" alt="[Error] Ảnh bị lỗi, không thể hiển thị"></td>
+            <td>
+                <div id="board"></div>
+            </td>
+            <td><img id="right_image" src="image\8bit_nightsky.gif" alt="[Error] Ảnh bị lỗi, không thể hiển thị"></td>
+        </tr>
+    </table>
     <button class="button" type="button" onclick="changeValue()">Đánh dấu 〇/✕</button>
     <button class="button" type="button" onclick="deleteValue()">Xóa dấu 〇/✕</button>
+    <button class="button" type="button" onclick="ResetGame()">Chơi lại</button>
 
     <script type="text/javascript" src="gamescript.js"></script>
 </body>

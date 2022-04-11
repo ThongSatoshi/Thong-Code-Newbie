@@ -5,10 +5,10 @@ let boardArr = [];
 let i, j, turn = 0, team, coord, preCoord;
 let player1 = "", player2 = "";
 let isChangeValue = false, isDelete = false, isWinning;
-let limit = parseInt(prompt("Bạn muốn bàn cờ caro to cỡ bao nhiêu? (3-4-5)"));
+let limit = parseInt(prompt("Bạn muốn bàn cờ caro to cỡ bao nhiêu? (3-4-5)" + "\n" + "Khuyến khích chọn cỡ bàn cờ 5"));
 while (isNaN(limit) || limit < 3 || limit > 5) {
     alert("Kích cỡ bàn cờ Caro không được nhỏ hơn 3 và lớn hơn 5");
-    limit = parseInt(prompt("Bạn muốn bàn cờ caro to cỡ bao nhiêu? (3-4-5)"));
+    limit = parseInt(prompt("Bạn muốn bàn cờ caro to cỡ bao nhiêu? (3-4-5)" + "\n" + "Khuyến khích chọn cỡ bàn cờ 5"));
 };
 for (i = 0; i < limit; i++) {
     boardArr.push([]);
@@ -20,11 +20,11 @@ for (i = 0; i < limit; i++) {
 function displayBoard() {
     i = 0, j = 0;
     let row = col = 1;
-    let grid = "<table border='1px' height='400px' width='400px' cellspacing='0' cellpadding='10px' stye='font-size:30px' style='text-align:center'>";
+    let grid = "<table border='1px white' height='400px' width='400px' cellspacing='0' cellpadding='10px' stye='font-size:30px' style='text-align:center'>";
     while (row <= limit || i < boardArr.length) {
         grid = grid + "<tr>";
         while (col <= limit || j < boardArr[i].length) {
-            grid = grid + "<td>" + boardArr[i][j] + "</td>";
+            grid = grid + "<td class='cell'>" + boardArr[i][j] + "</td>";
             col++;
             j++;
         };
