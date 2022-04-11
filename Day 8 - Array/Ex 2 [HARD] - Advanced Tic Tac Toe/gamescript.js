@@ -2,7 +2,7 @@ let turnCounter = document.getElementById("turnCounter");
 let winnerName = document.getElementById("winnerName");
 let board = document.getElementById("board");
 let boardArr = [];
-let i, j, turn = 0, team, coord, preCoord;
+let i, j, turn = 0, reset = 0, team, coord, preCoord;
 let player1 = "", player2 = "";
 let isChangeValue = false, isDelete = false, isWinning;
 let limit = parseInt(prompt("Bạn muốn bàn cờ caro to cỡ bao nhiêu? (3-4-5)" + "\n" + "Khuyến khích chọn cỡ bàn cờ 5"));
@@ -140,6 +140,22 @@ function deleteValue() {
                 isDelete = false;
                 break;
         };
+    };
+};
+
+function resetGame() {
+    let askReset = confirm("Bạn có muốn chơi lại từ đầu?");
+    if (askReset == true) {
+        for (i = 0; i < boardArr.length; i++) {
+            for (j = 0; j < boardArr[i].length; j++) {
+                boardArr[i].splice(j, 1, " ");
+            };
+        };
+        reset++;
+        isWinning = false, isDelete = true;
+        displayBoard();
+        playAudio();
+        turnCounter.innerHTML = "Số lượt hiện tại: 0 (chưa bắt đầu). Số lần đã reset: " + reset;
     };
 };
 
