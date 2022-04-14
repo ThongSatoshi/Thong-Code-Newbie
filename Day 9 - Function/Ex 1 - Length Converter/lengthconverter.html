@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyển đổi thang đo độ dài</title>
+    <style>
+        h1 {
+            font-style: italic;
+        }
+
+        #inputBox {
+            font-size: 18px;
+            height: 30px;
+            width: 300px;
+        }
+
+        .button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;
+        }
+
+        p, #result {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Chuyển đổi thang đo độ dài (Centimetre - Metre - Kilometre - Inch - Foot - Mile)</h1>
+    <p>Vui lòng nhập vào ô trống sau nhiệt độ bạn muốn chuyển đổi</p>
+    <input id="inputBox" type="number" onkeyup="getValue(this.value)">
+    <button class="button" type="button" onclick="display()">Hiển thị kết quả</button>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let result = document.getElementById("result");
+        let inputLength = resultLength = 0;
+        let fromScale = toScale = "";
+
+        function getValue(obj) {
+            inputLength = parseFloat(obj);
+        };
+
+        function askScale() {
+            fromScale = prompt("Xin hãy chọn thang đo của bạn (cm/m/km/in/ft/mi?)");
+            while (fromScale !== "cm" && fromScale !== "m" && fromScale !== "km" && fromScale !== "in" && fromScale !== "ft" && fromScale !== "mi" || fromScale == null) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các thang đo sau: cm, m, km, in, ft, mi");
+                fromScale = prompt("Xin hãy chọn thang đo của bạn (cm/m/km/in/ft/mi?)");
+            };
+            toScale = prompt("Xin hãy chọn thang đo bạn muốn chuyển (cm/m/km/in/ft/mi?)");
+            while (toScale !== "C" && toScale !== "F" && toScale !== "K" || toScale === fromScale || toScale == null) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các thang đo sau: cm, m, km, in, ft, mi");
+                toScale = prompt("Xin hãy chọn thang đo bạn muốn chuyển (cm/m/km/in/ft/mi?)");
+            };
+        };
+
+        function fromCentimetre() {
+            switch (toScale) {
+                case "m":
+                    resultLength += inputLength / 100;
+                    break;
+                case "km":
+                    resultLength += inputLength / 100000;
+                    break;
+                case "in":
+                    resultLength += inputLength / 2.54;
+                    break;
+                case "ft":
+                    resultLength += inputLength / 30.48;
+                    break;
+                case "mi":
+                    resultLength += inputLength / 160934;
+                    break;
+            };
+        };
+
+        function fromMetre() {
+            switch (toScale) {
+                case "cm":
+                    resultLength += inputLength * 100;
+                    break;
+                case "km":
+                    resultLength += inputLength / 1000;
+                    break;
+                case "in":
+                    resultLength += inputLength * 39.37;
+                    break;
+                case "ft":
+                    resultLength += inputLength * 3.281;
+                    break;
+                case "mi":
+                    resultLength += inputLength / 1609;
+                    break;
+            };
+        };
+
+        function fromKilometre() {
+            switch (toScale) {
+                case "cm":
+                    resultLength += inputLength * 100000;
+                    break;
+                case "m":
+                    resultLength += inputLength * 1000;
+                    break;
+                case "in":
+                    resultLength += inputLength * 39370;
+                    break;
+                case "ft":
+                    resultLength += inputLength * 3281;
+                    break;
+                case "mi":
+                    resultLength += inputLength / 1.609;
+                    break;
+            };
+        };
+
+        function fromInch() {
+            switch (toScale) {
+                case "cm":
+                    resultLength += inputLength * 2.54;
+                    break;
+                case "m":
+                    resultLength += inputLength / 39.37;
+                    break;
+                case "km":
+                    resultLength += inputLength / 39370;
+                    break;
+                case "ft":
+                    resultLength += inputLength / 12;
+                    break;
+                case "mi":
+                    resultLength += inputLength / 63360;
+                    break;
+            };
+        };
+
+        function fromFoot() {
+            switch (toScale) {
+                case "cm":
+                    resultLength += inputLength * 30.48;
+                    break;
+                case "m":
+                    resultLength += inputLength / 3.281;
+                    break;
+                case "km":
+                    resultLength += inputLength / 3281;
+                    break;
+                case "in":
+                    resultLength += inputLength * 12;
+                    break;
+                case "mi":
+                    resultLength += inputLength / 5280;
+                    break;
+            };
+        };
+
+        function fromMile() {
+            switch (toScale) {
+                case "cm":
+                    resultLength += inputLength * 160934;
+                    break;
+                case "m":
+                    resultLength += inputLength * 1609;
+                    break;
+                case "km":
+                    resultLength += inputLength * 1.609;
+                    break;
+                case "in":
+                    resultLength += inputLength * 63360;
+                    break;
+                case "ft":
+                    resultLength += inputLength * 5280;
+                    break;
+            };
+        };
+
+        function calLength() {
+            if (fromScale == "cm") {
+                fromCentimetre();
+            } else if (fromScale == "m") {
+                fromMetre();
+            } else if (fromScale == "km") {
+                fromKilometre();
+            } else if (fromScale == "in") {
+                fromInch();
+            } else if (fromScale == "foot") {
+                fromFoot();
+            } else {
+                fromMile();
+            };
+        };
+
+        function display() {
+            askScale();
+            calLength();
+            result.innerHTML = inputLength + "°" + fromScale + " bằng " + resultLength.toFixed(7) + "°" + toScale;
+            console.log(inputLength + fromScale + resultLength.toFixed(7) + toScale);
+        };
+    </script>
+</body>
+
+</html>
