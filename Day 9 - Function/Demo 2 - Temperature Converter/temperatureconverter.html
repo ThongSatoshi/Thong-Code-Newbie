@@ -1,12 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chuyển đổi thang đo độ C - độ F</title>
+    <title>Chuyển đổi thang đo nhiệt độ</title>
+    <style>
+        h1 {
+            font-style: italic;
+        }
+
+        #inputBox {
+            font-size: 18px;
+            height: 30px;
+            width: 300px;
+        }
+
+        .button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <h1>Chuyển đổi thang đo nhiệt độ (độ C - độ F - độ K)</h1>
+    <p>Vui lòng nhập vào ô trống sau nhiệt độ bạn muốn chuyển đổi</p>
+    <input id="inputBox" type="number" onkeyup="getValue(this.value)">
+    <button class="button" type="button" onclick="display()">Hiển thị kết quả</button>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let result = document.getElementById("result");
+        let inputTemp = resultTemp = 0;
+        let fromScale = toScale = "";
+
+        function getValue(obj) {
+            inputTemp = parseFloat(obj);
+        };
+
+        function askScale() {
+            fromScale = prompt("Xin hãy chọn thang đo của bạn (C/F/K?)");
+            while (fromScale !== "C" && fromScale !== "F" && fromScale !== "K" || fromScale == null) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận 3 thang đo chính, đó là thang độ C, độ F, độ K");
+                fromScale = prompt("Xin hãy chọn thang đo của bạn (C/F/K?)");
+            };
+            toScale = prompt("Xin hãy chọn thang đo bạn muốn chuyển (C/F/K?)");
+            while (toScale !== "C" && toScale !== "F" && toScale !== "K" || toScale === fromScale || toScale == null) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận 3 thang đo chính, đó là thang độ C, độ F, độ K");
+                toScale = prompt("Xin hãy chọn thang đo bạn muốn chuyển (C/F/K?)");
+            };
+            if (fromScale == "C" && inputTemp < -273.15) {
+                alert("Lưu ý! Thang độ C không nhận giá trị nhỏ hơn -273.15°C" + "\n" + "Hệ thống sẽ tự động lấy giá trị nhỏ nhất cho phép là -273.15");
+                inputTemp = -273.15;
+            } else if (fromScale == "F" && inputTemp < -459.7) {
+                alert("Lưu ý! Thang độ F không nhận giá trị nhỏ hơn -459.7°F" + "\n" + "Hệ thống sẽ tự động lấy giá trị nhỏ nhất cho phép là -459.7");
+                inputTemp = -459.7;
+            } else if (fromScale == "K" && inputTemp < 0) {
+                alert("Lưu ý! Thang độ K không nhận giá trị nhỏ hơn 0K" + "\n" + "Hệ thống sẽ tự động lấy giá trị nhỏ nhất cho phép là 0");
+                inputTemp = 0;
+            };
+        };
+
+        function calTemp() {
+            if (fromScale == "C") {
+                switch (toScale) {
+                    case "F":
+                        resultTemp += (inputTemp * 9 / 5) + 32;
+                        break;
+                    case "K":
+                        resultTemp += inputTemp + 273.15;
+                        break;
+                };
+            } else if (fromScale == "F") {
+                switch (toScale) {
+                    case "C":
+                        resultTemp += (inputTemp - 32) * 5 / 9;
+                        break;
+                    case "K":
+                        resultTemp += ((inputTemp - 32) * 5 / 9) + 273.15;
+                        break;
+                };
+            } else {
+                switch (toScale) {
+                    case "C":
+                        resultTemp += inputTemp - 273.15;
+                        break;
+                    case "F":
+                        resultTemp += (inputTemp - 273.15) * 9 / 5 + 32;
+                        break;
+                };
+            };
+        };
+
+        function display() {
+            askScale();
+            calTemp();
+            result.innerHTML = inputTemp + "°" + fromScale + " bằng " + resultTemp.toFixed(2) + "°" + toScale;
+            console.log(inputTemp + fromScale + resultTemp.toFixed(2) + toScale);
+        };
+    </script>
 </body>
+
 </html>
