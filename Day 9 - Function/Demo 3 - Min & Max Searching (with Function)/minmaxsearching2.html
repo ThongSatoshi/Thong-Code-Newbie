@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm giá trị lớn nhất, nhỏ nhất trong nhiều mảng</title>
+    <style>
+        h1 {
+            font-style: italic;
+        }
+
+        .button {
+            font-size: 18px;
+            height: 30px;
+            width: 200px;
+        }
+
+        div {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tìm giá trị lớn nhất, nhỏ nhất trong nhiều mảng một lúc</h1>
+    <button class="button" type="button" onclick="displayArr()">Hiển thị mảng</button>
+    <button class="button" type="button" onclick="checkArr()">Tìm ngay!</button>
+    <br>
+    <br>
+    <div id="display"></div>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let arrA = [3, 5, 1, 8, -3, 7, 8];
+        let arrB = [7, 12, 6, 9, 20, 56, 89];
+        let arrC = [];
+        let arrD = [0, 0, 0, 0, 0, 0];
+        let result = document.getElementById("result");
+
+        let arrChoice = prompt("Bạn muốn chọn duyệt mảng nào? (arrA/arrB/arrC/arrD?)");
+        while (arrChoice !== "arrA" && arrChoice !== "arrB" && arrChoice !== "arrC" && arrChoice !== "arrD" || arrChoice == null) {
+            alert("Lưu ý! Hệ thống chỉ ghi nhận các lựa chọn như sau: arrA, arrB, arrC, arrD");
+            arrChoice = prompt("Bạn muốn chọn duyệt mảng nào? (arrA/arrB/arrC/arrD?)");
+        };
+        let checkWhat = prompt("Bạn muốn kiểm tra cái gì?" + "\n" + "Giá trị lớn nhất (max) trong mảng" + "\n" + "hay giá trị nhỏ nhất (min) trong mảng?");
+        while (checkWhat !== "max" && checkWhat !== "min" || checkWhat == null) {
+            alert("Lưu ý! Hệ thống chỉ ghi nhận đáp án max hoặc min");
+            checkWhat = prompt("Bạn muốn kiểm tra cái gì?" + "\n" + "Giá trị lớn nhất (max) trong mảng" + "\n" + "hay giá trị nhỏ nhất (min) trong mảng?");
+        };
+
+        function displayArr() {
+            let str = "";
+            switch (arrChoice) {
+                case "arrA":
+                    for (let i = 0; i < arrA.length; i++) {
+                        str += arrA[i] + "&nbsp;";
+                    };
+                    display.innerHTML = "Mảng mà bạn đã chọn là mảng A: " + str + "<br>";
+                    break;
+                case "arrB":
+                    for (let i = 0; i < arrB.length; i++) {
+                        str += arrB[i] + "&nbsp;";
+                    };
+                    display.innerHTML = "Mảng mà bạn đã chọn là mảng B: " + str + "<br>";
+                    break;
+                case "arrC":
+                    display.innerHTML = "Mảng mà bạn đã chọn là mảng C: [mảng rỗng]" + "<br>";
+                    break;
+                case "arrD":
+                    for (let i = 0; i < arrD.length; i++) {
+                        str += arrD[i] + "&nbsp;";
+                    };
+                    display.innerHTML = "Mảng mà bạn đã chọn là mảng D: " + str + "<br>";
+                    break;
+            };
+        };
+
+        function checkArr() {
+            let max, min;
+            switch (arrChoice) {
+                case "arrA":
+                    switch (checkWhat) {
+                        case "max":
+                            for (let i = 0; i < arrA.length; i++) {
+                                max = arrA[i];
+                                if (max < arrA[i]) {
+                                    max = arrA[i];
+                                };
+                            };
+                            result.innerHTML = "Số lớn nhất trong mảng A là: " + max;
+                            break;
+                        case "min":
+                            for (let i = 0; i < arrA.length; i++) {
+                                min = arrA[i];
+                                if (min > arrA[i]) {
+                                    min = arrA[i];
+                                };
+                            };
+                            result.innerHTML = "Số nhỏ nhất trong mảng A là: " + min;
+                            break;
+                    };
+                    break;
+                case "arrB":
+                    switch (checkWhat) {
+                        case "max":
+                            for (let i = 0; i < arrB.length; i++) {
+                                max = arrB[i];
+                                if (max < arrB[i]) {
+                                    max = arrB[i];
+                                };
+                            };
+                            result.innerHTML = "Số lớn nhất trong mảng B là: " + max;
+                            break;
+                        case "min":
+                            for (let i = 0; i < arrB.length; i++) {
+                                min = arrB[i];
+                                if (min > arrB[i]) {
+                                    min = arrB[i];
+                                };
+                            };
+                            result.innerHTML = "Số nhỏ nhất trong mảng B là: " + min;
+                            break;
+                    };
+                    break;
+                case "arrC":
+                    result.innerHTML = "Mảng C là mảng rỗng. Không có giá trị lớn nhất hay nhỏ nhất nào cả!"
+                    break;
+                case "arrA":
+                    result.innerHTML = "Mảng D có số 0 vừa là giá trị lớn nhất vừa là giá trị nhỏ nhất nào!"
+                    break;
+            };
+        };
+    </script>
+</body>
+
+</html>
