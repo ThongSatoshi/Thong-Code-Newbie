@@ -36,6 +36,7 @@
     <input id="inputBox" type="number" onkeyup="getValue(this.value)">
     <button class="button" type="button" onclick="display()">Hiển thị kết quả</button>
     <br>
+    <br>
     <div id="result"></div>
     <script type="text/javascript">
         let result = document.getElementById("result");
@@ -103,7 +104,13 @@
         function display() {
             askScale();
             calTemp();
-            result.innerHTML = inputTemp + "°" + fromScale + " bằng " + resultTemp.toFixed(2) + "°" + toScale;
+            let degreeFrom = degreeTo = "";
+            if (fromScale != "K") {
+                degreeFrom += "°";
+            } else if (toScale != "K") {
+                degreeTo += "°";
+            };
+            result.innerHTML = inputTemp + degreeFrom + fromScale + " bằng " + resultTemp.toFixed(2) + degreeTo + toScale;
             console.log(inputTemp + fromScale + resultTemp.toFixed(2) + toScale);
         };
     </script>

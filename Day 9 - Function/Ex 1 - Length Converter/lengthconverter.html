@@ -53,7 +53,7 @@
                 fromScale = prompt("Xin hãy chọn thang đo của bạn (cm/m/km/in/ft/mi?)");
             };
             toScale = prompt("Xin hãy chọn thang đo bạn muốn chuyển (cm/m/km/in/ft/mi?)");
-            while (toScale !== "C" && toScale !== "F" && toScale !== "K" || toScale === fromScale || toScale == null) {
+            while (toScale !== "cm" && toScale !== "m" && toScale !== "km" && toScale !== "in" && toScale !== "ft" && toScale !== "mi" || toScale === fromScale || toScale == null) {
                 alert("Lưu ý! Hệ thống chỉ ghi nhận các thang đo sau: cm, m, km, in, ft, mi");
                 toScale = prompt("Xin hãy chọn thang đo bạn muốn chuyển (cm/m/km/in/ft/mi?)");
             };
