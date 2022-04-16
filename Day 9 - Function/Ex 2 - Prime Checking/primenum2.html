@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiện dãy số nguyên tố 2 (Prime Number 2)</title>
+    <style>
+        h1 {
+            font-style: italic;
+        }
+
+        .button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;
+        }
+
+        #result {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Kiểm trị & Hiển thị dãy số nguyên tố (Prime Number)</h1>
+    <button class="button" type="button" onclick="isPrime()">Kiểm tra số</button>
+    <button class="button" type="button" onclick="displayPrime()">Hiển thị dãy</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let result = document.getElementById("result");
+        function isPrime() {
+            let inputNum = parseInt(prompt("Bạn muốn kiểm tra số nào?"));
+            while (isNaN(inputNum) || inputNum == null || inputNum < 0) {
+                alert("Lưu ý! Hệ thống chỉ nhận các số lớn hơn 0");
+                inputNum = parseInt(prompt("Bạn muốn kiểm tra số nào?"));
+            };
+
+            let n, confirmPrime;
+            let text = "";
+            if (inputNum <= 1) {
+                confirmPrime = false;
+            } else if (inputNum == 2) {
+                confirmPrime = true;
+            } else if (inputNum > 2) {
+                for (n = 2; n <= Math.sqrt(inputNum); n++) {
+                    if (inputNum % n == 0) {
+                        confirmPrime = false;
+                    } else {
+                        confirmPrime = true;
+                    };
+                };
+            };
+            if (confirmPrime == true) {
+                text += "Số " + inputNum + " là số nguyên tố";
+            } else {
+                text += "Số " + inputNum + " không là số nguyên tố";
+            };
+            result.innerHTML = text;
+        };
+
+        function displayPrime() {
+            let digit = parseInt(prompt("Bạn muốn hiển thị ra bao nhiêu số nguyên tố?"));
+            while (isNaN(digit) || digit == null || digit <= 1) {
+                alert("Lưu ý! Hệ thống chỉ nhận các số lớn hơn hoặc bằng 1");
+                digit = parseInt(prompt("Bạn muốn hiển thị ra bao nhiêu só nguyên tố"));
+            };
+
+            let a, b, count, factor;
+            let text = "";
+            for (a = 1, count = 1; count <= digit; a++) {
+                factor = 0;
+                for (b = 1; b <= a; b++) {
+                    if (a % b == 0) {
+                        factor++;
+                        continue;
+                    };
+                };
+                if (factor == 2) {
+                    text += a + "<br>";
+                    count++;
+                };
+            };
+            result.innerHTML = "Dãy " + digit + " số nguyên tố của bạn là: " + "<br>" + text;
+        };
+    </script>
+</body>
+
+</html>
