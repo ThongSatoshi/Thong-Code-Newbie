@@ -69,7 +69,7 @@ function turnCount() {
             turnCounter.innerHTML = "Số lượt hiện tại: " + turn;
             isChangeValue = false;
         };
-        checkWinning();
+        //checkWinning();
     };
 };
 
