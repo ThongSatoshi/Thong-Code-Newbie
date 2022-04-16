@@ -165,8 +165,9 @@ function checkWinning() {
 }
 
 function rowcolCheck() {
-    for (i = 0; i < boardArr.length;) {
-        for (j = 0; j < boardArr[i].length;) {
+    i = 0, j = 0;
+    while (i < boardArr.length) {
+        while (j < boardArr[i].length) {
             if (boardArr[i][j] !== "O" && boardArr[i][j] !== "X") {
                 i++;
                 j++;
@@ -225,8 +226,9 @@ function rowcolCheck() {
 };
 
 function leftCheck() {
-    for (i = 0; i < boardArr.length;) {
-        for (j = 0; j < boardArr[i].length;) {
+    i = 0, j = 0;
+    while (i < boardArr.length) {
+        while (j < boardArr[i].length) {
             if (boardArr[i][j] !== "O" && boardArr[i][j] !== "X") {
                 i++;
                 j++;
@@ -258,8 +260,9 @@ function leftCheck() {
 };
 
 function rightCheck() {
-    for (i = 0; i < boardArr.length;) {
-        for (j = boardArr[i].length - 1; j >= 0;) {
+    i = 0, j = boardArr[i].length - 1;
+    while (i < boardArr.length) {
+        while (j >= 0) {
             if (boardArr[i][j] !== "O" && boardArr[i][j] !== "X") {
                 i++;
                 j--;
