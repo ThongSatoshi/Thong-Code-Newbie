@@ -69,8 +69,7 @@ function turnCount() {
             turnCounter.innerHTML = "Số lượt hiện tại: " + turn;
             isChangeValue = false;
         };
-        // rowcolCheck();
-        // diagonalCheck();
+        checkWinning();
     };
 };
 
@@ -159,10 +158,19 @@ function resetGame() {
     };
 };
 
+function checkWinning() {
+    rowcolCheck();
+    leftCheck();
+    rightCheck();
+}
+
 function rowcolCheck() {
     for (i = 0; i < boardArr.length;) {
         for (j = 0; j < boardArr[i].length;) {
-            if (boardArr[i][j] === "O" || boardArr[i][j] === "X") {
+            if (boardArr[i][j] !== "O" && boardArr[i][j] !== "X") {
+                i++;
+                j++;
+            } else {
                 if (boardArr[i][j] === boardArr[i][j + 1]) {
                     switch (boardArr[i][j]) {
                         case "O":
@@ -184,13 +192,13 @@ function rowcolCheck() {
                     i++;
                 };
                 j++;
-            } else {
-                i++;
-                j++;
             };
 
-            if (boardArr[i][j] === "O" || boardArr[i][j] === "X") {
-                if (board[i][j] === boardArr[i + 1][j]) {
+            if (boardArr[i][j] !== "O" && boardArr[i][j] !== "X") {
+                i++;
+                j++;
+            } else {
+                if (boardArr[i][j] === boardArr[i + 1][j]) {
                     switch (boardArr[i][j]) {
                         case "O":
                             isWinning = true;
@@ -211,18 +219,18 @@ function rowcolCheck() {
                     j++;
                 };
                 i++;
-            } else {
-                i++;
-                j++;
             };
         };
     };
 };
 
-function diagonalCheck() {
+function leftCheck() {
     for (i = 0; i < boardArr.length;) {
         for (j = 0; j < boardArr[i].length;) {
-            if (boardArr[i][j] === "O" || boardArr[i][j] === "X") {
+            if (boardArr[i][j] !== "O" && boardArr[i][j] !== "X") {
+                i++;
+                j++;
+            } else {
                 if (boardArr[i][j] == boardArr[i + 1][j + 1]) {
                     switch (boardArr[i][j]) {
                         case "O":
@@ -244,16 +252,18 @@ function diagonalCheck() {
                     i++;
                 };
                 j++;
-            } else {
-                i++;
-                j++;
             };
         };
     };
+};
 
+function rightCheck() {
     for (i = 0; i < boardArr.length;) {
         for (j = boardArr[i].length - 1; j >= 0;) {
-            if (boardArr[i][j] === "O" || boardArr[i][j] === "X") {
+            if (boardArr[i][j] !== "O" && boardArr[i][j] !== "X") {
+                i++;
+                j--;
+            } else {
                 if (boardArr[i][j] == boardArr[i + 1][j - 1]) {
                     switch (boardArr[i][j]) {
                         case "O":
@@ -274,9 +284,6 @@ function diagonalCheck() {
                 } else {
                     i++;
                 };
-                j--;
-            } else {
-                i++;
                 j--;
             };
         };

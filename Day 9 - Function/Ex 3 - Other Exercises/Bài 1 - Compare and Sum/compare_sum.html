@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>So sánh rồi mới tính tổng</title>
+    <style>
+        #result {
+            font-size: 20px;
+        }
+
+        .button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>So sánh rồi mới tính tổng</h1>
+    <button class="button" type="button" onclick="compareSum()">So rồi tính</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let result = document.getElementById("result");
+
+        function compareSum() {
+            let a = parseInt(prompt("Nhập số thứ nhất"));
+            while (isNaN(a) || a == null) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các con số");
+                a = parseInt(prompt("Nhập số thứ nhất"));
+            };
+            let b = parseInt(prompt("Nhập số thứ hai"));
+            while (isNaN(b) || b == null) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các con số");
+                b = parseInt(prompt("Nhập số thứ hai"));
+            };
+            let text = "";
+            if (a <= b) {
+                let sum = a + b;
+                result.innerHTML = "Tổng hai số " + a + " và " + b + " là: " + sum;
+            } else {
+                text += "Số " + a + " lớn hơn " + b + "<br>" + "Hệ thống không thực hiện phép tính";
+                result.innerHTML = text;
+            };
+        };
+    </script>
+</body>
+
+</html>
