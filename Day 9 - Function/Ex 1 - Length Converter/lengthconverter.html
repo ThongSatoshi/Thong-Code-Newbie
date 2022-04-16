@@ -32,7 +32,7 @@
 
 <body>
     <h1>Chuyển đổi thang đo độ dài (Centimetre - Metre - Kilometre - Inch - Foot - Mile)</h1>
-    <p>Vui lòng nhập vào ô trống sau nhiệt độ bạn muốn chuyển đổi</p>
+    <p>Vui lòng nhập vào ô trống sau độ dài bạn muốn chuyển đổi</p>
     <input id="inputBox" type="number" onkeyup="getValue(this.value)">
     <button class="button" type="button" onclick="display()">Hiển thị kết quả</button>
     <br>
@@ -197,6 +197,10 @@
         };
 
         function display() {
+            if(inputLength < 0) {
+                alert("Lưu ý! Độ dài không được bé hơn 0." + "\n" + "Hệ thống sẽ tự nhận giá trị nhỏ nhất cho phép là 0");
+                inputLength = 0;
+            };
             askScale();
             calLength();
             result.innerHTML = inputLength + " " + fromScale + " bằng " + resultLength.toFixed(7) + " " + toScale;
