@@ -166,12 +166,9 @@ function checkWinning() {
 
 function rowcolCheck() {
     i = 0, j = 0;
-    while (i < boardArr.length) {
-        while (j < boardArr[i].length) {
-            if (boardArr[i][j] !== "O" && boardArr[i][j] !== "X") {
-                i++;
-                j++;
-            } else {
+    if (boardArr[i][j] == "O" || boardArr[i][j] == "X") {
+        while (i < boardArr.length) {
+            while (j < boardArr[i].length) {
                 if (boardArr[i][j] === boardArr[i][j + 1]) {
                     switch (boardArr[i][j]) {
                         case "O":
@@ -193,6 +190,7 @@ function rowcolCheck() {
                     i++;
                 };
                 j++;
+                break;
             };
 
             if (boardArr[i][j] !== "O" && boardArr[i][j] !== "X") {
@@ -218,6 +216,7 @@ function rowcolCheck() {
                     };
                 } else {
                     j++;
+                    break;
                 };
                 i++;
             };

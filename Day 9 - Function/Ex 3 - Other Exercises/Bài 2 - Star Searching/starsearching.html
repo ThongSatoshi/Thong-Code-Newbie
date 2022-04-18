@@ -1,13 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tìm kiếm sao</title>
+    <style>
+        #result {
+            font-size: 20px;
+        }
+
+        .button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;
+        }
+    </style>
 </head>
+
 <body>
     <h1>Tìm sao và chòm sao</h1>
-    <button type="button" ></button>
+    <button class="button" type="button" onclick="findConstellation()">Tìm chòm sao</button>
+    <button class="button" type="button" onclick="listStars()">Tìm sao</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let constellationArr = ["Ursa Minor", "Taurus", "Cygnus", "Lyra", "Aquila", "Ursa Major", "Leo"];
+        let starArr = ["Polaris", "Aldebaran", "Deneb", "Vega", "Altair", "Dubhe", "Regulus"];
+        let result = document.getElementById("result");
+        let isFound = false, i;
+        function findConstellation() {
+            let linkName = "";
+            let inputName = prompt("Xin hãy nhập tên 1 sao có trong chòm bạn muốn tìm");
+            for (i = 0; i <= starArr.length; i++) {
+                if (inputName === starArr[i]) {
+                    isFound = true;
+                    switch (constellationArr[i]) {
+                        case "Ursa Minor":
+                            linkName = "https://en.wikipedia.org/wiki/Ursa_Minor";
+                            break;
+                        case "Taurus":
+                            linkName = "https://en.wikipedia.org/wiki/Taurus_(constellation)";
+                            break;
+                        case "Cygnus":
+                            linkName = "https://en.wikipedia.org/wiki/Cygnus_(constellation)";
+                            break;
+                        case "Lyra":
+                            linkName = "https://en.wikipedia.org/wiki/Lyra";
+                            break;
+                        case "Aquila":
+                            linkName = "https://en.wikipedia.org/wiki/Aquila_(constellation)";
+                            break;
+                        case "Ursa Major":
+                            linkName = "https://en.wikipedia.org/wiki/Ursa_Major";
+                            break;
+                        case "Leo":
+                            linkName = "https://en.wikipedia.org/wiki/Leo_(constellation)";
+                            break;
+                    };
+                    result.innerHTML = "Sao " + inputName + " thuộc chòm " + constellationArr[i] + "<br>" + "<a href =" + linkName + " target = '_blank'>Click để đọc thêm về chòm " + constellationArr[i] + "</a>";
+                };
+                if (i == starArr.length && isFound == false) {
+                    result.innerHTML = "Sao " + inputName + " không thuộc chòm sao nào có sẵn";
+                };
+            };
+        };
+
+        function listStars() {
+            let inputName = prompt("Xin hãy nhập tên chòm sao có ngôi sao mà bạn muốn tìm");
+            for (i = 0; i <= constellationArr.length; i++) {
+                if (inputName === constellationArr[i]) {
+                    isFound = true;
+                    switch (starArr[i]) {
+                        case "Polaris":
+                            linkName = "https://en.wikipedia.org/wiki/Polaris";
+                            break;
+                        case "Aldebaran":
+                            linkName = "https://en.wikipedia.org/wiki/Aldebaran";
+                            break;
+                        case "Deneb":
+                            linkName = "https://en.wikipedia.org/wiki/Deneb";
+                            break;
+                        case "Vega":
+                            linkName = "https://en.wikipedia.org/wiki/Vega";
+                            break;
+                        case "Altair":
+                            linkName = "https://en.wikipedia.org/wiki/Altair";
+                            break;
+                        case "Dubhe":
+                            linkName = "https://en.wikipedia.org/wiki/Dubhe";
+                            break;
+                        case "Regulus":
+                            linkName = "https://en.wikipedia.org/wiki/Regulus";
+                            break;
+                    };
+                    result.innerHTML = "Chòm " + inputName + " có chứa sao " + starArr[i] + "<br>" + "<a href =" + linkName + " target = '_blank'>Click để đọc thêm về sao " + starArr[i] + "</a>";
+                };
+                if (i == starArr.length && isFound == false) {
+                    result.innerHTML = "Chòm " + inputName + " không có chứa sao nào được ghi nhận";
+                };
+            };
+        };
+    </script>
 </body>
+
 </html>
