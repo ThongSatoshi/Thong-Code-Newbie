@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chu vi và diện tích đường tròn</title>
+    <style>
+        #result {
+            font-size: 20px;
+        }
+
+        .button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tính chu vi và diện tích đường tròn</h1>
+    <button class="button" type="button" onclick="calPerimeter()">Tính chu vi</button>
+    <button class="button" type="button" onclick="calSurface()">Tính diện tích</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let r = parseFloat(prompt("Xin hãy nhập bán kính đường tròn"));
+        let result = document.getElementById("result");
+        function calPerimeter() {
+            let perimeter = (r*2*Math.PI).toFixed(3);
+            return result.innerHTML = "Chu vi P của đường tròn có bán kính r = " + r + " là: " + perimeter;
+        };
+
+        function calSurface() {
+            let surface = (Math.pow(r, 2)*Math.PI).toFixed(3);
+            return result.innerHTML = "Diện tích S của đường tròn có bán kính r = " + r + " là: " + surface;
+        };
+    </script>
+</body>
+
+</html>

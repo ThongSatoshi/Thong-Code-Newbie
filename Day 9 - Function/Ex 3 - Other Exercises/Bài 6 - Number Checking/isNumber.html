@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra xem có là số hay không</title>
+    <style>
+        #result {
+            font-size: 20px;
+        }
+
+        .button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Là số, hay không phải là số?</h1>
+    <button class="button" type="button" onclick="isNumber()">Kiểm tra ngay</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let input = prompt("Hãy nhập bất kì vào ô say");
+        let result = document.getElementById("result");
+
+        //Cách 1: dùng isNaN
+        // function isNumber() {
+        //     if (isNaN(input)) {
+        //         console.log(!isNaN(input));
+        //         result.innerHTML = input + " không phải là một con số";
+        //     } else {
+        //         console.log(!isNaN(input));
+        //         result.innerHTML = input + " là một con số";
+        //     };
+        // };
+
+        //Cách 2: không dùng isNaN
+        function isNumber() {
+            let isAnumber = true;
+            if (parseFloat(input) != input) {
+                console.log(!isAnumber);
+                result.innerHTML = input + " không phải là một con số";
+            } else {
+                console.log(isAnumber);
+                result.innerHTML = input + " là một con số";
+            };
+        };
+    </script>
+</body>
+
+</html>

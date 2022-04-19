@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Số lớn nhất, số nhỏ nhất trong dãy</title>
+    <style>
+        #result {
+            font-size: 20px;
+        }
+
+        .button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Số lớn nhất, số nhỏ nhất trong dãy</h1>
+    <button class="button" type="button" onclick="addNum()">Nhập số vào dãy</button>
+    <button class="button" type="button" onclick="findMax()">Tìm số lớn nhất</button>
+    <button class="button" type="button" onclick="findMin()">Tìm số nhỏ nhất</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let numArr = [];
+        let inputNum, times = 0, result = document.getElementById("result");
+        function addNum() {
+            do {
+                inputNum = prompt("Hãy nhập một số vào đây (gõ 'stop' nếu muốn dừng nhập)");
+                times++;
+                if (inputNum == "stop") {
+                    break;
+                } else if (isNaN(inputNum) || inputNum == null) {
+                    alert("Lưu ý! Hệ thống chỉ nhận các con số");
+                    inputNum = prompt("Hãy nhập một số vào đây (gõ 'stop' nếu muốn dừng nhập)");
+                };
+                for (let i = 0; i < times; i++) {
+                    numArr.push(inputNum);
+                    str += numArr.join(" ");
+                };
+            } while (inputNum != "stop");
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính lũy thừa</title>
+    <style>
+        #result {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tính lũy thừa</h1>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let baseNum = parseFloat(prompt("Xin hãy nhập cơ số của lũy thừa"));
+        while (isNaN(baseNum) || baseNum == null) {
+            alert("Lưu ý! Hệ thống chỉ nhận các con số");
+            baseNum = parseFloat(prompt("Xin hãy nhập cơ số của lũy thừa"));
+        };
+        let powerNum = parseFloat(prompt("Xin hãy nhập số mũ của lũy thừa"));
+        while (isNaN(powerNum) || powerNum == null) {
+            alert("Lưu ý! Hệ thống chỉ nhận các con số");
+            powerNum = parseFloat(prompt("Xin hãy nhập số mũ của lũy thừa"));
+        };
+
+        function calPower(x, y) {
+            return Math.pow(x, y);
+        };
+
+        let result = document.getElementById("result");
+        result.innerHTML = baseNum + " mũ " + powerNum + " là bằng: " + calPower(baseNum, powerNum);
+    </script>
+</body>
+
+</html>
