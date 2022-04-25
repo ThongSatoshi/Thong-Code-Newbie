@@ -51,10 +51,17 @@
         function flipArr() {
             str = "";
             if (wantInput == false) {
-                reversedArr.reverse();
-                for (let i = 0; i < reversedArr.length; i++) {
+                // Cách 1: dùng hàm có sẵn .reverse()
+                // reversedArr.reverse();
+                // for (let i = 0; i < reversedArr.length; i++) {
+                //     str += reversedArr[i] + " ";
+                // };
+
+                // Cách 2: không dùng hàm có sẵn .reverse()
+                for (let i = reversedArr.length - 1; i >= 0; i--) {
                     str += reversedArr[i] + " ";
                 };
+
                 sentence += "<p> Dãy số đó sau khi đảo ngược là: " + str + "</p>";
                 result.innerHTML = sentence;
             } else {
