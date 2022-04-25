@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Có phải là số nguyên dương hay không?</title>
+    <style>
+        #result {
+            font-size: 20px;
+        }
+
+        .button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Là số nguyên dương, hay là số nguyên âm?</h1>
+    <button class="button" type="button" onclick="isPositive()">Kiểm tra ngay</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let input = parseInt(prompt("Hãy nhập bất kì vào ô say"));
+        while (isNaN(input) || input == null) {
+            alert("Lưu ý! Hệ thống chỉ ghi nhận các số nguyên");
+            input = parseInt(prompt("Hãy nhập bất kì vào ô say"));
+        };
+        let result = document.getElementById("result");
+
+        function isPositive() {
+            let positivity = false;
+            if (input > 0) {
+                positivity = true;
+                console.log(positivity);
+                result.innerHTML = "Số " + input + " là một số nguyên dương";
+            } else if (input < 0) {
+                console.log(positivity);
+                result.innerHTML = "Số " + input + " là một số nguyên âm";
+            } else {
+                console.log("Không xác định");
+                result.innerHTML = "Số " + input + " không là số nguyên dương, cũng không là số nguyên âm";
+            };
+        };
+    </script>
+</body>
+
+</html>
