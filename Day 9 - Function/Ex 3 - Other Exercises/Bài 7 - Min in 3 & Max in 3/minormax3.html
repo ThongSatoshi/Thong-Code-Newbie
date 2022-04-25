@@ -29,23 +29,46 @@
     <br>
     <div id="result"></div>
     <script type="text/javascript">
-        let numArr = [];
-        let inputNum, times = 0, result = document.getElementById("result");
+        let numArr = temp = [];
+        let inputNum, wantInput = true, sentence = str = "", result = document.getElementById("result");
         function addNum() {
             do {
-                inputNum = prompt("Hãy nhập một số vào đây (gõ 'stop' nếu muốn dừng nhập)");
-                times++;
-                if (inputNum == "stop") {
-                    break;
-                } else if (isNaN(inputNum) || inputNum == null) {
-                    alert("Lưu ý! Hệ thống chỉ nhận các con số");
-                    inputNum = prompt("Hãy nhập một số vào đây (gõ 'stop' nếu muốn dừng nhập)");
+                inputNum = parseInt(prompt("Hãy nhập một con số vào ô sau"));
+                while (isNaN(inputNum) || inputNum == null) {
+                    alert("Lưu ý! Hệ thống chỉ ghi nhận các con số nguyên");
+                    inputNum = parseInt(prompt("Hãy nhập lại một con số vào ô sau"));
                 };
-                for (let i = 0; i < times; i++) {
-                    numArr.push(inputNum);
-                    str += numArr.join(" ");
-                };
-            } while (inputNum != "stop");
+                numArr.push(inputNum);
+                wantInput = confirm("Bạn muốn tiếp tục nhập một số khác chứ?");
+            } while (wantInput == true);
+
+            for (let i = 0; i < numArr.length; i++) {
+                str += numArr[i] + " ";
+            };
+            sentence += "<p> Dãy số mà bạn đã nhập là: " + str + "</p>";
+            result.innerHTML = sentence;
+        };
+
+        function findMax() {
+            if (wantInput == false) {
+                temp.sort(function (a, b) { return b - a });
+                sentence += "<p> Trong đó, số " + temp[0] + " là số lớn nhất trong dãy.</p>";
+                result.innerHTML = sentence;
+            } else {
+                alert("Hãy tạo một dãy số bất kì trước khi chọn chức năng so sánh");
+                addNum();
+            };
+        };
+
+        function findMin() {
+            if (wantInput == false) {
+                temp.sort(function (a, b) { return a - b });
+                sentence += "<p> Trong đó, số " + temp[0] + " là số nhỏ nhất trong dãy.</p>";
+                result.innerHTML = sentence;
+            } else {
+                alert("Hãy tạo một dãy số bất kì trước khi chọn chức năng so sánh");
+                addNum();
+            };
         };
     </script>
 </body>
