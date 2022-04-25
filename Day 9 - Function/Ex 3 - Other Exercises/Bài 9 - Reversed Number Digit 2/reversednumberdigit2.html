@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đảo ngược mảng số</title>
+    <style>
+        #result {
+            font-size: 20px;
+        }
+
+        .button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Đảo ngược mảng số</h1>
+    <button class="button" type="button" onclick="addNum()">Nhập số vào</button>
+    <button class="button" type="button" onclick="flipArr()">Đảo ngược ngay</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let numArr = reversedArr = [];
+        let inputNum, wantInput = true, str = sentence = "", result = document.getElementById("result");
+        function addNum() {
+            do {
+                inputNum = parseInt(prompt("Hãy nhập một con số vào ô sau"));
+                while (isNaN(inputNum) || inputNum == null) {
+                    alert("Lưu ý! Hệ thống chỉ ghi nhận các con số nguyên");
+                    inputNum = parseInt(prompt("Hãy nhập lại một con số vào ô sau"));
+                };
+                numArr.push(inputNum);
+                wantInput = confirm("Bạn muốn tiếp tục nhập một số khác chứ?");
+            } while (wantInput == true);
+
+            for (let i = 0; i < numArr.length; i++) {
+                str += numArr[i] + " ";
+            };
+            sentence += "<p> Dãy số mà bạn đã nhập là: " + str + "</p>";
+            result.innerHTML = sentence;
+        };
+
+        function flipArr() {
+            str = "";
+            if (wantInput == false) {
+                reversedArr.reverse();
+                for (let i = 0; i < reversedArr.length; i++) {
+                    str += reversedArr[i] + " ";
+                };
+                sentence += "<p> Dãy số đó sau khi đảo ngược là: " + str + "</p>";
+                result.innerHTML = sentence;
+            } else {
+                alert("Hãy tạo một dãy số bất kì trước khi chọn chức năng đảo ngược dãy số");
+                addNum();
+            };
+        };
+    </script>
+</body>
+
+</html>
