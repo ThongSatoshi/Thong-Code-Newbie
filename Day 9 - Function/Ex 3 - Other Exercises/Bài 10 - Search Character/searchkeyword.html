@@ -1,12 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tìm từ khóa</title>
+    <style>
+        #result {
+            font-size: 20px;
+        }
+
+        .button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <h1>Tìm từ khóa</h1>
+    <button class="button" type="button" onclick="createArr()">Tạo dãy của mình</button>
+    <button class="button" type="button" onclick="searchArr()">Tìm kiếm ngay</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let randomArr = [];
+        let input, keyword, times = frequency = 0, wantInput = true, str = sentence = "", result = document.getElementById("result");
+        function createArr() {
+            do {
+                input = prompt("Hãy nhập một số hay kí tự (chữ hoặc số) bất kì vào ô sau");
+                while (input == null) {
+                    alert("Không được bỏ trống!");
+                    input = prompt("Hãy nhập một số hay kí tự (chữ hoặc số) bất kì vào ô sau");
+                };
+                times++;
+                if (times % 4 == 0) {
+                    wantInput = confirm("Bạn có muốn tiếp tục nhập chứ?");
+                };
+                randomArr.push(input);
+            } while (wantInput == true);
+
+            for (let i = 0; i < randomArr.length; i++) {
+                str += randomArr[i] + " ";
+            };
+            sentence += "<p> Dãy kí tự chữ/số do bạn tạo ra là: " + str + "</p>";
+            result.innerHTML = sentence;
+        };
+
+        function searchArr() {
+            if (wantInput == false) {
+                frequency = 0;
+                keyword = prompt("Hãy nhập từ khóa mà bạn muốn tìm");
+                for (let i = 0; i < randomArr.length; i++) {
+                    if (randomArr[i] === keyword) {
+                        frequency++;
+                    };
+                };
+                if (frequency > 0) {
+                    sentence += "<p> Từ khóa '" + keyword + "' có xuất hiện trong dãy đã tạo, với tổng số lần là: " + frequency;
+                } else {
+                    sentence += "<p> Từ khóa '" + keyword + "' không xuất hiện trong dãy đã tạo, với tổng số lần là: " + (frequency - 1);
+                };
+                result.innerHTML = sentence;
+            } else {
+                alert("Hãy tạo dãy kí tự chữ/số bất kì trước khi chọn chức năng tìm kiếm này");
+                createArr();
+            };
+        };
+    </script>
 </body>
+
 </html>
