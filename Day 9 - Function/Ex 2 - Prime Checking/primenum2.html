@@ -40,27 +40,31 @@
                 inputNum = parseInt(prompt("Bạn muốn kiểm tra số nào?"));
             };
 
-            let n, confirmPrime;
+            let n = 1, confirmPrime, factor = 0;
             let text = "";
-            if (inputNum <= 1) {
+            if (inputNum < 2) {
                 confirmPrime = false;
             } else if (inputNum == 2) {
                 confirmPrime = true;
             } else if (inputNum > 2) {
-                for (n = 2; n <= Math.sqrt(inputNum); n++) {
+                while (n <= Math.pow(inputNum, 2)) {
                     if (inputNum % n == 0) {
-                        confirmPrime = false;
+                        factor++;
+                        n++;
                     } else {
-                        confirmPrime = true;
+                        n++;
                     };
                 };
             };
-            if (confirmPrime == true) {
+            if (factor == 2) {
+                text += "Số " + inputNum + " là số nguyên tố";
+            } else if (confirmPrime == true) {
                 text += "Số " + inputNum + " là số nguyên tố";
             } else {
                 text += "Số " + inputNum + " không là số nguyên tố";
             };
             result.innerHTML = text;
+            console.log(factor);
         };
 
         function displayPrime() {
