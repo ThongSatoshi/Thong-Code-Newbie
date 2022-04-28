@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hình tròn vui nhộn</title>
+    <style>
+        h1 {
+            font-style: italic;
+            text-align: center;
+        }
+
+        .button {
+            font-size: 18px;
+            font-weight: bold;
+            height: 30px;
+            width: 150px;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <h1>Hình tròn vui nhộn - Funny Circle</h1>
+    <br>
+    <canvas id="canvas" width="1350px" height="500px" style="border:1px solid rgb(0, 0, 0)">
+        <button class="button" onclick="drawCircle()">Vẽ đường tròn</button>
+        <script type="text/javascript">
+            let canvas = document.getElementById("canvas");
+            if (canvas.getContext) {
+                let context = canvas.getContext("2d");
+            };
+        </script>
 </body>
+
 </html>
