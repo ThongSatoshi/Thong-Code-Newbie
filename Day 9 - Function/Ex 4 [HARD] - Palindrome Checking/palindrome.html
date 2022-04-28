@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra từ đối xứng</title>
+    <style>
+        #result {
+            font-size: 20px;
+        }
+
+        .inputBox {
+            font-size: 18px;
+            height: 30px;
+            width: 250px;
+        }
+
+        .button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Kiểm tra từ đối xứng (Palindrome)</h1>
+    <input type="text" class="inputBox" id="inputText" placeholder="Nhập vào một từ">
+    <button class="button" type="button" onclick="checkPalindrome()">Kiểm tra ngay</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <script type="text/javascript">
+        let palindrome;
+        let result = document.getElementById("result");
+        inputText.addEventListener("keyup", function () {
+            isPalindrome(inputText.value);
+            if (inputText.value != "") {
+                if (palindrome == true) {
+                    result.innerHTML = "'" + inputText.value + "' là một từ đối xứng";
+                } else {
+                    result.innerHTML = "'" + inputText.value + "' không là một từ đối xứng";
+                };
+            } else {
+                result.innerHTML = " ";
+            };
+        });
+
+        function isPalindrome(normalText) {
+            normalText.toString();
+            let reverseText = "";
+            for (let i = normalText.length - 1; i >= 0; i--) {
+                reverseText += normalText[i];
+            };
+            if (normalText === reverseText) {
+                palindrome = true;
+            } else {
+                return palindrome = false;
+            };
+        };
+    </script>
+</body>
+
+</html>
