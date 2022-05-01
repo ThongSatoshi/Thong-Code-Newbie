@@ -8,6 +8,7 @@
     <title>Hình tròn vui nhộn</title>
     <style>
         h1 {
+            font-size: 40px;
             font-style: italic;
             text-align: center;
         }
@@ -16,22 +17,238 @@
             font-size: 18px;
             font-weight: bold;
             height: 30px;
-            width: 150px;
+            width: 200px;
+            transform: translate(50px, 1px);
+        }
+
+        #canvas {
+            transform: translate(60px, 0);
         }
     </style>
 </head>
 
 <body>
     <h1>Hình tròn vui nhộn - Funny Circle</h1>
+    <button class="button" onclick="drawCircle()">Vẽ đường tròn</button>
+    <button class="button" onclick="randomCircle()">Ngẫu nhiên hóa</button>
+    <button class="button" onclick="manyCircles()">Vẽ nhiều đường tròn</button>
+    <button class="button" onclick="addAnimation()">Tạo hoạt ảnh</button>
+    <button class="button" onclick="resetCanvas()">Xóa tất cả</button>
+    <button class="button" onclick="funnyCircle()">Chọn tất cả</button>
     <br>
-    <canvas id="canvas" width="1350px" height="500px" style="border:1px solid rgb(0, 0, 0)">
-        <button class="button" onclick="drawCircle()">Vẽ đường tròn</button>
-        <script type="text/javascript">
-            let canvas = document.getElementById("canvas");
-            if (canvas.getContext) {
-                let context = canvas.getContext("2d");
+    <br>
+    <canvas id="canvas" width="1200px" height="1000px" style="border:1px solid rgb(0, 0, 0)"></canvas>
+    <script type="text/javascript">
+        let context = document.getElementById("canvas").getContext("2d");
+        
+        // Khởi tạo các thuộc tính của đường tròn (tọa độ x, y và bán kính r)
+        function circleProperty(x, y, r) {
+            this.x = x;
+            this.y = y;
+            this.r = r;
+        };
+
+        // Xóa Canvas
+        function resetCanvas() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        };
+
+        // Vẽ đường tròn bình thường
+        function drawCircle() {
+            resetCanvas();
+            let x = y = parseInt(prompt("Hãy nhập tọa độ x của đường tròn"));
+            while (isNaN(x) || x < 10 || x > 990 || x == null) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị số nguyên từ 10 đến 450");
+                x = y = parseInt(prompt("Hãy nhập tọa độ x của đường tròn"));
             };
-        </script>
+            let r = parseInt(prompt("Hãy nhập bán kính của đường tròn"));
+            while (isNaN(r) || r < 10 || r > 250 || r == null) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị số nguyên từ 10 đến 250");
+                r = parseInt(prompt("Hãy nhập tọa độ x của đường tròn"));
+            };
+            var circle = new circleProperty(x, y, r);
+
+            context.beginPath();
+            context.arc(circle.x, circle.y, circle.r, 10, 0, 2 * Math.PI);
+            context.fillStyle = "grey";
+            context.fill();
+        };
+
+        // Ngẫu nhiên hóa một số tham số của đường tròn (bán kính, màu nền và vị trí)
+        function randomCircle() {
+            resetCanvas();
+            let whatRandom = prompt("Bạn muốn ngẫu nhiên hóa thuộc tính nào sau đây?" + "\n"
+                + "Bán kính: hãy nhập 'radius'" + "\n"
+                + "Màu nền: hãy nhập 'color'" + "\n"
+                + "Vị trí: hãy nhập 'position'");
+            while (whatRandom !== "radius" && whatRandom !== "color" && whatRandom !== "position" || whatRandom == null) {
+                alert("Vui lòng nhập theo hướng dẫn");
+                whatRandom = prompt("Bạn muốn ngẫu nhiên hóa thuộc tính nào sau đây?" + "\n"
+                    + "Bán kính: hãy nhập 'radius'" + "\n"
+                    + "Màu nền: hãy nhập 'color'" + "\n"
+                    + "Vị trí: hãy nhập 'position'");
+            };
+
+            let x, y, r;
+            switch (whatRandom) {
+                case "radius":
+                    x = y = parseInt(prompt("Hãy nhập tọa độ x của đường tròn"));
+                    while (isNaN(x) || x < 10 || x > 990 || x == null) {
+                        alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị số nguyên từ 10 đến 450");
+                        x = y = parseInt(prompt("Hãy nhập tọa độ x của đường tròn"));
+                    };
+                    r = Math.floor(Math.random() * (251 - 10 + 1)) + 10; // Từ 10 đến 250
+                    var circle = new circleProperty(x, y, r);
+                    console.log("Radius = " + r);
+
+                    context.beginPath();
+                    context.arc(circle.x, circle.y, circle.r, 10, 0, 2 * Math.PI);
+                    context.fillStyle = "grey";
+                    context.fill();
+                    break;
+                case "position":
+                    r = parseInt(prompt("Hãy nhập bán kính của đường tròn"));
+                    while (isNaN(r) || r < 10 || r > 250 || r == null) {
+                        alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị số nguyên từ 10 đến 250");
+                        r = parseInt(prompt("Hãy nhập tọa độ x của đường tròn"));
+                    };
+                    x = Math.floor(Math.random() * (991 - 10 + 1)) + 10; // Từ 10 đến 990
+                    y = Math.floor(Math.random() * (991 - 10 + 1)) + 10; // Từ 10 đến 990
+                    var circle = new circleProperty(x, y, r);
+                    console.log("Position (" + x, y + ")");
+
+                    context.beginPath();
+                    context.arc(circle.x, circle.y, circle.r, 10, 0, 2 * Math.PI);
+                    context.fillStyle = "grey";
+                    context.fill();
+                    break;
+                case "color":
+                    x = y = parseInt(prompt("Hãy nhập tọa độ x của đường tròn"));
+                    while (isNaN(x) || x < 10 || x > 990 || x == null) {
+                        alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị số nguyên từ 10 đến 450");
+                        x = y = parseInt(prompt("Hãy nhập tọa độ x của đường tròn"));
+                    };
+                    r = parseInt(prompt("Hãy nhập bán kính của đường tròn"));
+                    while (isNaN(r) || r < 10 || r > 250 || r == null) {
+                        alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị số nguyên từ 10 đến 250");
+                        r = parseInt(prompt("Hãy nhập tọa độ x của đường tròn"));
+                    };
+                    var circle = new circleProperty(x, y, r);
+                    var color = getRandomColor();
+
+                    context.beginPath();
+                    context.arc(circle.x, circle.y, circle.r, 10, 0, 2 * Math.PI);
+                    context.fillStyle = color;
+                    context.fill();
+                    break;
+            };
+        };
+
+        // Cặp đôi hàm tạo mã màu RGB ngẫu nhiên
+        function getRandomHex() {
+            return Math.floor(Math.random() * 256); //Từ 0 đến 255
+        };
+        function getRandomColor() {
+            let redValue = getRandomHex();
+            let greenValue = getRandomHex();
+            let blueValue = getRandomHex();
+            console.log("RGB (" + redValue, greenValue, blueValue + ")");
+            return "rgb(" + redValue + "," + greenValue + "," + blueValue + "," + 50 + ")";
+        };
+
+        // Vẽ nhiều đường tròn cùng một lúc (có thể trùng hoặc không?)
+        function manyCircles() {
+            resetCanvas();
+            let howMany = parseInt(prompt("Bạn muốn vẽ bao nhiêu đường tròn?"));
+            while (isNaN(howMany) || howMany < 1 || howMany == null) {
+                alert("Lưu ý! Số lượng đường tròn phải là 1 giá trị số nguyên lớn hơn 0");
+                howMany = parseInt(prompt("Bạn muốn vẽ bao nhiêu đường tròn?"));
+            };
+
+            for (let i = 0; i < howMany; i++) {
+                x = Math.floor(Math.random() * (991 - 10 + 1)) + 10;
+                y = Math.floor(Math.random() * (991 - 10 + 1)) + 10;
+                r = Math.floor(Math.random() * (251 - 10 + 1)) + 10;
+                var circle = new circleProperty(x, y, r);
+                var color = getRandomColor();
+                console.log("Position (" + x, y + ")" + "\n" + "Radius = " + r + "\n");
+
+                context.beginPath();
+                context.arc(circle.x, circle.y, circle.r, 10, 0, 2 * Math.PI);
+                context.fillStyle = color;
+                context.fill();
+            };
+        };
+
+        // Kích chọn tất cả các lựa chọn (ngẫu nhiên hóa các tham số + nhiều đường tròn + có hoạt họa)
+        function funnyCircle() {
+            resetCanvas();
+            var howMany = Math.floor(Math.random() * 20) + 1; // Từ 1 đến 20
+            for (let i = 0; i < howMany; i++) {
+                x = Math.floor(Math.random() * (491 - 10 + 1)) + 10;
+                y = Math.floor(Math.random() * (491 - 10 + 1)) + 10;
+                r = Math.floor(Math.random() * (251 - 10 + 1)) + 10;
+                var circle = new circleProperty(x, y, r);
+                var color = getRandomColor();
+
+                context.beginPath();
+                context.arc(circle.x, circle.y, circle.r, 10, 0, 2 * Math.PI);
+                context.fillStyle = color;
+                context.fill();
+                addAnimation();
+            };
+            console.log("How many circles? - " + howMany);
+        };
+
+        // Tạo hiệu ứng hoạt ảnh cho đường tròn
+        function addAnimation() {
+            resetCanvas();
+            let askRandom = confirm("Bạn có muốn hệ thống tự động vẽ đường tròn?");
+            if (askRandom == true) {
+                var howMany = Math.floor(Math.random() * 5) + 1; // Từ 1 đến 5
+                for (let i = 0; i < howMany; i++) {
+                    x = Math.floor(Math.random() * (491 - 10 + 1)) + 10;
+                    y = Math.floor(Math.random() * (491 - 10 + 1)) + 10;
+                    r = Math.floor(Math.random() * (251 - 10 + 1)) + 10;
+                    var circle = new circleProperty(x, y, r);
+                    var color = getRandomColor();
+
+                    context.beginPath();
+                    context.arc(circle.x, circle.y, circle.r, 10, 0, 2 * Math.PI);
+                    context.fillStyle = color;
+                    context.fill();
+                };
+
+
+            } else {
+                let howMany = parseInt(prompt("Bạn muốn vẽ bao nhiêu đường tròn?"));
+                while (isNaN(howMany) || howMany < 1 || howMany > 5 || howMany == null) {
+                    alert("Lưu ý! Số lượng đường tròn phải là 1 giá trị số nguyên từ 1 đến 5");
+                    howMany = parseInt(prompt("Bạn muốn vẽ bao nhiêu đường tròn?"));
+                };
+                for (let i = 0; i < howMany; i++) {
+                    let x = y = parseInt(prompt("Hãy nhập tọa độ x của đường tròn"));
+                    while (isNaN(x) || x < 10 || x > 990 || x == null) {
+                        alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị số nguyên từ 10 đến 450");
+                        x = y = parseInt(prompt("Hãy nhập tọa độ x của đường tròn"));
+                    };
+                    let r = parseInt(prompt("Hãy nhập bán kính của đường tròn"));
+                    while (isNaN(r) || r < 10 || r > 250 || r == null) {
+                        alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị số nguyên từ 10 đến 250");
+                        r = parseInt(prompt("Hãy nhập tọa độ x của đường tròn"));
+                    };
+                    var circle = new circleProperty(x, y, r);
+
+                    context.beginPath();
+                    context.arc(circle.x, circle.y, circle.r, 10, 0, 2 * Math.PI);
+                    context.fillStyle = "grey";
+                    context.fill();
+                };
+
+
+            };
+        };
+    </script>
 </body>
 
 </html>
