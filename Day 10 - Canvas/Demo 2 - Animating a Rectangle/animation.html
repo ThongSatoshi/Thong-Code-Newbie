@@ -1,12 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoạt hình</title>
+    <title>Khởi tạo hoạt hình</title>
+    <style>
+        h1 {
+            font-size: 40px;
+            font-style: italic;
+        }
+
+        .button {
+            font-size: 18px;
+            font-weight: bold;
+            height: 30px;
+            width: 150px;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <h1>Khởi tạo hoạt hình (Mẫu game demo "Qua sông")</h1>
+    <button class="button" type="button" onclick="runGame()">Start game</button>
+    <button class="button" type="button" onclick="location.reload()">Reset game</button>
+    <br>
+    <br>
+    <canvas id="canvas" width="1000px" height="500px" style="border:1px solid rgb(0, 0, 0)"></canvas>
+    <script type="text/javascript">
+        let smallBoatX = 200, smallBoatY = 0, bigBoatX = 350, bigBoatY = 300, playerX = 50, playerY = 250;
+        let smallBoatWidth = smallBoatHeight = 100, bigBoatWidth = 100, bigBoatHeight = 200, playerSize = 30;
+        let context = document.getElementById("canvas").getContext("2d");
+        drawCanvas(), drawSmallBoat(), drawBigBoat(), drawPlayer();
+
+        function resetCanvas() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        };
+
+        function runGame() {
+            function smallBoatAnimation() {
+                resetCanvas();
+                let speed = 20;
+                let isTouchTop = smallBoatY <= 0;
+                let isTouchBottom = smallBoatY + smallBoatHeight >= canvas.height;
+                if (isTouchTop) {
+                    speed = speed;
+                } else if (isTouchBottom) {
+                    speed = -speed;
+                };
+
+                smallBoatY += speed;
+                drawCanvas();
+            };
+
+            function bigBoatAnimation() {
+                resetCanvas();
+                let speed = 10;
+                let isTouchTop = bigBoatY <= 0;
+                let isTouchBottom = bigBoatY + bigBoatHeight >= canvas.height;
+                if (isTouchTop) {
+                    speed = -speed;
+                } else if (isTouchBottom) {
+                    speed = speed;
+                };
+
+                bigBoatY -= speed;
+                drawCanvas();
+            };
+
+            let frame = 50;
+            setInterval(smallBoatAnimation, frame);
+            setInterval(bigBoatAnimation, frame);
+        };
+
+        function drawCanvas() {
+            // Vẽ background
+            context.fillStyle = "rgb(0, 255, 255)";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Vẽ địa hình
+            context.beginPath();
+            context.fillStyle = "rgb(69, 229, 33)";
+            context.fillRect(0, 0, 100, 100);
+
+            context.beginPath();
+            context.fillStyle = "rgb(100, 70, 36)";
+            context.fillRect(0, 100, 100, 300);
+
+            context.beginPath();
+            context.fillStyle = "rgb(69, 229, 33)";
+            context.fillRect(0, 400, 100, 100);
+
+            context.beginPath();
+            context.fillStyle = "rgb(69, 229, 33)";
+            context.fillRect(900, 0, 100, 100);
+
+            context.beginPath();
+            context.fillStyle = "rgb(100, 70, 36)";
+            context.fillRect(900, 100, 100, 300);
+
+            context.beginPath();
+            context.fillStyle = "rgb(69, 229, 33)";
+            context.fillRect(900, 400, 100, 100);
+
+            drawSmallBoat(smallBoatX, smallBoatY, smallBoatWidth, smallBoatHeight);
+            drawBigBoat(bigBoatX, bigBoatY, bigBoatWidth, bigBoatHeight);
+            drawPlayer(playerX, playerY, playerSize);
+        };
+
+        function drawSmallBoat(smallBoatX, smallBoatY, smallBoatWidth, smallBoatHeight) {
+            // Vẽ chướng ngại vật (Thuyền nhỏ)
+            context.beginPath();
+            context.fillStyle = "grey";
+            context.fillRect(smallBoatX, smallBoatY, smallBoatWidth, smallBoatHeight);
+
+            context.beginPath();
+            context.fillStyle = "grey";
+            context.fillRect(smallBoatX + 300, smallBoatY, smallBoatWidth, smallBoatHeight);
+        };
+
+        function drawBigBoat(bigBoatX, bigBoatY, bigBoatWidth, bigBoatHeight) {
+            // Vẽ chướng ngại vật (Thuyền bự)
+            context.beginPath();
+            context.fillStyle = "grey";
+            context.fillRect(bigBoatX, bigBoatY, bigBoatWidth, bigBoatHeight);
+
+            context.beginPath();
+            context.fillStyle = "grey";
+            context.fillRect(bigBoatX + 300, bigBoatY, bigBoatWidth, bigBoatHeight);
+        };
+
+        function drawPlayer(playerX, playerY, playerSize) {
+            //Vẽ người chơi
+            context.beginPath();
+            context.arc(playerX, playerY, playerSize, 0, 2 * Math.PI);
+            context.fillStyle = "rgb(250, 230, 191)";
+            context.fill();
+        };
+    </script>
 </body>
+
 </html>
