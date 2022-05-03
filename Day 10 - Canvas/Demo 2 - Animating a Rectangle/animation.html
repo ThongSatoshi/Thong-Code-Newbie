@@ -41,7 +41,7 @@
         function runGame() {
             function smallBoatAnimation() {
                 resetCanvas();
-                let speed = 20;
+                let speed = 5;
                 let isTouchTop = smallBoatY <= 0;
                 let isTouchBottom = smallBoatY + smallBoatHeight >= canvas.height;
                 if (isTouchTop) {
@@ -56,7 +56,7 @@
 
             function bigBoatAnimation() {
                 resetCanvas();
-                let speed = 10;
+                let speed = 3;
                 let isTouchTop = bigBoatY <= 0;
                 let isTouchBottom = bigBoatY + bigBoatHeight >= canvas.height;
                 if (isTouchTop) {
@@ -69,7 +69,7 @@
                 drawCanvas();
             };
 
-            let frame = 50;
+            let frame = 10;
             setInterval(smallBoatAnimation, frame);
             setInterval(bigBoatAnimation, frame);
         };
