@@ -42,31 +42,25 @@
             function smallBoatAnimation() {
                 resetCanvas();
                 let speed = 5;
-                let isTouchTop = smallBoatY <= 0;
-                let isTouchBottom = smallBoatY + smallBoatHeight >= canvas.height;
-                if (isTouchTop) {
-                    speed = speed;
-                } else if (isTouchBottom) {
+                if (smallBoatY < 0 || (smallBoatY + smallBoatHeight) > canvas.height) {
                     speed = -speed;
                 };
 
                 smallBoatY += speed;
                 drawCanvas();
+                console.log("smallBoat : " + isTouchBorder);
             };
 
             function bigBoatAnimation() {
                 resetCanvas();
                 let speed = 3;
-                let isTouchTop = bigBoatY <= 0;
-                let isTouchBottom = bigBoatY + bigBoatHeight >= canvas.height;
-                if (isTouchTop) {
+                if (bigBoatY < 0 || (bigBoatY + bigBoatHeight) > canvas.height) {
                     speed = -speed;
-                } else if (isTouchBottom) {
-                    speed = speed;
                 };
 
                 bigBoatY -= speed;
                 drawCanvas();
+                console.log("bigBoat : " + isTouchBorder);
             };
 
             let frame = 10;
@@ -112,23 +106,27 @@
         function drawSmallBoat(smallBoatX, smallBoatY, smallBoatWidth, smallBoatHeight) {
             // Vẽ chướng ngại vật (Thuyền nhỏ)
             context.beginPath();
-            context.fillStyle = "grey";
+            context.fillStyle = "rgb(100,100,100)";
             context.fillRect(smallBoatX, smallBoatY, smallBoatWidth, smallBoatHeight);
+            context.strokeRect(smallBoatX, smallBoatY, smallBoatWidth, smallBoatHeight);
 
             context.beginPath();
-            context.fillStyle = "grey";
+            context.fillStyle = "rgb(100,100,100)";
             context.fillRect(smallBoatX + 300, smallBoatY, smallBoatWidth, smallBoatHeight);
+            context.strokeRect(smallBoatX + 300, smallBoatY, smallBoatWidth, smallBoatHeight);
         };
 
         function drawBigBoat(bigBoatX, bigBoatY, bigBoatWidth, bigBoatHeight) {
             // Vẽ chướng ngại vật (Thuyền bự)
             context.beginPath();
-            context.fillStyle = "grey";
+            context.fillStyle = "rgb(192,192,192)";
             context.fillRect(bigBoatX, bigBoatY, bigBoatWidth, bigBoatHeight);
+            context.strokeRect(bigBoatX, bigBoatY, bigBoatWidth, bigBoatHeight);
 
             context.beginPath();
-            context.fillStyle = "grey";
+            context.fillStyle = "rgb(192,192,192)";
             context.fillRect(bigBoatX + 300, bigBoatY, bigBoatWidth, bigBoatHeight);
+            context.strokeRect(bigBoatX + 300, bigBoatY, bigBoatWidth, bigBoatHeight);
         };
 
         function drawPlayer(playerX, playerY, playerSize) {
@@ -136,6 +134,7 @@
             context.beginPath();
             context.arc(playerX, playerY, playerSize, 0, 2 * Math.PI);
             context.fillStyle = "rgb(250, 230, 191)";
+            context.stroke();
             context.fill();
         };
     </script>
