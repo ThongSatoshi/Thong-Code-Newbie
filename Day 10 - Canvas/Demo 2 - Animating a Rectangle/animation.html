@@ -177,14 +177,14 @@
                         break;
                 };
 
-                if (player.playerY < 0) {
+                if (player.playerY <= player.playerSize) {
                     player.playerY += player.playerSize;
-                } else if ((player.playerY + player.playerSize) > canvas.height) {
+                } else if ((player.playerY + player.playerSize) >= canvas.height) {
                     player.playerY -= player.playerSize;
                 };
-                if (player.playerX < 0) {
+                if (player.playerX <= player.playerSize) {
                     player.playerX += player.playerSize;
-                } else if ((player.playerX + player.playerSize) > canvas.width) {
+                } else if ((player.playerX + player.playerSize) >= canvas.width) {
                     player.playerX -= player.playerSize;
                 };
 
@@ -204,7 +204,7 @@
         };
 
         function isDead() {
-            
+
         };
     </script>
 </body>
