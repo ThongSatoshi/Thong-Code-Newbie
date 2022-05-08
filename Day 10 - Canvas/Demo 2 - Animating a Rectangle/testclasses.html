@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Classes</title>
+    <style>
+        #result {
+            font-size: 20px; 
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Practice my classes</h1>
+    <ol id="result"></ol>
+    <script type="text/javascript">
+        let onlyJ = [];
+        let result = document.getElementById("result");
+
+        //Create a class
+        class Person {
+            //Pre-defined list of variables 
+            constructor(name, birthDay, birthPlace, gender) {
+                this.name = name;
+                this.birthDay = birthDay;
+                this.birthPlace = birthPlace;
+                this.gender = gender;
+            };
+
+            // Print out
+            printClass() {
+                const newNode = document.createElement("li");
+                const newText = document.createTextNode("Friend's name: " + name
+                    + ", " + "Born " + birthDay
+                    + ", " + "From " + birthPlace
+                    + ", " + "Has identified themself as a " + gender);
+                newNode.appendChild(newText);
+                result.appendChild(newNode);
+            };
+        };
+
+        //Randomize the values
+        function getRandomName() {
+            let nameArr = ["Justin", "James", "John", "Jane", "Jullia"];
+            let i = Math.floor(Math.random() * 5);
+            return this.name = nameArr[i];
+        };
+
+        function getRandomBirthDay() {
+            let year = Math.floor(Math.random() * (2022 - 1990 + 1)) + 1990;
+            return this.birthDay = year;
+        };
+
+        function getRandomBirthPlace() {
+            let planet = ["Earth", "Mars", "Venus", "Titan", "Europa"];
+            let i = Math.floor(Math.random() * 5);
+            return this.birthPlace = planet[i];
+        };
+
+        function getRandomGender() {
+            let genderArr = ["Male", "Female", "Trap", "Futa"];
+            let i = Math.floor(Math.random() * 4);
+            return this.gender = genderArr[i];
+        };
+
+        // Create 10 friends from the same "Person" class
+        for (let i = 0; i < 10; i++) {
+            let alienFriend = new Person(getRandomName(), getRandomBirthDay(), getRandomBirthPlace(), getRandomGender());
+            onlyJ.push(alienFriend);
+            alienFriend.printClass();
+        };
+    </script>
+</body>
+
+</html>

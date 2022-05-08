@@ -31,7 +31,7 @@
     <script type="text/javascript">
         let smallBoatX = 200, smallBoatY = 0, bigBoatX = 350, bigBoatY = 300, playerX = 50, playerY = 250;
         let smallBoatWidth = smallBoatHeight = 100, bigBoatWidth = 100, bigBoatHeight = 200, playerSize = 30;
-        let context = document.getElementById("canvas").getContext("2d");
+        let speed, context = document.getElementById("canvas").getContext("2d");
         drawCanvas(), drawSmallBoat(), drawBigBoat(), drawPlayer();
 
         function resetCanvas() {
@@ -41,26 +41,24 @@
         function runGame() {
             function smallBoatAnimation() {
                 resetCanvas();
-                let speed = 5;
+                speed = 5;
                 if (smallBoatY < 0 || (smallBoatY + smallBoatHeight) > canvas.height) {
                     speed = -speed;
                 };
 
                 smallBoatY += speed;
                 drawCanvas();
-                console.log("smallBoat : " + isTouchBorder);
             };
 
             function bigBoatAnimation() {
                 resetCanvas();
-                let speed = 3;
+                speed = 3;
                 if (bigBoatY < 0 || (bigBoatY + bigBoatHeight) > canvas.height) {
                     speed = -speed;
                 };
 
                 bigBoatY -= speed;
                 drawCanvas();
-                console.log("bigBoat : " + isTouchBorder);
             };
 
             let frame = 10;
