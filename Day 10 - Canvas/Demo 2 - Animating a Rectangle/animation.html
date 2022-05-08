@@ -33,7 +33,7 @@
         let smallBoatX = 200, smallBoatY = 0, bigBoatX = 380, bigBoatY = 300,
             smallBoatWidth = smallBoatHeight = 100, bigBoatWidth = 100, bigBoatHeight = 200;
         let frame = 10, context = document.getElementById("canvas").getContext("2d");
-        // Tạo lớp và các đối tượng Tàu, người chơi
+        // Tạo lớp và các đối tượng 4 thuyền + người chơi
         class Boat {
             constructor(boatX, boatY, boatWidth, boatHeight, boatSpeed, boatColor) {
                 this.boatX = boatX;
@@ -131,6 +131,7 @@
         // Khởi tạo hoạt hình cho canvas
         function runGame() {
             resetCanvas();
+            // Khởi tạo hoạt hình thuyền nhỏ
             function smallBoatAnimation() {
                 if (smallBoatA.boatY < 0 || (smallBoatA.boatY + smallBoatA.boatHeight) > canvas.height) {
                     smallBoatA.boatSpeed = -smallBoatA.boatSpeed;
@@ -143,6 +144,7 @@
                 drawSmallBoat();
             };
 
+            // Khởi tạo hoạt hình thuyền bự
             function bigBoatAnimation() {
                 if (bigBoatA.boatY < 0 || (bigBoatA.boatY + bigBoatA.boatHeight) > canvas.height) {
                     bigBoatA.boatSpeed = -bigBoatA.boatSpeed;
@@ -155,12 +157,14 @@
                 drawBigBoat();
             };
 
+            // Kiểm tra phím được ấn
             var pressedKey;
             window.addEventListener("keydown", function (event) {
                 return pressedKey = event.key;
                 playerMovement();
             });
 
+            // Khởi tạo hoạt hình nhân vật
             function playerMovement() {
                 switch (pressedKey) {
                     case "ArrowUp" || "W" || "w":
@@ -191,21 +195,24 @@
                 drawPlayer();
             };
 
+            // Lặp các hàm cần thiết
             setInterval(drawBackground, frame);
             setInterval(smallBoatAnimation, frame);
             setInterval(bigBoatAnimation, frame);
             setInterval(playerMovement, frame);
-            setInterval(isWinning, 1000);
-            setInterval(isDead, 1000);
+            // setInterval(isWinning, 1000);
+            // setInterval(isDead, 1000);
         };
 
-        function isWinning() {
+        // // Kiểm tra xem nhân vật đã về đích?
+        // function isWinning() {
 
-        };
+        // };
 
-        function isDead() {
+        // // Kiểm tra xem nhân vật va chạm các thuyền?
+        // function isDead() {
 
-        };
+        // };
     </script>
 </body>
 
