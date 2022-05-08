@@ -27,42 +27,43 @@
     <button class="button" type="button" onclick="location.reload()">Reset game</button>
     <br>
     <br>
-    <canvas id="canvas" width="1000px" height="500px" style="border:1px solid rgb(0, 0, 0)"></canvas>
+    <canvas id="canvas" width="1040px" height="500px" style="border:1px solid rgb(0, 0, 0)"></canvas>
     <script type="text/javascript">
         // Khai báo các biến
-        let smallBoatX = 200, smallBoatY = 0, bigBoatX = 350, bigBoatY = 300,
+        let smallBoatX = 200, smallBoatY = 0, bigBoatX = 380, bigBoatY = 300,
             smallBoatWidth = smallBoatHeight = 100, bigBoatWidth = 100, bigBoatHeight = 200;
-        let context = document.getElementById("canvas").getContext("2d");
-        drawBackground(), drawSmallBoat(), drawBigBoat(), drawPlayer();
-
+        let frame = 10, context = document.getElementById("canvas").getContext("2d");
         // Tạo lớp và các đối tượng Tàu, người chơi
         class Boat {
-            constructor(boatX, boatY, boatWidth, boatHeight, boatSpeed) {
+            constructor(boatX, boatY, boatWidth, boatHeight, boatSpeed, boatColor) {
                 this.boatX = boatX;
                 this.boatY = boatY;
                 this.boatWidth = boatWidth;
                 this.boatHeight = boatHeight;
                 this.boatSpeed = boatSpeed;
+                this.boatColor = boatColor;
             };
         };
-
         class Player {
-            constructor(playerX, playerY, playerSize, playerSpeed) {
+            constructor(playerX, playerY, playerSize, playerSpeed, playerColor) {
                 this.playerX = playerX;
                 this.playerY = playerY;
                 this.playerSize = playerSize;
                 this.playerSpeed = playerSpeed;
+                this.playerColor = playerColor;
             };
         };
+
+        let smallBoatA = new Boat(smallBoatX, smallBoatY, smallBoatWidth, smallBoatHeight, 9, "rgb(190,190,190)"),
+            smallBoatB = new Boat(smallBoatX + 350, smallBoatY, smallBoatWidth, smallBoatHeight, 7, "rgb(190,190,190)");
+        let bigBoatA = new Boat(bigBoatX, bigBoatY, bigBoatWidth, bigBoatHeight, 6, "rgb(192,192,192)"),
+            bigBoatB = new Boat(bigBoatX + 350, bigBoatY, bigBoatWidth, bigBoatHeight, 4, "rgb(192,192,192)");
+        let player = new Player(50, 250, 30, 3, "rgb(250, 230, 191)");
+        drawBackground(), drawSmallBoat(), drawBigBoat(), drawPlayer();
 
         // Reset lại canvas
         function resetCanvas() {
             context.clearRect(0, 0, canvas.width, canvas.height);
-        };
-
-        // Khởi tạo hoạt hình cho canvas
-        function runGame() {
-            
         };
 
         function drawBackground() {
@@ -85,48 +86,125 @@
 
             context.beginPath();
             context.fillStyle = "rgb(69, 229, 33)";
-            context.fillRect(900, 0, 100, 100);
+            context.fillRect(940, 0, 100, 100);
 
             context.beginPath();
             context.fillStyle = "rgb(100, 70, 36)";
-            context.fillRect(900, 100, 100, 300);
+            context.fillRect(940, 100, 100, 300);
 
             context.beginPath();
             context.fillStyle = "rgb(69, 229, 33)";
-            context.fillRect(900, 400, 100, 100);
+            context.fillRect(940, 400, 100, 100);
         };
 
         function drawSmallBoat() {
-            let smallBoatA = new Boat(smallBoatX, smallBoatY, smallBoatWidth, smallBoatHeight, 5),
-                smallBoatB = new Boat(smallBoatX + 300, smallBoatY, smallBoatWidth, smallBoatHeight, 5);
-
             // Vẽ chướng ngại vật (Thuyền nhỏ)
             context.beginPath();
-            context.fillStyle = "rgb(190,190,190)";
+            context.fillStyle = smallBoatA.boatColor;
+            context.fillStyle = smallBoatB.boatColor;
             context.fillRect(smallBoatA.boatX, smallBoatA.boatY, smallBoatA.boatWidth, smallBoatA.boatHeight);
+            context.fillRect(smallBoatB.boatX, smallBoatB.boatY, smallBoatB.boatWidth, smallBoatB.boatHeight);
             context.strokeRect(smallBoatA.boatX, smallBoatA.boatY, smallBoatA.boatWidth, smallBoatA.boatHeight);
+            context.strokeRect(smallBoatB.boatX, smallBoatB.boatY, smallBoatB.boatWidth, smallBoatB.boatHeight);
         };
 
         function drawBigBoat() {
-            let bigBoatA = new Boat(bigBoatX, bigBoatY, bigBoatWidth, bigBoatHeight, 3),
-                bigBoatB = new Boat(bigBoatX + 300, bigBoatY, bigBoatWidth, bigBoatHeight, 3);
-
             // Vẽ chướng ngại vật (Thuyền bự)
             context.beginPath();
-            context.fillStyle = "rgb(192,192,192)";
-            context.fillRect(bigBoatA.bigBoatX, bigBoatA.bigBoatY, bigBoatA.bigBoatWidth, bigBoatA.bigBoatHeight);
-            context.strokeRect(bigBoatA.bigBoatX, bigBoatA.bigBoatY, bigBoatA.bigBoatWidth, bigBoatA.bigBoatHeight);
+            context.fillStyle = bigBoatA.boatColor;
+            context.fillStyle = bigBoatB.boatColor;
+            context.fillRect(bigBoatA.boatX, bigBoatA.boatY, bigBoatA.boatWidth, bigBoatA.boatHeight);
+            context.fillRect(bigBoatB.boatX, bigBoatB.boatY, bigBoatB.boatWidth, bigBoatB.boatHeight);
+            context.strokeRect(bigBoatA.boatX, bigBoatA.boatY, bigBoatA.boatWidth, bigBoatA.boatHeight);
+            context.strokeRect(bigBoatB.boatX, bigBoatB.boatY, bigBoatB.boatWidth, bigBoatB.boatHeight);
         };
 
         function drawPlayer() {
-            let player = new Player(50, 250, 30, 2);
-
             //Vẽ người chơi
             context.beginPath();
             context.arc(player.playerX, player.playerY, player.playerSize, 0, 2 * Math.PI);
-            context.fillStyle = "rgb(250, 230, 191)";
-            context.stroke();
+            context.fillStyle = player.playerColor;
             context.fill();
+            context.stroke();
+        };
+
+        // Khởi tạo hoạt hình cho canvas
+        function runGame() {
+            resetCanvas();
+            function smallBoatAnimation() {
+                if (smallBoatA.boatY < 0 || (smallBoatA.boatY + smallBoatA.boatHeight) > canvas.height) {
+                    smallBoatA.boatSpeed = -smallBoatA.boatSpeed;
+                };
+                if (smallBoatB.boatY < 0 || (smallBoatB.boatY + smallBoatB.boatHeight) > canvas.height) {
+                    smallBoatB.boatSpeed = -smallBoatB.boatSpeed;
+                };
+                smallBoatA.boatY += smallBoatA.boatSpeed;
+                smallBoatB.boatY += smallBoatB.boatSpeed;
+                drawSmallBoat();
+            };
+
+            function bigBoatAnimation() {
+                if (bigBoatA.boatY < 0 || (bigBoatA.boatY + bigBoatA.boatHeight) > canvas.height) {
+                    bigBoatA.boatSpeed = -bigBoatA.boatSpeed;
+                };
+                if (bigBoatB.boatY < 0 || (bigBoatB.boatY + bigBoatB.boatHeight) > canvas.height) {
+                    bigBoatB.boatSpeed = -bigBoatB.boatSpeed;
+                };
+                bigBoatA.boatY -= bigBoatA.boatSpeed;
+                bigBoatB.boatY -= bigBoatB.boatSpeed;
+                drawBigBoat();
+            };
+
+            var pressedKey;
+            window.addEventListener("keydown", function (event) {
+                return pressedKey = event.key;
+                playerMovement();
+            });
+
+            function playerMovement() {
+                switch (pressedKey) {
+                    case "ArrowUp" || "W" || "w":
+                        player.playerY -= player.playerSpeed;
+                        break;
+                    case "ArrowDown" || "S" || "s":
+                        player.playerY += player.playerSpeed;
+                        break;
+                    case "ArrowLeft" || "A" || "a":
+                        player.playerX -= player.playerSpeed;
+                        break;
+                    case "ArrowRight" || "D" || "d":
+                        player.playerX += player.playerSpeed;
+                        break;
+                };
+
+                if (player.playerY < 0) {
+                    player.playerY += player.playerSize;
+                } else if ((player.playerY + player.playerSize) > canvas.height) {
+                    player.playerY -= player.playerSize;
+                };
+                if (player.playerX < 0) {
+                    player.playerX += player.playerSize;
+                } else if ((player.playerX + player.playerSize) > canvas.width) {
+                    player.playerX -= player.playerSize;
+                };
+
+                drawPlayer();
+            };
+
+            setInterval(drawBackground, frame);
+            setInterval(smallBoatAnimation, frame);
+            setInterval(bigBoatAnimation, frame);
+            setInterval(playerMovement, frame);
+            setInterval(isWinning, 1000);
+            setInterval(isDead, 1000);
+        };
+
+        function isWinning() {
+
+        };
+
+        function isDead() {
+            
         };
     </script>
 </body>
