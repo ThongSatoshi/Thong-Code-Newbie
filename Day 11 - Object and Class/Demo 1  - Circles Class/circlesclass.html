@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lớp đường tròn</title>
+    <style>
+        h1 {
+            font-size: 40px;
+            font-style: italic;
+        }
+
+        div {
+            font-size: 20px;
+        }
+
+        .button {
+            font-size: 18px;
+            font-weight: bold;
+            height: 30px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Khởi tạo lớp đường tròn</h1>
+    <button class="button" type="button" onclick="drawCircle()">Vẽ đường tròn</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <br>
+    <br>
+    <canvas id="canvas" width="500px" height="500px" style="border:1px solid rgb(0, 0, 0)"></canvas>
+    <script type="text/javascript">
+        let circle;
+        class CircleProperties {
+            constructor(x, y, r, color) {
+                this.x = x;
+                this.y = y;
+                this.r = r;
+                this.color = color;
+            };
+
+            getPerimeter() {
+                return 2 * this.r * Math.PI;
+            };
+
+            getArea() {
+                return Math.pow(this.r, 2) * Math.PI;
+            };
+        };
+
+        function getRandomColor() {
+            let redValue = Math.floor(Math.random() * 256);
+            let greenValue = Math.floor(Math.random() * 256);
+            let blueValue = Math.floor(Math.random() * 256);
+            let opacity = Math.random() * (0.85 - 0.25) + 0.25;
+            return this.color = "rgba(" + redValue + "," + greenValue + "," + blueValue + "," + opacity + ")";
+        };
+
+        function drawCircle() {
+            let circleX = parseInt(prompt("Hãy nhập tọa độ X của đường tròn"));
+            while (isNaN(circleX) || circleX < 1 || circleX > canvas.width) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị từ 1 đến " + canvas.width);
+                circleX = parseInt(prompt("Hãy nhập tọa độ X của đường tròn"));
+            };
+            let circleY = parseInt(prompt("Hãy nhập tọa độ Y của đường tròn"));
+            while (isNaN(circleY) || circleY < 1 || circleY > canvas.height) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị từ 1 đến " + canvas.height);
+                circleY = parseInt(prompt("Hãy nhập tọa độ Y của đường tròn"));
+            };
+            let circleRadius = parseInt(prompt("Hãy nhập bán kính của đường tròn"));
+            while (isNaN(circleRadius) || circleRadius < 1 || circleRadius > 250) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị từ 1 đến 250");
+                circleRadius = parseInt(prompt("Hãy nhập bán kính của đường tròn"));
+            };
+            let circleColor = getRandomColor();
+
+            let circle = new CircleProperties (circleX, circleY, circleRadius, circleColor);
+
+            let context = document.getElementById("canvas").getContext("2d");
+            context.beginPath();
+            context.arc(circle.x, circle.y, circle.r, 0, 2 * Math.PI);
+            context.fillStyle = circle.color;
+            context.fill();
+
+            let circlePerimeter = circle.getPerimeter().toFixed(3);
+            let circleArea = circle.getArea().toFixed(3);
+            result.innerHTML = "Bán kính đường tròn: " + circle.r + "<br>"
+            + "Chu vi đường tròn: " + circlePerimeter + "<br>"
+            + "Diện tích đường tròn: " + circleArea + "<br>"
+            + "Tọa độ đường tròn trên Canvas là (" + circle.x + " , " + circle.y + ")";
+        };
+    </script>
+</body>
+
+</html>
