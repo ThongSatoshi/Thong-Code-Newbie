@@ -27,10 +27,183 @@
 
 <body>
     <h1>Khởi tạo lớp ngày / tháng / năm</h1>
-    <button class="button" type="button" onclick="inputDate()"></button>
+    <button class="button" type="button" onclick="inputDate()">Nhập ngày vào</button>
+    <button class="button" type="button" onclick="changeDate()">Đổi ngày</button>
     <br>
     <br>
     <div id="result"></div>
+    <script>
+        let day, month, year, myDate, isInputDate = false;
+        let result = document.getElementById("result");
+        class dateProperties {
+            constructor(day, month, year) {
+                this.day = day;
+                this.month = month;
+                this.year = year;
+            };
+
+            getDay() {
+                return this.day;
+            };
+
+            getMonth() {
+                return this.month;
+            };
+
+            getYear() {
+                return this.year;
+            };
+
+            setbackDay(day) {
+                this.day = day;
+            };
+
+            setbackMonth(month) {
+                this.month = month;
+            };
+
+            setbackYear(year) {
+                this.year = year;
+            };
+        };
+
+        function inputDate() {
+            day = parseInt(prompt("Hãy nhập ngày vào đây (lưu ý số ngày chỉ được từ 1 đến 31)"));
+            while (isNaN(day) || day < 1 || day > 31 || day == null) {
+                alert("Số ngày phải nằm trong khoảng từ 1 đến 31");
+                day = parseInt(prompt("Hãy nhập ngày vào đây (lưu ý số ngày chỉ được từ 1 đến 31)"));
+            };
+
+            month = parseInt(prompt("Hãy nhập tháng vào đây (lưu ý số tháng chỉ được từ 1 đến 12)"));
+            while (isNaN(month) || month < 1 || month > 12 || month == null) {
+                alert("Số tháng phải nằm trong khoảng từ 1 đến 12");
+                month = parseInt(prompt("Hãy nhập tháng vào đây (lưu ý số tháng chỉ được từ 1 đến 12)"));
+            };
+
+            year = parseInt(prompt("Hãy nhập năm vào đây (lưu ý số năm chỉ được trên 1000)"));
+            while (isNaN(year) || year < 1000 || year == null) {
+                alert("Số năm nhỏ nhất mà hệ thống cho phép là năm 1000");
+                year = parseInt(prompt("Hãy nhập năm vào đây (lưu ý số năm chỉ được trên 1000)"));
+            };
+
+            myDate = new dateProperties(day, month, year);
+            isInputDate = true;
+            askDateFormat(day, month, year);
+        };
+
+        function changeDate() {
+            if (isInputDate == true) {
+                day = parseInt(prompt("Hãy nhập ngày vào đây (lưu ý số ngày chỉ được từ 1 đến 31)"));
+                while (isNaN(day) || day < 1 || day > 31 || day == null) {
+                    alert("Số ngày phải nằm trong khoảng từ 1 đến 31");
+                    day = parseInt(prompt("Hãy nhập ngày vào đây (lưu ý số ngày chỉ được từ 1 đến 31)"));
+                };
+                myDate.setbackDay(day);
+
+                month = parseInt(prompt("Hãy nhập tháng vào đây (lưu ý số tháng chỉ được từ 1 đến 12)"));
+                while (isNaN(month) || month < 1 || month > 12 || month == null) {
+                    alert("Số tháng phải nằm trong khoảng từ 1 đến 12");
+                    month = parseInt(prompt("Hãy nhập tháng vào đây (lưu ý số tháng chỉ được từ 1 đến 12)"));
+                };
+                myDate.setbackMonth(month);
+
+                year = parseInt(prompt("Hãy nhập năm vào đây (lưu ý số năm chỉ được trên 1000)"));
+                while (isNaN(year) || year < 1000 || year == null) {
+                    alert("Số năm nhỏ nhất mà hệ thống cho phép là năm 1000");
+                    year = parseInt(prompt("Hãy nhập năm vào đây (lưu ý số năm chỉ được trên 1000)"));
+                };
+                myDate.setbackYear(year);
+                askDateFormat(day, month, year);
+                isInputDate = false;
+            };
+        };
+
+        function askDateFormat(day, month, year) {
+            let maxChoice = 3;
+            let format = parseInt(prompt("Xin vui lòng chọn định dạng mà bạn muốn, trong đó: " +
+                "\r\n" + "1. Ngày - tháng - năm (dd-mm-yyyy) (chọn số 1)" +
+                "\r\n" + "2. Tháng - ngày - năm (m-d-yyyy) (chọn số 2)" +
+                "\r\n" + "3. Năm - tháng - ngày (yyyy-mm-dd) (chọn số 3)"));
+            while (isNaN(format) || format < 1 || format > maxChoice || format == null) {
+                alert("Xin vui lòng chọn định dạng mà bạn muốn!");
+                format = parseInt(prompt("Xin vui lòng chọn định dạng mà bạn muốn, trong đó: " +
+                    "\r\n" + "1. Ngày - tháng - năm (dd-mm-yyyy) (chọn số 1)" +
+                    "\r\n" + "2. Tháng - ngày - năm (m-d-yyyy) (chọn số 2)" +
+                    "\r\n" + "3. Năm - tháng - ngày (yyyy-mm-dd) (chọn số 3)"));
+            };
+
+            switch (format) {
+                case 1:
+                    var zd = "";
+                    var zm = "";
+                    if (day < 10) {
+                        zd += "0";
+                    };
+                    if (month < 10) {
+                        zm += "0";
+                    };
+                    result.innerHTML = "Theo định dạng ' dd-mm-yyyy ' : " + zd + myDate.getDay() + " - " + zm + myDate.getMonth() + " - " + myDate.getYear();
+                    break;
+
+                case 2:
+                    let daySuffix = "", suffixArr = ["st", "nd", "rd"];
+                    if (day == 1 || day % 10 == 1) {
+                        daySuffix += suffixArr[0];
+                    } else if (day == 2 || day % 10 == 2) {
+                        daySuffix += suffixArr[1];
+                    } else if (day == 3 || day % 10 == 3) {
+                        daySuffix += suffixArr[2];
+                    } else {
+                        daySuffix += "th";
+                    };
+                    let monthStr = "";
+                    switch (myDate.getMonth()) {
+                        case 1:
+                            monthStr += "January";
+                            break;
+                        case 2:
+                            monthStr += "Febuary";
+                            break;
+                        case 3:
+                            monthStr += "March";
+                            break;
+                        case 4:
+                            monthStr += "April";
+                            break;
+                        case 5:
+                            monthStr += "May";
+                            break;
+                        case 6:
+                            monthStr += "June";
+                            break;
+                        case 7:
+                            monthStr += "July";
+                            break;
+                        case 8:
+                            monthStr += "August";
+                            break;
+                        case 9:
+                            monthStr += "September";
+                            break;
+                        case 10:
+                            monthStr += "October";
+                            break;
+                        case 11:
+                            monthStr += "November";
+                            break;
+                        case 12:
+                            monthStr += "December";
+                            break;
+                    };
+                    result.innerHTML = "Theo định dạng ' m-d-yyyy ' : " + monthStr + " " + myDate.getDay() + daySuffix + ", " + myDate.getYear();
+                    break;
+
+                case 3:
+                    result.innerHTML = "Theo định dạng ' yyyy-mm-dd ' : " + myDate.getYear() + "年 " + myDate.getMonth() + "月 " + myDate.getDay() + "日";
+                    break;
+            };
+        };
+    </script>
 </body>
 
 </html>
