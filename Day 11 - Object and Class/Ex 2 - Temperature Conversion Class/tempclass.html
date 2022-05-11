@@ -8,34 +8,127 @@
     <title>Lớp nhiệt độ</title>
     <style>
         h1 {
-            font-size: 40px;
             font-style: italic;
         }
 
-        div {
-            font-size: 20px;
+        #inputBox {
+            font-size: 18px;
+            height: 30px;
+            width: 300px;
         }
 
         .button {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
-            height: 30px;
+            height: 40px;
             width: 200px;
+        }
+
+        p,
+        #result {
+            font-size: 20px;
         }
     </style>
 </head>
 
 <body>
     <h1>Khởi tạo lớp nhiệt độ</h1>
-    <button class="button" type="button" onclick="drawCircle()">Vẽ hình</button>
+    <p>Vui lòng nhập vào ô trống sau nhiệt độ bạn muốn chuyển đổi</p>
+    <input id="inputBox" type="number" onkeyup="getValue(this.value)">
+    <button class="button" type="button" onclick="display()">Hiển thị kết quả</button>
     <br>
     <br>
     <div id="result"></div>
-    <br>
-    <br>
-    <canvas id="canvas" width="500px" height="500px" style="border:1px solid rgb(0, 0, 0)"></canvas>
     <script type="text/javascript">
-        
+        let inputTemp = resultTemp = 0, fromUnit = toUnit = "", temperature;
+        let result = document.getElementById("result");
+        class Temp {
+            constructor(temp, fromUnit, toUnit) {
+                this.temp = temp;
+                this.fromUnit = fromUnit;
+                this.toUnit = toUnit;
+            };
+
+            convertTemp(resultTemp) {
+                if (this.fromUnit == "C") {
+                    switch (this.toUnit) {
+                        case "F":
+                            resultTemp += (this.temp * 9 / 5) + 32;
+                            return resultTemp;
+                            break;
+                        case "K":
+                            resultTemp += this.temp + 273.15;
+                            return resultTemp;
+                            break;
+                    };
+                } else if (this.fromUnit == "F") {
+                    switch (this.toUnit) {
+                        case "C":
+                            resultTemp += (this.temp - 32) * 5 / 9;
+                            return resultTemp;
+                            break;
+                        case "K":
+                            resultTemp += ((this.temp - 32) * 5 / 9) + 273.15;
+                            return resultTemp;
+                            break;
+                    };
+                } else if (this.fromUnit == "K") {
+                    switch (this.toUnit) {
+                        case "C":
+                            resultTemp += this.temp - 273.15;
+                            return resultTemp;
+                            break;
+                        case "F":
+                            resultTemp += (this.temp - 273.15) * 9 / 5 + 32;
+                            return resultTemp;
+                            break;
+                    };
+                };
+                console.log(resultTemp);
+            };
+        };
+
+        function getValue(obj) {
+            inputTemp = parseFloat(obj);
+        };
+
+        function askScale() {
+            fromUnit = prompt("Xin hãy chọn thang đo của bạn (C/F/K?)");
+            while (fromUnit !== "C" && fromUnit !== "F" && fromUnit !== "K" || fromUnit == null) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận 3 thang đo chính, đó là thang độ C, độ F, độ K");
+                fromUnit = prompt("Xin hãy chọn thang đo của bạn (C/F/K?)");
+            };
+            toUnit = prompt("Xin hãy chọn thang đo bạn muốn chuyển (C/F/K?)");
+            while (toUnit !== "C" && toUnit !== "F" && toUnit !== "K" || toUnit === fromUnit || toUnit == null) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận 3 thang đo chính, đó là thang độ C, độ F, độ K");
+                toUnit = prompt("Xin hãy chọn thang đo bạn muốn chuyển (C/F/K?)");
+            };
+            if (fromUnit == "C" && inputTemp < -273.15) {
+                alert("Lưu ý! Thang độ C không nhận giá trị nhỏ hơn -273.15°C" + "\n" + "Hệ thống sẽ tự động lấy giá trị nhỏ nhất cho phép là -273.15");
+                inputTemp = -273.15;
+            } else if (fromUnit == "F" && inputTemp < -459.7) {
+                alert("Lưu ý! Thang độ F không nhận giá trị nhỏ hơn -459.7°F" + "\n" + "Hệ thống sẽ tự động lấy giá trị nhỏ nhất cho phép là -459.7");
+                inputTemp = -459.7;
+            } else if (fromUnit == "K" && inputTemp < 0) {
+                alert("Lưu ý! Thang độ K không nhận giá trị nhỏ hơn 0K" + "\n" + "Hệ thống sẽ tự động lấy giá trị nhỏ nhất cho phép là 0");
+                inputTemp = 0;
+            };
+
+            temperature = new Temp(inputTemp, fromUnit, toUnit);
+        };
+
+        function display() {
+            askScale();
+            resultTemp = temperature.convertTemp(resultTemp);
+            let degreeFrom = degreeTo = "";
+            if (temperature.fromUnit != "K") {
+                degreeFrom += "°";
+            } else if (temperature.toUnit != "K") {
+                degreeTo += "°";
+            };
+            result.innerHTML = temperature.temp + degreeFrom + temperature.fromUnit + " bằng " + resultTemp.toFixed(2) + degreeTo + temperature.toUnit;
+            console.log(temperature.temp + temperature.fromUnit + resultTemp.toFixed(2) + temperature.toUnit);
+        };
     </script>
 </body>
 
