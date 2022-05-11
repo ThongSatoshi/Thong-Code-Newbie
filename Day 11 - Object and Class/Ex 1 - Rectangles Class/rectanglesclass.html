@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lớp hình chữ nhật / vuông</title>
+    <style>
+        h1 {
+            font-size: 40px;
+            font-style: italic;
+        }
+
+        div {
+            font-size: 20px;
+        }
+
+        .button {
+            font-size: 18px;
+            font-weight: bold;
+            height: 30px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Khởi tạo lớp hình chữ nhật / vuông</h1>
+    <button class="button" type="button" onclick="drawCircle()">Vẽ hình</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <br>
+    <br>
+    <canvas id="canvas" width="500px" height="500px" style="border:1px solid rgb(0, 0, 0)"></canvas>
+    <script type="text/javascript">
+        let circle;
+        class CircleProperties {
+            constructor(x, y, width, height, color) {
+                this.x = x;
+                this.y = y;
+                this.width = width;
+                this.height = height;
+                this.color = color;
+            };
+
+            getPerimeter() {
+                return (this.width + this.height) * 2;
+            };
+
+            getArea() {
+                return this.width * this.height;
+            };
+        };
+
+        function getRandomColor() {
+            let redValue = Math.floor(Math.random() * 256);
+            let greenValue = Math.floor(Math.random() * 256);
+            let blueValue = Math.floor(Math.random() * 256);
+            let opacity = Math.random() * (0.85 - 0.25) + 0.25;
+            return this.color = "rgba(" + redValue + "," + greenValue + "," + blueValue + "," + opacity + ")";
+        };
+
+        function drawCircle() {
+            let rectX = parseInt(prompt("Hãy nhập tọa độ X của hình chữ nhật"));
+            while (isNaN(rectX) || rectX < 1 || rectX > canvas.width) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị từ 1 đến " + canvas.width);
+                rectX = parseInt(prompt("Hãy nhập tọa độ X của hình chữ nhật"));
+            };
+            let rectY = parseInt(prompt("Hãy nhập tọa độ Y của hình chữ nhật"));
+            while (isNaN(rectY) || rectY < 1 || rectY > canvas.height) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị từ 1 đến " + canvas.height);
+                rectY = parseInt(prompt("Hãy nhập tọa độ Y của hình chữ nhật"));
+            };
+            let rectWidth = parseInt(prompt("Hãy nhập chiều dài hình chữ nhật"));
+            while (isNaN(rectWidth) || rectWidth < 1 || rectWidth > canvas.width) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị từ 1 đến " + canvas.width);
+                rectWidth = parseInt(prompt("Hãy nhập chiều dài hình chữ nhật"));
+            };
+            let rectHeight = parseInt(prompt("Hãy nhập chiều rộng hình chữ nhật"));
+            while (isNaN(rectHeight) || rectHeight < 1 || rectHeight > canvas.height) {
+                alert("Lưu ý! Hệ thống chỉ ghi nhận các giá trị từ 1 đến " + canvas.height);
+                rectHeight = parseInt(prompt("Hãy nhập chiều rộng hình chữ nhật"));
+            };
+            let rectColor = getRandomColor();
+
+            let rect = new CircleProperties (rectX, rectY, rectWidth, rectHeight, rectColor);
+
+            let context = document.getElementById("canvas").getContext("2d");
+            context.beginPath();
+            context.fillStyle = rect.color;
+            context.fillRect(rect.x, rect.y, rect.width, rect.height);
+
+            let rectPerimeter = rect.getPerimeter().toFixed(3);
+            let rectArea = rect.getArea().toFixed(3);
+            result.innerHTML = "Chiều dài: " + rect.width + "<br>"
+            + "Chiều rộng: " + rect.height + "<br>"
+            + "Chu vi hình chữ nhật/vuông: " + rectPerimeter + "<br>"
+            + "Diện tích hình chữ nhật/vuông: " + rectArea + "<br>"
+            + "Tọa độ hình chữ nhật/vuông trên Canvas là (" + rect.x + " , " + rect.y + ")";
+        };
+    </script>
+</body>
+
+</html>
