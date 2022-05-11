@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mô phỏng đèn pin</title>
+    <style>
+        h1 {
+            font-size: 40px;
+            font-style: italic;
+        }
+
+        div {
+            font-size: 20px;
+        }
+
+        .button {
+            font-size: 18px;
+            font-weight: bold;
+            height: 30px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Mô phỏng đèn pin</h1>
+    <button class="button" type="button" onclick="powerSwitch()">Bật/tắt đèn</button>
+    <button class="button" type="button" onclick="battery.chargeBattery(20)">Sạc đèn</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <div style="display:none;">
+        <img id="source" src="roomBG.png" width="1200" height="897">
+    </div>
+    <br>
+    <br>
+    <canvas id="canvas" width="1200px" height="897px" style="border:5px solid rgb(0, 0, 0)"></canvas>
+    <script type="text/javascript">
+        let context = document.getElementById("canvas").getContext("2d");
+        let img = document.getElementById("source");
+        let result = document.getElementById("result");
+        let maxBattery = 100, timeClicked = 1, shadow, startLoop = null;
+        class Battery {
+            constructor(energy) {
+                this.energy = energy;
+            };
+
+            chargeBattery(energy) {
+                if (this.energy + energy <= 100 || this.energy == null) {
+                    this.energy += energy;
+                    flashlight.setLightLevel(energy);
+                };
+            };
+
+            getBatteryStatus() {
+                return this.energy;
+            };
+
+            decreaseEnergy() {
+                if (this.energy > 0) {
+                    this.energy--;
+                };
+            };
+        };
+
+        class Flashlight {
+            constructor() {
+                this.lightLevel = battery.getBatteryStatus();
+            };
+
+            setLightLevel(lightLevel) {
+                this.lightLevel += lightLevel;
+            };
+
+            getLightLevel() {
+                return this.lightLevel;
+            };
+
+            turnOn() {
+                this.status = true;
+            };
+
+            turnOff() {
+                this.status = false;
+            };
+
+            light() {
+                if (this.status) {
+                    alert("Đèn đã được bật!");
+                } else {
+                    alert("Đèn đã tắt!");
+                };
+            };
+
+            decreaseLightLevel() {
+                if (this.lightLevel > 0) {
+                    this.lightLevel--;
+                };
+            };
+        };
+
+        let battery = new Battery(maxBattery);
+        let flashlight = new Flashlight();
+
+        function drawBackground() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.beginPath();
+            context.drawImage(img, 0, 0);
+            if (flashlight.getLightLevel() >= 70) {
+                shadow = "rgba(0,0,0,0)";
+            } else if (flashlight.getLightLevel() >= 60 && flashlight.getLightLevel() < 70) {
+                shadow = "rgba(0,0,0,0.15)";
+            } else if (flashlight.getLightLevel() >= 50 && flashlight.getLightLevel() < 60) {
+                shadow = "rgba(0,0,0,0.35)";
+            } else if (flashlight.getLightLevel() >= 40 && flashlight.getLightLevel() < 50) {
+                shadow = "rgba(0,0,0,0.55)";
+            } else if (flashlight.getLightLevel() >= 30 && flashlight.getLightLevel() < 40) {
+                shadow = "rgba(0,0,0,0.75)";
+            } else if (flashlight.getLightLevel() < 30) {
+                shadow = "rgba(0,0,0,0.9)";
+            };
+            context.beginPath();
+            context.fillStyle = shadow;
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            console.log(shadow);
+        };
+
+        function powerSwitch() {
+            if (timeClicked >= 1) {
+                if (timeClicked % 2 != 0) {
+                    flashlight.turnOn();
+                    flashlight.light();
+                    startLoop = loop();
+                } else {
+                    flashlight.turnOff();
+                    flashlight.light();
+                    clearInterval(startLoop);
+                };
+            };
+            timeClicked++;
+        };
+
+        function checkStatus() {
+            batteryStatus(), lightLevelStatus();
+
+            function batteryStatus() {
+                result.innerHTML = "Trạng thái pin hiện tại: " + battery.getBatteryStatus() + "%" + "<br>"
+                + "Độ sáng đèn là (xem ảnh minh họa dưới): " + flashlight.getLightLevel();
+                battery.decreaseEnergy();
+            };
+
+            function lightLevelStatus(lightLevel) {
+                flashlight.decreaseLightLevel();
+            };
+        };
+
+        function loop() {
+            setInterval(drawBackground, 10);
+            setInterval(checkStatus, 1000);
+        };
+    </script>
+</body>
+
+</html>
