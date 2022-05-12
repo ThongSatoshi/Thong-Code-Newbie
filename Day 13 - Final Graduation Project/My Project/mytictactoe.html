@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8bit Tic Tac Toe</title>
+    <link rel="stylesheet" href="asset\css format\formatgame.css">
+</head>
+
+<body onload="askUsername(), askBoardLimit()">
+    <script type="text/javascript" src="asset\javascript\gamescript.js"></script>
+    <script type="text/javascript" src="asset\javascript\board.js"></script>
+    <script type="text/javascript" src="asset\javascript\player.js"></script>
+
+    <h1>8-BIT TIC TAC TOE</h1>
+    <p id="turnCounter">Số lượt hiện tại: 0 (chưa bắt đầu)</p>
+    <p id="winnerName">〇 đi trước, ✕ đi sau. Người chiến thắng là: ???</p>
+
+    <audio id="sound1" controls>
+        <source src="audio\gamebgm.mp3" type="audio/mpeg">
+        [Error] Trình duyệt của bạn không hỗ trợ định dạng âm thanh này
+    </audio>
+    <audio id="sound2">
+        <source src="audio\click.mp3" type="audio/mpeg">
+        [Error] Trình duyệt của bạn không hỗ trợ định dạng âm thanh này
+    </audio>
+    <audio id="sound3">
+        <source src="audio\erase.mp3" type="audio/mpeg">
+        [Error] Trình duyệt của bạn không hỗ trợ định dạng âm thanh này
+    </audio>
+    <audio id="sound4">
+        <source src="audio\congrat.mp3" type="audio/mpeg">
+        [Error] Trình duyệt của bạn không hỗ trợ định dạng âm thanh này
+    </audio>
+
+    <hr style="width:70%; text-align:left">
+
+    <table id="tableStyle" cell-padding="0" cell-spacing="0">
+        <tr>
+            <td>
+                <div class="container">
+                    <img id="left_image" src="image\8bit_sunset.gif" alt="[Error] Ảnh bị lỗi, không thể hiển thị">
+                    <div id="overlay1">
+                        <div class="credit">"Sunset" by @CamiUnknown</div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div id="board"></div>
+            </td>
+            <td>
+                <div class="container">
+                    <img id="right_image" src="image\8bit_starrysky.gif" alt="[Error] Ảnh bị lỗi, không thể hiển thị">
+                    <div id="overlay2">
+                        <div class="credit">"Starry Sky" by @galactic_castle</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <button class="menuButton" type="button" onclick="startGame()">Start Game</button>
+    <button class="menuButton" type="button" onclick="resetGame()">Reset Game</button>
+
+    <hr id="hrline" style="width:70%; text-align:left">
+
+    <h2>HOW TO PLAY</h2>
+    <pre id="description">
+        1. Input player 1's and player 2's name respectively
+        2. Input your favorable board size
+        3. Click "Start Game" to start the game immediately
+        
+        FYI
+        - Click on the board square to draw on the board
+        - Click "Go Back" to go back 1 turn and redraw
+        - Game continues until there is a winner
+    </pre>
+
+    <h2>CREDIT</h2>
+    <pre id="description">
+        Music: "The Adventures of Captain 8 Bit!" by Phyrnna (Twitter <a href="https://twitter.com/phyrnna" target="_blank">@Phyrnna</a>)
+        Pixel Art: 
+        - "Sunset" by Camille Unknown (Twitter <a href="https://twitter.com/CamiUnknown" target="_blank">@CamiUnknown</a>)
+        - "Starry Sky" by katie (Twitter <a href="https://twitter.com/galactic_castle" target="_blank">@galactic_castle</a>)
+        Project Game "Tic Tac Toe" by Thong Satoshi 
+        Written in HTML/CSS & JavaScript, here is the source code link for curious folks out there: <a href="https://github.com/ThongSatoshi/Thong-Code-Newbie/tree/main/Day%208%20-%20Array/Ex%202%20%5BHARD%5D%20-%20Advanced%20Tic%20Tac%20Toe" target="_blank">GitHub source code</a>
+    </pre>
+</body>
+
+</html>
