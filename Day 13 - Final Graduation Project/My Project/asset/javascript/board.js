@@ -18,6 +18,32 @@ class Board {
         return this.boardArr;
     };
 
+    drawOnBoard(x, y, mark) {
+        this.boardArr[x][y] = mark;
+    };
+
+    // Hiển thị bàn cờ - Display out the game board
+    displayBoard() {
+        i = 0, j = 0;
+        let row = 1, col = 1;
+        let grid = "<table border='1px white' height='400px' width='400px' cellspacing='0' cellpadding='10px' stye='font-size:30px' style='text-align:center'>";
+        while (row <= limit || i < this.boardArr.length) {
+            grid += "<tr>";
+            while (col <= limit || j < this.boardArr[i].length) {
+                if (this.boardArr[i][j] != emptyValue) {
+                    grid += "<td> <button disabled id='cell' onclick='drawOnBoard(" + i + "," + j + ")'>" + this.boardArr[i][j] + "</button></td>";
+                } else {
+                    grid += "<td> <button id='cell' onclick='playBoard.drawOnBoard(" + i + "," + j + ")'>" + this.boardArr[i][j] + "</button></td>";
+                };
+                col++, j++;
+            };
+            grid += "</tr>";
+            col = 1, j = 0, row++, i++;
+        };
+        grid += "</table>";
+        board.innerHTML = grid;
+    };
+
     // Kiểm tra xem ai thắng - Check who is the winner?
     checkWinner() {
         for (let i = 0; i < this.size - 4; i++) {
@@ -53,30 +79,5 @@ class Board {
                 };
             };
         };
-    };
-
-    drawOnBoard(x, y, mark) {
-        this.boardArr[x][y] = mark;
-    };
-
-    displayBoard() {
-        i = 0, j = 0;
-        let row = 1, col = 1;
-        let grid = "<table border='1px white' height='400px' width='400px' cellspacing='0' cellpadding='10px' stye='font-size:30px' style='text-align:center'>";
-        while (row <= limit || i < this.boardArr.length) {
-            grid += "<tr>";
-            while (col <= limit || j < this.boardArr[i].length) {
-                if (this.boardArr[i][j] != emptyValue) {
-                    grid += "<td> <button disabled id=\"cell-" + i + "-" + j + "\" onclick=\"turnCount(" + i + "," + j + ");\">" + this.boardArr[i][j] + "</button></td>";
-                } else {
-                    grid += "<td> <button id=\"cell-" + i + "-" + j + "\" onclick=\"turnCount(" + i + "," + j + ");\">" + this.boardArr[i][j] + "</button></td>";
-                };
-                col++, j++;
-            };
-            grid += "</tr>";
-            col = 1, j = 0, row++, i++;
-        };
-        grid += "</table>";
-        board.innerHTML = grid;
     };
 };

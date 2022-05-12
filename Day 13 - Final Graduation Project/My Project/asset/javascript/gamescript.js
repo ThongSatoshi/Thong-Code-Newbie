@@ -10,45 +10,45 @@ function setFalse() {
 };
 
 function askUsername() {
-    player1Name = prompt("Hãy nhập tên người chơi thứ nhất");
+    player1Name = prompt("Please input player 1's name");
     while (player1Name.length == 0 || player1Name.length > 30) {
-        alert("Tên người dùng không hợp lệ! Vui lòng nhập lại sau");
-        player1Name = prompt("Hãy nhập tên người chơi thứ nhất");
+        alert("Invalid username! Please try again");
+        player1Name = prompt("Please input player 1's name again");
     };
-    player2Name = prompt("Hãy nhập tên người chơi thứ hai");
+    player2Name = prompt("Please input player 2's name");
     while (player2Name.length == 0 || player2Name.length > 30 || player2Name === player1Name) {
-        alert("Tên người dùng không hợp lệ! Vui lòng nhập lại sau");
-        player2Name = prompt("Hãy nhập tên người chơi thứ nhất");
+        alert("Invalid username! Please try again");
+        player2Name = prompt("Please input player 2's name again");
     };
     isWinning = false;
     playAudio();
 };
 
 function askBoardLimit() {
-    limit = parseInt(prompt("Bạn muốn bàn cờ caro to cỡ bao nhiêu? (3-4-5)" + "\n" + "Khuyến khích chọn cỡ bàn cờ 5"));
+    limit = parseInt(prompt("Which is your favorable board size? (3-4-5)" + "\n" + "5 is the recommended size for our game"));
     while (isNaN(limit) || limit < 3 || limit > 5) {
-        alert("Kích cỡ bàn cờ Caro không được nhỏ hơn 3 và lớn hơn 5");
-        limit = parseInt(prompt("Bạn muốn bàn cờ caro to cỡ bao nhiêu? (3-4-5)" + "\n" + "Khuyến khích chọn cỡ bàn cờ 5"));
+        alert("Only size in the range from 3 to 5 are allowed! Please try again");
+        limit = parseInt(prompt("Which is your favorable board size? (3-4-5)" + "\n" + "5 is the recommended size for our game"));
     };
     return limit;
 };
 
 function turnCount() {
     if (isWinning == true) {
-        turnCounter.innerHTML = "Ván chơi đã kết thúc";
+        turnCounter.innerHTML = "The game is already over! Please click 'Reset Game' to play again";
     } else {
         if (isChangeValue == true) {
             if (turn % 2 == 0) {
-                alert("Tới lượt đội ✕");
+                alert("It's ✕ team turn");
                 team = "O";
                 document.getElementById("player1").style.color = "rgb(255,0,0)";
             } else {
-                alert("Tới lượt đội 〇");
+                alert("It's 〇 team turn");
                 team = "X";
                 document.getElementById("player1").style.color = "rgb(0,0,255)";
             };
             turn++;
-            turnCounter.innerHTML = "Số lượt hiện tại: " + turn;
+            turnCounter.innerHTML = turn + " turn(s) left";
             isChangeValue = false;
         };
     };
@@ -67,19 +67,21 @@ function startGame() {
 };
 
 function resetGame() {
-    let askReset = confirm("Bạn có muốn chơi lại từ đầu?");
+    let askReset = confirm("Do you want to reset the whole game?");
     if (askReset == true) {
         playBoard.getBoardArr();
-        for (i = 0; i < playBoard.getBoardSize(); i++) {
-            for (j = 0; j < boardArr[i].length; j++) {
-                [i].splice(j, 1, " ");
+        for (i = 0; i < limit; i++) {
+            boardArr.push([]);
+            for (j = 0; j < limit; j++) {
+                boardArr[i].push(emptyValue);
             };
         };
+        playBoard.displayBoard();
         reset++;
         isWinning = false, isDelete = true;
         playBoard.displayBoard();
         playAudio();
-        turnCounter.innerHTML = "Số lượt hiện tại: 0 (chưa bắt đầu). Số lần đã reset: " + reset;
+        turnCounter.innerHTML = "0 turn(s) left. The game haven't started yet, reset attempt(s): " + reset;
     };
 };
 
