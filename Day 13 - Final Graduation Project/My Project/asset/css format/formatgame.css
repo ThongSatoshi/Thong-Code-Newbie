@@ -131,3 +131,14 @@ p {
 .container:hover #overlay2 {
     opacity: 0.75;
 }
+
+.credit {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
