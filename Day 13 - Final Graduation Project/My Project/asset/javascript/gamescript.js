@@ -8,7 +8,7 @@ let playerArr = [(new Player(askUserName(), "O", "rgb(255,0,0)")), (new Player(a
 let board = document.getElementById("board");
 let turnCounter = document.getElementById("turnConuter");
 let winnerName = document.getElementById("winnerName");
-let i, j, turn = 0;
+let i, j, turn = team = 0;
 let boardArr = [];
 for (i = 0; i < BOARD_SIZE; i++) {
     boardArr.push([]);
@@ -38,6 +38,7 @@ function askUserName() {
     return name;
 };
 
+// Display the game board
 function displayBoard(size) {
     i = 0, j = 0;
     let row = col = 1;
@@ -50,7 +51,6 @@ function displayBoard(size) {
             } else {
                 grid += "<td id='cell'><button id='cellBtn' onclick='interactBoard(" + i + "," + j + ")'>" + boardArr[i][j] + "</button></td>";
             };
-            // grid += "<td class='cell'>" + boardArr[i][j] + "</td>";
             col++, j++;
         };
         grid += "</tr>";
@@ -60,6 +60,27 @@ function displayBoard(size) {
     board.innerHTML = grid;
 };
 
+// Execute these following functions when clicked
+function interactBoard(x, y) {
+    drawOnBoard(x, y);
+};
+
+function drawOnBoard(x, y) {
+    switch (playerArr[team]) {
+        case 0:
+            boardArr[x].splice(y, 1, "O");
+            document.getElementById("player1").style.color = playerArr[team].color;
+            displayBoard();
+            break;
+        case 1:
+            boardArr[x].splice(y, 1, "X");
+            document.getElementById("player1").style.color = playerArr[team].color;
+            displayBoard();
+            break;
+    };
+};
+
+// Start the game
 function startGame() {
     if (turn == 0) {
         displayBoard(BOARD_SIZE);
@@ -68,6 +89,7 @@ function startGame() {
     };
 };
 
+// Reset the game
 function resetGame() {
 
 };
