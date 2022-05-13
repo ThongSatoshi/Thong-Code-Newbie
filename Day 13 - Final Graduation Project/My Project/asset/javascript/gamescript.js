@@ -38,6 +38,18 @@ function askUserName() {
     return name;
 };
 
+function turnCount() {
+    turn++;
+    if (turn %2 != 1) {
+        team = 0;
+        alert("It's team X turn!");
+    } else {
+        team = 1;
+        alert("It's team O turn!");
+    };
+    turnCounter.innerHTML = "Turn(s) no." + turn;
+};
+
 // Display the game board
 function displayBoard(size) {
     i = 0, j = 0;
