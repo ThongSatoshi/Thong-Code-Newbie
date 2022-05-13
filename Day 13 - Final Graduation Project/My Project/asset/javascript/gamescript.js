@@ -38,6 +38,7 @@ function askUserName() {
     return name;
 };
 
+// Counting turn
 function turnCount() {
     turn++;
     if (turn %2 != 1) {
@@ -74,18 +75,19 @@ function displayBoard(size) {
 
 // Execute these following functions when clicked
 function interactBoard(x, y) {
-    drawOnBoard(x, y);
+    turnCount();
+    drawOnBoard(x, y, team);
 };
-
-function drawOnBoard(x, y) {
+// 1. Draw the symbol on board
+function drawOnBoard(x, y, team) {
     switch (playerArr[team]) {
         case 0:
-            boardArr[x].splice(y, 1, "O");
+            boardArr[x][y].splice(y, 1, "O");
             document.getElementById("player1").style.color = playerArr[team].color;
             displayBoard();
             break;
         case 1:
-            boardArr[x].splice(y, 1, "X");
+            boardArr[x][y].splice(y, 1, "X");
             document.getElementById("player1").style.color = playerArr[team].color;
             displayBoard();
             break;
