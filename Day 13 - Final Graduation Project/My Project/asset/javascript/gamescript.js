@@ -14,6 +14,7 @@ for (i = 0; i < BOARD_SIZE; i++) {
     boardArr.push([]);
     for (j = 0; j < BOARD_SIZE; j++) {
         boardArr[i].push("");
+        console.log(boardArr[i][j]);
     };
 };
 
@@ -41,10 +42,15 @@ function displayBoard(size) {
     i = 0, j = 0;
     let row = col = 1;
     let grid = "<table border='1px solid white' height='400px' width='400px' cellspacing='0' cellpadding='10px' stye='font-size:30px' style='text-align:center'>";
-    while (row <= size || i < boardArr.length) {
+    while (row <= size && i < boardArr.length) {
         grid += "<tr>";
-        while (col <= size || j < boardArr[i].length) {
-            grid += "<td class='cell'>" + boardArr[i][j] + "</td>";
+        while (col <= size && j < boardArr[i].length) {
+            if (boardArr[i][j] != "") {
+                grid += "<td id='cell'><button id='cellBtn' disabled onclick='interactBoard(" + i + "," + j + ")'" + boardArr[i][j] + "</button></td>";
+            } else {
+                grid += "<td id='cell'><button id='cellBtn' onclick='interactBoard(" + i + "," + j + ")'>" + boardArr[i][j] + "</button></td>";
+            };
+            // grid += "<td class='cell'>" + boardArr[i][j] + "</td>";
             col++, j++;
         };
         grid += "</tr>";
@@ -55,7 +61,11 @@ function displayBoard(size) {
 };
 
 function startGame() {
-    displayBoard();
+    if (turn == 0) {
+        displayBoard(BOARD_SIZE);
+    } else {
+        alert("The game is currently running");
+    };
 };
 
 function resetGame() {

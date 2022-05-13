@@ -17,7 +17,7 @@ h2 {
     transform: translateY(450px);
 }
 
-.menuButton {
+.menuBtn {
     background-color: rgba(221, 221, 221, 0.5);
     color: rgb(0, 0, 0);
     border: 1px, solid, rgb(255, 255, 255);
@@ -27,7 +27,7 @@ h2 {
     text-align: center;
     height: 40px;
     width: 200px;
-    transform: translate(470px, 430px);
+    transform: translate(475px, 430px);
 }
 
 p {
@@ -56,7 +56,7 @@ p {
     width: 300px;
 }
 
-.cell {
+#cell {
     border: 1px solid rgb(0, 0, 0);
     color:rgb(0, 0, 0);
     background-color: rgb(255, 255, 255);
@@ -64,6 +64,24 @@ p {
     font-weight: bold;
     height: 50px;
     width: 50px;
+}
+
+#cellBtn {
+    border: none;
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: no-drop;
 }
 
 #tableStyle {
