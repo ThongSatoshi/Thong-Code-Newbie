@@ -152,7 +152,7 @@ function checkWinner() {
     function rightSideCheck() {
         let count = 0;
         for (i = 0; i < BOARD_SIZE - 1; i++) {
-            if (boardArr[i + BOARD_SIZE - 1][i] == boardArr[i + BOARD_SIZE - 2][i + 1] && boardArr[i + BOARD_SIZE - 1][i] != "") {
+            if (boardArr[BOARD_SIZE - i - 1][i] == boardArr[BOARD_SIZE - i - 2][i + 1] && boardArr[BOARD_SIZE - i - 1][i] != "") {
                 count++;
             };
             if (count == BOARD_SIZE - 1) {
@@ -170,10 +170,7 @@ function interactBoard(x, y) {
     checkWinner();
 
     if (isWinning == true) {
-        setTimeout(function () {
-            shutDownGame();
-        }, 0);
-        return;
+        shutDownGame();
     };
 
     if (turn >= Math.pow(BOARD_SIZE, 2)) {
@@ -193,15 +190,15 @@ function startGame() {
 };
 
 // Shut down the game
-// function shutDownGame() {
-//     if (isWinning == true) {
-//         for (i = 0; i < BOARD_SIZE; i++) {
-//             let str = "";
-//             str += "cellNo" + cellNumArr[i];
-//             document.getElementById(str).disabled = true;
-//         };
-//     };
-// };
+function shutDownGame() {
+    // if (isWinning == true) {
+    //     for (i = 0; i < BOARD_SIZE; i++) {
+    //         let str = "";
+    //         str += "cellNo" + cellNumArr[i];
+    //         document.getElementById(str).disabled = true;
+    //     };
+    // };
+};
 
 // Reset the game
 function resetGame() {
