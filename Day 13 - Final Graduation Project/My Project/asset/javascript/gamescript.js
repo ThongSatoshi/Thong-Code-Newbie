@@ -105,27 +105,27 @@ function checkWinner() {
         for (j = 0; j < BOARD_SIZE - 1; j++) {
             for (count = 1; count <= BOARD_SIZE; count++) {
                 //Check horizontally
-                if (this.boardArr[i][j] == this.boardArr[i][j + count] &&
-                    this.boardArr[i][j] != "") {
+                if (boardArr[i][j] == boardArr[i][j + count] &&
+                    boardArr[i][j] != "") {
                     isWinning = true;
                     return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
                 } else if (
                     // Check vertically
-                    this.boardArr[i][j] == this.boardArr[i + count][j] &&
-                    this.boardArr[i][j] != "") {
+                    boardArr[i][j] == boardArr[i + count][j] &&
+                    boardArr[i][j] != "") {
                     isWinning = true;
                     return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
                 } else if (
                     // Check diagonally from left to right
-                    this.boardArr[i][j] == this.boardArr[i + count][j + count] &&
-                    this.boardArr[i][j] != "") {
+                    boardArr[i][j] == boardArr[i + count][j + count] &&
+                    boardArr[i][j] != "") {
                     isWinning = true;
                     return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
                 } else if (
                     i >= BOARD_SIZE - 1 &&
                     // Check diagonally from right to left
-                    this.boardArr[i][j] == this.boardArr[i - count][j + count] &&
-                    this.boardArr[i][j] != "") {
+                    boardArr[i][j] == boardArr[i - count][j + count] &&
+                    boardArr[i][j] != "") {
                     isWinning = true;
                     return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
                 };
