@@ -43,13 +43,13 @@ function displayBoard(size) {
     i = 0, j = 0;
     let row = col = 1;
     let grid = "<table border='1px solid white' height='400px' width='400px' cellspacing='0' cellpadding='10px' stye='font-size:30px' style='text-align:center'>";
-    while (row <= size && i < boardArr.length) {
+    while (row <= size || i < boardArr.length) {
         grid += "<tr>";
-        while (col <= size && j < boardArr[i].length) {
+        while (col <= size || j < boardArr[i].length) {
             if (boardArr[i][j] != "") {
                 grid += "<td id='cell'><button id='cellBtn' disabled>" + boardArr[i][j] + "</button></td>";
             } else {
-                grid += "<td id='cell'><button id='cellBtn' onclick='interactBoard(" + i + "," + j + ")'>" + boardArr[i][j] + "</button></td>";
+                grid += "<td id='cell'><button id='cellBtn' onclick='interactBoard(" + i + "," + j + "," + team + ")'>" + boardArr[i][j] + "</button></td>";
             };
             col++, j++;
         };
@@ -65,32 +65,31 @@ function turnCount() {
     turn++;
     if (turn %2 != 0) {
         team = 0;
-        alert("It's team X turn!");
+        turnCounter.innerHTML = "Turn(s) no." + turn + ". Next is team " + playerArr[team + 1].symbol + "'s turn!";
     } else {
         team = 1;
-        alert("It's team O turn!");
+        turnCounter.innerHTML = "Turn(s) no." + turn + ". Next is team " + playerArr[team - 1].symbol + "'s turn!";
     };
-    turnCounter.innerHTML = "Turn(s) no." + turn;
 };
 
 // 2. Draw the symbol on board
 function drawOnBoard(x, y, team) {
     switch (playerArr[team]) {
         case 0:
-            boardArr[x][y].splice(y, 1, "O");
-            document.getElementById("player1").style.color = playerArr[team].color;
-            displayBoard();
+            boardArr[x].splice(y, 1, "O");
+            document.getElementById("cellBtn").style.color = playerArr[team].color;
+            displayBoard(BOARD_SIZE);
             break;
         case 1:
-            boardArr[x][y].splice(y, 1, "X");
-            document.getElementById("player1").style.color = playerArr[team].color;
-            displayBoard();
+            boardArr[x].splice(y, 1, "X");
+            document.getElementById("cellBtn").style.color = playerArr[team].color;
+            displayBoard(BOARD_SIZE);
             break;
     };
 };
 
 // Execute these following functions (from 1 to ) when clicked
-function interactBoard(x, y) {
+function interactBoard(x, y, team) {
     turnCount();
     drawOnBoard(x, y, team);
 };
