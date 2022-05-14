@@ -54,9 +54,9 @@ function displayBoard(size) {
         grid += "<tr>";
         while (col <= size || j < boardArr[i].length) {
             if (boardArr[i][j] != "") {
-                grid += "<td id='cell'><button class='cellBtn' id='" + cellNumArr[n] + "' disabled>" + boardArr[i][j] + "</button></td>";
+                grid += "<td id='cell'><button class='cellBtn' id='cellNo" + cellNumArr[n] + "' disabled>" + boardArr[i][j] + "</button></td>";
             } else {
-                grid += "<td id='cell'><button class='cellBtn' id='" + cellNumArr[n] + "' onclick='interactBoard(" + i + "," + j + ")'>" + boardArr[i][j] + "</button></td>";
+                grid += "<td id='cell'><button class='cellBtn' id='cellNo" + cellNumArr[n] + "' onclick='interactBoard(" + i + "," + j + ")'>" + boardArr[i][j] + "</button></td>";
             };
             col++, j++, n++;
         };
@@ -82,7 +82,7 @@ function turnCount() {
 // 2. Draw the symbol on board
 function drawOnBoard(x, y, team) {
     let str = "";
-    str += cellNumArr[x];
+    str += "cellNo" + cellNumArr[x];
     switch (team) {
         case 0:
             boardArr[x].splice(y, 1, playerArr[team].symbol);
@@ -101,34 +101,33 @@ function drawOnBoard(x, y, team) {
 
 // 3. Checking who won the game
 function checkWinner() {
+    let count = 1;
     for (i = 0; i < BOARD_SIZE - 1; i++) {
         for (j = 0; j < BOARD_SIZE - 1; j++) {
-            for (count = 1; count <= BOARD_SIZE; count++) {
-                //Check horizontally
-                if (boardArr[i][j] == boardArr[i][j + count] &&
-                    boardArr[i][j] != "") {
-                    isWinning = true;
-                    return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
-                } else if (
-                    // Check vertically
-                    boardArr[i][j] == boardArr[i + count][j] &&
-                    boardArr[i][j] != "") {
-                    isWinning = true;
-                    return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
-                } else if (
-                    // Check diagonally from left to right
-                    boardArr[i][j] == boardArr[i + count][j + count] &&
-                    boardArr[i][j] != "") {
-                    isWinning = true;
-                    return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
-                } else if (
-                    i >= BOARD_SIZE - 1 &&
-                    // Check diagonally from right to left
-                    boardArr[i][j] == boardArr[i - count][j + count] &&
-                    boardArr[i][j] != "") {
-                    isWinning = true;
-                    return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
-                };
+            //Check horizontally
+            if (boardArr[i][j] == boardArr[i][j + count] &&
+                boardArr[i][j] != "") {
+                isWinning = true;
+                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
+            } else if (
+                // Check vertically
+                boardArr[i][j] == boardArr[i + count][j] &&
+                boardArr[i][j] != "") {
+                isWinning = true;
+                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
+            } else if (
+                // Check diagonally from left to right
+                boardArr[i][j] == boardArr[i + count][j + count] &&
+                boardArr[i][j] != "") {
+                isWinning = true;
+                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
+            } else if (
+                i >= BOARD_SIZE - 1 &&
+                // Check diagonally from right to left
+                boardArr[i][j] == boardArr[i - count][j + count] &&
+                boardArr[i][j] != "") {
+                isWinning = true;
+                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
             };
         };
     };
@@ -165,10 +164,10 @@ function startGame() {
 
 // Shut down the game
 function shutDownGame() {
-    let str = "";
-    str += cellNumArr[x];
     for (i = 0; i < BOARD_SIZE; i++) {
         for (j = 0; j < BOARD_SIZE; j++) {
+            let str = "";
+            str += "cellNo" + cellNumArr[i];
             document.getElementById(str).disabled = true;
         };
     };
