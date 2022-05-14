@@ -81,18 +81,16 @@ function turnCount() {
 
 // 2. Draw the symbol on board
 function drawOnBoard(x, y, team) {
-    let str = "";
-    str += "cellNo" + cellNumArr[x];
     switch (team) {
         case 0:
             boardArr[x].splice(y, 1, playerArr[team].symbol);
-            document.getElementById(str).style.color = playerArr[team].color;
+            // document.getElementById("cellNo" + cellNumArr[x] + "'").style.color = playerArr[team].color;
             displayBoard(BOARD_SIZE);
             console.log(x, y, team, playerArr[team].color);
             break;
         case 1:
             boardArr[x].splice(y, 1, playerArr[team].symbol);
-            document.getElementById(str).style.color = playerArr[team].color;
+            // document.getElementById("cellNo" + cellNumArr[x] + "'").style.color = playerArr[team].color;
             displayBoard(BOARD_SIZE);
             console.log(x, y, team, playerArr[team].color);
             break;
@@ -101,33 +99,37 @@ function drawOnBoard(x, y, team) {
 
 // 3. Checking who won the game
 function checkWinner() {
-    let count = 1;
-    for (i = 0; i < BOARD_SIZE - 1; i++) {
-        for (j = 0; j < BOARD_SIZE - 1; j++) {
-            //Check horizontally
-            if (boardArr[i][j] == boardArr[i][j + count] &&
-                boardArr[i][j] != "") {
+    let count = 0;
+    rowCheck(), colCheck();
+
+    //Check horizontally
+    function rowCheck() {
+        for (i = 0; i <= BOARD_SIZE - 1; i++) {
+            if (count == BOARD_SIZE) {
                 isWinning = true;
                 return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
-            } else if (
-                // Check vertically
-                boardArr[i][j] == boardArr[i + count][j] &&
-                boardArr[i][j] != "") {
+            } else {
+                for (j = 0; j <= BOARD_SIZE - 1; j++) {
+                    if (boardArr[i][j] == boardArr[i][j + 1] && boardArr[i][j] != "") {
+                        count++;
+                    };
+                };
+            };
+        };
+    };
+
+    //Check vertically
+    function colCheck() {
+        for (i = 0; i < BOARD_SIZE - 1; i++) {
+            if (count == BOARD_SIZE) {
                 isWinning = true;
                 return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
-            } else if (
-                // Check diagonally from left to right
-                boardArr[i][j] == boardArr[i + count][j + count] &&
-                boardArr[i][j] != "") {
-                isWinning = true;
-                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
-            } else if (
-                i >= BOARD_SIZE - 1 &&
-                // Check diagonally from right to left
-                boardArr[i][j] == boardArr[i - count][j + count] &&
-                boardArr[i][j] != "") {
-                isWinning = true;
-                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
+            } else {
+                for (j = 0; j < BOARD_SIZE - 1; j++) {
+                    if (boardArr[i][j] == boardArr[i + 1][j] && boardArr[i][j] != "") {
+                        count++;
+                    };
+                };
             };
         };
     };
@@ -163,15 +165,15 @@ function startGame() {
 };
 
 // Shut down the game
-function shutDownGame() {
-    for (i = 0; i < BOARD_SIZE; i++) {
-        for (j = 0; j < BOARD_SIZE; j++) {
-            let str = "";
-            str += "cellNo" + cellNumArr[i];
-            document.getElementById(str).disabled = true;
-        };
-    };
-};
+// function shutDownGame() {
+//     if (isWinning == true) {
+//         for (i = 0; i < BOARD_SIZE; i++) {
+//             let str = "";
+//             str += "cellNo" + cellNumArr[i];
+//             document.getElementById(str).disabled = true;
+//         };
+//     };
+// };
 
 // Reset the game
 function resetGame() {
