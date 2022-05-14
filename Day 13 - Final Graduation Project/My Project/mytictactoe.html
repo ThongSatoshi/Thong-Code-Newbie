@@ -37,7 +37,8 @@
         <tr>
             <td>
                 <div class="container">
-                    <img id="left_image" src="image\8bit_sunset.gif" alt="[Error] Your browser doesn't support GIF format">
+                    <img id="left_image" src="image\8bit_sunset.gif"
+                        alt="[Error] Your browser doesn't support GIF format">
                     <div id="overlay1">
                         <div class="credit">"Sunset" by @CamiUnknown</div>
                     </div>
@@ -48,7 +49,8 @@
             </td>
             <td>
                 <div class="container">
-                    <img id="right_image" src="image\8bit_starrysky.gif" alt="[Error] Your browser doesn't support GIF format">
+                    <img id="right_image" src="image\8bit_starrysky.gif"
+                        alt="[Error] Your browser doesn't support GIF format">
                     <div id="overlay2">
                         <div class="credit">"Starry Sky" by @galactic_castle</div>
                     </div>
@@ -63,8 +65,8 @@
 
     <h2>HOW TO PLAY</h2>
     <pre id="description">
-        1. Input player 1's and player 2's name respectively
-        2. Input your favorable board size
+        1. Input your favorable board size
+        2. Input player 1's and player 2's name respectively
         3. Click "Start Game" to start the game immediately
         
         FYI
@@ -85,6 +87,15 @@
 
     <script type="text/javascript" src="asset\javascript\player.js"></script>
     <script type="text/javascript" src="asset\javascript\gamescript.js"></script>
+    <script type="text/javascript" src="asset\javascript\confetti-falling-animation\confetti.js"></script>
+    
+    <script>
+        if (isWinning == true) {
+            startConfetti();
+        } else {
+            stopConfetti();
+        };
+    </script>
 </body>
 
 </html>

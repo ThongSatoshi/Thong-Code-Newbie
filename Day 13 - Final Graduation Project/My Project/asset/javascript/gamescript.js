@@ -5,7 +5,7 @@ const BOARD_SIZE = askBoardSize();
 let playerArr = [(new Player(askUserName(), "O", "rgb(255,0,0)")), (new Player(askUserName(), "X", "rgb(0,0,255)"))];
 
 // Global Value
-let board = document.getElementById("board");
+let board = document.getElementById("board")
 let turnCounter = document.getElementById("turnCounter");
 let winnerName = document.getElementById("winnerName");
 let i, j, count, turn = 0, team, isWinning = false;
@@ -16,13 +16,6 @@ for (i = 0; i < BOARD_SIZE; i++) {
         boardArr[i].push("");
         // console.log(boardArr[i][j]);
     };
-};
-let cellNumArr = [];
-for (i = 1; i <= Math.pow(BOARD_SIZE, 2); i++) {
-    let str = "";
-    str += "cellNo" + i;
-    cellNumArr.push(str);
-    // console.log(cellNumArr[i - 1]);
 };
 
 // Ask what board size does the user want
@@ -47,18 +40,18 @@ function askUserName() {
 
 // Display the game board
 function displayBoard(size) {
-    i = j = n = 0;
+    i = j = 0;
     let row = col = 1;
     let grid = "<table border='1px solid white' height='400px' width='400px' cellspacing='0' cellpadding='10px' stye='font-size:30px' style='text-align:center'>";
     while (row <= size || i < boardArr.length) {
         grid += "<tr>";
         while (col <= size || j < boardArr[i].length) {
             if (boardArr[i][j] != "") {
-                grid += "<td id='cell'><button class='cellBtn' id='cellNo" + cellNumArr[n] + "' disabled>" + boardArr[i][j] + "</button></td>";
+                grid += "<td id='cell'><button class='cellBtn' id='cellNo" + i + "-" + j + "' disabled>" + boardArr[i][j] + "</button></td>";
             } else {
-                grid += "<td id='cell'><button class='cellBtn' id='cellNo" + cellNumArr[n] + "' onclick='interactBoard(" + i + "," + j + ")'>" + boardArr[i][j] + "</button></td>";
+                grid += "<td id='cell'><button class='cellBtn' id='cellNo" + i + "-" + j + "' onclick='interactBoard(" + i + "," + j + ")'>" + boardArr[i][j] + "</button></td>";
             };
-            col++, j++, n++;
+            col++, j++;
         };
         grid += "</tr>";
         col = 1, j = 0, row++, i++;
@@ -85,14 +78,16 @@ function drawOnBoard(x, y, team) {
     switch (team) {
         case 0:
             boardArr[x].splice(y, 1, playerArr[team].symbol);
-            // document.getElementById("cellNo" + cellNumArr[x] + "'").style.color = playerArr[team].color;
+            document.getElementById("cellNo" + x + "-" + y).style.color = playerArr[team].color;
             displayBoard(BOARD_SIZE);
+            playAudio("click");
             console.log(x, y, team, playerArr[team].color);
             break;
         case 1:
             boardArr[x].splice(y, 1, playerArr[team].symbol);
-            // document.getElementById("cellNo" + cellNumArr[x] + "'").style.color = playerArr[team].color;
+            document.getElementById("cellNo" + x + "-" + y).style.color = playerArr[team].color;
             displayBoard(BOARD_SIZE);
+            playAudio("click");
             console.log(x, y, team, playerArr[team].color);
             break;
     };
@@ -113,6 +108,7 @@ function checkWinner() {
             };
             if (count == BOARD_SIZE - 1) {
                 isWinning = true;
+                playAudio("congrat");
                 return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
             }
         };
@@ -129,6 +125,7 @@ function checkWinner() {
             };
             if (count == BOARD_SIZE - 1) {
                 isWinning = true;
+                playAudio("congrat");
                 return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
             }
         };
@@ -143,6 +140,7 @@ function checkWinner() {
             };
             if (count == BOARD_SIZE - 1) {
                 isWinning = true;
+                playAudio("congrat");
                 return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
             }
         };
@@ -157,6 +155,7 @@ function checkWinner() {
             };
             if (count == BOARD_SIZE - 1) {
                 isWinning = true;
+                playAudio("congrat");
                 return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
             }
         };
@@ -184,23 +183,76 @@ function interactBoard(x, y) {
 function startGame() {
     if (turn == 0) {
         displayBoard(BOARD_SIZE);
+        for (i = 0; i < BOARD_SIZE; i++) {
+            for (j = 0; j < BOARD_SIZE; j++) {
+                document.getElementById("cellNo" + i + "-" + j).disabled = false;
+            };
+        };
     } else {
         alert("The game is currently running");
     };
+    playAudio("startGame");
 };
 
 // Shut down the game
 function shutDownGame() {
-    // if (isWinning == true) {
-    //     for (i = 0; i < BOARD_SIZE; i++) {
-    //         let str = "";
-    //         str += "cellNo" + cellNumArr[i];
-    //         document.getElementById(str).disabled = true;
-    //     };
-    // };
+    if (isWinning == true) {
+        for (i = 0; i < BOARD_SIZE; i++) {
+            for (j = 0; j < BOARD_SIZE; j++) {
+                document.getElementById("cellNo" + i + "-" + j).disabled = true;
+            };
+        };
+    };
 };
 
 // Reset the game
 function resetGame() {
+    let reset = 0, isReset = confirm("Do you want to reset the game?");
+    if (isReset == true) {
+        for (i = 0; i < BOARD_SIZE; i++) {
+            for (j = 0; j < BOARD_SIZE; j++) {
+                boardArr[i].splice(j, 1, " ");
+            };
+        };
+        isWinning = false, turn = 0;
+        reset++;
+        displayBoard();
+        playAudio("erase");
+        startGame();
+        turnCounter.innerHTML = "0 turn(s) left. The game has been reset " + reset + " time(s)";
+        winnerName.innerHTML = "O first, X second. The champion is: ???";
+    };
+};
 
+// Play SFX/BGM
+function playAudio(track) {
+    sound1 = document.getElementById("sound1");
+    sound2 = document.getElementById("sound2");
+    sound3 = document.getElementById("sound3");
+    sound4 = document.getElementById("sound4");
+
+    switch (track) {
+        case "startGame":
+            sound1.volume = 0.5;
+            sound1.loop = !isWinning;
+            sound4.pause();
+            sound1.play();
+            break;
+        case "click":
+            sound2.volume = 1;
+            sound2.play();
+            break;
+        case "erase":
+            sound3.volume = 1;
+            sound1.pause();
+            sound4.pause();
+            sound3.play();
+            break;
+        case "congrat":
+            sound4.volume = 1;
+            sound1.pause();
+            sound4.loop = isWinning;
+            sound4.play();
+            break;
+    };
 };
