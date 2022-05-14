@@ -100,7 +100,7 @@ function drawOnBoard(x, y, team) {
 
 // 3. Checking who won the game
 function checkWinner() {
-    rowCheck(), colCheck();
+    rowCheck(), colCheck(), leftSideCheck(), rightSideCheck();
 
     //Check horizontally
     function rowCheck() {
@@ -117,21 +117,49 @@ function checkWinner() {
             }
         };
     };
-};
 
-//Check vertically
-function colCheck() {
-    for (i = 0; i < BOARD_SIZE; i++) {
+    //Check vertically
+    function colCheck() {
+        for (i = 0; i < BOARD_SIZE; i++) {
+            let count = 0;
+            for (j = 0; j < BOARD_SIZE - 1; j++) {
+                if (boardArr[j][i] == boardArr[j + 1][i] && boardArr[j][i] != "") {
+                    count++;
+                };
+            };
+            if (count == BOARD_SIZE - 1) {
+                isWinning = true;
+                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
+            }
+        };
+    };
+
+    // Check diagonally from left to right
+    function leftSideCheck() {
         let count = 0;
-        for (j = 0; j < BOARD_SIZE - 1; j++) {
-            if (boardArr[i][j] == boardArr[i + 1][j] && boardArr[i][j] != "") {
+        for (i = 0; i < BOARD_SIZE - 1; i++) {
+            if (boardArr[i][i] == boardArr[i + 1][i + 1] && boardArr[i][i] != "") {
                 count++;
             };
+            if (count == BOARD_SIZE - 1) {
+                isWinning = true;
+                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
+            }
         };
-        if (count == BOARD_SIZE - 1) {
-            isWinning = true;
-            return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
-        }
+    };
+
+    // Check diagonally from right to left
+    function rightSideCheck() {
+        let count = 0;
+        for (i = 0; i < BOARD_SIZE - 1; i++) {
+            if (boardArr[i + BOARD_SIZE - 1][i] == boardArr[i + BOARD_SIZE - 2][i + 1] && boardArr[i + BOARD_SIZE - 1][i] != "") {
+                count++;
+            };
+            if (count == BOARD_SIZE - 1) {
+                isWinning = true;
+                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
+            }
+        };
     };
 };
 
