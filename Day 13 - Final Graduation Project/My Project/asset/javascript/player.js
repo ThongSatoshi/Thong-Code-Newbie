@@ -4,4 +4,12 @@ class Player {
         this.symbol = symbol;
         this.color = color;
     };
+
+    getSymbol() {
+        this.symbol;
+    };
+
+    getColor() {
+        return this.color;
+    };
 };

@@ -47,9 +47,9 @@ function displayBoard(size) {
         grid += "<tr>";
         while (col <= size || j < boardArr[i].length) {
             if (boardArr[i][j] != "") {
-                grid += "<td id='cell'><button id='cellBtn' disabled>" + boardArr[i][j] + "</button></td>";
+                grid += "<td id='cell'><button class='cellBtn' id='cellNo" + i + "-" + j + "' + disabled>" + boardArr[i][j] + "</button></td>";
             } else {
-                grid += "<td id='cell'><button id='cellBtn' onclick='interactBoard(" + i + "," + j + "," + team + ")'>" + boardArr[i][j] + "</button></td>";
+                grid += "<td id='cell'><button class='cellBtn' id='cellNo" + i + "-" + j + "'" + "onclick='interactBoard(" + i + "," + j + "," + team + ")'>" + boardArr[i][j] + "</button></td>";
             };
             col++, j++;
         };
@@ -76,13 +76,11 @@ function turnCount() {
 function drawOnBoard(x, y, team) {
     switch (playerArr[team]) {
         case 0:
-            boardArr[x].splice(y, 1, "O");
-            document.getElementById("cellBtn").style.color = playerArr[team].color;
+            boardArr[x][y] = playerArr[team].getSymbol();
             displayBoard(BOARD_SIZE);
             break;
         case 1:
-            boardArr[x].splice(y, 1, "X");
-            document.getElementById("cellBtn").style.color = playerArr[team].color;
+            boardArr[x][y] = playerArr[team].getSymbol();
             displayBoard(BOARD_SIZE);
             break;
     };
