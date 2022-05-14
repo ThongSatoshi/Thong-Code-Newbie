@@ -2,13 +2,13 @@
 const BOARD_SIZE = askBoardSize();
 
 // Object
-let playerArr = [(new Player(askUserName(), "O", "rgb(255,0,0)")), (new Player(askUserName(), "X", "rgb(0,0,255)"))];
+let playerArr = [(new Player(askUserName(), "X", "rgb(255,0,0)")), (new Player(askUserName(), "O", "rgb(0,0,255)"))];
 
 // Global Value
 let board = document.getElementById("board")
 let turnCounter = document.getElementById("turnCounter");
 let winnerName = document.getElementById("winnerName");
-let i, j, count, turn = 0, team, isWinning = false;
+let i, j, count, turn = 1, team, isWinning = false;
 let boardArr = [];
 for (i = 0; i < BOARD_SIZE; i++) {
     boardArr.push([]);
@@ -62,13 +62,13 @@ function displayBoard(size) {
 
 // 1. Counting turn
 function turnCount() {
-    if (isWinning == false && turn % 2 == 0) {
-        team = 0;
-        turnCounter.innerHTML = "Turn(s) no." + turn + ". Next is team " + playerArr[team + 1].symbol + "'s turn!";
-        turn++;
-    } else if (isWinning == false && turn % 2 != 0) {
+    if (isWinning == false && turn % 2 != 0) {
         team = 1;
         turnCounter.innerHTML = "Turn(s) no." + turn + ". Next is team " + playerArr[team - 1].symbol + "'s turn!";
+        turn++;
+    } else if (isWinning == false && turn % 2 == 0) {
+        team = 0;
+        turnCounter.innerHTML = "Turn(s) no." + turn + ". Next is team " + playerArr[team + 1].symbol + "'s turn!";
         turn++;
     };
 };
@@ -162,7 +162,7 @@ function checkWinner() {
     };
 };
 
-// Execute these following statements (from 1 to ) when clicked
+// Execute these following statements (from 1 to 3) when clicked
 function interactBoard(x, y) {
     turnCount();
     drawOnBoard(x, y, team);
@@ -181,26 +181,24 @@ function interactBoard(x, y) {
 
 // Start the game
 function startGame() {
-    if (turn == 0) {
+    if (turn == 1) {
         displayBoard(BOARD_SIZE);
         for (i = 0; i < BOARD_SIZE; i++) {
             for (j = 0; j < BOARD_SIZE; j++) {
                 document.getElementById("cellNo" + i + "-" + j).disabled = false;
             };
         };
-    } else {
+        playAudio("startGame");
+    } else if (turn != 1) {
         alert("The game is currently running");
     };
-    playAudio("startGame");
 };
 
 // Shut down the game
 function shutDownGame() {
-    if (isWinning == true) {
-        for (i = 0; i < BOARD_SIZE; i++) {
-            for (j = 0; j < BOARD_SIZE; j++) {
-                document.getElementById("cellNo" + i + "-" + j).disabled = true;
-            };
+    for (i = 0; i < BOARD_SIZE; i++) {
+        for (j = 0; j < BOARD_SIZE; j++) {
+            document.getElementById("cellNo" + i + "-" + j).disabled = true;
         };
     };
 };
@@ -214,7 +212,7 @@ function resetGame() {
                 boardArr[i].splice(j, 1, " ");
             };
         };
-        isWinning = false, turn = 0;
+        isWinning = false, turn = 1;
         reset++;
         displayBoard();
         playAudio("erase");
@@ -234,22 +232,26 @@ function playAudio(track) {
     switch (track) {
         case "startGame":
             sound1.volume = 0.5;
+            sound1.currentTime = 0;
             sound1.loop = !isWinning;
             sound4.pause();
             sound1.play();
             break;
         case "click":
             sound2.volume = 1;
+            sound2.currentTime = 0;
             sound2.play();
             break;
         case "erase":
             sound3.volume = 1;
+            sound3.currentTime = 0;
             sound1.pause();
             sound4.pause();
             sound3.play();
             break;
         case "congrat":
             sound4.volume = 1;
+            sound4.currentTime = 0;
             sound1.pause();
             sound4.loop = isWinning;
             sound4.play();
