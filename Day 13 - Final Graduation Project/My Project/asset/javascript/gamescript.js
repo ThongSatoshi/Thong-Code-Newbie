@@ -100,39 +100,38 @@ function drawOnBoard(x, y, team) {
 
 // 3. Checking who won the game
 function checkWinner() {
-    let count = 0;
     rowCheck(), colCheck();
 
     //Check horizontally
     function rowCheck() {
         for (i = 0; i < BOARD_SIZE; i++) {
-            if (count == BOARD_SIZE) {
-                isWinning = true;
-                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
-            } else {
-                for (j = 0; j < BOARD_SIZE; j++) {
-                    if (boardArr[i][j] == boardArr[i][j + 1] && boardArr[i][j] != "") {
-                        count++;
-                    };
+            let count = 0;
+            for (j = 0; j < BOARD_SIZE - 1; j++) {
+                if (boardArr[i][j] == boardArr[i][j + 1] && boardArr[i][j] != "") {
+                    count++;
                 };
             };
+            if (count == BOARD_SIZE - 1) {
+                isWinning = true;
+                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
+            }
         };
     };
+};
 
-    //Check vertically
-    function colCheck() {
-        for (i = 0; i < BOARD_SIZE - 1; i++) {
-            if (count == BOARD_SIZE) {
-                isWinning = true;
-                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
-            } else {
-                for (j = 0; j < BOARD_SIZE - 1; j++) {
-                    if (boardArr[i][j] == boardArr[i + 1][j] && boardArr[i][j] != "") {
-                        count++;
-                    };
-                };
+//Check vertically
+function colCheck() {
+    for (i = 0; i < BOARD_SIZE; i++) {
+        let count = 0;
+        for (j = 0; j < BOARD_SIZE - 1; j++) {
+            if (boardArr[i][j] == boardArr[i + 1][j] && boardArr[i][j] != "") {
+                count++;
             };
         };
+        if (count == BOARD_SIZE - 1) {
+            isWinning = true;
+            return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
+        }
     };
 };
 
