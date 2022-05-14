@@ -68,9 +68,9 @@ p {
 
 .cellBtn {
     border: none;
-    color: rgb(0, 0, 0);
+    color:rgb(0, 0, 0);
     background-color: rgb(255, 255, 255);
-    font-size: 30px;
+    font-size: 40px;
     text-align: center;
     height: 50px;
     width: 50px;
