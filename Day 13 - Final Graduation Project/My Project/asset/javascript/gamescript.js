@@ -216,7 +216,12 @@ function resetGame() {
         reset++;
         displayBoard();
         playAudio("erase");
-        startGame();
+        let brandNew = confirm("Do you want to create a brand new game and start all over?");
+        if (brandNew == true) {
+            location.reload();
+        } else {
+            startGame();
+        };
         turnCounter.innerHTML = "0 turn(s) left. The game has been reset " + reset + " time(s)";
         winnerName.innerHTML = "O first, X second. The champion is: ???";
     };
