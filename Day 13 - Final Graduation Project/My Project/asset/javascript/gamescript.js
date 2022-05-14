@@ -6,7 +6,7 @@ let playerArr = [(new Player(askUserName(), "O", "rgb(255,0,0)")), (new Player(a
 
 // Global Value
 let board = document.getElementById("board");
-let turnCounter = document.getElementById("turnConuter");
+let turnCounter = document.getElementById("turnCounter");
 let winnerName = document.getElementById("winnerName");
 let i, j, turn = team = 0;
 let boardArr = [];
@@ -38,19 +38,6 @@ function askUserName() {
     return name;
 };
 
-// Counting turn
-function turnCount() {
-    turn++;
-    if (turn %2 != 1) {
-        team = 0;
-        alert("It's team X turn!");
-    } else {
-        team = 1;
-        alert("It's team O turn!");
-    };
-    turnCounter.innerHTML = "Turn(s) no." + turn;
-};
-
 // Display the game board
 function displayBoard(size) {
     i = 0, j = 0;
@@ -60,7 +47,7 @@ function displayBoard(size) {
         grid += "<tr>";
         while (col <= size && j < boardArr[i].length) {
             if (boardArr[i][j] != "") {
-                grid += "<td id='cell'><button id='cellBtn' disabled onclick='interactBoard(" + i + "," + j + ")'" + boardArr[i][j] + "</button></td>";
+                grid += "<td id='cell'><button id='cellBtn' disabled>" + boardArr[i][j] + "</button></td>";
             } else {
                 grid += "<td id='cell'><button id='cellBtn' onclick='interactBoard(" + i + "," + j + ")'>" + boardArr[i][j] + "</button></td>";
             };
@@ -73,12 +60,20 @@ function displayBoard(size) {
     board.innerHTML = grid;
 };
 
-// Execute these following functions when clicked
-function interactBoard(x, y) {
-    turnCount();
-    drawOnBoard(x, y, team);
+// 1. Counting turn
+function turnCount() {
+    turn++;
+    if (turn %2 != 0) {
+        team = 0;
+        alert("It's team X turn!");
+    } else {
+        team = 1;
+        alert("It's team O turn!");
+    };
+    turnCounter.innerHTML = "Turn(s) no." + turn;
 };
-// 1. Draw the symbol on board
+
+// 2. Draw the symbol on board
 function drawOnBoard(x, y, team) {
     switch (playerArr[team]) {
         case 0:
@@ -92,6 +87,12 @@ function drawOnBoard(x, y, team) {
             displayBoard();
             break;
     };
+};
+
+// Execute these following functions (from 1 to ) when clicked
+function interactBoard(x, y) {
+    turnCount();
+    drawOnBoard(x, y, team);
 };
 
 // Start the game
