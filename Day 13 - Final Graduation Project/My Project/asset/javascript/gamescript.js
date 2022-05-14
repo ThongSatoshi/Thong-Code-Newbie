@@ -74,14 +74,16 @@ function turnCount() {
 
 // 2. Draw the symbol on board
 function drawOnBoard(x, y, team) {
-    switch (playerArr[team]) {
+    switch (team) {
         case 0:
-            boardArr[x][y] = playerArr[team].getSymbol();
+            boardArr[x].splice(y, 1, playerArr[team].getSymbol());
             displayBoard(BOARD_SIZE);
+            console.log(x,y,team);
             break;
         case 1:
-            boardArr[x][y] = playerArr[team].getSymbol();
+            boardArr[x].splice(y, 1, playerArr[team].getSymbol());
             displayBoard(BOARD_SIZE);
+            console.log(x,y,team);
             break;
     };
 };
