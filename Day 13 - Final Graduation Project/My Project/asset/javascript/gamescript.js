@@ -42,7 +42,7 @@ function askUserName() {
 function displayBoard(size) {
     i = j = 0;
     let row = col = 1;
-    let grid = "<table border='1px solid white' height='400px' width='400px' cellspacing='0' cellpadding='10px' stye='font-size:30px' style='text-align:center'>";
+    let grid = "<table id='myBoard' height='400px' width='400px' cellspacing='0' cellpadding='10px'>";
     while (row <= size || i < boardArr.length) {
         grid += "<tr>";
         while (col <= size || j < boardArr[i].length) {
