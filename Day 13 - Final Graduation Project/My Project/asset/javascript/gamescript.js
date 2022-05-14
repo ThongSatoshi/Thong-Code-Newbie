@@ -69,14 +69,15 @@ function displayBoard(size) {
 
 // 1. Counting turn
 function turnCount() {
-    if (turn % 2 == 0) {
+    if (isWinning == false && turn % 2 == 0) {
         team = 0;
         turnCounter.innerHTML = "Turn(s) no." + turn + ". Next is team " + playerArr[team + 1].symbol + "'s turn!";
-    } else {
+        turn++;
+    } else if (isWinning == false && turn % 2 != 0) {
         team = 1;
         turnCounter.innerHTML = "Turn(s) no." + turn + ". Next is team " + playerArr[team - 1].symbol + "'s turn!";
+        turn++;
     };
-    turn++;
 };
 
 // 2. Draw the symbol on board
@@ -104,12 +105,12 @@ function checkWinner() {
 
     //Check horizontally
     function rowCheck() {
-        for (i = 0; i <= BOARD_SIZE - 1; i++) {
+        for (i = 0; i < BOARD_SIZE; i++) {
             if (count == BOARD_SIZE) {
                 isWinning = true;
                 return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
             } else {
-                for (j = 0; j <= BOARD_SIZE - 1; j++) {
+                for (j = 0; j < BOARD_SIZE; j++) {
                     if (boardArr[i][j] == boardArr[i][j + 1] && boardArr[i][j] != "") {
                         count++;
                     };
