@@ -58,6 +58,16 @@ function displayBoard(size) {
     };
     grid += "</table>";
     board.innerHTML = grid;
+
+    for (i = 0; i < BOARD_SIZE; i++) {
+        for (j = 0; j < BOARD_SIZE; j++) {
+            if (boardArr[i][j] == "X") {
+                document.getElementById("cellNo" + i + "-" + j).style.color = playerArr[0].color;
+            } else if (boardArr[i][j] == "O") {
+                document.getElementById("cellNo" + i + "-" + j).style.color = playerArr[1].color;
+            };
+        };
+    };
 };
 
 // 1. Counting turn
@@ -78,14 +88,12 @@ function drawOnBoard(x, y, team) {
     switch (team) {
         case 0:
             boardArr[x].splice(y, 1, playerArr[team].symbol);
-            document.getElementById("cellNo" + x + "-" + y).style.color = playerArr[team].color;
             displayBoard(BOARD_SIZE);
             playAudio("click");
             console.log(x, y, team, playerArr[team].color);
             break;
         case 1:
             boardArr[x].splice(y, 1, playerArr[team].symbol);
-            document.getElementById("cellNo" + x + "-" + y).style.color = playerArr[team].color;
             displayBoard(BOARD_SIZE);
             playAudio("click");
             console.log(x, y, team, playerArr[team].color);
@@ -109,7 +117,11 @@ function checkWinner() {
             if (count == BOARD_SIZE - 1) {
                 isWinning = true;
                 playAudio("congrat");
-                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
+                if (team == 0) {
+                    return winnerName.innerHTML = "Congratulation! Player '" + playerArr[1].name + "', in the team of " + playerArr[0].symbol + " has won the game!!";
+                } else {
+                    return winnerName.innerHTML = "Congratulation! Player '" + playerArr[0].name + "', in the team of " + playerArr[1].symbol + " has won the game!!";
+                };
             }
         };
     };
@@ -126,7 +138,11 @@ function checkWinner() {
             if (count == BOARD_SIZE - 1) {
                 isWinning = true;
                 playAudio("congrat");
-                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
+                if (team == 0) {
+                    return winnerName.innerHTML = "Congratulation! Player '" + playerArr[1].name + "', in the team of " + playerArr[0].symbol + " has won the game!!";
+                } else {
+                    return winnerName.innerHTML = "Congratulation! Player '" + playerArr[0].name + "', in the team of " + playerArr[1].symbol + " has won the game!!";
+                };
             }
         };
     };
@@ -141,8 +157,12 @@ function checkWinner() {
             if (count == BOARD_SIZE - 1) {
                 isWinning = true;
                 playAudio("congrat");
-                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
-            }
+                if (team == 0) {
+                    return winnerName.innerHTML = "Congratulation! Player '" + playerArr[1].name + "', in the team of " + playerArr[0].symbol + " has won the game!!";
+                } else {
+                    return winnerName.innerHTML = "Congratulation! Player '" + playerArr[0].name + "', in the team of " + playerArr[1].symbol + " has won the game!!";
+                };
+            };
         };
     };
 
@@ -156,7 +176,11 @@ function checkWinner() {
             if (count == BOARD_SIZE - 1) {
                 isWinning = true;
                 playAudio("congrat");
-                return winnerName.innerHTML = "Congratulation! Player '" + playerArr[team].name + "', in the team of " + playerArr[team].symbol + " has won the game!!";
+                if (team == 0) {
+                    return winnerName.innerHTML = "Congratulation! Player '" + playerArr[1].name + "', in the team of " + playerArr[0].symbol + " has won the game!!";
+                } else {
+                    return winnerName.innerHTML = "Congratulation! Player '" + playerArr[0].name + "', in the team of " + playerArr[1].symbol + " has won the game!!";
+                };
             }
         };
     };
@@ -170,9 +194,7 @@ function interactBoard(x, y) {
 
     if (isWinning == true) {
         shutDownGame();
-    };
-
-    if (turn >= Math.pow(BOARD_SIZE, 2)) {
+    } else if (isWinning == false && turn >= Math.pow(BOARD_SIZE, 2)) {
         setTimeout(function () {
             return winnerName.innerHTML = "Congratulation, it's a draw match! Wanna duel once more time?";
         }, 0);
@@ -207,21 +229,15 @@ function shutDownGame() {
 function resetGame() {
     let reset = 0, isReset = confirm("Do you want to reset the game?");
     if (isReset == true) {
+        playAudio("erase");
         for (i = 0; i < BOARD_SIZE; i++) {
             for (j = 0; j < BOARD_SIZE; j++) {
                 boardArr[i].splice(j, 1, " ");
             };
         };
-        isWinning = false, turn = 1;
-        reset++;
+        isWinning = false, turn = 1, reset++;
         displayBoard();
-        playAudio("erase");
-        let brandNew = confirm("Do you want to create a brand new game and start all over?");
-        if (brandNew == true) {
-            location.reload();
-        } else {
-            startGame();
-        };
+        location.reload();
         turnCounter.innerHTML = "0 turn(s) left. The game has been reset " + reset + " time(s)";
         winnerName.innerHTML = "O first, X second. The champion is: ???";
     };
