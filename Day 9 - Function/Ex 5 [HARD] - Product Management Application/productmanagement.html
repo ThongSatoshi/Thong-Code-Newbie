@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lí thực đơn (Menu Management Site)</title>
+    <style>
+        body {
+            margin-left: 200px;
+            margin-right: 200px;
+            background-color: rgb(250, 235, 215);
+            font-family: sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 35px;
+            color: rgb(100, 55, 35);
+        }
+
+        h2 {
+            margin-left: 10px;
+            font-size: 25px;
+            font-style: italic;
+            color: rgb(160, 105, 80);
+        }
+
+        h3 {
+            margin-left: 50px;
+            font-size: 22px;
+            color: rgb(160, 105, 80);
+        }
+
+        h4 {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: rgb(100, 55, 35);
+        }
+
+        p {
+            text-align: center;
+            font-size: 22px;
+            font-style: italic;
+            color: rgb(100, 55, 35);
+        }
+
+        #searchBar {
+            margin-left: 30px;
+            font-size: 17px;
+            font-style: italic;
+            font-weight: bold;
+            align-content: 10px;
+            height: 40px;
+            width: 600px;
+            border-radius: 10px;
+            border-color: rgb(158, 90, 36);
+            color: rgb(158, 90, 36);
+        }
+
+        .searchOption {
+            margin-left: 30px;
+            font-size: 17px;
+            font-style: italic;
+            font-weight: bold;
+            align-content: 10px;
+            height: 40px;
+            width: 200px;
+            border-radius: 10px;
+            border-color: rgb(158, 90, 36);
+            background-color: rgb(255, 255, 255);
+            color: rgb(158, 90, 36);
+        }
+
+        .button {
+            margin-left: 30px;
+            font-size: 17px;
+            font-weight: bold;
+            height: 40px;
+            width: 150px;
+            border-radius: 15px;
+            border-color: rgb(158, 90, 36);
+            background-color: rgb(223, 187, 126);
+            color: rgb(158, 90, 36);
+        }
+
+        #creditTable {
+            transform: translateX(250px);
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            padding: 10px;
+            width: 50%;
+            color: rgb(160, 105, 80);
+        }
+
+        .iconImage {
+            width: 80px;
+            height: 80px;
+            border-width: 5px;
+            border-radius: 15px;
+            border-color: rgb(158, 90, 36);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Menu Management Site - Satoshi's Bakery Shop</h1>
+    <h2>Which items would you like to find?</h2>
+    <input id="searchBar" type="text" placeholder="Please enter some keywords" onkeyup="findProduct()">
+    <br>
+    <br>
+    <select class="searchOption">
+        <option value="itemName">Item name</option>
+        <option value="itemCategory">Item category</option>
+        <option value="priceTag">Item's price tag</option>
+    </select>
+    <br>
+    <h2>Please choose your action</h2>
+    <button class="button">Add Item</button>
+    <button class="button">Edit Item</button>
+    <button class="button">Remove Item</button>
+    <h2>Item List</h2>
+    <table id="productTable">
+        <tr>
+            <h3>① Cakes and Pastries</h3>
+        </tr>
+        <tr>
+            <div class="productList" id="cakeList"></div>
+        </tr>
+        <tr>
+            <h3>② Sandwiches and Breads</h3>
+        </tr>
+        <tr>
+            <div class="productList" id="breadList"></div>
+        </tr>
+        <tr>
+            <h3>③ Ice Creams</h3>
+        </tr>
+        <tr>
+            <div class="productList" id="icecreamList"></div>
+        </tr>
+        <tr>
+            <h3>④ Drinks</h3>
+        </tr>
+        <tr>
+            <div class="productList" id="drinkList"></div>
+        </tr>
+    </table>
+    <br>
+    <hr style="width:85%; text-align:center; color: rgb(100, 55, 35);">
+    <h4>Learn more about us at:</h4>
+    <p>(This is a test website, created by ThongSatoshi)</p>
+    <table id="creditTable">
+        <tr>
+            <td>
+                <a href="https://twitter.com/satoshi060799" target="_blank">
+                    <img class="iconImage" src="image\twitterIcon.png" alt="Twitter">
+                </a>
+            </td>
+            <td>
+                <a href="https://discordapp.com/users/Satoshi#4079" target="_blank">
+                    <img class="iconImage" src="image\discordIcon.png" alt="Discord">
+                </a>
+            </td>
+            <td>
+                <a href="https://github.com/ThongSatoshi" target="_blank">
+                    <img class="iconImage" src="image\githubIcon.png" alt="GitHub">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Twitter</td>
+            <td>Discord</td>
+            <td>GitHub</td>
+        </tr>
+    </table>
+
+</body>
+
+</html>
