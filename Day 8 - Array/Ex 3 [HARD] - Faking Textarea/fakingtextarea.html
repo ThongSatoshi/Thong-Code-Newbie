@@ -9,9 +9,32 @@
         h1 {
             font-style: italic;
         }
+
+        p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #fakeTextarea {
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
     <h1>Ô đánh chữ giả (Faking Textarea)</h1>
+    <form>
+        <p>Question: Please introduce about yourself</p>
+        <textarea id="fakeTextarea" placeholder="Please input your message" rows="5" cols="50" maxlength="50" onkeypress="trollText()">
+        </textarea>
+    </form>
+    <script type="text/javascript">
+        let trollTestArr = ["I am an idiot! "], inputText = "";
+        function trollText() {
+            inputText += trollTestArr[0];
+            document.getElementById("fakeTextarea").value = inputText;
+        };
+    </script>
 </body>
 </html>
