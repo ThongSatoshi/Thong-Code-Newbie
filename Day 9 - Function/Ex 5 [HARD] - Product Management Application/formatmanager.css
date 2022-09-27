@@ -1,0 +1,99 @@
+h1 {
+    text-align: center;
+    font-size: 35px;
+    color: rgb(100, 55, 35);
+}
+
+h2 {
+    margin-left: 10px;
+    font-size: 25px;
+    color: rgb(160, 105, 80);
+}
+
+h3 {
+    margin-left: 50px;
+    font-size: 22px;
+    color: rgb(160, 105, 80);
+}
+
+h4 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(100, 55, 35);
+}
+
+p {
+    text-align: center;
+    font-size: 22px;
+    font-style: italic;
+    color: rgb(100, 55, 35);
+}
+
+#searchBar {
+    margin-left: 30px;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: bold;
+    align-content: 10px;
+    height: 40px;
+    width: 600px;
+    border: 2px solid rgb(158, 90, 36);
+    border-radius: 10px;
+    color: rgb(158, 90, 36);
+}
+
+.searchOption {
+    margin-left: 30px;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: bold;
+    align-content: 10px;
+    height: 40px;
+    width: 200px;
+    border: 2px solid rgb(158, 90, 36);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(158, 90, 36);
+}
+
+.button {
+    margin-left: 30px;
+    font-size: 17px;
+    font-weight: bold;
+    height: 40px;
+    width: 150px;
+    border: 2px solid rgb(158, 90, 36);
+    border-radius: 15px;
+    background-color: rgb(223, 187, 126);
+    color: rgb(158, 90, 36);
+}
+
+.productList {
+    transform: translateX(50px);
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    width: 100%;
+    border: 2px solid rgb(158, 90, 36);
+    border-radius: 15px;
+    padding: 10px;
+    color:rgb(160, 105, 80);
+}
+
+#creditTable {
+    transform: translateX(250px);
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 10px;
+    width: 50%;
+    color: rgb(160, 105, 80);
+}
+
+.iconImage {
+    width: 80px;
+    height: 80px;
+    border: 3.5px solid rgb(160, 105, 80);
+    border-radius: 15px;
+}

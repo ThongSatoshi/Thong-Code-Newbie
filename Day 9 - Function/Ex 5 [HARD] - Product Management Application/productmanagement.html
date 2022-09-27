@@ -6,109 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lí thực đơn (Menu Management Site)</title>
+    <link rel="stylesheet" href="formatmanager.css">
     <style>
         body {
-            margin-left: 200px;
-            margin-right: 200px;
+            margin-left: 150px;
+            margin-right: 150px;
             background-color: rgb(250, 235, 215);
             font-family: sans-serif;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 35px;
-            color: rgb(100, 55, 35);
-        }
-
-        h2 {
-            margin-left: 10px;
-            font-size: 25px;
-            font-style: italic;
-            color: rgb(160, 105, 80);
-        }
-
-        h3 {
-            margin-left: 50px;
-            font-size: 22px;
-            color: rgb(160, 105, 80);
-        }
-
-        h4 {
-            text-align: center;
-            font-size: 30px;
-            font-weight: bold;
-            color: rgb(100, 55, 35);
-        }
-
-        p {
-            text-align: center;
-            font-size: 22px;
-            font-style: italic;
-            color: rgb(100, 55, 35);
-        }
-
-        #searchBar {
-            margin-left: 30px;
-            font-size: 17px;
-            font-style: italic;
-            font-weight: bold;
-            align-content: 10px;
-            height: 40px;
-            width: 600px;
-            border-radius: 10px;
-            border-color: rgb(158, 90, 36);
-            color: rgb(158, 90, 36);
-        }
-
-        .searchOption {
-            margin-left: 30px;
-            font-size: 17px;
-            font-style: italic;
-            font-weight: bold;
-            align-content: 10px;
-            height: 40px;
-            width: 200px;
-            border-radius: 10px;
-            border-color: rgb(158, 90, 36);
-            background-color: rgb(255, 255, 255);
-            color: rgb(158, 90, 36);
-        }
-
-        .button {
-            margin-left: 30px;
-            font-size: 17px;
-            font-weight: bold;
-            height: 40px;
-            width: 150px;
-            border-radius: 15px;
-            border-color: rgb(158, 90, 36);
-            background-color: rgb(223, 187, 126);
-            color: rgb(158, 90, 36);
-        }
-
-        #creditTable {
-            transform: translateX(250px);
-            text-align: center;
-            font-size: 22px;
-            font-weight: bold;
-            padding: 10px;
-            width: 50%;
-            color: rgb(160, 105, 80);
-        }
-
-        .iconImage {
-            width: 80px;
-            height: 80px;
-            border-width: 5px;
-            border-radius: 15px;
-            border-color: rgb(158, 90, 36);
         }
     </style>
 </head>
 
 <body>
     <h1>Menu Management Site - Satoshi's Bakery Shop</h1>
-    <h2>Which items would you like to find?</h2>
+    <h2>■ Which items would you like to find?</h2>
     <input id="searchBar" type="text" placeholder="Please enter some keywords" onkeyup="findProduct()">
     <br>
     <br>
@@ -118,37 +29,19 @@
         <option value="priceTag">Item's price tag</option>
     </select>
     <br>
-    <h2>Please choose your action</h2>
+    <h2>■ Please choose your action</h2>
     <button class="button">Add Item</button>
     <button class="button">Edit Item</button>
     <button class="button">Remove Item</button>
-    <h2>Item List</h2>
-    <table id="productTable">
-        <tr>
-            <h3>① Cakes and Pastries</h3>
-        </tr>
-        <tr>
-            <div class="productList" id="cakeList"></div>
-        </tr>
-        <tr>
-            <h3>② Sandwiches and Breads</h3>
-        </tr>
-        <tr>
-            <div class="productList" id="breadList"></div>
-        </tr>
-        <tr>
-            <h3>③ Ice Creams</h3>
-        </tr>
-        <tr>
-            <div class="productList" id="icecreamList"></div>
-        </tr>
-        <tr>
-            <h3>④ Drinks</h3>
-        </tr>
-        <tr>
-            <div class="productList" id="drinkList"></div>
-        </tr>
-    </table>
+    <h2>■ Item List</h2>
+    <h3>① Cakes and Pastries 🍰</h3>
+    <div id="cakeList"></div>
+    <h3>② Sandwiches and Breads 🥖</h3>
+    <div id="breadList"></div>
+    <h3>③ Ice Creams 🍦</h3>
+    <div id="icecreamList"></div>
+    <h3>④ Drinks ☕</h3>
+    <div id="drinkList"></div>
     <br>
     <hr style="width:85%; text-align:center; color: rgb(100, 55, 35);">
     <h4>Learn more about us at:</h4>
