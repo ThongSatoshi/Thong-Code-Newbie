@@ -70,7 +70,6 @@ p {
 }
 
 .productList {
-    transform: translateX(50px);
     text-align: center;
     font-size: 17px;
     font-weight: bold;
@@ -82,7 +81,7 @@ p {
 }
 
 #creditTable {
-    transform: translateX(250px);
+    transform: translateX(270px);
     text-align: center;
     font-size: 22px;
     font-weight: bold;
