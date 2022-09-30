@@ -96,3 +96,10 @@ p {
     border: 3.5px solid rgb(160, 105, 80);
     border-radius: 15px;
 }
+
+.itemImage {
+    width: 70px;
+    height: 150px;
+    border: 3.5px solid rgb(160, 105, 80);
+    border-radius: 15px;
+}

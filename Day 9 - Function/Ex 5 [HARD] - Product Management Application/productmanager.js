@@ -46,23 +46,28 @@ function randomID() {
 
 function showCakeList() {
     let board = document.getElementById("cakeList");
-    let i = j = k = 0, colA = colB = colC = 1;
+    let a = b = c = d = 0, colA = colB = colC = colD = 1;
     let grid = "<table class='productList'><tr>";
-    while (colA <= TABLESIZE) {
-        grid += "<td>" + cakeArr[i].name + "</td>";
-        colA++, i++;
+    while (colA <= TABLESIZE || colA <= cakeArr.length) {
+        grid += "<td><img class='itemImage' src='\image\menu" + cakeArr[a].name + "'></td>"
     };
     grid += "</tr>"
 
-    while (colB <= TABLESIZE) {
-        grid += "<td>" + cakeArr[j].price + "</td>";
-        colB++, j++;
+    while (colB <= TABLESIZE || colB <= cakeArr.length) {
+        grid += "<td>" + cakeArr[b].name + "</td>";
+        colB++, b++;
     };
     grid += "</tr>"
 
-    while (colC <= TABLESIZE) {
-        grid += "<td>" + cakeArr[k].id + "</td>";
-        colC++, k++;
+    while (colC <= TABLESIZE || colC <= cakeArr.length) {
+        grid += "<td>" + cakeArr[c].price + "</td>";
+        colC++, c++;
+    };
+    grid += "</tr>"
+
+    while (colD <= TABLESIZE || colD <= cakeArr.length) {
+        grid += "<td>" + cakeArr[d].id + "</td>";
+        colD++, d++;
     };
     grid += "</tr></table>";
     board.innerHTML = grid;
@@ -72,19 +77,19 @@ function showBreadList() {
     let board = document.getElementById("breadList");
     let i = j = k = 0, colA = colB = colC = 1;
     let grid = "<table class='productList'><tr>";
-    while (colA <= TABLESIZE) {
+    while (colA <= TABLESIZE || colA <= breadArr.length) {
         grid += "<td>" + breadArr[i].name + "</td>";
         colA++, i++;
     };
     grid += "</tr>"
 
-    while (colB <= TABLESIZE) {
+    while (colB <= TABLESIZE || colB <= breadArr.length) {
         grid += "<td>" + breadArr[j].price + "</td>";
         colB++, j++;
     };
     grid += "</tr>"
 
-    while (colC <= TABLESIZE) {
+    while (colC <= TABLESIZE || colC <= breadArr.length) {
         grid += "<td>" + breadArr[k].id + "</td>";
         colC++, k++;
     };
@@ -96,19 +101,19 @@ function showIcecreamList() {
     let board = document.getElementById("icecreamList");
     let i = j = k = 0, colA = colB = colC = 1;
     let grid = "<table class='productList'><tr>";
-    while (colA <= TABLESIZE) {
+    while (colA <= TABLESIZE || colA <= icecreamArr.length) {
         grid += "<td>" + icecreamArr[i].name + "</td>";
         colA++, i++;
     };
     grid += "</tr>"
 
-    while (colB <= TABLESIZE) {
+    while (colB <= TABLESIZE || colB <= icecreamArr.length) {
         grid += "<td>" + icecreamArr[j].price + "</td>";
         colB++, j++;
     };
     grid += "</tr>"
 
-    while (colC <= TABLESIZE) {
+    while (colC <= TABLESIZE || colC <= icecreamArr.length) {
         grid += "<td>" + icecreamArr[k].id + "</td>";
         colC++, k++;
     };
@@ -120,19 +125,19 @@ function showDrinkList() {
     let board = document.getElementById("drinkList");
     let i = j = k = 0, colA = colB = colC = 1;
     let grid = "<table class='productList'><tr>";
-    while (colA <= TABLESIZE) {
+    while (colA <= TABLESIZE || colA <= drinkArr.length) {
         grid += "<td>" + drinkArr[i].name + "</td>";
         colA++, i++;
     };
     grid += "</tr>"
 
-    while (colB <= TABLESIZE) {
+    while (colB <= TABLESIZE || colB <= drinkArr.length) {
         grid += "<td>" + drinkArr[j].price + "</td>";
         colB++, j++;
     };
     grid += "</tr>"
 
-    while (colC <= TABLESIZE) {
+    while (colC <= TABLESIZE || colC <= drinkArr.length) {
         grid += "<td>" + drinkArr[k].id + "</td>";
         colC++, k++;
     };
