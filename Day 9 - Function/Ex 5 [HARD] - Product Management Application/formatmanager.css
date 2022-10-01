@@ -76,7 +76,12 @@ p {
     width: 100%;
     border: 2px solid rgb(158, 90, 36);
     border-radius: 15px;
-    padding: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-spacing: 10px;
+    table-layout: fixed;
     color:rgb(160, 105, 80);
 }
 
@@ -98,8 +103,8 @@ p {
 }
 
 .itemImage {
-    width: 70px;
-    height: 150px;
-    border: 3.5px solid rgb(160, 105, 80);
-    border-radius: 15px;
+    width: 150px;
+    height: 170px;
+    border: 2.5px solid rgb(160, 105, 80);
+    border-radius: 10px;
 }
