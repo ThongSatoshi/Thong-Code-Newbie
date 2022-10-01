@@ -30,7 +30,7 @@ let icecreamArr = [(new Item("Vanilla & Chocolate", "1.75 USD", randomID())),
 let drinkArr = [(new Item("Blue Marine", "2.25 USD", randomID())),
 (new Item("Red Sunset", "2.25 USD", randomID())),
 (new Item("Boba Milktea", "1.35 USD", randomID())),
-(new Item("Cream Cheese Milktea", "1.50 USD", randomID())),
+(new Item("Cream Cheese Coffee", "1.50 USD", randomID())),
 (new Item("Cookie Shake", "2.00 USD", randomID())),
 ];
 
