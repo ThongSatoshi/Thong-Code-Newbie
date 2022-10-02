@@ -38,7 +38,7 @@ function randomID() {
     let idcode = "20220928"
     let i = Math.floor(Math.random() * 100);
     if (i < 10) {
-        i = "0" + i; 
+        i = "0" + i;
     };
     return idcode += i;
 };
@@ -48,7 +48,7 @@ function showCakeList() {
     let a = b = c = d = 0, colA = colB = colC = colD = 1;
     let grid = "<table class='productList'><tr>";
     while (colA <= TABLESIZE && a < cakeArr.length) {
-        grid += "<td><img class='itemImage' src='image\menu\ " + cakeArr[a].name + ".png' alt='Item Picture'></td>"
+        grid += "<td><img class='itemImage' src='image\\menu\\" + cakeArr[a].name + ".png' alt='Item Picture'></td>"
         colA++, a++;
     };
     grid += "</tr>"
@@ -78,7 +78,7 @@ function showBreadList() {
     let a = b = c = d = 0, colA = colB = colC = colD = 1;
     let grid = "<table class='productList'><tr>";
     while (colA <= TABLESIZE && a < breadArr.length) {
-        grid += "<td><img class='itemImage' src='image\menu\ " + breadArr[a].name + ".png' alt='Item Picture'></td>"
+        grid += "<td><img class='itemImage' src='image\\menu\\" + breadArr[a].name + ".png' alt='Item Picture'></td>"
         colA++, a++;
     };
     grid += "</tr>"
@@ -108,7 +108,7 @@ function showIcecreamList() {
     let a = b = c = d = 0, colA = colB = colC = colD = 1;
     let grid = "<table class='productList'><tr>";
     while (colA <= TABLESIZE && a < icecreamArr.length) {
-        grid += "<td><img class='itemImage' src='image\menu\ " + icecreamArr[a].name + ".png' alt='Item Picture'></td>"
+        grid += "<td><img class='itemImage' src='image\\menu\\" + icecreamArr[a].name + ".png' alt='Item Picture'></td>"
         colA++, a++;
     };
     grid += "</tr>"
@@ -138,7 +138,7 @@ function showDrinkList() {
     let a = b = c = d = 0, colA = colB = colC = colD = 1;
     let grid = "<table class='productList'><tr>";
     while (colA <= TABLESIZE && a < drinkArr.length) {
-        grid += "<td><img class='itemImage' src='image\menu\ " + drinkArr[a].name + ".png' alt='Item Picture'></td>"
+        grid += "<td><img class='itemImage' src='image\\menu\\" + drinkArr[a].name + ".png' alt='Item Picture'></td>"
         colA++, a++;
     };
     grid += "</tr>"
@@ -163,7 +163,9 @@ function showDrinkList() {
     itemList.innerHTML = grid;
 };
 
-showCakeList();
-showBreadList();
-showIcecreamList();
-showDrinkList();
+function displayList() {
+    showCakeList();
+    showBreadList();
+    showIcecreamList();
+    showDrinkList();
+};
