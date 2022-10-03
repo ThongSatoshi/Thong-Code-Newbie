@@ -11,39 +11,41 @@ let timeClicked = 0;
 let keywords = document.getElementById("searchBar"),
     option = document.getElementById("searchOption");
 
-let cakeArr = [(new Item("Chocolate Cake", 25.75, randomID())),
-(new Item("Strawberry Cake", 30.15, randomID())),
-(new Item("Blueberry Cheesecake", 35.45, randomID())),
-(new Item("Matcha Layer Cake", 48.20, randomID())),
-(new Item("The Silky Milky", 46.00, randomID())),
+let cakeArr = [(new Item("Chocolate Cake", 25.75, giveID(cakeArr))),
+(new Item("Strawberry Cake", 30.15, giveID(cakeArr))),
+(new Item("Blueberry Cheesecake", 35.45, giveID(cakeArr))),
+(new Item("Matcha Layer Cake", 48.20, giveID(cakeArr))),
+(new Item("The Silky Milky", 46.00, giveID(cakeArr))),
 ];
 
-let breadArr = [(new Item("Grilled Pork Sandwich", 2.55, randomID())),
-(new Item("Shrimp Burger", 3.25, randomID())),
-(new Item("Katsu Sando", 5.00, randomID())),
-(new Item("The Big Boss", 6.00, randomID())),
+let breadArr = [(new Item("Grilled Pork Sandwich", 2.55, giveID(breadArr))),
+(new Item("Shrimp Burger", 3.25, giveID(breadArr))),
+(new Item("Katsu Sando", 5.00, giveID(breadArr))),
+(new Item("The Big Boss", 6.00, giveID(breadArr))),
 ];
 
-let icecreamArr = [(new Item("Vanilla & Chocolate", 1.75, randomID())),
-(new Item("Strawberry & Blueberry", 2.00, randomID())),
-(new Item("Matcha Red Bean Paste", 4.25, randomID())),
-(new Item("The Mango Trophy", 5.00, randomID())),
+let icecreamArr = [(new Item("Vanilla & Chocolate", 1.75, giveID(icecreamArr))),
+(new Item("Strawberry & Blueberry", 2.00, giveID(icecreamArr))),
+(new Item("Matcha Red Bean Paste", 4.25, giveID(icecreamArr))),
+(new Item("The Mango Trophy", 5.00, giveID(icecreamArr))),
 ];
 
-let drinkArr = [(new Item("Blue Marine", 2.25, randomID())),
-(new Item("Red Sunset", 2.25, randomID())),
-(new Item("Boba Milktea", 1.35, randomID())),
-(new Item("Cream Cheese Coffee", 1.50, randomID())),
-(new Item("Cookie Shake", 2.00, randomID())),
+let drinkArr = [(new Item("Blue Marine", 2.25, giveID(drinkArr))),
+(new Item("Red Sunset", 2.25, giveID(drinkArr))),
+(new Item("Boba Milktea", 1.35, giveID(drinkArr))),
+(new Item("Cream Cheese Coffee", 1.50, giveID(drinkArr))),
+(new Item("Cookie Shake", 2.00, giveID(drinkArr))),
 ];
 
-function randomID() {
-    let idcode = "20220928"
-    let i = Math.floor(Math.random() * 100);
-    if (i < 10) {
-        i = "0" + i;
+function giveID(listArr) {
+    let idCode = idnumber = "", i = 0;
+    
+    switch (listArr) {
+        case cakeArr:
+            idCode = "CA-"
+            idnumber+= "0" + i;
+            break;
     };
-    return idcode += i;
 };
 
 function selectiveDisplay(listID, listArr) {
@@ -193,8 +195,8 @@ function searchItem() {
             };
         };
 
-    } else if (option.value == "priceTag") {
+    } else if (option.value == "itemID") {
         hideList();
-        
+
     };
 };
