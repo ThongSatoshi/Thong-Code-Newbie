@@ -7,6 +7,9 @@ class Item {
 };
 
 const TABLESIZE = 5;
+let timeClicked = 0;
+let keywords = document.getElementById("searchBar"),
+    option = document.getElementById("searchOption");
 
 let cakeArr = [(new Item("Chocolate Cake", "25.75 USD", randomID())),
 (new Item("Strawberry Cake", "30.15 USD", randomID())),
@@ -164,8 +167,83 @@ function showDrinkList() {
 };
 
 function displayList() {
-    showCakeList();
-    showBreadList();
-    showIcecreamList();
-    showDrinkList();
+    timeClicked++;
+    if (timeClicked % 2 != 0) {
+        showCakeList();
+        showBreadList();
+        showIcecreamList();
+        showDrinkList();
+    } else if (timeClicked % 2 == 0) {
+        const targetedClass = document.querySelectorAll(".productList");
+        targetedClass.forEach(target => {
+            target.remove();
+        });
+    };
+    console.log("Display button clicked:" + timeClicked);
+};
+
+function searchItem() {
+    keywords.value.toLowerCase();
+    if (option.value == "category") {
+
+        const targetedClass = document.querySelectorAll(".productList");
+        targetedClass.forEach(target => {
+            target.remove();
+        });
+
+        switch (keywords.value) {
+            case "cake":
+            case "cakes":
+            case "pastry":
+            case "pastries":
+            case "cake & pastry":
+            case "cakes & pastries":
+            case "cake and pastry":
+            case "cakes and pastries":
+                showCakeList();
+                break;
+            case "bread":
+            case "breads":
+            case "sandwich":
+            case "sandwiches":
+            case "bread & sandwich":
+            case "breads & sandwiches":
+            case "bread and sandwich":
+            case "breads and sandwiches":
+                showBreadList();
+                break;
+            case "icecream":
+            case "icecreams":
+            case "ice": 
+            case "cream":
+            case "frozen dessert":
+            case "frozen desserts":
+            case "cold dessert":
+            case "cold desserts":
+                showIcecreamList();
+                break;
+            case "drink":
+            case "drinks":
+            case "beverage":
+            case "beverages":
+            case "water":
+                showDrinkList();
+                break;
+            case "all":
+            case "all items":
+            case "everything":
+            case "the whole menu":
+                showCakeList();
+                showBreadList();
+                showIcecreamList();
+                showDrinkList();
+                break;
+            default:
+                alert("We found no items that are called '" + keywords.value + "' in the list... \nPlease try again!");
+        };
+    } else if (option.value == "itemName") {
+
+    } else if (option.value == "priceTag") {
+
+    };
 };

@@ -20,13 +20,13 @@
 <body>
     <h1>Menu Management Site - Satoshi's Bakery Shop</h1>
     <h2>■ Which items would you like to find?</h2>
-    <input id="searchBar" type="text" placeholder="Please enter some keywords" onkeyup="findProduct()"> 
-    <button class="button">Search</button>
+    <input id="searchBar" type="text" placeholder="Please enter some keywords"> 
+    <button class="button" onclick="searchItem()">Search</button>
     <br>
     <br>
-    <select class="searchOption">
+    <select class="searchOption" id="searchOption">
         <option value="itemName">Item name</option>
-        <option value="itemCategory">Item category</option>
+        <option value="category">Item category</option>
         <option value="priceTag">Item's price tag</option>
     </select>
     <br>
