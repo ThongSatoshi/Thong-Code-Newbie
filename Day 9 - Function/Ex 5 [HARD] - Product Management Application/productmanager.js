@@ -11,30 +11,30 @@ let timeClicked = 0;
 let keywords = document.getElementById("searchBar"),
     option = document.getElementById("searchOption");
 
-let cakeArr = [(new Item("Chocolate Cake", "25.75 USD", randomID())),
-(new Item("Strawberry Cake", "30.15 USD", randomID())),
-(new Item("Blueberry Cheesecake", "35.45 USD", randomID())),
-(new Item("Matcha Layer Cake", "48.20 USD", randomID())),
-(new Item("The Silky Milky", "46.00 USD", randomID())),
+let cakeArr = [(new Item("Chocolate Cake", 25.75, randomID())),
+(new Item("Strawberry Cake", 30.15, randomID())),
+(new Item("Blueberry Cheesecake", 35.45, randomID())),
+(new Item("Matcha Layer Cake", 48.20, randomID())),
+(new Item("The Silky Milky", 46.00, randomID())),
 ];
 
-let breadArr = [(new Item("Grilled Pork Sandwich", "2.55 USD", randomID())),
-(new Item("Shrimp Burger", "3.25 USD", randomID())),
-(new Item("Katsu Sando", "5.00 USD", randomID())),
-(new Item("The Big Boss", "6.00 USD", randomID())),
+let breadArr = [(new Item("Grilled Pork Sandwich", 2.55, randomID())),
+(new Item("Shrimp Burger", 3.25, randomID())),
+(new Item("Katsu Sando", 5.00, randomID())),
+(new Item("The Big Boss", 6.00, randomID())),
 ];
 
-let icecreamArr = [(new Item("Vanilla & Chocolate", "1.75 USD", randomID())),
-(new Item("Strawberry & Blueberry", "2.00 USD", randomID())),
-(new Item("Matcha Red Bean Paste", "4.25 USD", randomID())),
-(new Item("The Mango Trophy", "5.00 USD", randomID())),
+let icecreamArr = [(new Item("Vanilla & Chocolate", 1.75, randomID())),
+(new Item("Strawberry & Blueberry", 2.00, randomID())),
+(new Item("Matcha Red Bean Paste", 4.25, randomID())),
+(new Item("The Mango Trophy", 5.00, randomID())),
 ];
 
-let drinkArr = [(new Item("Blue Marine", "2.25 USD", randomID())),
-(new Item("Red Sunset", "2.25 USD", randomID())),
-(new Item("Boba Milktea", "1.35 USD", randomID())),
-(new Item("Cream Cheese Coffee", "1.50 USD", randomID())),
-(new Item("Cookie Shake", "2.00 USD", randomID())),
+let drinkArr = [(new Item("Blue Marine", 2.25, randomID())),
+(new Item("Red Sunset", 2.25, randomID())),
+(new Item("Boba Milktea", 1.35, randomID())),
+(new Item("Cream Cheese Coffee", 1.50, randomID())),
+(new Item("Cookie Shake", 2.00, randomID())),
 ];
 
 function randomID() {
@@ -46,152 +46,69 @@ function randomID() {
     return idcode += i;
 };
 
-function showCakeList() {
-    let itemList = document.getElementById("cakeList");
+function selectiveDisplay(listID, listArr) {
+    let itemList = document.getElementById(listID);
     let a = b = c = d = 0, colA = colB = colC = colD = 1;
     let grid = "<table class='productList'><tr>";
-    while (colA <= TABLESIZE && a < cakeArr.length) {
-        grid += "<td><img class='itemImage' src='image\\menu\\" + cakeArr[a].name + ".png' alt='Item Picture'></td>"
+    while (colA <= TABLESIZE && a < listArr.length) {
+        grid += "<td><img class='itemImage' src='image\\menu\\" + listArr[a].name + ".png' alt='Item Picture'></td>"
         colA++, a++;
     };
     grid += "</tr>"
 
-    while (colB <= TABLESIZE && b < cakeArr.length) {
-        grid += "<td>" + cakeArr[b].name + "</td>";
+    while (colB <= TABLESIZE && b < listArr.length) {
+        grid += "<td>" + listArr[b].name + "</td>";
         colB++, b++;
     };
     grid += "</tr>"
 
-    while (colC <= TABLESIZE && c < cakeArr.length) {
-        grid += "<td>" + cakeArr[c].price + "</td>";
+    while (colC <= TABLESIZE && c < listArr.length) {
+        let zeroDigit;
+        if ((listArr[c].price * 10) % 10 == 0) {
+            zeroDigit = ".00";
+        } else if ((listArr[c].price * 100) % 10 == 0) {
+            zeroDigit = "0";
+        } else {
+            zeroDigit = "";
+        };
+        grid += "<td>" + listArr[c].price + zeroDigit + " USD</td>";
         colC++, c++;
     };
     grid += "</tr>"
 
-    while (colD <= TABLESIZE && d < cakeArr.length) {
-        grid += "<td>ID: " + cakeArr[d].id + "</td>";
+    while (colD <= TABLESIZE && d < listArr.length) {
+        grid += "<td>ID: " + listArr[d].id + "</td>";
         colD++, d++;
     };
     grid += "</tr></table>";
     itemList.innerHTML = grid;
 };
 
-function showBreadList() {
-    let itemList = document.getElementById("breadList");
-    let a = b = c = d = 0, colA = colB = colC = colD = 1;
-    let grid = "<table class='productList'><tr>";
-    while (colA <= TABLESIZE && a < breadArr.length) {
-        grid += "<td><img class='itemImage' src='image\\menu\\" + breadArr[a].name + ".png' alt='Item Picture'></td>"
-        colA++, a++;
-    };
-    grid += "</tr>"
-
-    while (colB <= TABLESIZE && b < breadArr.length) {
-        grid += "<td>" + breadArr[b].name + "</td>";
-        colB++, b++;
-    };
-    grid += "</tr>"
-
-    while (colC <= TABLESIZE && c < breadArr.length) {
-        grid += "<td>" + breadArr[c].price + "</td>";
-        colC++, c++;
-    };
-    grid += "</tr>"
-
-    while (colD <= TABLESIZE && d < breadArr.length) {
-        grid += "<td>ID: " + breadArr[d].id + "</td>";
-        colD++, d++;
-    };
-    grid += "</tr></table>";
-    itemList.innerHTML = grid;
-};
-
-function showIcecreamList() {
-    let itemList = document.getElementById("icecreamList");
-    let a = b = c = d = 0, colA = colB = colC = colD = 1;
-    let grid = "<table class='productList'><tr>";
-    while (colA <= TABLESIZE && a < icecreamArr.length) {
-        grid += "<td><img class='itemImage' src='image\\menu\\" + icecreamArr[a].name + ".png' alt='Item Picture'></td>"
-        colA++, a++;
-    };
-    grid += "</tr>"
-
-    while (colB <= TABLESIZE && b < icecreamArr.length) {
-        grid += "<td>" + icecreamArr[b].name + "</td>";
-        colB++, b++;
-    };
-    grid += "</tr>"
-
-    while (colC <= TABLESIZE && c < icecreamArr.length) {
-        grid += "<td>" + icecreamArr[c].price + "</td>";
-        colC++, c++;
-    };
-    grid += "</tr>"
-
-    while (colD <= TABLESIZE && d < icecreamArr.length) {
-        grid += "<td>ID: " + icecreamArr[d].id + "</td>";
-        colD++, d++;
-    };
-    grid += "</tr></table>";
-    itemList.innerHTML = grid;
-};
-
-function showDrinkList() {
-    let itemList = document.getElementById("drinkList");
-    let a = b = c = d = 0, colA = colB = colC = colD = 1;
-    let grid = "<table class='productList'><tr>";
-    while (colA <= TABLESIZE && a < drinkArr.length) {
-        grid += "<td><img class='itemImage' src='image\\menu\\" + drinkArr[a].name + ".png' alt='Item Picture'></td>"
-        colA++, a++;
-    };
-    grid += "</tr>"
-
-    while (colB <= TABLESIZE && b < drinkArr.length) {
-        grid += "<td>" + drinkArr[b].name + "</td>";
-        colB++, b++;
-    };
-    grid += "</tr>"
-
-    while (colC <= TABLESIZE && c < drinkArr.length) {
-        grid += "<td>" + drinkArr[c].price + "</td>";
-        colC++, c++;
-    };
-    grid += "</tr>"
-
-    while (colD <= TABLESIZE && d < drinkArr.length) {
-        grid += "<td>ID: " + drinkArr[d].id + "</td>";
-        colD++, d++;
-    };
-    grid += "</tr></table>";
-    itemList.innerHTML = grid;
+function hideList() {
+    const targetedClass = document.querySelectorAll(".productList");
+    targetedClass.forEach(target => {
+        target.remove();
+    });
 };
 
 function displayList() {
     timeClicked++;
     if (timeClicked % 2 != 0) {
-        showCakeList();
-        showBreadList();
-        showIcecreamList();
-        showDrinkList();
+        selectiveDisplay("cakeList", cakeArr);
+        selectiveDisplay("breadList", breadArr);
+        selectiveDisplay("icecreamList", icecreamArr);
+        selectiveDisplay("drinkList", drinkArr);
     } else if (timeClicked % 2 == 0) {
-        const targetedClass = document.querySelectorAll(".productList");
-        targetedClass.forEach(target => {
-            target.remove();
-        });
+        hideList();
     };
     console.log("Display button clicked:" + timeClicked);
 };
 
 function searchItem() {
-    keywords.value.toLowerCase();
+    let allLower = (keywords.value).toLowerCase();
     if (option.value == "category") {
-
-        const targetedClass = document.querySelectorAll(".productList");
-        targetedClass.forEach(target => {
-            target.remove();
-        });
-
-        switch (keywords.value) {
+        hideList();
+        switch (allLower) {
             case "cake":
             case "cakes":
             case "pastry":
@@ -200,7 +117,7 @@ function searchItem() {
             case "cakes & pastries":
             case "cake and pastry":
             case "cakes and pastries":
-                showCakeList();
+                selectiveDisplay("cakeList", cakeArr);
                 break;
             case "bread":
             case "breads":
@@ -210,40 +127,74 @@ function searchItem() {
             case "breads & sandwiches":
             case "bread and sandwich":
             case "breads and sandwiches":
-                showBreadList();
+                selectiveDisplay("breadList", breadArr);
                 break;
             case "icecream":
             case "icecreams":
-            case "ice": 
+            case "ice":
             case "cream":
             case "frozen dessert":
             case "frozen desserts":
             case "cold dessert":
             case "cold desserts":
-                showIcecreamList();
+                selectiveDisplay("icecreamList", icecreamArr);
                 break;
             case "drink":
             case "drinks":
             case "beverage":
             case "beverages":
             case "water":
-                showDrinkList();
+                selectiveDisplay("drinkList", drinkArr);
                 break;
             case "all":
             case "all items":
             case "everything":
             case "the whole menu":
-                showCakeList();
-                showBreadList();
-                showIcecreamList();
-                showDrinkList();
+                selectiveDisplay("cakeList", cakeArr);
+                selectiveDisplay("breadList", breadArr);
+                selectiveDisplay("icecreamList", icecreamArr);
+                selectiveDisplay("drinkList", drinkArr);
                 break;
             default:
                 alert("We found no items that are called '" + keywords.value + "' in the list... \nPlease try again!");
         };
+
     } else if (option.value == "itemName") {
+        hideList();
+        for (var i = 0; i < cakeArr.length; i++) {
+            if (cakeArr[i].name == keywords.value) {
+                let cakeArrMini = [];
+                cakeArrMini.push(cakeArr[i]);
+                selectiveDisplay("cakeList", cakeArrMini);
+            };
+        };
+
+        for (var i = 0; i < breadArr.length; i++) {
+            if (breadArr[i].name == keywords.value) {
+                let breadArrMini = [];
+                breadArrMini.push(breadArr[i]);
+                selectiveDisplay("breadList", breadArrMini);
+            };
+        };
+
+        for (var i = 0; i < icecreamArr.length; i++) {
+            if (icecreamArr[i].name == keywords.value) {
+                let icecreamArrMini = [];
+                icecreamArrMini.push(icecreamArr[i]);
+                selectiveDisplay("icecreamList", icecreamArrMini);
+            };
+        };
+
+        for (var i = 0; i < drinkArr.length; i++) {
+            if (drinkArr[i].name == keywords.value) {
+                let drinkArrMini = [];
+                drinkArrMini.push(drinkArr[i]);
+                selectiveDisplay("drinkList", drinkArrMini);
+            };
+        };
 
     } else if (option.value == "priceTag") {
-
+        hideList();
+        
     };
 };
