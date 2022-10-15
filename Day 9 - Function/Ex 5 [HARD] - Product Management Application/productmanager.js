@@ -16,7 +16,6 @@ let cakeArr = [(new Item("Chocolate Cake", 25.75, giveID("cake"))),
 (new Item("Blueberry Cheesecake", 35.45, giveID("cake"))),
 (new Item("Matcha Layer Cake", 48.20, giveID("cake"))),
 (new Item("The Silky Milky", 46.00, giveID("cake"))),
-(new Item("Apple Pie", 40.00, giveID("cake"))),
 ];
 
 let breadArr = [(new Item("Grilled Pork Sandwich", 2.55, giveID("bread"))),
@@ -74,13 +73,13 @@ function giveID(listArr) {
 function selectiveDisplay(listID, listArr) {
     let itemList = document.getElementById(listID);
     let a = b = c = d = 0, colA = colB = colC = colD = 1;
-    let grid = "<table class='productList'>";
+    let grid = "<table class='productList'><tr>";
 
     while (colA <= TABLESIZE && a < listArr.length) {
         grid += "<td><img class='itemImage' src='image\\menu\\" + listArr[a].name + ".png' alt='Item Picture'></td>"
         colA++, a++;
     };
-    grid += "</tr > "
+    grid += "</tr>"
 
     while (colB <= TABLESIZE && b < listArr.length) {
         grid += "<td>" + listArr[b].name + "</td>";
@@ -108,7 +107,7 @@ function selectiveDisplay(listID, listArr) {
     };
     grid += "</tr>"
 
-    grid += "</tr></table>";
+    grid += "</table>";
     itemList.innerHTML = grid;
 };
 
@@ -296,7 +295,7 @@ function addItems() {
                 drinkArr.push((new Item(itemName, itemPrice, giveID(category))));
                 break;
             default:
-                alert("Error: Cannot add the requested item. Please try again!");
+                alert("Error: Cannot add the requested items. Please try again!");
                 break;
         };
 
@@ -305,9 +304,285 @@ function addItems() {
 };
 
 function editItems() {
+    let i, itemName, itemID, category, changeRequest;
+    let changeReference = prompt("Do you want to find the target items via its names? Or its IDs? \nPlease type your answer below. \nFor reference, type 'name' for Item Names and 'id' for Item IDs");
+    while (changeReference == "" || changeReference != "name" && changeReference != "id") {
+        alert("Error: Invalid value was inputted. We do not support this modification reference yet! \nFor reference, type 'name' for Item Names and 'id' for Item IDs");
+        changeReference = prompt("Do you want to find the target items via its names? Or its IDs? \nPlease type your answer below. \nFor reference, type 'name' for Item Names and 'id' for Item IDs");
+    };
 
+    switch (changeReference) {
+        case "name":
+            itemName = prompt("What is the item's name that you want to modify? \nPlease type your answer below!");
+            while (itemName == "") {
+                alert("Error: Cannot leave item's name empty. Please input it!");
+                itemName = prompt("What is the item's name that you want to modify? \nPlease type your answer below!");
+            };
+
+            category = prompt("Which category does this item belong to? \nPlease type in the category name!" +
+                "\n For your reference: \n -> Cakes & Pastries is 'cake' \n -> Sandwiches & Breads is 'bread' \n -> Icecreams is 'icecream' \n -> Drinks is 'drinks'");
+            while (category != "cake" && category != "bread" && category != "icecream" && category != "drinks") {
+                alert("Error: Invalid category name was inputted. Please try again!");
+                category = prompt("Which category does this item belong to? \nPlease type in the category name!" +
+                    "\n For your reference: \n -> Cakes & Pastries is 'cake' \n -> Sandwiches & Breads is 'bread' \n -> Icecreams is 'icecream' \n -> Drinks is 'drinks'");
+            };
+
+            switch (category) {
+                case "cake":
+                    for (i = 0; i < cakeArr.length; i++) {
+                        if (itemName == cakeArr[i].name) {
+                            enableEditor(i, cakeArr);
+                            alert("Updated " + itemName + "'s " + changeRequest + " successfully!");
+                        };
+                    };
+                    break;
+                case "bread":
+                    for (i = 0; i < breadArr.length; i++) {
+                        if (itemName == breadArr[i].name) {
+                            enableEditor(i, breadArr);
+                            alert("Updated " + itemName + "'s " + changeRequest + " successfully!");
+                        };
+                    };
+                    break;
+                case "icecream":
+                    for (i = 0; i < icecreamArr.length; i++) {
+                        if (itemName == icecreamArr[i].name) {
+                            enableEditor(i, icecreamArr);
+                            alert("Updated " + itemName + "'s " + changeRequest + " successfully!");
+                        };
+                    };
+                    break;
+                case "drinks":
+                    for (i = 0; i < drinkArr.length; i++) {
+                        if (itemName == drinkArr[i].name) {
+                            enableEditor(i, drinkArr);
+                            alert("Updated " + itemName + "'s " + changeRequest + " successfully!");
+                        };
+                    };
+                    break;
+                default:
+                    alert("Error: Cannot modify the requested items. Please try again!");
+                    break;
+            };
+            break;
+
+        case "id":
+            itemID = prompt("What is the item's ID that you want to modify? \nPlease type your answer below!");
+            while (itemID == "") {
+                alert("Error: Invalid item ID was inputted. Please try again!");
+                itemID = prompt("What is the item's ID that you want to modify? \nPlease type your answer below!");
+            };
+
+            category = prompt("Which category does this item belong to? \nPlease type in the category name!" +
+                "\n For your reference: \n -> Cakes & Pastries is 'cake' \n -> Sandwiches & Breads is 'bread' \n -> Icecreams is 'icecream' \n -> Drinks is 'drinks'");
+            while (category != "cake" && category != "bread" && category != "icecream" && category != "drinks") {
+                alert("Error: Invalid category name was inputted. Please try again!");
+                category = prompt("Which category does this item belong to? \nPlease type in the category name!" +
+                    "\n For your reference: \n -> Cakes & Pastries is 'cake' \n -> Sandwiches & Breads is 'bread' \n -> Icecreams is 'icecream' \n -> Drinks is 'drinks'");
+            };
+
+            switch (category) {
+                case "cake":
+                    for (i = 0; i < cakeArr.length; i++) {
+                        if (itemID == cakeArr[i].id) {
+                            enableEditor(i, cakeArr);
+                            alert("Updated " + itemID + "'s " + changeRequest + " successfully!");
+                        };
+                    };
+                    break;
+                case "bread":
+                    for (i = 0; i < breadArr.length; i++) {
+                        if (itemID == breadArr[i].id) {
+                            enableEditor(i, breadArr);
+                            alert("Updated " + itemID + "'s " + changeRequest + " successfully!");
+                        };
+                    };
+                    break;
+                case "icecream":
+                    for (i = 0; i < icecreamArr.length; i++) {
+                        if (itemID == icecreamArr[i].id) {
+                            enableEditor(i, icecreamArr);
+                            alert("Updated " + itemID + "'s " + changeRequest + " successfully!");
+                        };
+                    };
+                    break;
+                case "drinks":
+                    for (i = 0; i < drinkArr.length; i++) {
+                        if (itemID == drinkArr[i].id) {
+                            enableEditor(i, drinkArr);
+                            alert("Updated " + itemID + "'s " + changeRequest + " successfully!");
+                        };
+                    };
+                    break;
+                default:
+                    alert("Error: Cannot modify the requested items. Please try again!");
+                    break;
+            };
+            break;
+
+        default:
+            alert("We wasn't able to find your requested items. \nPlease double check its names/ids again and try again!");
+            break;
+    };
+
+    function enableEditor(i, listArr) {
+        let ischangeName = confirm("Do you want to change " + itemName + "'s name?");
+        if (ischangeName == true) {
+            changeRequest = "name";
+            let changeKeyword = prompt("Please type in this item's new name.");
+            while (changeKeyword == "") {
+                alert("Error: Cannot leave this item's name blank. \nPlease type in this item's new name!");
+                changeKeyword = prompt("Please type in this item's new name.");
+            };
+
+            listArr[i].name = changeKeyword;
+        };
+        let ischangePrice = confirm("Do you want to change " + itemName + "'s price tag?");
+        if (ischangePrice == true) {
+            changeRequest = "price tag";
+            let changeKeyword = prompt("Please type in this item's new price tag.");
+            while (isNaN(changeKeyword) || changeKeyword == "") {
+                alert("Error: Invalid price tag. \nPlease type in this item's new price tag again!");
+                changeKeyword = prompt("Please type in this item's new price tag.");
+            };
+
+            listArr[i].price = changeKeyword;
+        };
+    };
 };
 
 function deleteItems() {
+    let i, itemName, itemID, category, howManyCount = 1;
+    let howMany = prompt("How many items would you like to remove from the list? \nPlease type your answer below.");
+    while (isNaN(howMany) || howMany <= 0 || howMany > 10 || howMany == "") {
+        alert("Error: Invalid number of items was inputted. Please try again!");
+        howMany = prompt("How many items would you like to remove from the list? \nPlease type your answer below.");
+    };
+    let removeReference = prompt("Do you want to find the target items via its names? Or its IDs? \nPlease type your answer below. \nFor reference, type 'name' for Item Names and 'id' for Item IDs");
+    while (removeReference == "" || removeReference != "name" && removeReference != "id") {
+        alert("Error: Invalid value was inputted. We do not support this remove reference yet! \nFor reference, type 'name' for Item Names and 'id' for Item IDs");
+        removeReference = prompt("Do you want to find the target items via its names? Or its IDs? \nPlease type your answer below. \nFor reference, type 'name' for Item Names and 'id' for Item IDs");
+    };
 
+    switch (removeReference) {
+        case "name":
+            while (howMany > 0) {
+                itemName = prompt("What is the item's name that you want to remove? \nPlease type your answer below! [Item no." + howManyCount + "]");
+                while (itemName == "") {
+                    alert("Error: Cannot leave item's name empty. Please input it!");
+                    itemName = prompt("What is the item's name that you want to remove? \nPlease type your answer below! [Item no." + howManyCount + "]");
+                };
+
+                category = prompt("Which category does this item belong to? \nPlease type in the category name! [Item no." + howManyCount + "]" +
+                    "\n For your reference: \n -> Cakes & Pastries is 'cake' \n -> Sandwiches & Breads is 'bread' \n -> Icecreams is 'icecream' \n -> Drinks is 'drinks'");
+                while (category != "cake" && category != "bread" && category != "icecream" && category != "drinks") {
+                    alert("Error: Invalid category name was inputted. Please try again!");
+                    category = prompt("Which category does this item belong to? \nPlease type in the category name! [Item no." + howManyCount + "]" +
+                        "\n For your reference: \n -> Cakes & Pastries is 'cake' \n -> Sandwiches & Breads is 'bread' \n -> Icecreams is 'icecream' \n -> Drinks is 'drinks'");
+                };
+
+                switch (category) {
+                    case "cake":
+                        for (i = 0; i < cakeArr.length; i++) {
+                            if (itemName == cakeArr[i].name) {
+                                cakeArr.splice(i, 1);
+                                alert("Removed" + itemName + "successfully!");
+                            };
+                        };
+                        break;
+                    case "bread":
+                        for (i = 0; i < breadArr.length; i++) {
+                            if (itemName == breadArr[i].name) {
+                                breadArr.splice(i, 1);
+                                alert("Removed" + itemName + "successfully!");
+                            };
+                        };
+                        break;
+                    case "icecream":
+                        for (i = 0; i < icecreamArr.length; i++) {
+                            if (itemName == icecreamArr[i].name) {
+                                icecreamArr.splice(i, 1);
+                                alert("Removed" + itemName + "successfully!");
+                            };
+                        };
+                        break;
+                    case "drinks":
+                        for (i = 0; i < drinkArr.length; i++) {
+                            if (itemName == drinkArr[i].name) {
+                                drinkArr.splice(i, 1);
+                                alert("Removed" + itemName + "successfully!");
+                            };
+                        };
+                        break;
+                    default:
+                        alert("Error: Cannot remove the requested items. Please try again!");
+                        break;
+                };
+
+                howMany--, howManyCount++;
+            };
+            break;
+
+        case "id":
+            while (howMany > 0) {
+                itemID = prompt("What is the item's ID that you want to remove? \nPlease type your answer below! [Item no." + howManyCount + "]");
+                while (itemID == "") {
+                    alert("Error: Invalid item ID was inputted. Please try again!");
+                    itemID = prompt("What is the item's ID that you want to remove? \nPlease type your answer below! [Item no." + howManyCount + "]");
+                };
+
+                category = prompt("Which category does this item belong to? \nPlease type in the category name! [Item no." + howManyCount + "]" +
+                    "\n For your reference: \n -> Cakes & Pastries is 'cake' \n -> Sandwiches & Breads is 'bread' \n -> Icecreams is 'icecream' \n -> Drinks is 'drinks'");
+                while (category != "cake" && category != "bread" && category != "icecream" && category != "drinks") {
+                    alert("Error: Invalid category name was inputted. Please try again!");
+                    category = prompt("Which category does this item belong to? \nPlease type in the category name! [Item no." + howManyCount + "]" +
+                        "\n For your reference: \n -> Cakes & Pastries is 'cake' \n -> Sandwiches & Breads is 'bread' \n -> Icecreams is 'icecream' \n -> Drinks is 'drinks'");
+                };
+
+                switch (category) {
+                    case "cake":
+                        for (i = 0; i < cakeArr.length; i++) {
+                            if (itemID == cakeArr[i].id) {
+                                cakeArr.splice(i, 1);
+                                alert("Removed" + itemID + "successfully!");
+                            };
+                        };
+                        break;
+                    case "bread":
+                        for (i = 0; i < breadArr.length; i++) {
+                            if (itemID == breadArr[i].id) {
+                                breadArr.splice(i, 1);
+                                alert("Removed" + itemID + "successfully!");
+                            };
+                        };
+                        break;
+                    case "icecream":
+                        for (i = 0; i < icecreamArr.length; i++) {
+                            if (itemID == icecreamArr[i].id) {
+                                icecreamArr.splice(i, 1);
+                                alert("Removed" + itemID + "successfully!");
+                            };
+                        };
+                        break;
+                    case "drinks":
+                        for (i = 0; i < drinkArr.length; i++) {
+                            if (itemID == drinkArr[i].id) {
+                                drinkArr.splice(i, 1);
+                                alert("Removed" + itemID + "successfully!");
+                            };
+                        };
+                        break;
+                    default:
+                        alert("Error: Cannot remove the requested items. Please try again!");
+                        break;
+                };
+
+                howMany--, howManyCount++;
+            };
+            break;
+
+        default:
+            alert("We wasn't able to find your requested items. \nPlease double check its names/ids again and try again!");
+            break;
+    };
 };
