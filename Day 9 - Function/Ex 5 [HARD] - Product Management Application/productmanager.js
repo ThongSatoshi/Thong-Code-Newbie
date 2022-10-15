@@ -304,7 +304,7 @@ function addItems() {
 };
 
 function editItems() {
-    let i, itemName, itemID, category, changeRequest;
+    let i, itemName, itemID, category, ischangeName, ischangePrice, changeRequest;
     let changeReference = prompt("Do you want to find the target items via its names? Or its IDs? \nPlease type your answer below. \nFor reference, type 'name' for Item Names and 'id' for Item IDs");
     while (changeReference == "" || changeReference != "name" && changeReference != "id") {
         alert("Error: Invalid value was inputted. We do not support this modification reference yet! \nFor reference, type 'name' for Item Names and 'id' for Item IDs");
@@ -331,32 +331,28 @@ function editItems() {
                 case "cake":
                     for (i = 0; i < cakeArr.length; i++) {
                         if (itemName == cakeArr[i].name) {
-                            enableEditor(i, cakeArr);
-                            alert("Updated " + itemName + "'s " + changeRequest + " successfully!");
+                            enableEditor(i, cakeArr, itemName);
                         };
                     };
                     break;
                 case "bread":
                     for (i = 0; i < breadArr.length; i++) {
                         if (itemName == breadArr[i].name) {
-                            enableEditor(i, breadArr);
-                            alert("Updated " + itemName + "'s " + changeRequest + " successfully!");
+                            enableEditor(i, breadArr, itemName);
                         };
                     };
                     break;
                 case "icecream":
                     for (i = 0; i < icecreamArr.length; i++) {
                         if (itemName == icecreamArr[i].name) {
-                            enableEditor(i, icecreamArr);
-                            alert("Updated " + itemName + "'s " + changeRequest + " successfully!");
+                            enableEditor(i, icecreamArr, itemName);
                         };
                     };
                     break;
                 case "drinks":
                     for (i = 0; i < drinkArr.length; i++) {
                         if (itemName == drinkArr[i].name) {
-                            enableEditor(i, drinkArr);
-                            alert("Updated " + itemName + "'s " + changeRequest + " successfully!");
+                            enableEditor(i, drinkArr, itemName);
                         };
                     };
                     break;
@@ -385,32 +381,28 @@ function editItems() {
                 case "cake":
                     for (i = 0; i < cakeArr.length; i++) {
                         if (itemID == cakeArr[i].id) {
-                            enableEditor(i, cakeArr);
-                            alert("Updated " + itemID + "'s " + changeRequest + " successfully!");
+                            enableEditor(i, cakeArr, itemID);
                         };
                     };
                     break;
                 case "bread":
                     for (i = 0; i < breadArr.length; i++) {
                         if (itemID == breadArr[i].id) {
-                            enableEditor(i, breadArr);
-                            alert("Updated " + itemID + "'s " + changeRequest + " successfully!");
+                            enableEditor(i, breadArr, itemID);
                         };
                     };
                     break;
                 case "icecream":
                     for (i = 0; i < icecreamArr.length; i++) {
                         if (itemID == icecreamArr[i].id) {
-                            enableEditor(i, icecreamArr);
-                            alert("Updated " + itemID + "'s " + changeRequest + " successfully!");
+                            enableEditor(i, icecreamArr, itemID);
                         };
                     };
                     break;
                 case "drinks":
                     for (i = 0; i < drinkArr.length; i++) {
                         if (itemID == drinkArr[i].id) {
-                            enableEditor(i, drinkArr);
-                            alert("Updated " + itemID + "'s " + changeRequest + " successfully!");
+                            enableEditor(i, drinkArr, itemID);
                         };
                     };
                     break;
@@ -425,8 +417,8 @@ function editItems() {
             break;
     };
 
-    function enableEditor(i, listArr) {
-        let ischangeName = confirm("Do you want to change " + itemName + "'s name?");
+    function enableEditor(i, listArr, indicator) {
+        ischangeName = confirm("Do you want to change " + itemName + "'s name?");
         if (ischangeName == true) {
             changeRequest = "name";
             let changeKeyword = prompt("Please type in this item's new name.");
@@ -434,10 +426,12 @@ function editItems() {
                 alert("Error: Cannot leave this item's name blank. \nPlease type in this item's new name!");
                 changeKeyword = prompt("Please type in this item's new name.");
             };
-
+            
             listArr[i].name = changeKeyword;
+            alert("Updated " + indicator + "'s " + changeRequest + " successfully!");
         };
-        let ischangePrice = confirm("Do you want to change " + itemName + "'s price tag?");
+
+        ischangePrice = confirm("Do you want to change " + itemName + "'s price tag?");
         if (ischangePrice == true) {
             changeRequest = "price tag";
             let changeKeyword = prompt("Please type in this item's new price tag.");
@@ -447,6 +441,11 @@ function editItems() {
             };
 
             listArr[i].price = changeKeyword;
+            alert("Updated " + indicator + "'s " + changeRequest + " successfully!");
+        };
+
+        if (ischangeName == false && ischangePrice == false) {
+            alert(indicator + " didn't get changed anything!");
         };
     };
 };
@@ -485,32 +484,28 @@ function deleteItems() {
                     case "cake":
                         for (i = 0; i < cakeArr.length; i++) {
                             if (itemName == cakeArr[i].name) {
-                                cakeArr.splice(i, 1);
-                                alert("Removed" + itemName + "successfully!");
+                                enableTerminator(i, cakeArr, itemName);
                             };
                         };
                         break;
                     case "bread":
                         for (i = 0; i < breadArr.length; i++) {
                             if (itemName == breadArr[i].name) {
-                                breadArr.splice(i, 1);
-                                alert("Removed" + itemName + "successfully!");
+                                enableTerminator(i, breadArr, itemName);
                             };
                         };
                         break;
                     case "icecream":
                         for (i = 0; i < icecreamArr.length; i++) {
                             if (itemName == icecreamArr[i].name) {
-                                icecreamArr.splice(i, 1);
-                                alert("Removed" + itemName + "successfully!");
+                                enableTerminator(i, icecreamArr, itemName);
                             };
                         };
                         break;
                     case "drinks":
                         for (i = 0; i < drinkArr.length; i++) {
                             if (itemName == drinkArr[i].name) {
-                                drinkArr.splice(i, 1);
-                                alert("Removed" + itemName + "successfully!");
+                                enableTerminator(i, drinkArr, itemName);
                             };
                         };
                         break;
@@ -543,32 +538,28 @@ function deleteItems() {
                     case "cake":
                         for (i = 0; i < cakeArr.length; i++) {
                             if (itemID == cakeArr[i].id) {
-                                cakeArr.splice(i, 1);
-                                alert("Removed" + itemID + "successfully!");
+                                enableTerminator(i, cakeArr, itemID);
                             };
                         };
                         break;
                     case "bread":
                         for (i = 0; i < breadArr.length; i++) {
                             if (itemID == breadArr[i].id) {
-                                breadArr.splice(i, 1);
-                                alert("Removed" + itemID + "successfully!");
+                                enableTerminator(i, breadArr, itemID);
                             };
                         };
                         break;
                     case "icecream":
                         for (i = 0; i < icecreamArr.length; i++) {
                             if (itemID == icecreamArr[i].id) {
-                                icecreamArr.splice(i, 1);
-                                alert("Removed" + itemID + "successfully!");
+                                enableTerminator(i, icecreamArr, itemID);
                             };
                         };
                         break;
                     case "drinks":
                         for (i = 0; i < drinkArr.length; i++) {
                             if (itemID == drinkArr[i].id) {
-                                drinkArr.splice(i, 1);
-                                alert("Removed" + itemID + "successfully!");
+                                enableTerminator(i, drinkArr, itemID);
                             };
                         };
                         break;
@@ -584,5 +575,10 @@ function deleteItems() {
         default:
             alert("We wasn't able to find your requested items. \nPlease double check its names/ids again and try again!");
             break;
+    };
+
+    function enableTerminator(i, listArr, indicator) {
+        listArr.splice(i, 1);
+        alert("Removed " + indicator + " successfully!");
     };
 };
