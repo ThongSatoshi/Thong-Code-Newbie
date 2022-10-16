@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/bootstrap-5.0.2-dist/css/bootstrap.min.css">
-    <title>Ball and bricks</title>
+    <title>Bricks and Ball</title>
 </head>
 
 <body>
     <div class="container pt-5 text-center">
         <canvas id="gameCanvas" width="500" height="500" style="border: 1px solid black"></canvas>
-        <canvas id="gameCanvas" width="300" height="500" style="border: 1px solid black"></canvas>
+        <canvas id="gameMenu" width="300" height="500" style="border: 1px solid black"></canvas>
     </div>
-    <script src="assets/js/Circle.js"></script>
-    <script src="assets/js/Rect.js"></script>
+    <script src="js/circle.js"></script>
+    <script src="js/paddle.js"></script>
     <script>
         let mainFrame = document.getElementById('gameCanvas');
         let gameContext = mainFrame.getContext("2d");
@@ -31,7 +30,7 @@
         let ballCurrentY = mainFrame.height - 70;
         let ball = new Circle(ballCurrentX, ballCurrentY, 10, '#00ff00');
 
-        // draw the paddle 
+        // draw the paddle and ball
         function drawPaddle() {
             gameContext.beginPath();
             gameContext.rect(paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight());
@@ -49,14 +48,14 @@
         }
 
         function updatePaddlePosition() {
-            // xu ly su kien di chuyen cua paddle
+            // Move paddle
             if (paddle.isMovingToLeft()) {
                 paddle.toLeft();
             } else if (paddle.isMovingToRight()) {
                 paddle.toRight();
             }
 
-            // paddle cham 2 ben 
+            // Paddle collides 2 side of the canvas
             if (paddle.getX() < 0) {
                 paddle.x = 0;
             } else if (paddle.getX() > mainFrame.width - paddle.getWidth()) {

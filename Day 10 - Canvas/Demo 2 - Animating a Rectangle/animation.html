@@ -10,13 +10,23 @@
         h1 {
             font-size: 40px;
             font-style: italic;
+            text-align: center;
         }
 
         .button {
-            font-size: 18px;
+            margin-left: 30px;
+            font-size: 20px;
             font-weight: bold;
-            height: 30px;
+            height: 40px;
             width: 150px;
+            border: 2px solid rgb(158, 90, 36);
+            border-radius: 15px;
+            background-color: rgb(223, 187, 126);
+            color: rgb(158, 90, 36);
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -28,11 +38,30 @@
     <br>
     <br>
     <canvas id="canvas" width="1040px" height="500px" style="border:1px solid rgb(0, 0, 0)"></canvas>
+    <img id="water" src="image/water.png" class="hidden">;
+    <img id="grass" src="image/grass.png" class="hidden">;
+    <img id="path" src="image/path.png" class="hidden">;
+    <img id="character" src="image/character.png" class="hidden">;
+
     <script type="text/javascript">
         // Khai báo các biến
         let smallBoatX = 200, smallBoatY = 0, bigBoatX = 380, bigBoatY = 300,
             smallBoatWidth = smallBoatHeight = 100, bigBoatWidth = 100, bigBoatHeight = 200;
         let frame = 10, context = document.getElementById("canvas").getContext("2d");
+
+        // Khai báo các pattern tile
+        let waterTile = document.getElementById("water");
+        let water = context.createPattern(waterTile, "repeat");
+
+        let grassTile = document.getElementById("grass");
+        let grass = context.createPattern(grassTile, "repeat");
+
+        let pathTile = document.getElementById("path");
+        let dirtPath = context.createPattern(pathTile, "repeat");
+
+        let characterTile = document.getElementById("character");
+        let soldier = context.createPattern(characterTile, "no-repeat");
+
         // Tạo lớp và các đối tượng 4 thuyền + người chơi
         class Boat {
             constructor(boatX, boatY, boatWidth, boatHeight, boatSpeed, boatColor) {
@@ -45,20 +74,19 @@
             };
         };
         class Player {
-            constructor(playerX, playerY, playerSize, playerSpeed, playerColor) {
+            constructor(playerX, playerY, playerSize, playerSpeed) {
                 this.playerX = playerX;
                 this.playerY = playerY;
                 this.playerSize = playerSize;
                 this.playerSpeed = playerSpeed;
-                this.playerColor = playerColor;
             };
         };
 
         let smallBoatA = new Boat(smallBoatX, smallBoatY, smallBoatWidth, smallBoatHeight, 9, "rgb(190,190,190)"),
             smallBoatB = new Boat(smallBoatX + 350, smallBoatY, smallBoatWidth, smallBoatHeight, 7, "rgb(190,190,190)");
         let bigBoatA = new Boat(bigBoatX, bigBoatY, bigBoatWidth, bigBoatHeight, 6, "rgb(192,192,192)"),
-            bigBoatB = new Boat(bigBoatX + 350, bigBoatY, bigBoatWidth, bigBoatHeight, 4, "rgb(192,192,192)");
-        let player = new Player(50, 250, 30, 3, "rgb(250, 230, 191)");
+            bigBoatB = new Boat(bigBoatX + 350, bigBoatY, bigBoatWidth, bigBoatHeight, 4);
+        let player = new Player(50, 250, 30, 3);
         drawBackground(), drawSmallBoat(), drawBigBoat(), drawPlayer();
 
         // Reset lại canvas
@@ -68,32 +96,33 @@
 
         function drawBackground() {
             // Vẽ background
-            context.fillStyle = "rgb(0, 255, 255)";
-            context.fillRect(0, 0, canvas.width, canvas.height);
+            context.rect(0, 0, canvas.width, canvas.height);
+            context.fillStyle = water;
+            context.fill();
 
             // Vẽ địa hình
             context.beginPath();
-            context.fillStyle = "rgb(69, 229, 33)";
+            context.fillStyle = grass;
             context.fillRect(0, 0, 100, 100);
 
             context.beginPath();
-            context.fillStyle = "rgb(100, 70, 36)";
+            context.fillStyle = dirtPath;
             context.fillRect(0, 100, 100, 300);
 
             context.beginPath();
-            context.fillStyle = "rgb(69, 229, 33)";
+            context.fillStyle = grass;
             context.fillRect(0, 400, 100, 100);
 
             context.beginPath();
-            context.fillStyle = "rgb(69, 229, 33)";
+            context.fillStyle = grass;
             context.fillRect(940, 0, 100, 100);
 
             context.beginPath();
-            context.fillStyle = "rgb(100, 70, 36)";
+            context.fillStyle = dirtPath;
             context.fillRect(940, 100, 100, 300);
 
             context.beginPath();
-            context.fillStyle = "rgb(69, 229, 33)";
+            context.fillStyle = grass;
             context.fillRect(940, 400, 100, 100);
         };
 
@@ -123,7 +152,7 @@
             //Vẽ người chơi
             context.beginPath();
             context.arc(player.playerX, player.playerY, player.playerSize, 0, 2 * Math.PI);
-            context.fillStyle = player.playerColor;
+            context.fillStyle = soldier;
             context.fill();
             context.stroke();
         };
