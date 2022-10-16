@@ -27,7 +27,7 @@ let breadArr = [(new Item("Grilled Pork Sandwich", 2.55, giveID("bread"))),
 let icecreamArr = [(new Item("Vanilla & Chocolate", 1.75, giveID("icecream"))),
 (new Item("Strawberry & Blueberry", 2.00, giveID("icecream"))),
 (new Item("Matcha Red Bean Paste", 4.25, giveID("icecream"))),
-(new Item("The Mango Trophy", 5.00, giveID("icecream"))),
+(new Item("The Mango Trophy", 6.50, giveID("icecream"))),
 ];
 
 let drinkArr = [(new Item("Blue Marine", 2.25, giveID("drinks"))),
