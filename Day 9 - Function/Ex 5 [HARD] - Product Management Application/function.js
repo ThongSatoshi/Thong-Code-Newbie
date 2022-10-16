@@ -33,9 +33,8 @@ function selectiveDisplay(listID, listArr) {
         grid += "<td>ID: " + listArr[d].id + "</td>";
         colD++, d++;
     };
-    grid += "</tr>"
 
-    grid += "</table>";
+    grid += "</tr></table>";
     itemList.innerHTML = grid;
 };
 
