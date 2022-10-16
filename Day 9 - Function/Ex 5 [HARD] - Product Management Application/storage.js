@@ -37,6 +37,7 @@ let drinkArr = [(new Item("Blue Marine", 2.25, giveID("drinks"))),
 (new Item("Cookie Shake", 2.00, giveID("drinks"))),
 ];
 
+// Give item IDs
 function giveID(listArr) {
     let idCode = idnumber = zeroDigit = "";
     if (itemCount < 9) {

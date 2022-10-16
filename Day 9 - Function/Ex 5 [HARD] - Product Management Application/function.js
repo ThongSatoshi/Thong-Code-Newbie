@@ -1,3 +1,4 @@
+// Display a certain items/item categories
 function selectiveDisplay(listID, listArr) {
     let itemList = document.getElementById(listID);
     let a = b = c = d = 0, colA = colB = colC = colD = 1;
@@ -38,6 +39,7 @@ function selectiveDisplay(listID, listArr) {
     itemList.innerHTML = grid;
 };
 
+// Hide item list
 function hideList() {
     const targetedClass = document.querySelectorAll(".productList");
     targetedClass.forEach(target => {
@@ -45,6 +47,7 @@ function hideList() {
     });
 };
 
+// Display the whole item list
 function displayList() {
     timeClicked++;
     if (timeClicked % 2 != 0) {
@@ -58,6 +61,7 @@ function displayList() {
     console.log("Display button clicked:" + timeClicked);
 };
 
+// Search function
 function searchItem() {
     let allLower = (keywords.value).toLowerCase();
     if (option.value == "category") {
@@ -183,6 +187,7 @@ function searchItem() {
     };
 };
 
+// Add item to list function
 function addItems() {
     let itemName, itemPrice, category, howManyCount = 1, howMany = prompt("How many items would you like to add in the list? \nPlease type your answer below.");
     while (isNaN(howMany) || howMany <= 0 || howMany > 10 || howMany == "") {
@@ -230,6 +235,7 @@ function addItems() {
     };
 };
 
+// Edit the existing item function
 function editItems() {
     let i, itemName, itemID, category, ischangeName, ischangePrice, changeRequest;
     let changeReference = prompt("Do you want to find the target items via its names? Or its IDs? \nPlease type your answer below. \nFor reference, type 'name' for Item Names and 'id' for Item IDs");
@@ -377,6 +383,7 @@ function editItems() {
     };
 };
 
+// Delete item function
 function deleteItems() {
     let i, itemName, itemID, category, howManyCount = 1;
     let howMany = prompt("How many items would you like to remove from the list? \nPlease type your answer below.");
