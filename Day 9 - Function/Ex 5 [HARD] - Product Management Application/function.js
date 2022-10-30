@@ -1,40 +1,50 @@
 // Display a certain items/item categories
 function selectiveDisplay(listID, listArr) {
     let itemList = document.getElementById(listID);
-    let a = b = c = d = 0, colA = colB = colC = colD = 1;
-    let grid = "<table class='productList'><tr>";
-
-    while (colA <= TABLESIZE && a < listArr.length) {
-        grid += "<td><img class='itemImage' src='image\\menu\\" + listArr[a].name + ".png' alt='Item Picture'></td>"
-        colA++, a++;
+    let grid = "<table class='productList'>";
+    let a = b = c = d = 0;
+    let row;
+    if (listArr.length > TABLESIZE) {
+        row = listArr.length % TABLESIZE;
+    } else {
+        row = 0;
     };
-    grid += "</tr>"
 
-    while (colB <= TABLESIZE && b < listArr.length) {
-        grid += "<td>" + listArr[b].name + "</td>";
-        colB++, b++;
-    };
-    grid += "</tr>"
+    for (row; row >= 0; row--) {
+        grid += "<tr>";
+        let colA = colB = colC = colD = 1;
 
-    while (colC <= TABLESIZE && c < listArr.length) {
-        let zeroDigit;
-        if ((listArr[c].price * 10) % 10 == 0) {
-            zeroDigit = ".00";
-        } else if ((listArr[c].price * 100) % 10 == 0) {
-            zeroDigit = "0";
-        } else {
-            zeroDigit = "";
+        while (colA <= TABLESIZE && a < listArr.length) {
+            grid += "<td><img class='itemImage' src='image\\menu\\" + listArr[a].name + ".png' alt='Item Picture'></td>"
+            colA++, a++;
         };
-        grid += "<td>" + listArr[c].price + zeroDigit + " USD</td>";
-        colC++, c++;
-    };
-    grid += "</tr>"
+        grid += "</tr>"
 
-    while (colD <= TABLESIZE && d < listArr.length) {
-        grid += "<td>ID: " + listArr[d].id + "</td>";
-        colD++, d++;
-    };
+        while (colB <= TABLESIZE && b < listArr.length) {
+            grid += "<td>" + listArr[b].name + "</td>";
+            colB++, b++;
+        };
+        grid += "</tr>"
 
+        while (colC <= TABLESIZE && c < listArr.length) {
+            let zeroDigit;
+            if ((listArr[c].price * 10) % 10 == 0) {
+                zeroDigit = ".00";
+            } else if ((listArr[c].price * 100) % 10 == 0) {
+                zeroDigit = "0";
+            } else {
+                zeroDigit = "";
+            };
+            grid += "<td>" + listArr[c].price + zeroDigit + " USD</td>";
+            colC++, c++;
+        };
+        grid += "</tr>"
+
+        while (colD <= TABLESIZE && d < listArr.length) {
+            grid += "<td>ID: " + listArr[d].id + "</td>";
+            colD++, d++;
+        };
+    };
     grid += "</tr></table>";
     itemList.innerHTML = grid;
 };

@@ -6,42 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khởi tạo hoạt hình</title>
+    <link rel="stylesheet" href="format.css">
     <style>
-        h1 {
-            font-size: 40px;
-            font-style: italic;
-            text-align: center;
-        }
-
-        .button {
-            margin-left: 30px;
-            font-size: 20px;
-            font-weight: bold;
-            height: 40px;
-            width: 150px;
-            border: 2px solid rgb(158, 90, 36);
-            border-radius: 15px;
-            background-color: rgb(223, 187, 126);
-            color: rgb(158, 90, 36);
-        }
-
-        .hidden {
-            display: none;
+        body,html {
+            height: 100%;
         }
     </style>
 </head>
 
 <body>
-    <h1>Khởi tạo hoạt hình (Mẫu game demo "Qua sông")</h1>
-    <button class="button" type="button" onclick="runGame()">Start game</button>
-    <button class="button" type="button" onclick="location.reload()">Reset game</button>
-    <br>
-    <br>
-    <canvas id="canvas" width="1040px" height="500px" style="border:1px solid rgb(0, 0, 0)"></canvas>
-    <img id="water" src="image/water.png" class="hidden">;
-    <img id="grass" src="image/grass.png" class="hidden">;
-    <img id="path" src="image/path.png" class="hidden">;
-    <img id="character" src="image/character.png" class="hidden">;
+    <div id="background"></div>
+    <div id="content">
+        <h1>Game "Qua sông" (game demo sử dụng JS Canvas)</h1>
+        <button class="button" type="button" onclick="runGame()">Start game now!</button>
+        <button class="button" type="button" onclick="location.reload()">Reset the game</button>
+        <br>
+        <br>
+        <canvas id="canvas" width="1040px" height="500px"></canvas>
+        <img id="water" src="image/water.png" class="hidden">
+        <img id="grass" src="image/grass.png" class="hidden">
+        <img id="path" src="image/path.png" class="hidden">
+        <img id="character" src="image/character.png" class="hidden">
+    </div>
 
     <script type="text/javascript">
         // Khai báo các biến
