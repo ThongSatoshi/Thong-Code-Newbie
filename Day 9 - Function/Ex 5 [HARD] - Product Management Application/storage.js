@@ -16,7 +16,6 @@ let cakeArr = [(new Item("Chocolate Cake", 25.75, giveID("cake"))),
 (new Item("Blueberry Cheesecake", 35.45, giveID("cake"))),
 (new Item("Matcha Layer Cake", 48.20, giveID("cake"))),
 (new Item("The Silky Milky", 46.00, giveID("cake"))),
-(new Item("The Silky Milky", 46.00, giveID("cake"))),
 ];
 
 let breadArr = [(new Item("Grilled Pork Sandwich", 2.55, giveID("bread"))),
