@@ -1,7 +1,6 @@
 #background {
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
     right: 0;
     z-index: -1;
@@ -11,6 +10,22 @@
     width: 1349px;
     height: 950px;
     filter: blur(5px);
+}
+
+#noteContent {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    background-image: url("image/background3.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 1349px;
+    height: 550px;
+    filter: blur(5px);
+    transform: translateY(951px);
 }
 
 #content {
@@ -55,7 +70,7 @@ h1 {
     background-color: rgb(199, 160, 100);
     box-shadow: 0 5px rgb(83, 47, 19);
     transform: translateX(455px);
-  }
+}
 
 #canvas {
     margin-left: 120px;
