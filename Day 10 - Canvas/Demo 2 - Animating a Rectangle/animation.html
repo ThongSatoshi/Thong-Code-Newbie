@@ -27,9 +27,7 @@
 
     <script type="text/javascript">
         // Khai báo các biến
-        let smallBoatX = 200, smallBoatY = 0, bigBoatX = 380, bigBoatY = 300,
-            smallBoatWidth = smallBoatHeight = 100, bigBoatWidth = 100, bigBoatHeight = 200;
-        let frame = 10, context = document.getElementById("canvas").getContext("2d");
+        let frame = 10, canvas = document.getElementById("canvas"), context = canvas.getContext("2d");
         let startButton = document.getElementById("startBtn");
         let resetButton = document.getElementById("resetBtn");
         let isRunning = isWinning = false;
