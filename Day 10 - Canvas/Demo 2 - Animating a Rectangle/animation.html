@@ -23,14 +23,18 @@
         <img id="grass" src="image/grass.png" class="hidden">
         <img id="path" src="image/path.png" class="hidden">
     </div>
-    <div id="noteContent"></div>
+    <div id="noteContent">
+        <pre id="guide">
+            A soldier needs to get across the river 
+        </pre>
+    </div>
 
     <script type="text/javascript">
         // Khai báo các biến
         let frame = 10, canvas = document.getElementById("canvas"), context = canvas.getContext("2d");
         let startButton = document.getElementById("startBtn");
         let resetButton = document.getElementById("resetBtn");
-        let isRunning = isWinning = false;
+        let isRunning = isWinning = isDead = false;
 
         // Khai báo các pattern tile
         let waterTile = document.getElementById("water");

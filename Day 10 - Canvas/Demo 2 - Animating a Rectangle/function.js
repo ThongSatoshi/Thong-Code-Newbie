@@ -82,7 +82,7 @@ startButton.addEventListener("click", function () {
     } else {
         runGame();
         canvas.scrollIntoView(false);
-        window.addEventListener("scroll", function(){
+        window.addEventListener("scroll", function () {
             canvas.scrollIntoView(false);
         });
     };
@@ -156,6 +156,7 @@ function playerMovement() {
     } else if ((player.playerY + player.playerSize) >= canvas.height) {
         player.playerY -= player.playerSize;
     };
+
     if (player.playerX <= player.playerSize) {
         player.playerX += player.playerSize;
     } else if ((player.playerX + player.playerSize) >= canvas.width) {
@@ -191,5 +192,70 @@ function checkWinner() {
 
 // Kiểm tra xem nhân vật va chạm các thuyền?
 function checkCollision() {
-    
+    if (isDead == false) {
+        checkCollision_SmallBoat();
+        checkCollision_BigBoat();
+
+        // Kiểm tra xem nhân vật có va chạm thuyền nhỏ?
+        function checkCollision_SmallBoat() {
+            // Khai báo các biến tọa độ
+            let distX = player.playerX, distY = player.playerY;
+            
+            let smallBoatA_Left = smallBoatA.smallBoatX,
+                smallBoatA_Right = (smallBoatA.smallBoatX + smallBoatA.smallBoatWidth),
+                smallBoatA_Top = smallBoatA.smallBoatY,
+                smallBoatA_Bottom = (smallBoatA.smallBoatY + smallBoatA.smallBoatHeight);
+
+            let smallBoatB_Left = smallBoatB.smallBoatX,
+                smallBoatB_Right = (smallBoatB.smallBoatX + smallBoatB.smallBoatWidth),
+                smallBoatB_Top = smallBoatB.smallBoatY,
+                smallBoatB_Bottom = (smallBoatB.smallBoatY + smallBoatB.smallBoatHeight);
+            
+            // Chọn điểm đo tọa độ distX
+            if (player.playerX < smallBoatA_Left && player.playerX < smallBoatB_Left) {
+                distX = smallBoatA_Left;
+            } else if (player.playerX > smallBoatA_Right && player.playerX > smallBoatB_Right) {
+                distX = smallBoatB_Right;
+            } else if (player.playerX > smallBoatA_Right) {
+                var testA = smallBoatA_Right, testB = smallBoatB_Left
+                if (testA < ((testA + testB) / 2)) {
+                    distX = smallBoatA_Right;
+                } else {
+                    distX = smallBoatB_Left;
+                };
+            };
+
+            // Chọn điểm đo tọa độ distY
+            if (player.playerY < smallBoatA_Top && (distX == smallBoatA_Left || distX == smallBoatA_Right)) {
+                distY = smallBoatA_Top;
+            } else if (player.playerY > smallBoatA_Bottom && (distX == smallBoatA_Left || distX == smallBoatA_Right)) {
+                distY = smallBoatA_Bottom;
+            } else if (player.playerY < smallBoatB_Top && (distX == smallBoatB_Left || distX == smallBoatB_Right)) {
+                distY = smallBoatB_Top;
+            } else {
+                distY = smallBoatB_Bottom;
+            };
+
+            let dX = player.playerX - distX;
+            let dY = player.playerY - distY;
+
+            // Kiểm tra va chạm (dùng định lí Pythagoras)
+            if (Math.pow(dX, 2) + Math.pow(dY, 2) <= Math.pow(player.playerSize, 2)) {
+                isDead = true;
+                alert("Better luck next time. The soldier has been caught by the enemy's boat!");
+                let isReset = confirm("Do you want to try again?");
+                if (isReset == true) {
+                    isRunning = isWinning = false;
+                    return location.reload();
+                } else {
+                    return;
+                };
+            };
+        };
+
+        // Kiểm tra xem nhân vật có va chạm thuyền lớn?
+        function checkCollision_BigBoat() {
+
+        };
+    };
 };
