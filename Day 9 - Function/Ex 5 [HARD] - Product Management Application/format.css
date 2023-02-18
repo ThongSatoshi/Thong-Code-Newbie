@@ -74,7 +74,7 @@ p {
     font-size: 17px;
     font-weight: bold;
     width: 100%;
-    border: 2px solid rgb(158, 90, 36);
+    border: 3px solid rgb(158, 90, 36);
     border-radius: 15px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -82,7 +82,8 @@ p {
     padding-right: 10px;
     border-spacing: 10px;
     table-layout: fixed;
-    color:rgb(160, 105, 80);
+    color:rgb(158, 90, 36);
+    background-color: rgb(223, 188, 126);
 }
 
 #creditTable {
@@ -105,6 +106,6 @@ p {
 .itemImage {
     width: 150px;
     height: 170px;
-    border: 2.5px solid rgb(160, 105, 80);
+    border: 3px solid rgb(160, 105, 80);
     border-radius: 10px;
 }
