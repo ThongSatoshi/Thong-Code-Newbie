@@ -64,6 +64,7 @@ function checkWinner() {
     if (isWinning == false) {
         if ((player.playerX + player.playerSize) > (940 + player.playerSize * 2)) {
             isWinning = true;
+            playAudio("congrat");
             alert("Congratulation. The soldier has crossed the river safely!");
             let isReset = confirm("Do you want to restart this game again?");
             if (isReset == true) {
@@ -76,31 +77,17 @@ function checkWinner() {
     };
 };
 
+
+// Tính toán vị trí các thuyền
+function trackSmallBoatA() {
+
+}
+
 // Kiểm tra xem nhân vật va chạm các thuyền?
 function checkCollision() {
-    if (isDead == false) {
-        let hitboxX = player.playerX - player.playerSize,
-        hitboxY = player.playerY - player.playerSize;
-
-        // Kiểm tra va chạm giữa người chơi và thuyền nhỏ
-        let halfXSmallBoatA = smallBoatA.boatX + smallBoatA.boatWidth / 2;
-        let halfXSmallBoatB = smallBoatB.boatX + smallBoatB.boatWidth / 2;
-        let halfYSmallBoatA = smallBoatA.boatY + smallBoatA.boatHeight / 2;
-        let halfYSmallBoatB = smallBoatB.boatY + smallBoatB.boatHeight / 2;
-        if (((hitboxX + player.playerSize - halfXSmallBoatA) <= ((hitboxSize + smallBoatA.boatWidth) / 2))
-            || ((hitboxX + player.playerSize - halfXSmallBoatB) <= ((hitboxSize + smallBoatB.boatWidth) / 2))
-            || ((hitboxY + player.playerSize - halfYSmallBoatA) <= ((hitboxSize + smallBoatA.boatHeight) / 2))
-            || ((hitboxY + player.playerSize - halfYSmallBoatB) <= ((hitboxSize + smallBoatB.boatHeight) / 2))) {
-
-            isDead = true;
-            alert("Too bad! The enemy boat has caught the soldier");
-            let isReset = confirm("Do you want to retry?");
-            if (isReset == true) {
-                isRunning = isDead = false;
-                return location.reload();
-            } else {
-                return;
-            };
-        };
+    if (isWinning == false) {
+        // if (hitboxSize >= 0)
+            // playAudio("missionFailed");
+            return;
     };
 };

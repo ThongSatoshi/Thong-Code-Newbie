@@ -5,7 +5,6 @@ let smallBoatA = new Boat(smallBoatX, smallBoatY, smallBoatSize, smallBoatSize, 
 let bigBoatA = new Boat(bigBoatX, bigBoatY, bigBoatWidth, bigBoatHeight, 3, "rgb(192,192,192)"),
     bigBoatB = new Boat(bigBoatX + 350, bigBoatY, bigBoatWidth, bigBoatHeight, 3, "rgb(192,192,192)");
 let player = new Player(50, 250, 30, 10, "rgb(255, 233, 220)");
-let hitboxSize = player.playerSize * 2;
 
 drawBackground(), drawSmallBoat(), drawBigBoat(), drawPlayer(), drawHitBox();
 
@@ -80,9 +79,10 @@ function drawPlayer() {
 function drawHitBox() {
     // Vẽ hitbox
     let hitboxX = player.playerX - player.playerSize,
-        hitboxY = player.playerY - player.playerSize;
+        hitboxY = player.playerY - player.playerSize,
+        hitBoxSize = player.playerSize * 2;
     context.beginPath();
-    context.strokeRect(hitboxX, hitboxY, hitboxSize, hitboxSize);
+    context.strokeRect(hitboxX, hitboxY, hitBoxSize, hitBoxSize);
 };
 
 // Kiểm tra xem game có đang chạy ko (có bấm nút start game bao giờ chưa)
@@ -102,6 +102,7 @@ startButton.addEventListener("click", function () {
 function runGame() {
     resetCanvas();
     isRunning = true;
+    playAudio("startMission");
     // Khởi tạo hoạt hình thuyền nhỏ
     function smallBoatAnimation() {
         if (smallBoatA.boatY < 0 || (smallBoatA.boatY + smallBoatA.boatHeight) > canvas.height) {
@@ -138,8 +139,6 @@ function runGame() {
     setInterval(checkCollision, frame);
 };
 
-
-
 // Reset tất cả về trạng thái ban đầu
 resetButton.addEventListener("click", function () {
     let isReset = confirm("Do you want to leave this game now?");
@@ -148,3 +147,34 @@ resetButton.addEventListener("click", function () {
         return location.reload();
     };
 });
+
+// Play SFX/BGM
+function playAudio(track) {
+    sound1 = document.getElementById("sound1");
+    sound2 = document.getElementById("sound2");
+    sound3 = document.getElementById("sound3");
+
+    switch (track) {
+        case "startMission":
+            sound1.volume = 0.5;
+            sound1.currentTime = 0;
+            sound1.loop = !isWinning;
+            sound2.pause();
+            sound1.play();
+            break;
+        case "congrat":
+            sound2.volume = 1;
+            sound2.currentTime = 0;
+            sound1.pause();
+            sound2.loop = isWinning;
+            sound2.play();
+            break;
+        case "missionFailed":
+            sound3.volume = 1;
+            sound3.currentTime = 0;
+            sound1.pause();
+            sound3.loop = isWinning;
+            sound3.play();
+            break;
+    };
+};

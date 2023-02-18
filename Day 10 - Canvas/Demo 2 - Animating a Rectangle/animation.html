@@ -16,6 +16,18 @@
         <button class="button" id="startBtn" type="button">Start game now!</button>
         <button class="button" id="resetBtn" type="button">Reset the game</button>
         <br>
+        <audio id="sound1" controls>
+            <source src="audio\gamebgm.mp3" type="audio/mpeg">
+            [Error] Your browser doesn't support this audio format
+        </audio>
+        <audio id="sound2">
+            <source src="audio\congrat.mp3" type="audio/mpeg">
+            [Error] Your browser doesn't support this audio format
+        </audio>
+        <audio id="sound3">
+            <source src="audio\gameover.mp3" type="audio/mpeg">
+            [Error] Your browser doesn't support this audio format
+        </audio>
         <br>
         <br>
         <canvas id="canvas" width="1040px" height="500px"></canvas>
@@ -28,57 +40,62 @@
         <table>
             <tr>
                 <td>
-                    <pre class="note">
-                        <P class="title">📝 HOW TO PLAY？</P>
-    You are a soldier who is on a mission to deliver food packets & ammunition
-    through some dense tropical jungles and dangerous rivers to your teammates.
-    You have to make it through the enemy's patrol boats.
-    If they caught you, you will have a very bad time. 
+                    <div>
+                        <pre class="note">
+    <P class="title">📝 HOW TO PLAY？</P>
+    You are a soldier who was tasked with on an important mission,
+    that is delivering food packets & ammunition through some dense 
+    tropical jungles and dangerous rivers to your teammates.
+    
+    You have to make it through the enemy boats' patrol line.
+    If they caught you, you will have a very bad time.
     So stealth and patience is the key.
-                                
+
     ======== For your information ========
-                 ↑
-    Use  ← ↓ →   or  W A S D   to move around the map
-                                
+                ↑
+    Use ← ↓ → or W A S D to move around the map
+
     Win condition: Got to the riverbank on the other side safely
     Lose conditon: Got caught by enemy's patrol boats
     ================================
-                    </pre>
+    </pre>
+                    </div>
                 </td>
 
-                <td>
-                    <pre class="note">
+                <td class="note">
+                    <div>
                         <p class="title">This is a demo game, created by Thong Satoshi</p>
+                        <table id="creditTable">
+                            <tr>
+                                <td>
+                                    <a href="https://twitter.com/satoshi060799" target="_blank"><img class="iconImage"
+                                            src="image\twitterIcon.png" alt="Twitter"></a>
+                                </td>
+                                <td>
+                                    <a href="https://discordapp.com/users/Satoshi#4079" target="_blank"><img
+                                            class="iconImage" src="image\discordIcon.png" alt="Discord"></a>
+                                </td>
+                                <td>
+                                    <a href="https://github.com/ThongSatoshi" target="_blank"><img class="iconImage"
+                                            src="image\githubIcon.png" alt="GitHub"></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Twitter</td>
+                                <td>Discord</td>
+                                <td>GitHub</td>
+                            </tr>
+                        </table>
+                        <pre class="credit">
     ======== Credit ========
     Music: 
-
-    Art: 
-
+    "Strange Occurrences" by Phyrnna (Twitter <a href="https://twitter.com/phyrnna" target="_blank">@Phyrnna</a>)
+    
+    Art:
+    
     ======================
-                    </pre>
-
-                    <table id="creditTable">
-                        <tr>
-                            <td>
-                                <a href="https://twitter.com/satoshi060799" target="_blank">
-                                <img class="iconImage" src="image\twitterIcon.png" alt="Twitter"></a>
-                            </td>
-                            <td>
-                                <a href="https://discordapp.com/users/Satoshi#4079" target="_blank">
-                                <img class="iconImage" src="image\discordIcon.png" alt="Discord"></a>
-                            </td>
-                            <td>
-                                <a href="https://github.com/ThongSatoshi" target="_blank">
-                                <img class="iconImage" src="image\githubIcon.png" alt="GitHub"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Twitter</td>
-                            <td>Discord</td>
-                            <td>GitHub</td>
-                        </tr>
-                    </table>
-
+    </pre>
+                    </div>
                 </td>
             </tr>
         </table>
