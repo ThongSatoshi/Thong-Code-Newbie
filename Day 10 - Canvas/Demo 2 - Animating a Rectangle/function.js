@@ -80,8 +80,19 @@ function checkWinner() {
 // Kiểm tra xem nhân vật va chạm các thuyền?
 function checkCollision() {
     if (isWinning == false) {
-        // if (hitboxSize >= 0)
-            // playAudio("missionFailed");
-            return;
+        if ((player.getPlayerX() * 2 + player.getPlayerSize() >= smallBoatA.getBoatX()
+        || player.getPlayerX() >= smallBoatA.getBoatX() * 2 + smallBoatA.getBoatWidth())
+        && (player.getPlayerY() * 2 + player.getPlayerSize() >= smallBoatA.getBoatY()
+        || player.getPlayerY() >= smallBoatA.getBoatY() * 2 + smallBoatA.getBoatHeight())) {
+            playAudio("missionFailed");
+            alert("Oh no. The soldier has got caught by the enemy!");
+            let isReset = confirm("Do you want to try again?");
+            if (isReset == true) {
+                isRunning = isWinning = false;
+                return location.reload();
+            } else {
+                return;
+            };
+        };
     };
 };
