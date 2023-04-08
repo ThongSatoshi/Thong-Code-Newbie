@@ -34,6 +34,7 @@
         <img id="water" src="image/water.png" class="hidden">
         <img id="grass" src="image/grass.png" class="hidden">
         <img id="path" src="image/path.png" class="hidden">
+        <img id="soldier" src="image/character.png" class="hidden">
     </div>
     <div id="background2"></div>
     <div id="noteContent">
@@ -89,10 +90,12 @@
                         <pre class="credit">
     ======== Credit ========
     Music: 
-    "Strange Occurrences" by Phyrnna (Twitter <a href="https://twitter.com/phyrnna" target="_blank">@Phyrnna</a>)
+    "Strange Occurrences" by Phyrnna (<a href="https://twitter.com/phyrnna" target="_blank">@Phyrnna</a>)
     
     Art:
-    
+    "Jungle Game Background" by Sham Canggih (<a href="https://www.shutterstock.com/g/scworkspace" target="_blank">@scworkspace</a>)
+    "Pixel Cave" by Alicia Magistrello (<a href="https://twitter.com/Gazyelle" target="_blank">@Gazyelle</a>)
+    Other pixel arts and the wooden border are free-to-use assets.
     ======================
     </pre>
                     </div>
@@ -118,6 +121,8 @@
         let pathTile = document.getElementById("path");
         let dirtPath = context.createPattern(pathTile, "repeat");
 
+        let playerAvatar = document.getElementById("soldier");
+
         // Tạo lớp và các đối tượng 4 thuyền + người chơi
         class Boat {
             constructor(boatX, boatY, boatWidth, boatHeight, boatSpeed, boatColor) {
@@ -128,7 +133,24 @@
                 this.boatSpeed = boatSpeed;
                 this.boatColor = boatColor;
             };
+
+            getBoatX() {
+                return this.boatX;
+            };
+
+            getBoatY() {
+                return this.boatY;
+            };
+
+            getBoatWidth() {
+                return this.boatWidth;
+            };
+
+            getBoatHeight() {
+                return this.boatHeight;
+            };
         };
+
         class Player {
             constructor(playerX, playerY, playerSize, playerSpeed, playerColor) {
                 this.playerX = playerX;
@@ -136,6 +158,18 @@
                 this.playerSize = playerSize;
                 this.playerSpeed = playerSpeed;
                 this.playerColor = playerColor;
+            };
+
+            getPlayerX() {
+                return this.playerX;
+            };
+
+            getPlayerY() {
+                return this.playerY;
+            };
+
+            getPlayerSize() {
+                return this.playerSize;
             };
         };
     </script>

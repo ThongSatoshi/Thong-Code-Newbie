@@ -77,12 +77,6 @@ function checkWinner() {
     };
 };
 
-
-// Tính toán vị trí các thuyền
-function trackSmallBoatA() {
-
-}
-
 // Kiểm tra xem nhân vật va chạm các thuyền?
 function checkCollision() {
     if (isWinning == false) {

@@ -6,7 +6,7 @@ let bigBoatA = new Boat(bigBoatX, bigBoatY, bigBoatWidth, bigBoatHeight, 3, "rgb
     bigBoatB = new Boat(bigBoatX + 350, bigBoatY, bigBoatWidth, bigBoatHeight, 3, "rgb(192,192,192)");
 let player = new Player(50, 250, 30, 10, "rgb(255, 233, 220)");
 
-drawBackground(), drawSmallBoat(), drawBigBoat(), drawPlayer(), drawHitBox();
+drawBackground(), drawSmallBoat(), drawBigBoat(), drawPlayer();
 
 // Reset lại canvas
 function resetCanvas() {
@@ -73,16 +73,8 @@ function drawPlayer() {
     context.fillStyle = player.playerColor;
     context.arc(player.playerX, player.playerY, player.playerSize, 0, 2 * Math.PI);
     context.fill();
+    context.drawImage(playerAvatar, (player.playerX - player.playerSize), (player.playerY - player.playerSize), player.playerSize*2, player.playerSize*2);
     context.stroke();
-};
-
-function drawHitBox() {
-    // Vẽ hitbox
-    let hitboxX = player.playerX - player.playerSize,
-        hitboxY = player.playerY - player.playerSize,
-        hitBoxSize = player.playerSize * 2;
-    context.beginPath();
-    context.strokeRect(hitboxX, hitboxY, hitBoxSize, hitBoxSize);
 };
 
 // Kiểm tra xem game có đang chạy ko (có bấm nút start game bao giờ chưa)
@@ -134,7 +126,6 @@ function runGame() {
     setInterval(smallBoatAnimation, frame);
     setInterval(bigBoatAnimation, frame);
     setInterval(drawPlayer, frame);
-    setInterval(drawHitBox, frame);
     setInterval(checkWinner, frame);
     setInterval(checkCollision, frame);
 };
