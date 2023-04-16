@@ -1,9 +1,9 @@
 let smallBoatX = 200, smallBoatY = 0, bigBoatX = 380, bigBoatY = 300,
-    smallBoatSize = 100, bigBoatWidth = 100, bigBoatHeight = 200;
+    smallBoatSize = 80, bigBoatWidth = 100, bigBoatHeight = 200;
 let smallBoatA = new Boat(smallBoatX, smallBoatY, smallBoatSize, smallBoatSize, 5, "rgb(190,190,190)"),
-    smallBoatB = new Boat(smallBoatX + 350, smallBoatY, smallBoatSize, smallBoatSize, 5, "rgb(190,190,190)");
+    smallBoatB = new Boat(smallBoatX + 380, smallBoatY, smallBoatSize, smallBoatSize, 5, "rgb(190,190,190)");
 let bigBoatA = new Boat(bigBoatX, bigBoatY, bigBoatWidth, bigBoatHeight, 3, "rgb(192,192,192)"),
-    bigBoatB = new Boat(bigBoatX + 350, bigBoatY, bigBoatWidth, bigBoatHeight, 3, "rgb(192,192,192)");
+    bigBoatB = new Boat(bigBoatX + 380, bigBoatY, bigBoatWidth, bigBoatHeight, 3, "rgb(192,192,192)");
 let player = new Player(50, 250, 30, 10, "rgb(255, 233, 220)");
 
 drawBackground(), drawSmallBoat(), drawBigBoat(), drawPlayer();
