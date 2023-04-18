@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Web ăn táo</title>
+    <style>
+        h1 {
+            font-style: italic;
+        }
+
+        .button {
+            font-size: 20px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <h1>Web ăn táo</h1>
+    <button class="button" type="button" onclick="loadCanvas()">Tải Canvas</button>
+    <button class="button" type="button" onclick="startGame()">Bắt đầu</button>
+    <br>
+    <br>
+    <div style="display:none;">
+        <img id="source" src="EdenBG.png" width="1000" height="450">
+    </div>
+    <br>
+    <canvas id="canvas" width="1000px" height="450px" style="border:3px solid rgb(0, 0, 0)"></canvas>
+    <script type="text/javascript">
+        let context = document.getElementById("canvas").getContext("2d");
+        let img = document.getElementById("source");
+
+        function loadCanvas() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.beginPath();
+            context.drawImage(img, 0, 0);
+        };
+    </script>
 </body>
+
 </html>
