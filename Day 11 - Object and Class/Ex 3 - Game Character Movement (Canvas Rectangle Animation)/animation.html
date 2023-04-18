@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoạt họa hình chữ Nhật</title>
+    <link rel="stylesheet" href="format.css">
+</head>
+
+<body>
+    <div id="background1"></div>
+    <div id="content">
+        <h1>Game "Qua sông" (game demo sử dụng JS Canvas)</h1>
+        <button class="button" id="startBtn" type="button">Start game now!</button>
+        <button class="button" id="resetBtn" type="button">Reset the game</button>
+        <br>
+        <audio id="sound1" controls>
+            <source src="audio\gamebgm.mp3" type="audio/mpeg">
+            [Error] Your browser doesn't support this audio format
+        </audio>
+        <audio id="sound2">
+            <source src="audio\congrat.mp3" type="audio/mpeg">
+            [Error] Your browser doesn't support this audio format
+        </audio>
+        <audio id="sound3">
+            <source src="audio\gameover.mp3" type="audio/mpeg">
+            [Error] Your browser doesn't support this audio format
+        </audio>
+        <br>
+        <br>
+        <canvas id="canvas" width="1040px" height="500px"></canvas>
+        <img id="water" src="image/water.png" class="hidden">
+        <img id="grass" src="image/grass.png" class="hidden">
+        <img id="path" src="image/path.png" class="hidden">
+        <img id="soldier" src="image/character.png" class="hidden">
+    </div>
+    <div id="background2"></div>
+    <div id="noteContent">
+        <table>
+            <tr>
+                <td>
+                    <div>
+                        <pre class="note">
+    <P class="title">📝 HOW TO PLAY？</P>
+    You are a soldier who was tasked with on an important mission,
+    that is delivering food packets & ammunition through some dense 
+    tropical jungles and dangerous rivers to your teammates.
+    
+    You have to make it through the enemy boats' patrol line.
+    If you get caught, you will have a very bad time!
+    So stealth and patience is the key.
+
+    ======== For your information ========
+                ↑
+    Use ← ↓ → or W A S D to move around the map
+
+    Win condition: Got to the riverbank on the other side safely
+    Lose conditon: Got caught by enemy's patrol boats
+    ================================
+    </pre>
+                    </div>
+                </td>
+
+                <td class="note">
+                    <div>
+                        <p class="title">This is a demo game, created by Thong Satoshi</p>
+                        <table id="creditTable">
+                            <tr>
+                                <td>
+                                    <a href="https://twitter.com/satoshi060799" target="_blank"><img class="iconImage"
+                                            src="image\twitterIcon.png" alt="Twitter"></a>
+                                </td>
+                                <td>
+                                    <a href="https://discordapp.com/users/Satoshi#4079" target="_blank"><img
+                                            class="iconImage" src="image\discordIcon.png" alt="Discord"></a>
+                                </td>
+                                <td>
+                                    <a href="https://github.com/ThongSatoshi" target="_blank"><img class="iconImage"
+                                            src="image\githubIcon.png" alt="GitHub"></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Twitter</td>
+                                <td>Discord</td>
+                                <td>GitHub</td>
+                            </tr>
+                        </table>
+                        <pre class="credit">
+    ======== Credit ========
+    Music: 
+    "Never Falter" by Phyrnna (<a href="https://twitter.com/phyrnna" target="_blank">@Phyrnna</a>)
+    
+    Art:
+    "Jungle Game Background" by Sham Canggih (<a href="https://www.shutterstock.com/g/scworkspace" target="_blank">@scworkspace</a>)
+    "Pixel Cave" by Alicia Magistrello (<a href="https://twitter.com/Gazyelle" target="_blank">@Gazyelle</a>)
+    Other pixel arts and the wooden border are free-to-use assets.
+    ======================
+    </pre>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        // Khai báo các biến
+        let frame = 10, canvas = document.getElementById("canvas"), context = canvas.getContext("2d");
+        let startButton = document.getElementById("startBtn");
+        let resetButton = document.getElementById("resetBtn");
+        let isRunning = isWinning = isDead = false;
+
+        // Khai báo các pattern tile
+        let waterTile = document.getElementById("water");
+        let water = context.createPattern(waterTile, "repeat");
+
+        let grassTile = document.getElementById("grass");
+        let grass = context.createPattern(grassTile, "repeat");
+
+        let pathTile = document.getElementById("path");
+        let dirtPath = context.createPattern(pathTile, "repeat");
+
+        let playerAvatar = document.getElementById("soldier");
+
+        // Tạo lớp và các đối tượng 4 thuyền + người chơi
+        class Boat {
+            constructor(boatX, boatY, boatWidth, boatHeight, boatSpeed, boatColor) {
+                this.boatX = boatX;
+                this.boatY = boatY;
+                this.boatWidth = boatWidth;
+                this.boatHeight = boatHeight;
+                this.boatSpeed = boatSpeed;
+                this.boatColor = boatColor;
+            };
+
+            getBoatX() {
+                return this.boatX;
+            };
+
+            getBoatY() {
+                return this.boatY;
+            };
+
+            getBoatWidth() {
+                return this.boatWidth;
+            };
+
+            getBoatHeight() {
+                return this.boatHeight;
+            };
+        };
+
+        class Player {
+            constructor(playerX, playerY, playerSize, playerSpeed, playerColor) {
+                this.playerX = playerX;
+                this.playerY = playerY;
+                this.playerSize = playerSize;
+                this.playerSpeed = playerSpeed;
+                this.playerColor = playerColor;
+            };
+
+            getPlayerX() {
+                return this.playerX;
+            };
+
+            getPlayerY() {
+                return this.playerY;
+            };
+
+            getPlayerSize() {
+                return this.playerSize;
+            };
+        };
+    </script>
+
+    <script src="base.js"></script>
+    <script src="function.js"></script>
+</body>
+
+</html>
