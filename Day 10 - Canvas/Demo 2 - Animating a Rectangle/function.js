@@ -82,61 +82,61 @@ function checkCollision() {
     if (isWinning == false) {
         if ((player.getPlayerX() + player.getPlayerSize() >= smallBoatA.getBoatX()) && (player.getPlayerX() + player.getPlayerSize() <= smallBoatA.getBoatX() + smallBoatA.getBoatWidth() + player.getPlayerSize() * 2)) {
             if ((player.getPlayerY() + player.getPlayerSize() >= smallBoatA.getBoatY()) && (player.getPlayerY() + player.getPlayerSize() <= smallBoatA.getBoatY() + smallBoatA.getBoatHeight() + player.getPlayerSize() * 2)) {
-                console.log("Collision with smallBoatA detected");
-                // playAudio("missionFailed");
-                // alert("Oh no. The soldier has got caught by the enemy!");
-                // let isReset = confirm("Do you want to try again?");
-                // if (isReset == true) {
-                //     isRunning = isWinning = false;
-                //     return location.reload();
-                // } else {
-                //     return;
-                // };
+                // console.log("Collision with smallBoatA detected");
+                playAudio("missionFailed");
+                alert("Oh no. The soldier has got caught by the enemy!");
+                let isReset = confirm("Do you want to try again?");
+                if (isReset == true) {
+                    isRunning = isWinning = false;
+                    return location.reload();
+                } else {
+                    return;
+                };
             };
         };
 
         if ((player.getPlayerX() + player.getPlayerSize() >= smallBoatB.getBoatX()) && (player.getPlayerX() + player.getPlayerSize() <= smallBoatB.getBoatX() + smallBoatB.getBoatWidth() + player.getPlayerSize() * 2)) {
             if ((player.getPlayerY() + player.getPlayerSize() >= smallBoatB.getBoatY()) && (player.getPlayerY() + player.getPlayerSize() <= smallBoatB.getBoatY() + smallBoatB.getBoatHeight() + player.getPlayerSize() * 2)) {
-                console.log("Collision with smallBoatB detected");
-                // playAudio("missionFailed");
-                // alert("Oh no. The soldier has got caught by the enemy!");
-                // let isReset = confirm("Do you want to try again?");
-                // if (isReset == true) {
-                //     isRunning = isWinning = false;
-                //     return location.reload();
-                // } else {
-                //     return;
-                // };
+                // console.log("Collision with smallBoatB detected");
+                playAudio("missionFailed");
+                alert("Oh no. The soldier has got caught by the enemy!");
+                let isReset = confirm("Do you want to try again?");
+                if (isReset == true) {
+                    isRunning = isWinning = false;
+                    return location.reload();
+                } else {
+                    return;
+                };
             };
         };
 
         if ((player.getPlayerX() + player.getPlayerSize() >= bigBoatA.getBoatX()) && (player.getPlayerX() + player.getPlayerSize() <= bigBoatA.getBoatX() + bigBoatA.getBoatWidth() + player.getPlayerSize() * 2)) {
             if ((player.getPlayerY() + player.getPlayerSize() >= bigBoatA.getBoatY()) && (player.getPlayerY() + player.getPlayerSize() <= bigBoatA.getBoatY() + bigBoatA.getBoatHeight() + player.getPlayerSize() * 2)) {
-                console.log("Collision with bigBoatA detected");
-                // playAudio("missionFailed");
-                // alert("Oh no. The soldier has got caught by the enemy!");
-                // let isReset = confirm("Do you want to try again?");
-                // if (isReset == true) {
-                //     isRunning = isWinning = false;
-                //     return location.reload();
-                // } else {
-                //     return;
-                // };
+                //console.log("Collision with bigBoatA detected");
+                playAudio("missionFailed");
+                alert("Oh no. The soldier has got caught by the enemy!");
+                let isReset = confirm("Do you want to try again?");
+                if (isReset == true) {
+                    isRunning = isWinning = false;
+                    return location.reload();
+                } else {
+                    return;
+                };
             };
         };
 
         if ((player.getPlayerX() + player.getPlayerSize() >= bigBoatB.getBoatX()) && (player.getPlayerX() + player.getPlayerSize() <= bigBoatB.getBoatX() + bigBoatB.getBoatWidth() + player.getPlayerSize() * 2)) {
             if ((player.getPlayerY() + player.getPlayerSize() >= bigBoatB.getBoatY()) && (player.getPlayerY() + player.getPlayerSize() <= bigBoatB.getBoatY() + bigBoatB.getBoatHeight() + player.getPlayerSize() * 2)) {
-                console.log("Collision with bigBoatB detected");
-                // playAudio("missionFailed");
-                // alert("Oh no. The soldier has got caught by the enemy!");
-                // let isReset = confirm("Do you want to try again?");
-                // if (isReset == true) {
-                //     isRunning = isWinning = false;
-                //     return location.reload();
-                // } else {
-                //     return;
-                // };
+                //console.log("Collision with bigBoatB detected");
+                playAudio("missionFailed");
+                alert("Oh no. The soldier has got caught by the enemy!");
+                let isReset = confirm("Do you want to try again?");
+                if (isReset == true) {
+                    isRunning = isWinning = false;
+                    return location.reload();
+                } else {
+                    return;
+                };
             };
         };
     };
