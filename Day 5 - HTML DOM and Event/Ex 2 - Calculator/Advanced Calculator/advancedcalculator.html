@@ -20,8 +20,8 @@
             <td><button class="button" id="sqrtBtn" type="button"><sup>n</sup>&#8730;x</button></td>
             <td><button class="button" id="fractionBtn" type="button"><sup>x</sup>&frasl;<sub>y</sub></button></td>
             <td><button class="button" id="percentageBtn" type="button">%</button></td>
-            <td><button class="button" id="openBracketBtn" type="button">(</button></td>
-            <td><button class="button" id="closeBracketBtn" type="button">)</button></td>
+            <td><button class="button" id="openBracketBtn" type="button" onclick="addBrackets('open')">(</button></td>
+            <td><button class="button" id="closeBracketBtn" type="button" onclick="addBrackets('close')">)</button></td>
             <td><button class="button" id="clearBtn" type="button">CE</button></td>
         </tr>
         <tr>
@@ -58,7 +58,7 @@
             <td><button class="button" id="sumBtn" type="button">&#8721;<sup>n</sup><sub>i=x</sub></button></td>
             <td><button class="numPad" id="num0Btn" type="button" onclick="inputNum(0)">0</button></td>
             <td><button class="numPad" id="decimalBtn" type="button">.</button></td>
-            <td><button id="equalBtn" type="button">=</button></td>
+            <td><button id="equalBtn" type="button" onclick="outputResult()">=</button></td>
             <td><button class="operatorBtn" type="button" onclick="inputOperator(4)">&#247;</button></td>
         </tr>
     </table>

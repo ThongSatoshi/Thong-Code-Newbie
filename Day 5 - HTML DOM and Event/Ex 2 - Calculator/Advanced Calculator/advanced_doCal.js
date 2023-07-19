@@ -1,7 +1,7 @@
 let screen = document.getElementById("screen");
 let result, operator, inputValue;
 let inputValueArr = [], savedValue = [], savedOperator = [];
-let numCount = 0, negativeSign = firstOperation = "";
+let numCount = 0, negativeSign = openBracketSign = closeBracketSign = firstOperation = "";
 
 function getElementbyId(id) {
     return document.getElementById(id).innerHTML;
@@ -11,7 +11,7 @@ function inputNum(value) {
     let str = "num" + value + "Btn";
     let input = getElementbyId(str);
     inputValueArr.push(input);
-    inputValue = negativeSign + inputValueArr.join("");
+    inputValue = openBracketSign + negativeSign + inputValueArr.join("");
     savedValue.splice(numCount, 1, inputValue);
     if (numCount < 1) {
         screen.innerHTML = savedValue[numCount];
@@ -23,11 +23,15 @@ function inputNum(value) {
 function inputOperator(operatorType) {
     switch (operatorType) {
         case 1:
-            operator = " + ";
-            savedOperator.splice(numCount, 1, operator);
-            firstOperation = screen.innerHTML += savedOperator[numCount];
-            numCount++, negativeSign = "", inputValueArr = [];
-            break;
+            if (savedValue[numCount] === undefined) {
+                break;
+            } else {
+                operator = " + ";
+                savedOperator.splice(numCount, 1, operator);
+                firstOperation = screen.innerHTML += savedOperator[numCount];
+                numCount++, negativeSign = openBracketSign = closeBracketSign = "", inputValueArr = [];
+                break;
+            };
         case 2:
             if (savedValue[0] === undefined) {
                 negativeSign = " -";
@@ -35,31 +39,60 @@ function inputOperator(operatorType) {
                 break;
             } else if (savedValue[numCount] === undefined && savedOperator[numCount - 1] !== undefined) {
                 negativeSign = " -";
-                screen.innerHTML = firstOperation + negativeSign;
+                screen.innerHTML = firstOperation + openBracketSign + negativeSign;
                 break;
             } else {
                 operator = " - ";
                 savedOperator.splice(numCount, 1, operator);
                 firstOperation = screen.innerHTML += savedOperator[numCount];
-                numCount++, negativeSign = "", inputValueArr = [];
+                numCount++, negativeSign = openBracketSign = closeBracketSign = "", inputValueArr = [];
                 break;
             };
         case 3:
-            operator = " x ";
-            savedOperator.splice(numCount, 1, operator);
-            firstOperation = screen.innerHTML += savedOperator[numCount];
-            numCount++, negativeSign = "", inputValueArr = [];
-            break;
+            if (savedValue[numCount] === undefined) {
+                break;
+            } else {
+                operator = " x ";
+                savedOperator.splice(numCount, 1, operator);
+                firstOperation = screen.innerHTML += savedOperator[numCount];
+                numCount++, negativeSign = openBracketSign = closeBracketSign = "", inputValueArr = [];
+                break;
+            };
         case 4:
-            operator = " : ";
-            savedOperator.splice(numCount, 1, operator);
-            firstOperation = screen.innerHTML += savedOperator[numCount];
-            numCount++, negativeSign = "", inputValueArr = [];
+            if (savedValue[numCount] === undefined) {
+                break;
+            } else {
+                operator = " : ";
+                savedOperator.splice(numCount, 1, operator);
+                firstOperation = screen.innerHTML += savedOperator[numCount];
+                numCount++, negativeSign = openBracketSign = closeBracketSign = "", inputValueArr = [];
+                break;
+            };
+    };
+};
+
+function addBrackets(bracketType) {
+    switch (bracketType) {
+        case "open":
+            if (savedValue[0] === undefined) {
+                openBracketSign = "(";
+                screen.innerHTML = openBracketSign;
+                break;
+            } else if (savedValue[numCount] === undefined && savedOperator[numCount - 1] !== undefined) {
+                openBracketSign = "(";
+                screen.innerHTML = firstOperation + openBracketSign;
+                break;
+            };
+        case "close":
+            closeBracketSign = ")";
+            inputValue = closeBracketSign;
+            savedValue.splice(numCount, 1, inputValue);
+            firstOperation = screen.innerHTML += closeBracketSign;
             break;
     };
 };
 
 function outputResult() {
 
-    console.log("a result!");
+    console.log(savedValue, savedOperator);
 };
