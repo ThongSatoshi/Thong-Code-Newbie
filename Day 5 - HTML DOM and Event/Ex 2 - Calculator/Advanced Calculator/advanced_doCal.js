@@ -1,8 +1,12 @@
 let screen = document.getElementById("screen");
 let result, operator, operatorSign, inputValue;
-let inputValueArr = [], savedValue = [], savedOperator = [], savedBrackets = [];
-let numCount = 0, bracketLevelCount = 1; 
+let inputValueArr = [], savedValue = [];
+let operantCount = 0;
 let negativeSign = openBracketSign = closeBracketSign = firstOperation = "";
+
+window.onload = function() {
+    console.log(operantCount, savedValue);
+};
 
 function getElementbyId(id) {
     return document.getElementById(id).innerHTML;
@@ -10,12 +14,11 @@ function getElementbyId(id) {
 
 function saveBracketsPosition(bracketType) {
     if (bracketType == "open") {
-        savedBrackets.push(bracketLevelCount);
-        bracketLevelCount++;
+        savedValue.splice(operantCount, 0, openBracketSign);
+        operantCount++;
     } else if (bracketType == "close") {
-        savedBrackets.push("x");
-    } else {
-        savedBrackets.push(0);
+        savedValue.splice(operantCount, 0, closeBracketSign);
+        operantCount++;
     };
 };
 
@@ -24,61 +27,60 @@ function inputNum(value) {
     let input = getElementbyId(str);
     inputValueArr.push(input);
     inputValue = negativeSign + inputValueArr.join("");
-    savedValue.splice(numCount, 1, inputValue);
-    if (numCount < 1) {
-        screen.innerHTML = savedValue[numCount];
+    savedValue.splice(operantCount, 1, inputValue);
+    if (operantCount = 0) {
+        screen.innerHTML = (savedValue.slice(0)).join("");
     } else {
-        screen.innerHTML = firstOperation + savedValue[numCount];
+        screen.innerHTML += (savedValue.slice(0)).join("");
     };
 };
 
 function inputOperator(operatorType) {
-    saveBracketsPosition("none");
     switch (operatorType) {
         case 1:
-            if (savedValue[numCount] === undefined) {
+            if (operantCount = 0) {
                 break;
             } else {
                 operator = " + ";
-                savedOperator.splice(numCount, 1, operator);
-                firstOperation = screen.innerHTML += savedOperator[numCount];
-                numCount++, negativeSign = openBracketSign = closeBracketSign = "", inputValueArr = [];
+                screen.innerHTML += (savedValue.slice(0)).join("") + operator;
+                savedValue.splice(operantCount, 1, operator);
+                operantCount++, inputValueArr = [], negativeSign = openBracketSign = closeBracketSign = "";
                 break;
             };
         case 2:
-            if (savedValue[0] === undefined) {
+            if (operantCount = 0) {
                 negativeSign = " -";
                 screen.innerHTML = negativeSign;
                 break;
-            } else if (savedValue[numCount] === undefined && savedOperator[numCount - 1] !== undefined) {
+            } else if (operantCount >= 1 && savedValue[operantCount - 1] !== undefined) {
                 negativeSign = " -";
-                screen.innerHTML = firstOperation + openBracketSign + negativeSign;
+                screen.innerHTML = (savedValue.slice(0)).join("") + negativeSign;
                 break;
             } else {
                 operator = " - ";
-                savedOperator.splice(numCount, 1, operator);
-                firstOperation = screen.innerHTML += savedOperator[numCount];
-                numCount++, negativeSign = openBracketSign = closeBracketSign = "", inputValueArr = [];
+                savedValue.push(operator);
+                screen.innerHTML = (savedValue.slice(0)).join("");
+                operantCount++, inputValueArr = [], negativeSign = openBracketSign = closeBracketSign = "";
                 break;
             };
         case 3:
-            if (savedValue[numCount] === undefined) {
+            if (operantCount = 0) {
                 break;
             } else {
                 operator = " x ";
-                savedOperator.splice(numCount, 1, operator);
-                firstOperation = screen.innerHTML += savedOperator[numCount];
-                numCount++, negativeSign = openBracketSign = closeBracketSign = "", inputValueArr = [];
+                savedValue.push(operator);
+                screen.innerHTML = (savedValue.slice(0)).join("");
+                operantCount++, inputValueArr = [], negativeSign = openBracketSign = closeBracketSign = "";
                 break;
             };
         case 4:
-            if (savedValue[numCount] === undefined) {
+            if (operantCount = 0) {
                 break;
             } else {
                 operator = " : ";
-                savedOperator.splice(numCount, 1, operator);
-                firstOperation = screen.innerHTML += savedOperator[numCount];
-                numCount++, negativeSign = openBracketSign = closeBracketSign = "", inputValueArr = [];
+                savedValue.push(operator);
+                screen.innerHTML = (savedValue.slice(0)).join("");
+                operantCount++, inputValueArr = [], negativeSign = openBracketSign = closeBracketSign = "";
                 break;
             };
     };
@@ -92,16 +94,16 @@ function addBrackets(bracketType) {
                 saveBracketsPosition("open");
                 screen.innerHTML = openBracketSign;
                 break;
-            } else if (savedValue[numCount] === undefined && savedOperator[numCount - 1] !== undefined) {
+            } else if (savedValue[operantCount] === undefined && savedValue[operantCount - 1] !== undefined) {
                 openBracketSign = "(";
                 saveBracketsPosition("open");
-                firstOperation = screen.innerHTML += openBracketSign;
+                screen.innerHTML = (savedValue.slice(0)).join("");
                 break;
             };
         case "close":
             closeBracketSign = ")";
             saveBracketsPosition("close");
-            firstOperation = screen.innerHTML += closeBracketSign;
+            screen.innerHTML = (savedValue.slice(0)).join("");
             break;
     };
 };
@@ -112,15 +114,10 @@ function outputResult() {
     //     result = "Error: Cannot Be Solved";
     // };
     // screen.innerHTML = result;
-    // console.log(result, savedValue, savedOperator, savedBrackets, numCount);
 };
 
 function doCalculation() {
-    let draft;
-    for (let i = 0; i < savedBrackets.length; i++) {
-        if (savedBrackets[i] == "open") {
-            break;
-        }
-    };
+    let draft, str = "";
+
     return draft;
 };
