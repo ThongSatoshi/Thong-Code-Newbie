@@ -118,6 +118,6 @@ function outputResult() {
 
 function doCalculation() {
     let draft, str = "";
-
+    
     return draft;
 };
