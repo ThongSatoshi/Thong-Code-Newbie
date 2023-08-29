@@ -1,123 +1,69 @@
 let screen = document.getElementById("screen");
-let result, operator, operatorSign, inputValue;
-let inputValueArr = [], savedValue = [];
-let operantCount = 0;
-let negativeSign = openBracketSign = closeBracketSign = firstOperation = "";
+let inputValueArr = [], displayValue = "";
+let isOperatorInput = false, minusSignInput;
 
-window.onload = function() {
-    console.log(operantCount, savedValue);
+function inputNum(num) {
+    let str = "";
+    str += num;
+    inputValueArr.push(str);
+    screen.innerHTML = inputValueArr.join("");
+    isOperatorInput = true;
 };
 
-function getElementbyId(id) {
-    return document.getElementById(id).innerHTML;
-}
-
-function saveBracketsPosition(bracketType) {
-    if (bracketType == "open") {
-        savedValue.splice(operantCount, 0, openBracketSign);
-        operantCount++;
-    } else if (bracketType == "close") {
-        savedValue.splice(operantCount, 0, closeBracketSign);
-        operantCount++;
-    };
-};
-
-function inputNum(value) {
-    let str = "num" + value + "Btn";
-    let input = getElementbyId(str);
-    inputValueArr.push(input);
-    inputValue = negativeSign + inputValueArr.join("");
-    savedValue.splice(operantCount, 1, inputValue);
-    if (operantCount = 0) {
-        screen.innerHTML = (savedValue.slice(0)).join("");
-    } else {
-        screen.innerHTML += (savedValue.slice(0)).join("");
-    };
-};
-
-function inputOperator(operatorType) {
-    switch (operatorType) {
+function inputOperator(type) {
+    let str = "";
+    switch (type) {
         case 1:
-            if (operantCount = 0) {
-                break;
-            } else {
-                operator = " + ";
-                screen.innerHTML += (savedValue.slice(0)).join("") + operator;
-                savedValue.splice(operantCount, 1, operator);
-                operantCount++, inputValueArr = [], negativeSign = openBracketSign = closeBracketSign = "";
+            if (inputValueArr.length > 0 && isOperatorInput == true) {
+                str += " + ";
+                inputValueArr.push(str);
+                screen.innerHTML = inputValueArr.join("");
+                isOperatorInput = false;
                 break;
             };
         case 2:
-            if (operantCount = 0) {
-                negativeSign = " -";
-                screen.innerHTML = negativeSign;
+            minusSignInput = true;
+            if (inputValueArr.length == 0 && minusSignInput == true) {
+                str += "-";
+                inputValueArr.push(str);
+                screen.innerHTML = inputValueArr.join("");
+                minusSignInput = false;
                 break;
-            } else if (operantCount >= 1 && savedValue[operantCount - 1] !== undefined) {
-                negativeSign = " -";
-                screen.innerHTML = (savedValue.slice(0)).join("") + negativeSign;
+            } else if (inputValueArr.length > 0 && minusSignInput == true) {
+                str += " -";
+                inputValueArr.push(str);
+                screen.innerHTML = inputValueArr.join("");
+                minusSignInput = false;
                 break;
-            } else {
-                operator = " - ";
-                savedValue.push(operator);
-                screen.innerHTML = (savedValue.slice(0)).join("");
-                operantCount++, inputValueArr = [], negativeSign = openBracketSign = closeBracketSign = "";
+            } else if (inputValueArr.length > 0 && isOperatorInput == true) {
+                str += " - ";
+                inputValueArr.push(str);
+                screen.innerHTML = inputValueArr.join("");
+                isOperatorInput = false;
                 break;
             };
         case 3:
-            if (operantCount = 0) {
-                break;
-            } else {
-                operator = " x ";
-                savedValue.push(operator);
-                screen.innerHTML = (savedValue.slice(0)).join("");
-                operantCount++, inputValueArr = [], negativeSign = openBracketSign = closeBracketSign = "";
+            if (inputValueArr.length > 0 && isOperatorInput == true) {
+                str += " x ";
+                inputValueArr.push(str);
+                screen.innerHTML = inputValueArr.join("");
+                isOperatorInput = false;
                 break;
             };
         case 4:
-            if (operantCount = 0) {
-                break;
-            } else {
-                operator = " : ";
-                savedValue.push(operator);
-                screen.innerHTML = (savedValue.slice(0)).join("");
-                operantCount++, inputValueArr = [], negativeSign = openBracketSign = closeBracketSign = "";
+            if (inputValueArr.length > 0 && isOperatorInput == true) {
+                str += " : ";
+                inputValueArr.push(str);
+                screen.innerHTML = inputValueArr.join("");
+                isOperatorInput = false;
                 break;
             };
     };
 };
 
-function addBrackets(bracketType) {
-    switch (bracketType) {
-        case "open":
-            if (savedValue[0] === undefined) {
-                openBracketSign = "(";
-                saveBracketsPosition("open");
-                screen.innerHTML = openBracketSign;
-                break;
-            } else if (savedValue[operantCount] === undefined && savedValue[operantCount - 1] !== undefined) {
-                openBracketSign = "(";
-                saveBracketsPosition("open");
-                screen.innerHTML = (savedValue.slice(0)).join("");
-                break;
-            };
-        case "close":
-            closeBracketSign = ")";
-            saveBracketsPosition("close");
-            screen.innerHTML = (savedValue.slice(0)).join("");
-            break;
+function resetAll() {
+    for (let i = inputValueArr.length; i > 0; i--) {
+        inputValueArr.pop();
     };
-};
-
-function outputResult() {
-    // let draftResult = doCalculation();
-    // if (result === undefined || result == null) {
-    //     result = "Error: Cannot Be Solved";
-    // };
-    // screen.innerHTML = result;
-};
-
-function doCalculation() {
-    let draft, str = "";
-    
-    return draft;
+    screen.innerHTML = inputValueArr.toString();
 };
