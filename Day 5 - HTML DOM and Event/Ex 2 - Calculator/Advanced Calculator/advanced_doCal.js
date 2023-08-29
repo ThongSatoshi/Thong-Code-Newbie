@@ -71,3 +71,7 @@ function resetAll() {
     };
     screen.innerHTML = inputValueArr.toString();
 };
+
+function addBrackets() {
+    
+};
