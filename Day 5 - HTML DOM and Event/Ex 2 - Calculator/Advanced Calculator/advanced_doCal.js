@@ -72,6 +72,27 @@ function resetAll() {
     screen.innerHTML = inputValueArr.toString();
 };
 
-function addBrackets() {
-    
+function addBrackets(type) {
+    let str = "";
+    switch (type) {
+        case 'open':
+            if (inputValueArr.length == 0) {
+                str += "( "
+                inputValueArr.push(str);
+                screen.innerHTML = inputValueArr.join("");
+                break;
+            } else {
+                str += " ( "
+                inputValueArr.push(str);
+                screen.innerHTML = inputValueArr.join("");
+                break;
+            };
+        case 'close':
+            if (inputValueArr.length > 0) {
+                str += " ) "
+                inputValueArr.push(str);
+                screen.innerHTML = inputValueArr.join("");
+                break;
+            };
+    };
 };
