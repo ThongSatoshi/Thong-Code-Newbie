@@ -1,13 +1,30 @@
 let screen = document.getElementById("screen");
 let inputValueArr = [], displayValue = "";
-let isOperatorInput = false, minusSignInput;
+let isOperatorInput = isNegative = false;
+
+function changeNegative() {
+    if (isNegative == false) {
+        return isNegative = true;
+    } else {
+        return isNegative = false;
+    };
+};
 
 function inputNum(num) {
-    let str = "";
-    str += num;
-    inputValueArr.push(str);
-    screen.innerHTML = inputValueArr.join("");
-    isOperatorInput = true;
+    if (isNegative == true) {
+        num = num * -1;
+        let str = "";
+        str += num;
+        inputValueArr.push(str);
+        screen.innerHTML = inputValueArr.join("");
+        isOperatorInput = true, changeNegative();
+    } else {
+        let str = "";
+        str += num;
+        inputValueArr.push(str);
+        screen.innerHTML = inputValueArr.join("");
+        isOperatorInput = true;
+    };
 };
 
 function inputOperator(type) {
@@ -22,20 +39,7 @@ function inputOperator(type) {
                 break;
             };
         case 2:
-            minusSignInput = true;
-            if (inputValueArr.length == 0 && minusSignInput == true) {
-                str += "-";
-                inputValueArr.push(str);
-                screen.innerHTML = inputValueArr.join("");
-                minusSignInput = false;
-                break;
-            } else if (inputValueArr.length > 0 && minusSignInput == true) {
-                str += " -";
-                inputValueArr.push(str);
-                screen.innerHTML = inputValueArr.join("");
-                minusSignInput = false;
-                break;
-            } else if (inputValueArr.length > 0 && isOperatorInput == true) {
+            if (inputValueArr.length > 0 && isOperatorInput == true) {
                 str += " - ";
                 inputValueArr.push(str);
                 screen.innerHTML = inputValueArr.join("");
