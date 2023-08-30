@@ -1,22 +1,6 @@
 let screen = document.getElementById("screen");
-let inputValueArr = [], calArr = [], displayValue = "";
-let isOperatorInput = isNegative = isDecimal = false;
-
-function changeNegative() {
-    if (isNegative == false) {
-        return isNegative = true;
-    } else {
-        return isNegative = false;
-    };
-};
-
-function addDecimalPoint() {
-    if (isDecimal == false) {
-        return isDecimal = true;
-    } else {
-        return isDecimal = false;
-    };
-};
+let inputValueArr = [], calArr = [], displayFunction = "";
+let isOperatorInput = isNegative = isDecimal = isExponentInput = false;
 
 function resetAll() {
     for (let i = inputValueArr.length; i > 0; i--) {
@@ -27,6 +11,12 @@ function resetAll() {
 
 function inputNum(num) {
     let str = "";
+    if (isExponentInput == true) {
+        inputValueArr.push("<sup>");
+    } else if (inputValueArr.length > 0 && isExponentInput == false) {
+        inputValueArr.push("</sup>");
+    };
+
     if (isNegative == true && isDecimal == true) {
         num = (inputValueArr[inputValueArr.length - 1] * -1) + "." + num
         str += num;
@@ -54,6 +44,12 @@ function inputNum(num) {
 
 function inputOperator(type) {
     let str = "";
+    if (isExponentInput == true) {
+        inputValueArr.push("<sup>");
+    } else if (inputValueArr.length > 0 && isExponentInput == false) {
+        inputValueArr.push("</sup>");
+    };
+
     switch (type) {
         case 1:
             if (inputValueArr.length > 0 && isOperatorInput == true) {
@@ -87,6 +83,30 @@ function inputOperator(type) {
                 isOperatorInput = false;
                 break;
             };
+    };
+};
+
+function changeNegative() {
+    if (isNegative == false) {
+        return isNegative = true;
+    } else {
+        return isNegative = false;
+    };
+};
+
+function addDecimalPoint() {
+    if (isDecimal == false) {
+        return isDecimal = true;
+    } else {
+        return isDecimal = false;
+    };
+};
+
+function addExponent() {
+    if (isExponentInput == false) {
+        return isExponentInput = true;
+    } else {
+        return isExponentInput = false;
     };
 };
 
@@ -124,15 +144,6 @@ function addPercentageSign() {
     };
 };
 
-function addExponent() {
-    let str = "";
-    if (isOperatorInput == true) {
-        str += "<sup>"
-        inputValueArr.push(str);
-        screen.innerHTML = inputValueArr.join("");
-    };
-};
-
 function convertOperator() {
     for (let i = 0; i < inputValueArr.length; i++) {
         calArr[i] = inputValueArr[i];
@@ -147,6 +158,10 @@ function convertOperator() {
             case "% ":
                 calArr.splice(i, 1, " /100");
                 break;
+            case "<sup>":
+                calArr.splice(i-1, 2, "Math.pow(" + calArr[i-1] + ", (");
+            case "</sup>":
+                calArr.splice(i, 1, "))");
         };
     };
 };
@@ -155,7 +170,7 @@ function outputResult(startSignal) {
     convertOperator();
     if (startSignal == 'yes') {
         let result = calArr.join("");
-        let inputValue = inputValueArr.join("");
-        screen.innerHTML = inputValue + "<br><br>" + "= " + eval(result);
+        displayFunction = inputValueArr.join("");
+        screen.innerHTML = displayFunction + "<br><br>" + "= " + eval(result);
     };
 };
