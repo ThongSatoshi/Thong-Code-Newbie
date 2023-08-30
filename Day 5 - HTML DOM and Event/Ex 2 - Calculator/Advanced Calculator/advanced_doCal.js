@@ -1,5 +1,5 @@
 let screen = document.getElementById("screen");
-let inputValueArr = [], displayValue = "";
+let inputValueArr = [], calArr = [], displayValue = "";
 let isOperatorInput = isNegative = isDecimal = false;
 
 function changeNegative() {
@@ -18,11 +18,17 @@ function addDecimalPoint() {
     };
 };
 
+function resetAll() {
+    for (let i = inputValueArr.length; i > 0; i--) {
+        inputValueArr.pop();
+    };
+    screen.innerHTML = inputValueArr.toString();
+};
+
 function inputNum(num) {
     let str = "";
     if (isNegative == true && isDecimal == true) {
-        let tempValueArr = inputValueArr.slice((inputValueArr.length - 1), 2);
-        num = parseInt(tempValueArr[0]) + num / -10;
+        num = (inputValueArr[inputValueArr.length - 1] * -1) + "." + num
         str += num;
         inputValueArr.splice((inputValueArr.length - 1), 1);
         inputValueArr.push(str);
@@ -33,8 +39,7 @@ function inputNum(num) {
         inputValueArr.push(str);
         changeNegative();
     } else if (isNegative == false && isDecimal == true) {
-        let tempValueArr = inputValueArr.slice((inputValueArr.length - 1), 2);
-        num = parseInt(tempValueArr[0]) + num / 10;
+        num = inputValueArr[inputValueArr.length - 1] + "." + num;
         str += num;
         inputValueArr.splice((inputValueArr.length - 1), 1);
         inputValueArr.push(str);
@@ -85,14 +90,7 @@ function inputOperator(type) {
     };
 };
 
-function resetAll() {
-    for (let i = inputValueArr.length; i > 0; i--) {
-        inputValueArr.pop();
-    };
-    screen.innerHTML = inputValueArr.toString();
-};
-
-function addBrackets(type) {
+function addBracket(type) {
     let str = "";
     switch (type) {
         case 'open':
@@ -114,5 +112,50 @@ function addBrackets(type) {
                 screen.innerHTML = inputValueArr.join("");
                 break;
             };
+    };
+};
+
+function addPercentageSign() {
+    let str = "";
+    if (isOperatorInput == true) {
+        str += "% "
+        inputValueArr.push(str);
+        screen.innerHTML = inputValueArr.join("");
+    };
+};
+
+function addExponent() {
+    let str = "";
+    if (isOperatorInput == true) {
+        str += "<sup>"
+        inputValueArr.push(str);
+        screen.innerHTML = inputValueArr.join("");
+    };
+};
+
+function convertOperator() {
+    for (let i = 0; i < inputValueArr.length; i++) {
+        calArr[i] = inputValueArr[i];
+
+        switch (calArr[i]) {
+            case " x ":
+                calArr.splice(i, 1, " * ");
+                break;
+            case " : ":
+                calArr.splice(i, 1, " / ");
+                break;
+            case "% ":
+                calArr.splice(i, 1, " /100");
+                break;
+        };
+    };
+};
+
+function outputResult(startSignal) {
+    convertOperator();
+    if (startSignal == 'yes') {
+        let result = calArr.join("");
+        let inputValue = inputValueArr.join("");
+        screen.innerHTML = inputValue + "<br><br>" + "= " + eval(result);
     };
 };

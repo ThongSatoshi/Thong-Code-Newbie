@@ -16,12 +16,12 @@
             <td colspan = "7"><div id="screen">0</div></td>
         </tr>
         <tr>
-            <td><button class="button" id="exponentationBtn" type="button">x<sup>n</sup></button></td>
+            <td><button class="button" id="exponentationBtn" type="button" onclick="addExponent()">x<sup>n</sup></button></td>
             <td><button class="button" id="sqrtBtn" type="button"><sup>n</sup>&#8730;x</button></td>
             <td><button class="button" id="fractionBtn" type="button"><sup>x</sup>&frasl;<sub>y</sub></button></td>
-            <td><button class="button" id="percentageBtn" type="button">%</button></td>
-            <td><button class="button" id="openBracketBtn" type="button" onclick="addBrackets('open')">(</button></td>
-            <td><button class="button" id="closeBracketBtn" type="button" onclick="addBrackets('close')">)</button></td>
+            <td><button class="button" id="percentageBtn" type="button" onclick="addPercentageSign()">%</button></td>
+            <td><button class="button" id="openBracketBtn" type="button" onclick="addBracket('open')">(</button></td>
+            <td><button class="button" id="closeBracketBtn" type="button" onclick="addBracket('close')">)</button></td>
             <td><button class="button" id="clearBtn" type="button" onclick="resetAll()">CE</button></td>
         </tr>
         <tr>
@@ -58,7 +58,7 @@
             <td><button class="button" id="negativeSignBtn" type="button" onclick="changeNegative()">+/-</button></td>
             <td><button class="numPad" id="num0Btn" type="button" onclick="inputNum(0)">0</button></td>
             <td><button class="numPad" id="decimalBtn" type="button" onclick="addDecimalPoint()">.</button></td>
-            <td><button id="equalBtn" type="button" onclick="outputResult()">=</button></td>
+            <td><button id="equalBtn" type="button" onclick="outputResult('yes')">=</button></td>
             <td><button class="operatorBtn" type="button" onclick="inputOperator(4)">&#247;</button></td>
         </tr>
     </table>
