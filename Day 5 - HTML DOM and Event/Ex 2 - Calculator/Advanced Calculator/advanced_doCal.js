@@ -46,8 +46,10 @@ function inputOperator(type) {
     let str = "";
     if (isExponentInput == true) {
         inputValueArr.push("<sup>");
+        console.log(inputValueArr);
     } else if (inputValueArr.length > 0 && isExponentInput == false) {
         inputValueArr.push("</sup>");
+        console.log(inputValueArr);
     };
 
     switch (type) {
@@ -159,11 +161,12 @@ function convertOperator() {
                 calArr.splice(i, 1, " /100");
                 break;
             case "<sup>":
-                calArr.splice(i-1, 2, "Math.pow(" + calArr[i-1] + ", (");
+                calArr.splice(i-1, 2, "Math.pow(" + calArr[i-1] + ",");
             case "</sup>":
-                calArr.splice(i, 1, "))");
+                calArr.splice(i, 2, ")");
         };
     };
+    // console.log(inputValueArr, calArr);
 };
 
 function outputResult(startSignal) {
