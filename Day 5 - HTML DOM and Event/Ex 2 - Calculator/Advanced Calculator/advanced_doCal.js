@@ -1,6 +1,6 @@
 let screen = document.getElementById("screen");
-let inputValueArr = [], calArr = [], displayFunction = "";
-let isOperatorInput = isNegative = isDecimal = isExponentInput = false;
+let inputValueArr = [], calArr = [], displayEquation = "", isExponentInput = 0;
+let isOperatorInput = isNegative = isDecimal = false;
 
 function resetAll() {
     for (let i = inputValueArr.length; i > 0; i--) {
@@ -11,11 +11,6 @@ function resetAll() {
 
 function inputNum(num) {
     let str = "";
-    if (isExponentInput == true) {
-        inputValueArr.push("<sup>");
-    } else if (inputValueArr.length > 0 && isExponentInput == false) {
-        inputValueArr.push("</sup>");
-    };
 
     if (isNegative == true && isDecimal == true) {
         num = (inputValueArr[inputValueArr.length - 1] * -1) + "." + num
@@ -44,13 +39,6 @@ function inputNum(num) {
 
 function inputOperator(type) {
     let str = "";
-    if (isExponentInput == true) {
-        inputValueArr.push("<sup>");
-        console.log(inputValueArr);
-    } else if (inputValueArr.length > 0 && isExponentInput == false) {
-        inputValueArr.push("</sup>");
-        console.log(inputValueArr);
-    };
 
     switch (type) {
         case 1:
@@ -104,11 +92,12 @@ function addDecimalPoint() {
     };
 };
 
-function addExponent() {
-    if (isExponentInput == false) {
-        return isExponentInput = true;
-    } else {
-        return isExponentInput = false;
+function addExponent(i) {
+    isExponentInput += i;
+    if (isExponentInput % 2 != 0) {
+        inputValueArr.push("<sup>");
+    } else if (isExponentInput % 2 == 0) {
+        inputValueArr.push("</sup>");
     };
 };
 
@@ -140,14 +129,24 @@ function addBracket(type) {
 function addPercentageSign() {
     let str = "";
     if (isOperatorInput == true) {
-        str += "% "
+        str += "% ";
+        inputValueArr.push(str);
+        screen.innerHTML = inputValueArr.join("");
+    };
+};
+
+function addFactorial() {
+    let str = "";
+    if (isOperatorInput == true) {
+        str += "!";
         inputValueArr.push(str);
         screen.innerHTML = inputValueArr.join("");
     };
 };
 
 function convertOperator() {
-    for (let i = 0; i < inputValueArr.length; i++) {
+    let i = 0;
+    for (i; i < inputValueArr.length; i++) {
         calArr[i] = inputValueArr[i];
 
         switch (calArr[i]) {
@@ -160,20 +159,56 @@ function convertOperator() {
             case "% ":
                 calArr.splice(i, 1, " /100");
                 break;
+            case "!":
+                let fac = f = calArr[i - 1];
+                if (calArr[i - 1] == 0 || calArr[i - 1] == 1) {
+                    calArr.splice(i - 1, 2, "1");
+                } else {
+                    while (f > 1) {
+                        fac * (fac - 1)
+                        f--;
+                    };
+                    calArr.splice(i - 1, 2, fac.toString());
+                };
+                console.log(fac, f);
+                break;
             case "<sup>":
-                calArr.splice(i-1, 2, "Math.pow(" + calArr[i-1] + ",");
+                let removeDigit, base = "", j = i - 1, k;
+                for (j; j >= 0; j--) {
+                    if (isNaN(calArr[j]) == true || j == 0) {
+                        removeDigit = i - j + 1;
+                    };
+                };
+                if (j == 0) {
+                    k = j;
+                    for (k; k < i; k++) {
+                        let str = calArr[k];
+                        base += str.toString();
+                    };
+                    calArr.splice(j, removeDigit, "Math.pow(" + base + ",");
+                } else {
+                    k = j + 1;
+                    for (k; k < i; k++) {
+                        let str = calArr[k];
+                        base += str.toString();
+                    };
+                    calArr.splice(j + 1, removeDigit, "Math.pow(" + base + ",");
+                };
+                break;
             case "</sup>":
-                calArr.splice(i, 2, ")");
+                calArr.splice(i, 1, ")");
+                break;
         };
     };
-    // console.log(inputValueArr, calArr);
+    console.log(inputValueArr, calArr);
 };
 
-function outputResult(startSignal) {
+function outputResult() {
     convertOperator();
-    if (startSignal == 'yes') {
+    if (inputValueArr.length > 0) {
         let result = calArr.join("");
-        displayFunction = inputValueArr.join("");
-        screen.innerHTML = displayFunction + "<br><br>" + "= " + eval(result);
+        displayEquation = inputValueArr.join("");
+        console.log(result);
+        screen.innerHTML = displayEquation + "<br><br>" + "= " + eval(result);
     };
 };
