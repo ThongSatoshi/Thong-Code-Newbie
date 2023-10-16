@@ -1,5 +1,5 @@
 let screen = document.getElementById("screen");
-let inputValueArr = [], calArr = [], displayEquation = "", isExponentInput = 0;
+let inputValueArr = [], calArr = [], displayEquation = "", isExponentInput = fractionStep = 0;
 let isOperatorInput = isNegative = isDecimal = false;
 
 function resetAll() {
@@ -144,6 +144,18 @@ function addFactorial() {
     };
 };
 
+function addFraction(i) {
+    fractionStep += i;
+    if (fractionStep == 1) {
+        inputValueArr.push("<math><mrow><mfrac><mi>");
+    } else if (fractionStep == 2) {
+        inputValueArr.push("</mi><mi>");
+    } else if (fractionStep == 3) {
+        inputValueArr.push("</mi></mfrac></mrow></math>");
+        fractionStep = fractionStep - 3;
+    };
+};
+
 function convertOperator() {
     let i = 0;
     for (i; i < inputValueArr.length; i++) {
@@ -159,8 +171,25 @@ function convertOperator() {
             case "% ":
                 calArr.splice(i, 1, " /100");
                 break;
+            case "<math><mrow><mfrac><mi>":
+                var removeDigit, numerator = "", j = i - 1, k;
+                for (j; j >= 0; j--) {
+                    if (isNaN(calArr[j]) == true || j == 0) {
+                        removeDigit = i - j + 1;
+                    };
+                };
+                if (j == 0) {
+                    k = j;
+                    for (k; k < i; k++) {
+                        let str = calArr[k];
+                        numerator += str.toString();
+                    };
+                    calArr.splice(j, removeDigit, )
+                } else {
+
+                };
             case "!":
-                var removeDigit, factorialResult, num = "", j = i - 1;
+                var removeDigit, factorialResult, num = "", j = i - 1, k;
                 for (j; j >= 0; j--) {
                     if (isNaN(calArr[j]) == true || j == 0) {
                         removeDigit = i - j + 1;
@@ -209,7 +238,6 @@ function convertOperator() {
                         calArr.splice(j + 1, removeDigit, factorialResult.toString());
                     };
                 };
-                console.log(num, factorialResult)
                 break;
             case "<sup>":
                 var removeDigit, base = "", j = i - 1, k;
