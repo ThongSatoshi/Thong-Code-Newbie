@@ -160,20 +160,59 @@ function convertOperator() {
                 calArr.splice(i, 1, " /100");
                 break;
             case "!":
-                let fac = f = calArr[i - 1];
-                if (calArr[i - 1] == 0 || calArr[i - 1] == 1) {
-                    calArr.splice(i - 1, 2, "1");
-                } else {
-                    while (f > 1) {
-                        fac * (fac - 1)
-                        f--;
+                var removeDigit, factorialResult, num = "", j = i - 1;
+                for (j; j >= 0; j--) {
+                    if (isNaN(calArr[j]) == true || j == 0) {
+                        removeDigit = i - j + 1;
                     };
-                    calArr.splice(i - 1, 2, fac.toString());
                 };
-                console.log(fac, f);
+                if (j == 0) {
+                    k = j;
+                    for (k; k < i; k++) {
+                        let str = calArr[k];
+                        num += str.toString();
+                    };
+
+                    factorialResult = num = parseFloat(num);
+                    if (num < 0) {
+                        alert("Giai thừa của n chỉ nhận n là các số >= 0");
+                        calArr.splice(0, calArr.length);
+                        resetAll();
+                    } else if (num == 0 || num == 1) {
+                        calArr.splice(j, removeDigit, "1");
+                    } else {
+                        while (num > 1) {
+                            num--;
+                            factorialResult = factorialResult * num;
+                        };
+                        calArr.splice(j, removeDigit, factorialResult.toString());
+                    };
+                } else {
+                    k = j + 1;
+                    for (k; k < i; k++) {
+                        let str = calArr[k];
+                        num += str.toString();
+                    };
+
+                    factorialResult = num = parseFloat(num);
+                    if (num < 0) {
+                        alert("Giai thừa của n chỉ nhận n là các số >= 0");
+                        calArr.splice(0, calArr.length);
+                        resetAll();
+                    } else if (num == 0 || num == 1) {
+                        calArr.splice(j + 1, removeDigit, "1");
+                    } else {
+                        while (num > 1) {
+                            num--;
+                            factorialResult = factorialResult * num;
+                        };
+                        calArr.splice(j + 1, removeDigit, factorialResult.toString());
+                    };
+                };
+                console.log(num, factorialResult)
                 break;
             case "<sup>":
-                let removeDigit, base = "", j = i - 1, k;
+                var removeDigit, base = "", j = i - 1, k;
                 for (j; j >= 0; j--) {
                     if (isNaN(calArr[j]) == true || j == 0) {
                         removeDigit = i - j + 1;
