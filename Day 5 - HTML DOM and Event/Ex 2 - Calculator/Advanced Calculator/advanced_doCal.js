@@ -184,10 +184,17 @@ function convertOperator() {
                         let str = calArr[k];
                         numerator += str.toString();
                     };
-                    calArr.splice(j, removeDigit, )
+                    calArr.splice(j, removeDigit, numerator + "/");
                 } else {
-
+                    k = j + 1;
+                    for (k; k < i; k++) {
+                        let str = calArr[k];
+                        numerator += str.toString();
+                    };
+                    calArr.splice(j + 1, removeDigit, numerator + "/");
                 };
+            case "":
+                
             case "!":
                 var removeDigit, factorialResult, num = "", j = i - 1, k;
                 for (j; j >= 0; j--) {
@@ -241,10 +248,13 @@ function convertOperator() {
                 break;
             case "<sup>":
                 var removeDigit, base = "", j = i - 1, k;
-                for (j; j >= 0; j--) {
-                    if (isNaN(calArr[j]) == true || j == 0) {
+                for (j; j > 0; j--) {
+                    if (isNaN(calArr[j]) == true) {
+                        removeDigit = i - j + 1;
+                    } else if (j == 0) {
                         removeDigit = i - j + 1;
                     };
+                    console.log(isNaN(calArr[j]));
                 };
                 if (j == 0) {
                     k = j;
