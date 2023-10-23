@@ -18,25 +18,25 @@
         <tr>
             <td><button class="button" id="exponentationBtn" type="button" onclick="addExponent(1)">x<sup>n</sup></button></td>
             <td><button class="button" id="sqrtBtn" type="button"><sup>n</sup>&#8730;x</button></td>
-            <td><button class="button" id="fractionBtn" type="button" onclick="addFraction(1)"><sup>x</sup>&frasl;<sub>y</sub></button></td>
             <td><button class="button" id="percentageBtn" type="button" onclick="addPercentageSign()">%</button></td>
             <td><button class="button" id="openBracketBtn" type="button" onclick="addBracket('open')">(</button></td>
             <td><button class="button" id="closeBracketBtn" type="button" onclick="addBracket('close')">)</button></td>
-            <td><button class="button" id="clearBtn" type="button" onclick="resetAll()">CE</button></td>
+            <td><button class="button" id="clearBtn" type="button" onclick="clearEntry()">CE</button></td>
+            <td><button class="button" id="clearBtn" type="button" onclick="resetAll()">AC</button></td>
         </tr>
         <tr>
-            <td><button class="button" id="factorialBtn" type="button" onclick="addFactorial()">x!</button></td>
             <td><button class="button" id="logarithBtn" type="button">log</button></td>
             <td><button class="button" id="logNapierBtn" type="button">ln</button></td>
+            <td><button class="button" id="factorialBtn" type="button" onclick="addFactorial()">x!</button></td>
             <td><button class="numPad" id="num7Btn" type="button" onclick="inputNum(7)">7</button></td>
             <td><button class="numPad" id="num8Btn" type="button" onclick="inputNum(8)">8</button></td>
             <td><button class="numPad" id="num9Btn" type="button" onclick="inputNum(9)">9</button></td>
             <td><button class="operatorBtn" type="button" onclick="inputOperator(1)">+</button></td>
         </tr>
         <tr>
-            <td><button class="button" id="piNum" type="button">&#960;</button></td>
+            <td><button class="button" id="piNum" type="button" onclick="addPi()">&#960;</button></td>
+            <td><button class="button" id="napierNum" type="button" onclick="addEulerNum()">e</button></td>
             <td><button class="button" id="imaginaryNum" type="button">i</button></td>
-            <td><button class="button" id="napierNum" type="button">e</button></td>
             <td><button class="numPad" id="num4Btn" type="button" onclick="inputNum(4)">4</button></td>
             <td><button class="numPad" id="num5Btn" type="button" onclick="inputNum(5)">5</button></td>
             <td><button class="numPad" id="num6Btn" type="button" onclick="inputNum(6)">6</button></td>

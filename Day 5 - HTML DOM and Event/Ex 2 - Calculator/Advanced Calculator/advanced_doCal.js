@@ -2,11 +2,17 @@ let screen = document.getElementById("screen");
 let inputValueArr = [], calArr = [], displayEquation = "", isExponentInput = fractionStep = 0;
 let isOperatorInput = isNegative = isDecimal = false;
 
+function clearEntry() {
+    let i = inputValueArr.length - 1;
+    inputValueArr.splice(i, 1);
+    screen.innerHTML = inputValueArr.join("");
+};
+
 function resetAll() {
     for (let i = inputValueArr.length; i > 0; i--) {
         inputValueArr.pop();
     };
-    screen.innerHTML = inputValueArr.toString();
+    screen.innerHTML = inputValueArr.join("");
 };
 
 function inputNum(num) {
@@ -144,16 +150,16 @@ function addFactorial() {
     };
 };
 
-function addFraction(i) {
-    fractionStep += i;
-    if (fractionStep == 1) {
-        inputValueArr.push("<math><mrow><mfrac><mi>");
-    } else if (fractionStep == 2) {
-        inputValueArr.push("</mi><mi>");
-    } else if (fractionStep == 3) {
-        inputValueArr.push("</mi></mfrac></mrow></math>");
-        fractionStep = fractionStep - 3;
-    };
+function addPi() {
+    let str = "&#960;";
+    inputValueArr.push(str);
+    screen.innerHTML = inputValueArr.join("");
+};
+
+function addEulerNum() {
+    let str = "e";
+    inputValueArr.push(str);
+    screen.innerHTML = inputValueArr.join("");
 };
 
 function convertOperator() {
@@ -171,30 +177,20 @@ function convertOperator() {
             case "% ":
                 calArr.splice(i, 1, " /100");
                 break;
-            case "<math><mrow><mfrac><mi>":
-                var removeDigit, numerator = "", j = i - 1, k;
-                for (j; j >= 0; j--) {
-                    if (isNaN(calArr[j]) == true || j == 0) {
-                        removeDigit = i - j + 1;
-                    };
-                };
-                if (j == 0) {
-                    k = j;
-                    for (k; k < i; k++) {
-                        let str = calArr[k];
-                        numerator += str.toString();
-                    };
-                    calArr.splice(j, removeDigit, numerator + "/");
+            case "&#960;":
+                if (isNaN(calArr[i - 1]) == false) {
+                    calArr.splice(i - 1, 2, calArr[i-1] + " * " + (Math.PI).toString());
                 } else {
-                    k = j + 1;
-                    for (k; k < i; k++) {
-                        let str = calArr[k];
-                        numerator += str.toString();
-                    };
-                    calArr.splice(j + 1, removeDigit, numerator + "/");
+                    calArr.splice(i, 1, (Math.PI).toString());
                 };
-            case "":
-                
+                break;
+            case "e":
+                if (isNaN(calArr[i - 1]) == false) {
+                    calArr.splice(i - 1, 2, calArr[i-1] + " * " + (Math.E).toString());
+                } else {
+                    calArr.splice(i, 1, (Math.E).toString());
+                };
+                break;
             case "!":
                 var removeDigit, factorialResult, num = "", j = i - 1, k;
                 for (j; j >= 0; j--) {
@@ -214,14 +210,17 @@ function convertOperator() {
                         alert("Giai thừa của n chỉ nhận n là các số >= 0");
                         calArr.splice(0, calArr.length);
                         resetAll();
+                        break;
                     } else if (num == 0 || num == 1) {
                         calArr.splice(j, removeDigit, "1");
+                        break;
                     } else {
                         while (num > 1) {
                             num--;
                             factorialResult = factorialResult * num;
                         };
                         calArr.splice(j, removeDigit, factorialResult.toString());
+                        break;
                     };
                 } else {
                     k = j + 1;
@@ -235,17 +234,19 @@ function convertOperator() {
                         alert("Giai thừa của n chỉ nhận n là các số >= 0");
                         calArr.splice(0, calArr.length);
                         resetAll();
+                        break;
                     } else if (num == 0 || num == 1) {
                         calArr.splice(j + 1, removeDigit, "1");
+                        break;
                     } else {
                         while (num > 1) {
                             num--;
                             factorialResult = factorialResult * num;
                         };
                         calArr.splice(j + 1, removeDigit, factorialResult.toString());
+                        break;
                     };
                 };
-                break;
             case "<sup>":
                 var removeDigit, base = "", j = i - 1, k;
                 for (j; j > 0; j--) {
@@ -263,6 +264,7 @@ function convertOperator() {
                         base += str.toString();
                     };
                     calArr.splice(j, removeDigit, "Math.pow(" + base + ",");
+                    break;
                 } else {
                     k = j + 1;
                     for (k; k < i; k++) {
@@ -270,8 +272,8 @@ function convertOperator() {
                         base += str.toString();
                     };
                     calArr.splice(j + 1, removeDigit, "Math.pow(" + base + ",");
+                    break;
                 };
-                break;
             case "</sup>":
                 calArr.splice(i, 1, ")");
                 break;
