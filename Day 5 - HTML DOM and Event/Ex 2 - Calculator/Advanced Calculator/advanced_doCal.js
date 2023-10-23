@@ -179,107 +179,92 @@ function convertOperator() {
                 break;
             case "&#960;":
                 if (isNaN(calArr[i - 1]) == false) {
-                    calArr.splice(i - 1, 2, calArr[i-1] + " * " + (Math.PI).toString());
+                    calArr.splice(i - 1, 2, calArr[i - 1] + " * " + (Math.PI).toString());
                 } else {
                     calArr.splice(i, 1, (Math.PI).toString());
                 };
                 break;
             case "e":
                 if (isNaN(calArr[i - 1]) == false) {
-                    calArr.splice(i - 1, 2, calArr[i-1] + " * " + (Math.E).toString());
+                    calArr.splice(i - 1, 2, calArr[i - 1] + " * " + (Math.E).toString());
                 } else {
                     calArr.splice(i, 1, (Math.E).toString());
                 };
                 break;
             case "!":
-                var removeDigit, factorialResult, num = "", j = i - 1, k;
-                for (j; j >= 0; j--) {
-                    if (isNaN(calArr[j]) == true || j == 0) {
-                        removeDigit = i - j + 1;
-                    };
-                };
-                if (j == 0) {
-                    k = j;
-                    for (k; k < i; k++) {
-                        let str = calArr[k];
-                        num += str.toString();
-                    };
-
-                    factorialResult = num = parseFloat(num);
-                    if (num < 0) {
-                        alert("Giai thừa của n chỉ nhận n là các số >= 0");
-                        calArr.splice(0, calArr.length);
-                        resetAll();
-                        break;
-                    } else if (num == 0 || num == 1) {
-                        calArr.splice(j, removeDigit, "1");
-                        break;
-                    } else {
-                        while (num > 1) {
-                            num--;
-                            factorialResult = factorialResult * num;
-                        };
-                        calArr.splice(j, removeDigit, factorialResult.toString());
-                        break;
-                    };
-                } else {
-                    k = j + 1;
-                    for (k; k < i; k++) {
-                        let str = calArr[k];
-                        num += str.toString();
-                    };
-
-                    factorialResult = num = parseFloat(num);
-                    if (num < 0) {
-                        alert("Giai thừa của n chỉ nhận n là các số >= 0");
-                        calArr.splice(0, calArr.length);
-                        resetAll();
-                        break;
-                    } else if (num == 0 || num == 1) {
-                        calArr.splice(j + 1, removeDigit, "1");
-                        break;
-                    } else {
-                        while (num > 1) {
-                            num--;
-                            factorialResult = factorialResult * num;
-                        };
-                        calArr.splice(j + 1, removeDigit, factorialResult.toString());
-                        break;
-                    };
-                };
-            case "<sup>":
-                var removeDigit, base = "", j = i - 1, k;
-                for (j; j > 0; j--) {
+                var removeDigit, factorialResult, num = "", j = i - 1, k, str;
+                for (j; i > j >= 0; j--) {
                     if (isNaN(calArr[j]) == true) {
-                        removeDigit = i - j + 1;
+                        removeDigit = i - j;
+
+                        k = j + 1;
+                        for (k; k < i; k++) {
+                            str = calArr[k];
+                            num += str.toString();
+                        };
+
+                        factorialResult = num = parseFloat(num);
+                        if (num < 0) {
+                            alert("Giai thừa của n chỉ nhận n là các số >= 0");
+                            calArr.splice(0, calArr.length);
+                            resetAll();
+                        } else if (num == 0 || num == 1) {
+                            calArr.splice(j + 1, removeDigit, "1");
+                        } else {
+                            while (num > 1) {
+                                num--;
+                                factorialResult = factorialResult * num;
+                            };
+                            calArr.splice(j + 1, removeDigit, factorialResult.toString());
+                        };
                     } else if (j == 0) {
                         removeDigit = i - j + 1;
+
+                        k = j;
+                        for (k; k < i; k++) {
+                            str = calArr[k];
+                            num += str.toString();
+                        };
+
+                        factorialResult = num = parseFloat(num);
+                        if (num < 0) {
+                            alert("Giai thừa của n chỉ nhận n là các số >= 0");
+                            calArr.splice(0, calArr.length);
+                            resetAll();
+                        } else if (num == 0 || num == 1) {
+                            calArr.splice(j, removeDigit, "1");
+                        } else {
+                            while (num > 1) {
+                                num--;
+                                factorialResult = factorialResult * num;
+                            };
+                            calArr.splice(j, removeDigit, factorialResult.toString());
+                        };
                     };
-                    console.log(isNaN(calArr[j]));
                 };
-                if (j == 0) {
-                    k = j;
-                    for (k; k < i; k++) {
-                        let str = calArr[k];
-                        base += str.toString();
+                break;
+            case "<sup>":
+                if (calArr[i - 1] == ")") {
+                    var start, end, removeDigit, base;
+                    for (start = i; start <= 0; start--) {
+                        if(calArr[start] == "(") {
+                            removeDigit = i - start;
+                        };
                     };
-                    calArr.splice(j, removeDigit, "Math.pow(" + base + ",");
-                    break;
-                } else {
-                    k = j + 1;
-                    for (k; k < i; k++) {
-                        let str = calArr[k];
-                        base += str.toString();
+                    for (end = 0; end < i; end++) {
+                        base += calArr[end].toString();
                     };
-                    calArr.splice(j + 1, removeDigit, "Math.pow(" + base + ",");
-                    break;
+                    calArr.splice(start, removeDigit, "Math.pow(" + base + ",");
+                } else if (isNaN(calArr[i - 1]) == false) {
+                    calArr.splice(i - 1, 2, "Math.pow(" + calArr[i - 1] + ",");
                 };
+                console.log(inputValueArr, calArr, removeDigit);
+                break;
             case "</sup>":
                 calArr.splice(i, 1, ")");
                 break;
         };
     };
-    console.log(inputValueArr, calArr);
 };
 
 function outputResult() {
