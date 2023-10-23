@@ -162,8 +162,14 @@ function addEulerNum() {
     screen.innerHTML = inputValueArr.join("");
 };
 
+function addI() {
+    let str = "i";
+    inputValueArr.push(str);
+    screen.innerHTML = inputValueArr.join("");
+};
+
 function convertOperator() {
-    let i = 0;
+    let i = 0, j, k, startPoint, removeDigit, base = "";
     for (i; i < inputValueArr.length; i++) {
         calArr[i] = inputValueArr[i];
 
@@ -192,73 +198,62 @@ function convertOperator() {
                 };
                 break;
             case "!":
-                var removeDigit, factorialResult, num = "", j = i - 1, k, str;
-                for (j; i > j >= 0; j--) {
-                    if (isNaN(calArr[j]) == true) {
-                        removeDigit = i - j;
+                if (calArr[i - 1] == " ) ") {
 
-                        k = j + 1;
-                        for (k; k < i; k++) {
-                            str = calArr[k];
-                            num += str.toString();
-                        };
-
-                        factorialResult = num = parseFloat(num);
-                        if (num < 0) {
-                            alert("Giai thừa của n chỉ nhận n là các số >= 0");
-                            calArr.splice(0, calArr.length);
-                            resetAll();
-                        } else if (num == 0 || num == 1) {
-                            calArr.splice(j + 1, removeDigit, "1");
-                        } else {
-                            while (num > 1) {
-                                num--;
-                                factorialResult = factorialResult * num;
-                            };
-                            calArr.splice(j + 1, removeDigit, factorialResult.toString());
-                        };
-                    } else if (j == 0) {
-                        removeDigit = i - j + 1;
-
-                        k = j;
-                        for (k; k < i; k++) {
-                            str = calArr[k];
-                            num += str.toString();
-                        };
-
-                        factorialResult = num = parseFloat(num);
-                        if (num < 0) {
-                            alert("Giai thừa của n chỉ nhận n là các số >= 0");
-                            calArr.splice(0, calArr.length);
-                            resetAll();
-                        } else if (num == 0 || num == 1) {
-                            calArr.splice(j, removeDigit, "1");
-                        } else {
-                            while (num > 1) {
-                                num--;
-                                factorialResult = factorialResult * num;
-                            };
-                            calArr.splice(j, removeDigit, factorialResult.toString());
+                } else if (isNaN(calArr[i - 1]) == false) {
+                    k = i - 1;
+                    while (k >= 0) {
+                        k--;
+                        if (isNaN(calArr[k]) == true) {
+                            startPoint = k + 1;
+                            removeDigit = i - startPoint + 1;
                         };
                     };
-                };
+                    for (j = startPoint; j < i; j++) {
+                        base += calArr[j];
+                        base = parseFloat(base);
+                    };
+
+                    if (base < 0) {
+                        alert("Giai thừa chỉ nhận các cơ số là số >= 0 !");
+                        resetAll();
+                    } else if (base == 0 || base == 1) {
+                        var factorialResult = "1";
+                    } else {
+                        var factorialResult = base;
+                        while (base > 1) {
+                            base--;
+                            factorialResult *= base;
+                        };
+                    };
+                }
+                calArr.splice(startPoint, removeDigit, factorialResult.toString());
                 break;
             case "<sup>":
-                if (calArr[i - 1] == ")") {
-                    var start, end, removeDigit, base;
-                    for (start = i; start <= 0; start--) {
-                        if(calArr[start] == "(") {
-                            removeDigit = i - start;
+                if (calArr[i - 1] == " ) ") {
+                    if (calArr[0] == "( ") {
+                        startPoint = 0;
+                    } else {
+                        startPoint = calArr.lastIndexOf(" ( ", i);
+                    };
+                    removeDigit = i - startPoint + 1;
+                    for (j = startPoint; j < i; j++) {
+                        base += calArr[j];
+                    };
+                } else if (isNaN(calArr[i - 1]) == false) {
+                    k = i - 1;
+                    while (k >= 0) {
+                        k--;
+                        if (isNaN(calArr[k]) == true) {
+                            startPoint = k + 1;
+                            removeDigit = i - startPoint + 1;
                         };
                     };
-                    for (end = 0; end < i; end++) {
-                        base += calArr[end].toString();
+                    for (j = startPoint; j < i; j++) {
+                        base += calArr[j];
                     };
-                    calArr.splice(start, removeDigit, "Math.pow(" + base + ",");
-                } else if (isNaN(calArr[i - 1]) == false) {
-                    calArr.splice(i - 1, 2, "Math.pow(" + calArr[i - 1] + ",");
                 };
-                console.log(inputValueArr, calArr, removeDigit);
+                calArr.splice(startPoint, removeDigit, "Math.pow(" + base + ",");
                 break;
             case "</sup>":
                 calArr.splice(i, 1, ")");
@@ -270,9 +265,20 @@ function convertOperator() {
 function outputResult() {
     convertOperator();
     if (inputValueArr.length > 0) {
-        let result = calArr.join("");
+        let result = eval(calArr.join(""));
         displayEquation = inputValueArr.join("");
+
+        switch (result) {
+            case NaN:
+                screen.innerHTML = displayEquation + "<br><br>" + "= Vô nghiệm";
+                break;
+            case Infinity:
+                screen.innerHTML = displayEquation + "<br><br>" + "= " + "&infin;";
+                break;
+            default:
+                screen.innerHTML = displayEquation + "<br><br>" + "= " + result;
+                break;
+        };
         console.log(result);
-        screen.innerHTML = displayEquation + "<br><br>" + "= " + eval(result);
     };
 };
