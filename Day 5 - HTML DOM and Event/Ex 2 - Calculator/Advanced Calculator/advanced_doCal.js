@@ -1,5 +1,5 @@
 let screen = document.getElementById("screen");
-let inputValueArr = [], calArr = [], displayEquation = "", nthRoot;
+let inputValueArr = [], calArr = [], displayEquation = nthRoot = "";
 let isOperatorInput = isNegative = isDecimal = false, isExponentInput = isRootInput = 0;
 
 function clearEntry() {
@@ -132,23 +132,39 @@ function addExponent(i) {
 
 function addRoot(i) {
     isRootInput += i;
-    nthRoot = parseFloat(inputValueArr[inputValueArr.length - 1]);
-    if (inputValueArr[inputValueArr.length - 1] == "2") {
+    let j, k = inputValueArr.length - 1, startPoint, removeDigit = 0;
+
+    while (isNaN(inputValueArr[k]) == false || k >= 0) {
+        k--, removeDigit++;
+        if (isNaN(inputValueArr[k]) == true) {
+            startPoint = k + 1;
+        } else if (k < 0) {
+            startPoint = 0;
+        };
+    };
+    for (j = startPoint; j <= inputValueArr.length - 1; j++) {
+        nthRoot += inputValueArr[j];
+    };
+    nthRoot = parseFloat(nthRoot);
+
+    if (nthRoot == 2) {
         if (isRootInput % 2 != 0) {
-            inputValueArr.splice(inputValueArr.length - 1, 1, "&radic;&nbsp;&#x305;");
-        } else if (RootInput % 2 == 0) {
+            inputValueArr.splice(startPoint, removeDigit, "&radic;&nbsp;&#x305;");
+        } else if (isRootInput % 2 == 0) {
             isRootInput = 0;
         };
-    } else if (inputValueArr[inputValueArr.length - 1] > 2) {
+    } else if (nthRoot > 2) {
         if (isRootInput == 1) {
-            inputValueArr.splice(inputValueArr.length - 1, 1, "<sup>" + inputValueArr[inputValueArr.length - 1] + "</sup>")
+            inputValueArr.splice(startPoint, removeDigit, "<sup>" + nthRoot + "</sup>")
             inputValueArr.push("&radic;&nbsp;&#x305;");
         } else if (isRootInput % 2 == 0) {
             isRootInput = 0;
         };
-    } else if (inputValueArr.length == 0 || inputValueArr[inputValueArr.length - 1] == 1 || inputValueArr[inputValueArr.length - 1] == 0) {
-        alert("Căn bậc n của một số x bất kì phải thỏa mãn điều kiện sau: n > 2, x >= 0");
+    } else if (nthRoot == 1 || nthRoot == 0) {
+        alert("Căn bậc n của một số x bất kì phải thỏa mãn điều kiện sau: \n n >= 2, x >= 0.");
         resetAll();
+    } else if (inputValueArr.length == 0) {
+        alert("Vui lòng nhập giá trị căn bậc n.");
     };
 };
 
@@ -366,7 +382,7 @@ function convertOperator() {
 
                 case "&radic;&nbsp;&#x305;":
                     if (nthRoot > 2) {
-                        calArr.splice(i - 1, 1, "Math.pow(");
+                        calArr.splice(i - 1, 2, "Math.pow(");
                     } else {
                         calArr.splice(i, 1, "Math.sqrt(");
                     };
@@ -374,7 +390,7 @@ function convertOperator() {
             };
         };
     };
-    console.log(inputValueArr, calArr, nthRoot);
+    console.log(inputValueArr, calArr);
 };
 
 function outputResult() {
