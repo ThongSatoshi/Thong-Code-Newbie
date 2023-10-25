@@ -1,6 +1,6 @@
 let screen = document.getElementById("screen");
 let inputValueArr = [], calArr = [], displayEquation = nthRoot = "";
-let isOperatorInput = isNegative = isDecimal = false, isExponentInput = isRootInput = 0;
+let isOperatorInput = isNegative = isDecimal = false, isExponentInput = isRootInput = isAbsoluteInput = 0;
 
 function clearEntry() {
     let i = inputValueArr.length - 1;
@@ -220,20 +220,35 @@ function addFactorial() {
 };
 
 function addPi() {
-    let str = "&pi;";
+    let str = "";
+    if (isNegative == true) {
+        str += "-&pi;";
+    } else {
+        str += "&pi;";
+    };
     inputValueArr.push(str);
     screen.innerHTML = inputValueArr.join("");
 };
 
 function addEulerNum() {
-    let str = "e";
+    let str = "";
+    if (isNegative == true) {
+        str += "-e";
+    } else {
+        str += "e";
+    };
     inputValueArr.push(str);
     screen.innerHTML = inputValueArr.join("");
 };
 
-function addI() {
-    let str = "i";
-    inputValueArr.push(str);
+function addAbsoluteSign(i) {
+    isAbsoluteInput += i;
+    if (isAbsoluteInput % 2 != 0) {
+        inputValueArr.push("| ");
+    } else {
+        inputValueArr.push(" |");
+        isAbsoluteInput = 0;
+    };
     screen.innerHTML = inputValueArr.join("");
 };
 
@@ -253,11 +268,19 @@ function convertOperator() {
                 case "&nbsp;&#x305;-&#x305;&nbsp;&#x305;":
                     calArr.splice(i, 1, " - ");
                     break;
-                case " &times; " || "&nbsp;&#x305;&times;&#x305;&nbsp;&#x305;":
+                case " &times; ":
                     calArr.splice(i, 1, " * ");
                     break;
 
-                case " : " || "&nbsp;&#x305;:&#x305;&nbsp;&#x305;":
+                case "&nbsp;&#x305;&times;&#x305;&nbsp;&#x305;":
+                    calArr.splice(i, 1, " * ");
+                    break;
+
+                case " : ":
+                    calArr.splice(i, 1, " / ");
+                    break;
+
+                case "&nbsp;&#x305;:&#x305;&nbsp;&#x305;":
                     calArr.splice(i, 1, " / ");
                     break;
 
@@ -286,12 +309,20 @@ function convertOperator() {
                     };
                     break;
 
+                case "-&pi;":
+                    calArr.splice(i, 1, "-1 * " + (Math.PI).toString());
+                    break;
+
                 case "e":
                     if (isNaN(calArr[i - 1]) == false) {
                         calArr.splice(i - 1, 2, calArr[i - 1] + " * " + (Math.E).toString());
                     } else {
                         calArr.splice(i, 1, (Math.E).toString());
                     };
+                    break;
+
+                case "-e":
+                    calArr.splice(i, 1, "-1 * " + (Math.E).toString());
                     break;
 
                 case "!":
@@ -386,6 +417,13 @@ function convertOperator() {
                     } else {
                         calArr.splice(i, 1, "Math.sqrt(");
                     };
+                    break;
+
+                case "| ":
+                    calArr.splice(i, 1, "Math.abs(");
+                    break;
+                case " |":
+                    calArr.splice(i, 1, ")");
                     break;
             };
         };
