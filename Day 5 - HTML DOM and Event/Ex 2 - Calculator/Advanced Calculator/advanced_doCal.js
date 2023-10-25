@@ -1,6 +1,6 @@
 let screen = document.getElementById("screen");
-let inputValueArr = [], calArr = [], displayEquation = "", isExponentInput = isRootInput = 0;
-let isOperatorInput = isNegative = isDecimal = false;
+let inputValueArr = [], calArr = [], displayEquation = "", nthRoot;
+let isOperatorInput = isNegative = isDecimal = false, isExponentInput = isRootInput = 0;
 
 function clearEntry() {
     let i = inputValueArr.length - 1;
@@ -132,18 +132,18 @@ function addExponent(i) {
 
 function addRoot(i) {
     isRootInput += i;
+    nthRoot = parseFloat(inputValueArr[inputValueArr.length - 1]);
     if (inputValueArr[inputValueArr.length - 1] == "2") {
         if (isRootInput % 2 != 0) {
-            inputValueArr.splice(inputValueArr.length - 1, 1, "&#8730;&nbsp;&#x305;");
+            inputValueArr.splice(inputValueArr.length - 1, 1, "&radic;&nbsp;&#x305;");
         } else if (RootInput % 2 == 0) {
-            inputValueArr.push("<p hidden></p>");
             isRootInput = 0;
         };
     } else if (inputValueArr[inputValueArr.length - 1] > 2) {
         if (isRootInput == 1) {
-            inputValueArr.splice(inputValueArr.length - 1, 1, "<sup>" + inputValueArr[inputValueArr.length - 1] + "</sup>" + "&#8730; &#x305;");
+            inputValueArr.splice(inputValueArr.length - 1, 1, "<sup>" + inputValueArr[inputValueArr.length - 1] + "</sup>")
+            inputValueArr.push("&radic;&nbsp;&#x305;");
         } else if (isRootInput % 2 == 0) {
-            inputValueArr.push("<p hidden></p>");
             isRootInput = 0;
         };
     } else if (inputValueArr.length == 0 || inputValueArr[inputValueArr.length - 1] == 1 || inputValueArr[inputValueArr.length - 1] == 0) {
@@ -162,14 +162,22 @@ function addBracket(type) {
                 screen.innerHTML = inputValueArr.join("");
                 break;
             } else {
-                str += " ( "
+                if (isRootInput % 2 != 0) {
+                    str += "&nbsp;&#x305;(&#x305;&nbsp;&#x305;";
+                } else {
+                    str += " ( ";
+                };
                 inputValueArr.push(str);
                 screen.innerHTML = inputValueArr.join("");
                 break;
             };
         case 'close':
             if (inputValueArr.length > 0) {
-                str += " ) "
+                if (isRootInput % 2 != 0) {
+                    str += "&nbsp;&#x305;)&#x305;&nbsp;&#x305;";
+                } else {
+                    str += " ) ";
+                };
                 inputValueArr.push(str);
                 screen.innerHTML = inputValueArr.join("");
                 break;
@@ -235,6 +243,19 @@ function convertOperator() {
 
                 case " : " || "&nbsp;&#x305;:&#x305;&nbsp;&#x305;":
                     calArr.splice(i, 1, " / ");
+                    break;
+
+                case "&nbsp;&#x305;(&#x305;&nbsp;&#x305;":
+                    calArr.splice(i, 1, " ( ");
+                    break;
+
+                case "&nbsp;&#x305;)&#x305;&nbsp;&#x305;":
+                    if (nthRoot > 2) {
+                        calArr.splice(i, 1, ") , 1/" + nthRoot + ")");
+                        nthRoot = 0;
+                    } else {
+                        calArr.splice(i, 1, " ) )");
+                    };
                     break;
 
                 case "% ":
@@ -343,35 +364,36 @@ function convertOperator() {
                     calArr.splice(i, 1, ")");
                     break;
 
-                case "&#8730;&nbsp;&#x305;":
-
-                    break;
-
-                case "":
+                case "&radic;&nbsp;&#x305;":
+                    if (nthRoot > 2) {
+                        calArr.splice(i - 1, 1, "Math.pow(");
+                    } else {
+                        calArr.splice(i, 1, "Math.sqrt(");
+                    };
                     break;
             };
         };
     };
-    console.log(inputValueArr, calArr);
+    console.log(inputValueArr, calArr, nthRoot);
 };
 
 function outputResult() {
     convertOperator();
-    // if (inputValueArr.length > 0) {
-    //     let result = eval(calArr.join(""));
-    //     displayEquation = inputValueArr.join("");
+    if (inputValueArr.length > 0) {
+        let result = eval(calArr.join(""));
+        displayEquation = inputValueArr.join("");
 
-    //     switch (result) {
-    //         case NaN:
-    //             screen.innerHTML = displayEquation + "<br><br>" + "= Vô nghiệm";
-    //             break;
-    //         case Infinity:
-    //             screen.innerHTML = displayEquation + "<br><br>" + "= " + "&infin;";
-    //             break;
-    //         default:
-    //             screen.innerHTML = displayEquation + "<br><br>" + "= " + result;
-    //             break;
-    //     };
-    //     console.log(result);
-    // };
+        switch (result) {
+            case NaN:
+                screen.innerHTML = displayEquation + "<br><br>" + "= Vô nghiệm";
+                break;
+            case Infinity:
+                screen.innerHTML = displayEquation + "<br><br>" + "= " + "&infin;";
+                break;
+            default:
+                screen.innerHTML = displayEquation + "<br><br>" + "= " + result;
+                break;
+        };
+        console.log(result);
+    };
 };
