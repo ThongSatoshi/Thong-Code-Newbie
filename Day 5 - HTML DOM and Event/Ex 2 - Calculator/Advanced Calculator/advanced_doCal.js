@@ -1,6 +1,7 @@
 let screen = document.getElementById("screen");
-let inputValueArr = [], calArr = [], displayEquation = nthRoot = "";
-let isOperatorInput = isNegative = isDecimal = false, isExponentInput = isRootInput = isAbsoluteInput = 0;
+let inputValueArr = [], calArr = [], displayEquation = nthRoot = logBase = "";
+let isOperatorInput = isNegative = isDecimal = false;
+let isExponentInput = isRootInput = isAbsoluteInput = isLogarithmInput = 0;
 
 function clearEntry() {
     let i = inputValueArr.length - 1;
@@ -289,6 +290,38 @@ function addExponentialFunc() {
     screen.innerHTML = inputValueArr.join("");
 };
 
+function addLogarithm(i) {
+    let str = "";
+    isLogarithmInput += i;
+    if (isLogarithmInput == 1) {
+        if (isNegative == true) {
+            str += "-log<sub>";
+            isNegative = false;
+        } else {
+            str += "log<sub> ";
+        };
+    } else if (isLogarithmInput == 2) {
+        str += "</sub> ( ";
+        logBase += inputValueArr[inputValueArr.length - 1];
+        isLogarithmInput = 0;
+    };
+    inputValueArr.push(str);
+    screen.innerHTML = inputValueArr.join("");
+};
+
+function addNaturalLogarithm() {
+    let str = "";
+    if (isNegative == true) {
+        str += "-ln ( ";
+        isNegative = false;
+    } else {
+        str += "ln ( ";
+    };
+    inputValueArr.push(str);
+    screen.innerHTML = inputValueArr.join("");
+    isLogarithmInput = 0;
+};
+
 function convertOperator() {
     let i = 0, j, k, startPoint, removeDigit, base = "";
     for (i; i < inputValueArr.length; i++) {
@@ -478,6 +511,14 @@ function convertOperator() {
                 case "-exp ( ":
                     calArr.splice(i, 1, "-1 * Math.exp(");
                     break;
+
+                case "ln ( ":
+                    calArr.splice(i, 1, "Math.log(");
+                    break;
+                
+                case "-ln ( ":
+                    calArr.splice(i, 1, "-1 * Math.log(");
+                    break;
             };
         };
     };
@@ -499,6 +540,9 @@ function outputResult() {
                 break;
             case Infinity:
                 screen.innerHTML = displayEquation + "<br><br>" + "= &infin;";
+                break;
+            case -Infinity:
+                screen.innerHTML = displayEquation + "<br><br>" + "= -&infin;";
                 break;
             default:
                 screen.innerHTML = displayEquation + "<br><br>" + "= " + result;
