@@ -515,9 +515,61 @@ function convertOperator() {
                 case "ln ( ":
                     calArr.splice(i, 1, "Math.log(");
                     break;
-                
+
                 case "-ln ( ":
                     calArr.splice(i, 1, "-1 * Math.log(");
+                    break;
+
+                case "log<sub>":
+                    if (logBase == "e") {
+                        if (isNaN(calArr[i - 1]) == false) {
+                            calArr.splice(i - 1, 2, calArr[i - 1] + " * " + (Math.E).toString());
+                        } else {
+                            calArr.splice(i, 1, (Math.E).toString());
+                        };
+                        break;
+                    };
+
+                    logBase = parseFloat(logBase);
+                    if (logBase == Math.E) {
+                        calArr.splice(i, 1, "Math.log(");
+                    } else if (logBase == 2) {
+                        calArr.splice(i, 1, "Math.log2(");
+                    } else if (logBase == 10) {
+                        calArr.splice(i, 1, "Math.log10(");
+                    } else if (isNaN(logBase) == false && (logBase != Math.E || logBase != 2 || logBase != 10)) {
+                        calArr.splice(i, 1, "Math.log10(");
+                    };
+                    break;
+
+                case "-log<sub>":
+                    if (logBase == "e") {
+                        if (isNaN(calArr[i - 1]) == false) {
+                            calArr.splice(i - 1, 2, calArr[i - 1] + " * " + (Math.E).toString());
+                        } else {
+                            calArr.splice(i, 1, (Math.E).toString());
+                        };
+                        break;
+                    };
+
+                    logBase = parseFloat(logBase);
+                    if (logBase == Math.E) {
+                        calArr.splice(i, 1, "-1 * Math.log(");
+                    } else if (logBase == 2) {
+                        calArr.splice(i, 1, "-1 * Math.log2(");
+                    } else if (logBase == 10) {
+                        calArr.splice(i, 1, "-1 * Math.log10(");
+                    } else if (isNaN(logBase) == false && (logBase != Math.E || logBase != 2 || logBase != 10)) {
+                        calArr.splice(i, 1, "-1 * ( Math.log10(");
+                    };
+                    break;
+
+                case "</sub> ( ":
+                    if (isNaN(logBase) == false && (logBase != Math.E || logBase != 2 || logBase != 10)) {
+                        calArr.splice(i - 1, 3, ") / Math.log10(" + logBase + ")");
+                    } else {
+                        calArr.splice(i - 1, 2);
+                    };
                     break;
             };
         };
