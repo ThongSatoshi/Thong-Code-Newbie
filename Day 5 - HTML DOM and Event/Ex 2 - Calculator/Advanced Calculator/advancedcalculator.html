@@ -16,36 +16,36 @@
             <td colspan = "7"><div id="screen">0</div></td>
         </tr>
         <tr>
-            <td><button class="button" id="exponentationBtn" type="button" onclick="addExponent(1)">x<sup>n</sup></button></td>
-            <td><button class="button" id="sqrtBtn" type="button" onclick="addRoot(1)"><sup>n</sup>&radic;&nbsp;&#x305;x</button></td>
+            <td><button class="button" id="factorialBtn" type="button" onclick="addFactorial()">x!</button></td>
             <td><button class="button" id="percentageBtn" type="button" onclick="addPercentageSign()">%</button></td>
+            <td><button class="button" id="negativeSignBtn" type="button" onclick="changeNegative()">+/-</button></td>
             <td><button class="button" id="openBracketBtn" type="button" onclick="addBracket('open')">(</button></td>
             <td><button class="button" id="closeBracketBtn" type="button" onclick="addBracket('close')">)</button></td>
             <td><button class="button" id="clearBtn" type="button" onclick="clearEntry()">CE</button></td>
             <td><button class="button" id="clearBtn" type="button" onclick="resetAll()">AC</button></td>
         </tr>
         <tr>
-            <td><button class="button" id="logarithBtn" type="button">log</button></td>
-            <td><button class="button" id="logNapierBtn" type="button">ln</button></td>
-            <td><button class="button" id="factorialBtn" type="button" onclick="addFactorial()">x!</button></td>
+            <td><button class="button" id="exponentationBtn" type="button" onclick="addExponent(1)">x<sup>n</sup></button></td>
+            <td><button class="button" id="sqrtBtn" type="button" onclick="addRoot(1)"><sup>n</sup>&radic;&nbsp;&#x305;x</button></td>
+            <td><button class="button" id="imaginaryNum" type="button" onclick="addAbsoluteSign(1)">| x |</button></td>
             <td><button class="numPad" id="num7Btn" type="button" onclick="inputNum(7)">7</button></td>
             <td><button class="numPad" id="num8Btn" type="button" onclick="inputNum(8)">8</button></td>
             <td><button class="numPad" id="num9Btn" type="button" onclick="inputNum(9)">9</button></td>
             <td><button class="operatorBtn" type="button" onclick="inputOperator(1)">+</button></td>
         </tr>
         <tr>
-            <td><button class="button" id="piNum" type="button" onclick="addPi()">&pi;</button></td>
-            <td><button class="button" id="napierNum" type="button" onclick="addEulerNum()">e</button></td>
-            <td><button class="button" id="imaginaryNum" type="button" onclick="addAbsoluteSign(1)">| x |</button></td>
+            <td><button class="button" id="sinBtn" type="button">sin</button></td>
+            <td><button class="button" id="cosBtn" type="button">cos</button></td>
+            <td><button class="button" id="tanBtn" type="button">tan</button></td>
             <td><button class="numPad" id="num4Btn" type="button" onclick="inputNum(4)">4</button></td>
             <td><button class="numPad" id="num5Btn" type="button" onclick="inputNum(5)">5</button></td>
             <td><button class="numPad" id="num6Btn" type="button" onclick="inputNum(6)">6</button></td>
             <td><button class="operatorBtn" type="button" onclick="inputOperator(2)">-</button></td>
         </tr>
         <tr>
-            <td><button class="button" id="sinBtn" type="button">sin</button></td>
-            <td><button class="button" id="cosBtn" type="button">cos</button></td>
-            <td><button class="button" id="tanBtn" type="button">tan</button></td>
+            <td><button class="button" id="logarithBtn" type="button">log<sub>n</sub>x</button></td>
+            <td><button class="button" id="logNapierBtn" type="button">ln</button></td>
+            <td><button class="button" id="piNum" type="button" onclick="addPi()">&pi;</button></td>
             <td><button class="numPad" id="num1Btn" type="button" onclick="inputNum(1)">1</button></td>
             <td><button class="numPad" id="num2Btn" type="button" onclick="inputNum(2)">2</button></td>
             <td><button class="numPad" id="num3Btn" type="button" onclick="inputNum(3)">3</button></td>
@@ -53,9 +53,9 @@
             
         </tr>
         <tr>
-            <td><button class="button" id="modBtn" type="button">mod()</button></td>
-            <td><button class="button" id="roundBtn" type="button">RND</button></td>
-            <td><button class="button" id="negativeSignBtn" type="button" onclick="changeNegative()">+/-</button></td>
+            <td><button class="button" id="modBtn" type="button" onclick="addModulo()">mod</button></td>
+            <td><button class="button" id="exponentialFuncBtn" type="button" onclick="addExponentialFunc()">exp(x)</button></td>
+            <td><button class="button" id="napierNum" type="button" onclick="addEulerNum()">e</button></td>
             <td><button class="numPad" id="num0Btn" type="button" onclick="inputNum(0)">0</button></td>
             <td><button class="numPad" id="decimalBtn" type="button" onclick="addDecimalPoint()">.</button></td>
             <td><button id="equalBtn" type="button" onclick="outputResult()">=</button></td>

@@ -18,31 +18,35 @@ function resetAll() {
 function inputNum(num) {
     let str = "";
 
-    if (isNegative == true && isDecimal == true) {
-        num = (inputValueArr[inputValueArr.length - 1] * -1) + "." + num
-        str += num;
-        inputValueArr.splice((inputValueArr.length - 1), 1);
-        inputValueArr.push(str);
-        changeNegative(), addDecimalPoint();
-    } else if (isNegative == true && isDecimal == false) {
-        num = num * -1;
-        str += num;
-        inputValueArr.push(str);
-        changeNegative();
-    } else if (isNegative == false && isDecimal == true) {
-        num = inputValueArr[inputValueArr.length - 1] + "." + num;
-        str += num;
-        inputValueArr.splice((inputValueArr.length - 1), 1);
-        inputValueArr.push(str);
-        addDecimalPoint();
-    } else if (isNegative == false && isDecimal == false) {
-        str += num;
-        inputValueArr.push(str);
+    if (num == 0 && (inputValueArr[inputValueArr.length - 1] == " : " || inputValueArr[inputValueArr.length - 1] == "&nbsp;&#x305;:&#x305;&nbsp;&#x305;")) {
+        alert("Divisors cannot equal to 0. \n \nSố bị chia không được bằng 0.");
+    } else {
+        if (isNegative == true && isDecimal == true) {
+            num = (inputValueArr[inputValueArr.length - 1] * -1) + "." + num
+            str += num;
+            inputValueArr.splice((inputValueArr.length - 1), 1);
+            inputValueArr.push(str);
+            changeNegative(), addDecimalPoint();
+        } else if (isNegative == true && isDecimal == false) {
+            num = num * -1;
+            str += num;
+            inputValueArr.push(str);
+            changeNegative();
+        } else if (isNegative == false && isDecimal == true) {
+            num = inputValueArr[inputValueArr.length - 1] + "." + num;
+            str += num;
+            inputValueArr.splice((inputValueArr.length - 1), 1);
+            addDecimalPoint();
+        } else if (isNegative == false && isDecimal == false) {
+            str += num;
+            inputValueArr.push(str);
+        };
     };
 
     if (isRootInput % 2 != 0) {
         inputValueArr.push("&#x305;");
     };
+
     screen.innerHTML = inputValueArr.join("");
     isOperatorInput = true;
 };
@@ -103,6 +107,13 @@ function inputOperator(type) {
 };
 
 function changeNegative() {
+    if (isRootInput % 2 != 0) {
+        alert("The n-th root of x functions need to be complied with these following conditions: \n n >= 2, x >= 0. \n \n" +
+            "Căn bậc n của một số x bất kì phải thỏa mãn các điều kiện sau: \n n >= 2, x >= 0.");
+        isNegative = false, isRootInput = 0, nthRoot = "";
+        resetAll();
+    };
+
     if (isNegative == false) {
         return isNegative = true;
     } else {
@@ -161,10 +172,13 @@ function addRoot(i) {
             isRootInput = 0;
         };
     } else if (nthRoot == 1 || nthRoot == 0) {
-        alert("Căn bậc n của một số x bất kì phải thỏa mãn điều kiện sau: \n n >= 2, x >= 0.");
+        alert("The n-th root of x functions need to be complied with these following conditions: \n n >= 2, x >= 0. \n \n" +
+            "Căn bậc n của một số x bất kì phải thỏa mãn các điều kiện sau: \n n >= 2, x >= 0.");
+        isRootInput = 0, nthRoot = "";
         resetAll();
     } else if (inputValueArr.length == 0) {
-        alert("Vui lòng nhập giá trị căn bậc n.");
+        alert("Please input n-th root value. \n \nVui lòng nhập giá trị căn bậc n.");
+        isRootInput = 0, nthRoot = "";
     };
 };
 
@@ -223,6 +237,7 @@ function addPi() {
     let str = "";
     if (isNegative == true) {
         str += "-&pi;";
+        isNegative = false;
     } else {
         str += "&pi;";
     };
@@ -234,6 +249,7 @@ function addEulerNum() {
     let str = "";
     if (isNegative == true) {
         str += "-e";
+        isNegative = false;
     } else {
         str += "e";
     };
@@ -252,6 +268,27 @@ function addAbsoluteSign(i) {
     screen.innerHTML = inputValueArr.join("");
 };
 
+function addModulo() {
+    let str = "";
+    if (isOperatorInput == true) {
+        str += " mod ";
+        inputValueArr.push(str);
+        screen.innerHTML = inputValueArr.join("");
+    };
+};
+
+function addExponentialFunc() {
+    let str = "";
+    if (isNegative == true) {
+        str += "-exp ( ";
+        isNegative = false;
+    } else {
+        str += "exp ( ";
+    };
+    inputValueArr.push(str);
+    screen.innerHTML = inputValueArr.join("");
+};
+
 function convertOperator() {
     let i = 0, j, k, startPoint, removeDigit, base = "";
     for (i; i < inputValueArr.length; i++) {
@@ -259,6 +296,12 @@ function convertOperator() {
 
         if (calArr[i] == "&#x305;") {
             calArr.splice(i, 1);
+        } else if (calArr[i] == " mod ") {
+            calArr[i + 1] = inputValueArr[i + 1];
+            let moduloResult, dividend = calArr[i - 1], divisor = calArr[i + 1];
+            moduloResult = parseFloat(dividend) % parseFloat(divisor);
+            calArr.splice(i - 1, 3, moduloResult.toString());
+            i = i + 2;
         } else {
             switch (calArr[i]) {
                 case "&nbsp;&#x305;+&#x305;&nbsp;&#x305;":
@@ -326,6 +369,7 @@ function convertOperator() {
                     break;
 
                 case "!":
+                    let factorialResult = "";
                     if (calArr[i - 1] == " ) ") {
                         if (calArr[0] == "( ") {
                             startPoint = 0;
@@ -339,12 +383,12 @@ function convertOperator() {
                         base = eval(base);
 
                         if (base < 0) {
-                            alert("Giai thừa chỉ nhận các cơ số là số >= 0");
+                            alert("Factorial of x functions only accept x >= 0. \n \nGiai thừa chỉ nhận các cơ số x >= 0.");
                             resetAll();
                         } else if (base == 0 || base == 1) {
-                            var factorialResult = "1";
+                            factorialResult = "1";
                         } else {
-                            var factorialResult = base;
+                            factorialResult = base;
                             while (base > 1) {
                                 base--;
                                 factorialResult *= base;
@@ -365,12 +409,12 @@ function convertOperator() {
                         base = parseFloat(base);
 
                         if (base < 0) {
-                            alert("Giai thừa chỉ nhận các cơ số là số >= 0 !");
+                            alert("Factorial of x functions only accept x >= 0. \n \nGiai thừa chỉ nhận các cơ số x >= 0.");
                             resetAll();
                         } else if (base == 0 || base == 1) {
-                            var factorialResult = "1";
+                            factorialResult = "1";
                         } else {
-                            var factorialResult = base;
+                            factorialResult = base;
                             while (base > 1) {
                                 base--;
                                 factorialResult *= base;
@@ -422,8 +466,17 @@ function convertOperator() {
                 case "| ":
                     calArr.splice(i, 1, "Math.abs(");
                     break;
+
                 case " |":
                     calArr.splice(i, 1, ")");
+                    break;
+
+                case "exp ( ":
+                    calArr.splice(i, 1, "Math.exp(");
+                    break;
+
+                case "-exp ( ":
+                    calArr.splice(i, 1, "-1 * Math.exp(");
                     break;
             };
         };
@@ -439,10 +492,13 @@ function outputResult() {
 
         switch (result) {
             case NaN:
-                screen.innerHTML = displayEquation + "<br><br>" + "= Vô nghiệm";
+                screen.innerHTML = displayEquation + "<br><br>" + "= [Unsolvable_Vô nghiệm]";
+                break;
+            case undefined:
+                screen.innerHTML = displayEquation + "<br><br>" + "= [Unidentifiable_Data type không xác định]";
                 break;
             case Infinity:
-                screen.innerHTML = displayEquation + "<br><br>" + "= " + "&infin;";
+                screen.innerHTML = displayEquation + "<br><br>" + "= &infin;";
                 break;
             default:
                 screen.innerHTML = displayEquation + "<br><br>" + "= " + result;
